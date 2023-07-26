@@ -1,0 +1,261 @@
+{
+  "folder": {
+    "2": "技术指标",
+    "1": "大师系列",
+    "4": "多因子选股",
+    "5": "形态策略",
+    "6": "量化择时",
+    "11": "问财策略",
+    "9": "入门教材策略"
+  },
+  "algo_bid": [
+    {
+      "folder_id": 2,
+      "backtest_id": "5c34101a75019f000bf41475",
+      "backtest_name": "MACD交易策略",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 2,
+      "backtest_id": "5c34111b5919f2000cf32dea",
+      "backtest_name": "SAR交易策略",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 2,
+      "backtest_id": "5c3411f3ac17c6000cb7e302",
+      "backtest_name": "加速震荡交易策略",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 2,
+      "backtest_id": "5c3412e875019f000ae54492",
+      "backtest_name": "PSY交易策略",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 2,
+      "backtest_id": "5c3413e0fa25f1000a07661c",
+      "backtest_name": "SMA移动均线入门",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 1,
+      "backtest_id": "5c34093efa25f1000a07660c",
+      "backtest_name": "彼得林奇PEG价值选股策略",
+      "research_userid": "385045923",
+      "research_id": "5c355d2db39dc2000b7eeb99",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 1,
+      "backtest_id": "5c340544ac17c6000cb7e2f9",
+      "backtest_name": "巴菲特的alpha",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 1,
+      "backtest_id": "5c340089e052f2000b4b1094",
+      "backtest_name": "奥肖内西价值投资法",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 1,
+      "backtest_id": "5c34020775019f000c97f7b3",
+      "backtest_name": "查尔斯.布兰德价值投资策略",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 1,
+      "backtest_id": "5c340ae775019f000c97f7c1",
+      "backtest_name": "本杰明格雷厄姆企业主投资法",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 1,
+      "backtest_id": "5c340bb0e052f2000ae08f1c",
+      "backtest_name": "史蒂夫·路佛价值选股法则",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 1,
+      "backtest_id": "5c340d2d5919f2000cf32de2",
+      "backtest_name": "三一投资管理公司价值选股策略",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 1,
+      "backtest_id": "5c340df0a59c54000ae938bc",
+      "backtest_name": "迈克尔•普莱斯低估价值选股策略",
+      "research_userid": "385045923",
+      "research_id": "5c355d5baba4ff000c238a87",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 4,
+      "backtest_id": "5c3418c15919f2000cf32df9",
+      "backtest_name": "多因子alpha",
+      "research_userid": "385045923",
+      "research_id": "5c355d78b47299000a6eb5aa",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 4,
+      "backtest_id": "5c34176975019f000ae54499",
+      "backtest_name": "三因子选股模型",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 4,
+      "backtest_id": "5c343584ac17c6000cb7e317",
+      "backtest_name": "因子选股-打分模型",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 5,
+      "backtest_id": "5c34378f6158be000a0db1dc",
+      "backtest_name": "breakaway脱离形态",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 5,
+      "backtest_id": "5c3438b175019f000c97f7e7",
+      "backtest_name": "三浪下跌形态",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 6,
+      "backtest_id": "5c343caefa25f1000a07663c",
+      "backtest_name": "RSRS指标择时及大小盘轮动",
+      "research_userid": "385045923",
+      "research_id": "5c355d8d37c44f000cb536b1",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 6,
+      "backtest_id": "5c343b88fa25f1000c7bbda5",
+      "backtest_name": "单向波动差策略",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 6,
+      "backtest_id": "5c343ab05919f2000bfb50f8",
+      "backtest_name": "基于奇异谱分析的均线择时策略",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 6,
+      "backtest_id": "5c344008a59c54000b3fd01f",
+      "backtest_name": "趋势追踪-组合指标择时",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 6,
+      "backtest_id": "5c34411dac17c6000a02a94b",
+      "backtest_name": "抛物线逼近择时",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 11,
+      "backtest_id": "5c34420375019f000ae544ad",
+      "backtest_name": "问财日级模板",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 11,
+      "backtest_id": "5c21c0645e1f06000ca63f2a",
+      "backtest_name": "问财分钟模板",
+      "research_userid": "",
+      "research_id": "",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 9,
+      "backtest_id": "5c3442ecac17c6000a02a951",
+      "backtest_name": "单因子策略（一）",
+      "research_userid": "405282146",
+      "research_id": "59b11db8e0e99b000a1346d7",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 9,
+      "backtest_id": "5c344396ac17c6000a02a955",
+      "backtest_name": "多因子策略（二）",
+      "research_userid": "405282146",
+      "research_id": "59b120a4bb8d9c000cca1a16",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 9,
+      "backtest_id": "5c344d045919f2000ac3192b",
+      "backtest_name": "动量策略（三）",
+      "research_userid": "405282146",
+      "research_id": "59b12354e0e99b000a1346d8",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 9,
+      "backtest_id": "5c344f7a4b82ee000ca252ac",
+      "backtest_name": "反转效应（四）",
+      "research_userid": "405282146",
+      "research_id": "59b1274ee0e99b000c78fe73",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 9,
+      "backtest_id": "5c3450753eefe6000c3b829a",
+      "backtest_name": "双板块轮动（五）",
+      "research_userid": "405282146",
+      "research_id": "59b1286ddf8aed000aadc42f",
+      "simu_algo_id": ""
+    },
+    {
+      "folder_id": 9,
+      "backtest_id": "5c3451009366c2000b33b87e",
+      "backtest_name": "多板块轮动（六）",
+      "research_userid": "405282146",
+      "research_id": "59b12983bb8d9c000cca1a26",
+      "simu_algo_id": ""
+    }
+  ]
+}

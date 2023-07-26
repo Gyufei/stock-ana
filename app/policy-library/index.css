@@ -1,0 +1,12 @@
+.ant-tree-node-content-wrapper.ant-tree-node-content-wrapper-normal {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.ant-tree-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 110px;
+}
