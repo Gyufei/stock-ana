@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-import UserDropdown from '@/components/UserDropdown';
+import UserDropdown from '@/components/layout/user-dropdown';
 
 export default function Navbar() {
   return (

@@ -1,0 +1,37 @@
+.policy-item-tab .ant-tabs-tabpane {
+  padding-left: 0 !important;
+}
+
+.policy-item-tab .ant-tabs-content {
+  height: 100%;
+}
+
+.policy-item-tab .ant-tabs-tabpane.ant-tabs-tabpane-active {
+  height: 100%;
+}
+
+.history-gain-table .ant-table-thead .ant-table-cell,
+.trade-log-table .ant-table-thead .ant-table-cell {
+  background-color: #f1f5f9;
+}
+
+.history-gain-table table,
+.trade-log-table table {
+  border-collapse: collapse !important;
+}
+
+.history-gain-table .ant-table-thead > tr > th,
+.trade-log-table .ant-table-thead > tr > th {
+  text-align: center;
+}
+
+.history-gain-table .ant-table-cell,
+.trade-log-table .ant-table-cell {
+  font-size: 12px;
+  text-align: center;
+}
+
+.history-gain-table .child-row .ant-table-cell {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}

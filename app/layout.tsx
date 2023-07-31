@@ -4,9 +4,11 @@ import { Inter } from 'next/font/google';
 import Link from 'next/link';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import './ant.css';
 
-import Navbar from '@/components/Navbar';
-import Sidebar from '@/components/Sidebar';
+import Navbar from '@/components/layout/navbar';
+import Sidebar from '@/components/layout/sidebar';
+import AntdProvider from '@/lib/context/antd-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,14 +20,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="h-full">
-      <body className={`${inter.className} h-full min-h-[600px] text-blueGray-700 antialiased`}>
-        <div id="page-transition"></div>
-
-        <Sidebar />
-        <div className="relative md:ml-64 bg-blueGray-100 h-full flex flex-col min-h-[600px]">
-          <Navbar />
-          {children}
-        </div>
+      <body className={`${inter.className} h-full flex text-blueGray-700 antialiased`}>
+        <AntdProvider>
+          <Sidebar />
+          <div className=" flex-1 relative bg-blueGray-100 h-full flex flex-col">
+            <Navbar />
+            {children}
+          </div>
+        </AntdProvider>
       </body>
     </html>
   );

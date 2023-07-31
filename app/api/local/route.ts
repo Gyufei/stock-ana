@@ -2,9 +2,12 @@ import path from 'path';
 import { promises as fs } from 'fs';
 import { NextResponse } from 'next/server';
 
-async function handler(req: any, res: any) {
+async function handler(req: Request, res: Response) {
+  const url = new URL(req.url);
+  const fileName = url.searchParams.get('file');
+
   const jsonDirectory = path.join(process.cwd(), 'data');
-  const fileContents = await fs.readFile(jsonDirectory + '/policy-income.json', 'utf8');
+  const fileContents = await fs.readFile(jsonDirectory + `/${fileName}.json`, 'utf8');
   return NextResponse.json(JSON.parse(fileContents));
 }
 
