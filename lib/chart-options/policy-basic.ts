@@ -4,7 +4,7 @@ import dateUtils from '../dateUtil';
 export const chartOptions: Highcharts.Options = {
   colors: ['#aa4643', '#4572a7', '#89a54e', '#80699b', '#18a5ca'],
   credits: {
-    text: '智能会计平台',
+    text: '智慧会计平台',
     href: '',
   },
   rangeSelector: {
@@ -56,8 +56,8 @@ export const chartOptions: Highcharts.Options = {
       labels: {
         enabled: false,
       },
-      startOnTick: true,
-      endOnTick: true,
+      startOnTick: false,
+      endOnTick: false,
       gridLineWidth: 1,
       dateTimeLabelFormats: {
         millisecond: '%Y%m%d',

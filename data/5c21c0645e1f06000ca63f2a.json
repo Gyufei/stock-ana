@@ -1,0 +1,3629 @@
+{
+  "id": "5c21c0645e1f06000ca63f2a",
+  "name": "问财分钟模板",
+  "data": {
+    "record": false,
+    "profit": {
+      "total": 240,
+      "list": {
+        "20171229": {
+          "max_drawdown": 0,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0,
+          "total_asset_value": 1000000,
+          "log_algo_profit": 0,
+          "log_excess_income": 0,
+          "excess_income": 0,
+          "profit_and_loss": 0,
+          "algo_profit": 0,
+          "benchmark_profit": 0
+        },
+        "20180102": {
+          "total_asset_value": 999660.5235622501,
+          "max_drawdown": -0.0003394764377498971,
+          "benchmark_profit": 0.014028364057460857,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.013930877221025127,
+          "excess_income": -0.01416907160044345,
+          "profit_and_loss": -0.0003394764377499232,
+          "log_algo_profit": -0.0003395340729200147,
+          "algo_profit": -0.0003394764377499232,
+          "log_excess_income": -0.014270411293945141
+        },
+        "20180103": {
+          "total_asset_value": 1001918.5235622501,
+          "max_drawdown": 0,
+          "benchmark_profit": 0.019980277632916064,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.019783291455239722,
+          "excess_income": -0.01770794442475121,
+          "profit_and_loss": 0.002258766798106329,
+          "log_algo_profit": 0.0019166855463963167,
+          "algo_profit": 0.001918523562250077,
+          "log_excess_income": -0.017866605908843404
+        },
+        "20180104": {
+          "total_asset_value": 1004438.5235622501,
+          "max_drawdown": 0,
+          "benchmark_profit": 0.024301792654456474,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.024011202585205657,
+          "excess_income": -0.01939200852195233,
+          "profit_and_loss": 0.002515174578308343,
+          "log_algo_profit": 0.004428702366891529,
+          "algo_profit": 0.004438523562250077,
+          "log_excess_income": -0.019582500218314126
+        },
+        "20180105": {
+          "total_asset_value": 1003293.5235622501,
+          "max_drawdown": -0.0011399403479062098,
+          "benchmark_profit": 0.026767423456498098,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.02641544323234039,
+          "excess_income": -0.022861944543610346,
+          "profit_and_loss": -0.0011399403479062586,
+          "log_algo_profit": 0.0032881117927936877,
+          "algo_profit": 0.003293523562250077,
+          "log_excess_income": -0.023127331439546702
+        },
+        "20180108": {
+          "total_asset_value": 1002003.34598125,
+          "max_drawdown": -0.002424416750129832,
+          "benchmark_profit": 0.03207870370129174,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.031574927427920646,
+          "excess_income": -0.02914056613336169,
+          "profit_and_loss": -0.0012859422997361504,
+          "log_algo_profit": 0.0020013419597423787,
+          "algo_profit": 0.0020033459812500514,
+          "log_excess_income": -0.029573585468178266
+        },
+        "20180109": {
+          "total_asset_value": 1002297.2635470001,
+          "max_drawdown": -0.0021317979796871,
+          "benchmark_profit": 0.03930749281002406,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.038554619063806916,
+          "excess_income": -0.03561047093286862,
+          "profit_and_loss": 0.0002933299244247978,
+          "log_algo_profit": 0.0022946288713560567,
+          "algo_profit": 0.002297263547000126,
+          "log_excess_income": -0.03625999019245086
+        },
+        "20180110": {
+          "total_asset_value": 1000674.6925470001,
+          "max_drawdown": -0.003747198984265898,
+          "benchmark_profit": 0.04390093525817558,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.04296459535869548,
+          "excess_income": -0.04140837626559357,
+          "profit_and_loss": -0.001618852070151252,
+          "log_algo_profit": 0.0006744650443073738,
+          "algo_profit": 0.0006746925470001297,
+          "log_excess_income": -0.0422901303143881
+        },
+        "20180111": {
+          "total_asset_value": 1001806.6925470001,
+          "max_drawdown": -0.002620201190527971,
+          "benchmark_profit": 0.043348471809292896,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.04243522550005417,
+          "excess_income": -0.03981582413232876,
+          "profit_and_loss": 0.00113123676298712,
+          "log_algo_profit": 0.0018050624411252425,
+          "algo_profit": 0.0018066925470001298,
+          "log_excess_income": -0.04063016305892893
+        },
+        "20180112": {
+          "total_asset_value": 1001278.6925470001,
+          "max_drawdown": -0.0031458680059817112,
+          "benchmark_profit": 0.048164993485625196,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.04704101003910532,
+          "excess_income": -0.04473179435492003,
+          "profit_and_loss": -0.0005270477866918709,
+          "log_algo_profit": 0.0012778757159282604,
+          "algo_profit": 0.0012786925470001298,
+          "log_excess_income": -0.04576313432317706
+        },
+        "20180115": {
+          "total_asset_value": 998689.8189670001,
+          "max_drawdown": -0.005723301586305296,
+          "benchmark_profit": 0.04822411245812901,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.04709741080206667,
+          "excess_income": -0.04725544175373808,
+          "profit_and_loss": -0.002585567434192146,
+          "log_algo_profit": -0.001311040070581273,
+          "algo_profit": -0.0013101810329998844,
+          "log_excess_income": -0.048408450872647946
+        },
+        "20180116": {
+          "total_asset_value": 998572.1844750001,
+          "max_drawdown": -0.005840416262057446,
+          "benchmark_profit": 0.05646893913249027,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.0549321578618493,
+          "excess_income": -0.0548021361660016,
+          "profit_and_loss": -0.00011778881667348795,
+          "log_algo_profit": -0.0014288358249022087,
+          "algo_profit": -0.0014278155249998672,
+          "log_excess_income": -0.05636099368675151
+        },
+        "20180117": {
+          "total_asset_value": 998866.5021400001,
+          "max_drawdown": -0.0055473991603675055,
+          "benchmark_profit": 0.05389960824439503,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.05249719723778262,
+          "excess_income": -0.052218546884242545,
+          "profit_and_loss": 0.0002947384972021008,
+          "log_algo_profit": -0.001134140754558132,
+          "algo_profit": -0.0011334978599998866,
+          "log_excess_income": -0.05363133799234075
+        },
+        "20180118": {
+          "total_asset_value": 999397.5021400001,
+          "max_drawdown": -0.00501874560164417,
+          "benchmark_profit": 0.05968011897426528,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.05796708802829283,
+          "excess_income": -0.05688756045797738,
+          "profit_and_loss": 0.0005316025703758915,
+          "log_algo_profit": -0.0006026794347714737,
+          "algo_profit": -0.0006024978599998867,
+          "log_excess_income": -0.058569767463064304
+        },
+        "20180119": {
+          "total_asset_value": 1000145.5021400001,
+          "max_drawdown": -0.004274050946418084,
+          "benchmark_profit": 0.06314791931607378,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.061234242375184905,
+          "excess_income": -0.059260255352428626,
+          "profit_and_loss": 0.000748450940089719,
+          "log_algo_profit": 0.00014549155559040474,
+          "algo_profit": 0.0001455021400001133,
+          "log_excess_income": -0.0610887508195945
+        },
+        "20180122": {
+          "total_asset_value": 1000074.0308800002,
+          "max_drawdown": -0.004345206381343392,
+          "benchmark_profit": 0.07585053483319379,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.07311154394337292,
+          "excess_income": -0.07043404404213294,
+          "profit_and_loss": -0.00007146086229151418,
+          "log_algo_profit": 0.00007402813984988157,
+          "algo_profit": 0.00007403088000020944,
+          "log_excess_income": -0.07303751580352304
+        },
+        "20180123": {
+          "total_asset_value": 999874.2144300002,
+          "max_drawdown": -0.0045441398604093575,
+          "benchmark_profit": 0.08726635136382614,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.08366661157666078,
+          "excess_income": -0.08037785481377635,
+          "profit_and_loss": -0.0001998016585074373,
+          "log_algo_profit": -0.0001257934816681362,
+          "algo_profit": -0.00012578556999983266,
+          "log_excess_income": -0.08379240505832891
+        },
+        "20180124": {
+          "total_asset_value": 1000009.9285760003,
+          "max_drawdown": -0.004409025423023127,
+          "benchmark_profit": 0.08907053439209636,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.08532461172671243,
+          "excess_income": -0.08177671051013102,
+          "profit_and_loss": 0.0001357312190288526,
+          "log_algo_profit": 0.000009928526712255429,
+          "algo_profit": 0.00000992857600026764,
+          "log_excess_income": -0.08531468320000019
+        },
+        "20180125": {
+          "total_asset_value": 1000153.9285760003,
+          "max_drawdown": -0.0042656617460812285,
+          "benchmark_profit": 0.08291652969200151,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.07965789181864412,
+          "excess_income": -0.07642565132839962,
+          "profit_and_loss": 0.00014399857029925086,
+          "log_algo_profit": 0.00015391673021249503,
+          "algo_profit": 0.00015392857600026765,
+          "log_excess_income": -0.07950397508843163
+        },
+        "20180126": {
+          "total_asset_value": 1001252.4885760003,
+          "max_drawdown": -0.003171956183988689,
+          "benchmark_profit": 0.08694053958627994,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.08336690525032986,
+          "excess_income": -0.07883416607397387,
+          "profit_and_loss": 0.0010983909262488867,
+          "log_algo_profit": 0.0012517048665070512,
+          "algo_profit": 0.0012524885760003236,
+          "log_excess_income": -0.0821152003838228
+        },
+        "20180129": {
+          "total_asset_value": 1001048.2167210003,
+          "max_drawdown": -0.0033753253800202776,
+          "benchmark_profit": 0.06727188319281859,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.06510575072571376,
+          "excess_income": -0.062049481031680176,
+          "profit_and_loss": -0.00020401632688132085,
+          "log_algo_profit": 0.00104766772546381,
+          "algo_profit": 0.0010482167210002663,
+          "log_excess_income": -0.06405808300024994
+        },
+        "20180130": {
+          "total_asset_value": 1000551.3005390003,
+          "max_drawdown": -0.003870045734072125,
+          "benchmark_profit": 0.05588075125204836,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.05437525395685558,
+          "excess_income": -0.0524012305816155,
+          "profit_and_loss": -0.0004963958515681083,
+          "log_algo_profit": 0.000551148628687764,
+          "algo_profit": 0.000551300539000309,
+          "log_excess_income": -0.053824105328167816
+        },
+        "20180131": {
+          "total_asset_value": 998550.5393530003,
+          "max_drawdown": -0.005861965736208452,
+          "benchmark_profit": 0.06079199228927854,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.05901579167405973,
+          "excess_income": -0.05867451242911059,
+          "profit_and_loss": -0.0019996587730405657,
+          "log_algo_profit": -0.0014505121312628196,
+          "algo_profit": -0.0014494606469996505,
+          "log_excess_income": -0.06046630380532255
+        },
+        "20180201": {
+          "total_asset_value": 991537.4907107503,
+          "max_drawdown": -0.012844024346802319,
+          "benchmark_profit": 0.05334920391205348,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.05197480582231901,
+          "excess_income": -0.058681122055002755,
+          "profit_and_loss": -0.007023228535627288,
+          "log_algo_profit": -0.008498519623429374,
+          "algo_profit": -0.00846250928924966,
+          "log_excess_income": -0.060473325445748384
+        },
+        "20180202": {
+          "total_asset_value": 967689.1058082506,
+          "max_drawdown": -0.03658702537977865,
+          "benchmark_profit": 0.05963442147222925,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.05792396323376994,
+          "excess_income": -0.08677078981280373,
+          "profit_and_loss": -0.024051924537321145,
+          "log_algo_profit": -0.03284441497792313,
+          "algo_profit": -0.032310894191749394,
+          "log_excess_income": -0.09076837821169306
+        },
+        "20180205": {
+          "total_asset_value": 972420.4336445008,
+          "max_drawdown": -0.03187660485601129,
+          "benchmark_profit": 0.060357295421375703,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.0586059224804987,
+          "excess_income": -0.08293134979745642,
+          "profit_and_loss": 0.004889305674572417,
+          "log_algo_profit": -0.027967023140527254,
+          "algo_profit": -0.027579566355499206,
+          "log_excess_income": -0.08657294562102595
+        },
+        "20180206": {
+          "total_asset_value": 943983.2601422508,
+          "max_drawdown": -0.06018811704433058,
+          "benchmark_profit": 0.029281803222437952,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.028861280605062007,
+          "excess_income": -0.08287190428620972,
+          "profit_and_loss": -0.029243702125500693,
+          "log_algo_profit": -0.05764684589402419,
+          "algo_profit": -0.0560167398577492,
+          "log_excess_income": -0.0865081264990862
+        },
+        "20180207": {
+          "total_asset_value": 940913.2216735007,
+          "max_drawdown": -0.06324458928900523,
+          "benchmark_profit": 0.0048729861251021415,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.00486115155909318,
+          "excess_income": -0.06364960082988913,
+          "profit_and_loss": -0.0032522170661028957,
+          "log_algo_profit": -0.060904362912232335,
+          "algo_profit": -0.05908677832649928,
+          "log_excess_income": -0.06576551447132552
+        },
+        "20180208": {
+          "total_asset_value": 950457.2877880007,
+          "max_drawdown": -0.053742697544897466,
+          "benchmark_profit": -0.004665933273857077,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.004676852720026629,
+          "excess_income": -0.045087152583605516,
+          "profit_and_loss": 0.010143407377701561,
+          "log_algo_profit": -0.05081205463566089,
+          "algo_profit": -0.049542712211999344,
+          "log_excess_income": -0.04613520191563426
+        },
+        "20180209": {
+          "total_asset_value": 943265.2877880007,
+          "max_drawdown": -0.06090291674327464,
+          "benchmark_profit": -0.0471865658076652,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.048336161342362155,
+          "excess_income": -0.010021003127887007,
+          "profit_and_loss": -0.007566883954078507,
+          "log_algo_profit": -0.05840771270160475,
+          "algo_profit": -0.05673471221199934,
+          "log_excess_income": -0.010071551359242592
+        },
+        "20180212": {
+          "total_asset_value": 949888.2877880007,
+          "max_drawdown": -0.05430918318503608,
+          "benchmark_profit": -0.03491822541168617,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.03554244072740033,
+          "excess_income": -0.015743211819324254,
+          "profit_and_loss": 0.00702135452851364,
+          "log_algo_profit": -0.05141089310411318,
+          "algo_profit": -0.050111712211999344,
+          "log_excess_income": -0.015868452376712854
+        },
+        "20180213": {
+          "total_asset_value": 949869.2537065006,
+          "max_drawdown": -0.054328133156640646,
+          "benchmark_profit": -0.023623400584327624,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.023906906936850606,
+          "excess_income": -0.02714869009051979,
+          "profit_and_loss": -0.00002003823159494698,
+          "log_algo_profit": -0.05143093153647609,
+          "algo_profit": -0.05013074629349937,
+          "log_excess_income": -0.027524024599625486
+        },
+        "20180214": {
+          "total_asset_value": 948867.4713352507,
+          "max_drawdown": -0.05532548874162668,
+          "benchmark_profit": -0.015851103943235387,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.015978076246307586,
+          "excess_income": -0.03584968175331771,
+          "profit_and_loss": -0.001054652908640752,
+          "log_algo_profit": -0.05248614098283291,
+          "algo_profit": -0.05113252866474935,
+          "log_excess_income": -0.03650806473652533
+        },
+        "20180222": {
+          "total_asset_value": 953164.9100252506,
+          "max_drawdown": -0.051047040046967807,
+          "benchmark_profit": 0.005427707159590465,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.005413030241143665,
+          "excess_income": -0.051980661326696764,
+          "profit_and_loss": 0.004529018877581087,
+          "log_algo_profit": -0.047967347249624696,
+          "algo_profit": -0.04683508997474937,
+          "log_excess_income": -0.05338037749076836
+        },
+        "20180223": {
+          "total_asset_value": 955212.9100252506,
+          "max_drawdown": -0.04900808997490491,
+          "benchmark_profit": 0.009981505412164646,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.009932019212406638,
+          "excess_income": -0.05422732504845551,
+          "profit_and_loss": 0.002148631342236199,
+          "log_algo_profit": -0.04582102091456094,
+          "algo_profit": -0.04478708997474937,
+          "log_excess_income": -0.05575304012696758
+        },
+        "20180226": {
+          "total_asset_value": 961438.9100252506,
+          "max_drawdown": -0.04280960210934659,
+          "benchmark_profit": 0.02172335699804033,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.021490767270093896,
+          "excess_income": -0.05900271003876578,
+          "profit_and_loss": 0.006517918607104481,
+          "log_algo_profit": -0.039324252086991064,
+          "algo_profit": -0.038561089974749364,
+          "log_excess_income": -0.06081501935708496
+        },
+        "20180227": {
+          "total_asset_value": 966020.9100252506,
+          "max_drawdown": -0.038247849555541724,
+          "benchmark_profit": 0.006977601699331835,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.006953370886603974,
+          "excess_income": -0.040672892430739904,
+          "profit_and_loss": 0.004765773417553552,
+          "log_algo_profit": -0.034569799015017846,
+          "algo_profit": -0.03397908997474937,
+          "log_excess_income": -0.04152316990162182
+        },
+        "20180228": {
+          "total_asset_value": 964574.7856277506,
+          "max_drawdown": -0.03968758365929892,
+          "benchmark_profit": -0.0017895459347841169,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.0017911490850032405,
+          "excess_income": -0.03369596892166771,
+          "profit_and_loss": -0.0014969907819720682,
+          "log_algo_profit": -0.03606791140719036,
+          "algo_profit": -0.035425214372249436,
+          "log_excess_income": -0.03427676232218712
+        },
+        "20180301": {
+          "total_asset_value": 971831.2782442506,
+          "max_drawdown": -0.03246315683149792,
+          "benchmark_profit": 0.00452296112172138,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.004512763271159487,
+          "excess_income": -0.03254448543512145,
+          "profit_and_loss": 0.00752299637583564,
+          "log_algo_profit": -0.028573071642046387,
+          "algo_profit": -0.02816872175574943,
+          "log_excess_income": -0.033085834913205873
+        },
+        "20180302": {
+          "total_asset_value": 964331.2782442506,
+          "max_drawdown": -0.039930015005556374,
+          "benchmark_profit": -0.0035709298293024718,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.0035773208182770023,
+          "excess_income": -0.03221282165217065,
+          "profit_and_loss": -0.0077173889829413615,
+          "log_algo_profit": -0.03632039377463625,
+          "algo_profit": -0.03566872175574943,
+          "log_excess_income": -0.03274307295635925
+        },
+        "20180305": {
+          "total_asset_value": 968616.2782442506,
+          "max_drawdown": -0.035663950035444314,
+          "benchmark_profit": -0.003165060592977338,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.0031700799911871685,
+          "excess_income": -0.028308258516257623,
+          "profit_and_loss": 0.004443493741903365,
+          "log_algo_profit": -0.03188674320311111,
+          "algo_profit": -0.03138372175574943,
+          "log_excess_income": -0.028716663211923944
+        },
+        "20180306": {
+          "total_asset_value": 973164.2782442506,
+          "max_drawdown": -0.03113604723869523,
+          "benchmark_profit": 0.008859113236747889,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.00882010152986273,
+          "excess_income": -0.035381387276144816,
+          "profit_and_loss": 0.00469535780282763,
+          "log_algo_profit": -0.027202374208566114,
+          "algo_profit": -0.026835721755749428,
+          "log_excess_income": -0.036022475738428844
+        },
+        "20180307": {
+          "total_asset_value": 970370.5466142506,
+          "max_drawdown": -0.03391743361970734,
+          "benchmark_profit": 0.0014385782033484462,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.0014375444410379755,
+          "excess_income": -0.03102340199918807,
+          "profit_and_loss": -0.0028707708374173893,
+          "log_algo_profit": -0.030077273611921647,
+          "algo_profit": -0.029629453385749367,
+          "log_excess_income": -0.03151481805295962
+        },
+        "20180308": {
+          "total_asset_value": 973364.2938742505,
+          "max_drawdown": -0.03093691545978794,
+          "benchmark_profit": 0.011596845125831817,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.011530117111530251,
+          "excess_income": -0.03779425710528561,
+          "profit_and_loss": 0.003085158829733067,
+          "log_algo_profit": -0.02699686411889277,
+          "algo_profit": -0.026635706125749507,
+          "log_excess_income": -0.03852698123042302
+        },
+        "20180309": {
+          "total_asset_value": 984186.6738527504,
+          "max_drawdown": -0.020162358605757436,
+          "benchmark_profit": 0.019353289050419647,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.019168395871216718,
+          "excess_income": -0.03449894710246004,
+          "profit_and_loss": 0.011118529872740644,
+          "log_algo_profit": -0.015939690722448687,
+          "algo_profit": -0.015813326147249552,
+          "log_excess_income": -0.035108086593665405
+        },
+        "20180312": {
+          "total_asset_value": 995727.6738527504,
+          "max_drawdown": -0.00867235724751625,
+          "benchmark_profit": 0.02401756014586381,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.02373367505022601,
+          "excess_income": -0.027626368330132767,
+          "profit_and_loss": 0.011726433924187346,
+          "log_algo_profit": -0.004281478610110287,
+          "algo_profit": -0.00427232614724955,
+          "log_excess_income": -0.028015153660336297
+        },
+        "20180313": {
+          "total_asset_value": 991369.6738527504,
+          "max_drawdown": -0.01301109963718916,
+          "benchmark_profit": 0.01498401741030173,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.014872865975983519,
+          "excess_income": -0.023265729462225937,
+          "profit_and_loss": -0.0043766986842272565,
+          "log_algo_profit": -0.008667783078017317,
+          "algo_profit": -0.00863032614724955,
+          "log_excess_income": -0.023540649054000835
+        },
+        "20180314": {
+          "total_asset_value": 986743.6738527504,
+          "max_drawdown": -0.017616657758948384,
+          "benchmark_profit": 0.01054113855599225,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.010485968122416586,
+          "excess_income": -0.023549229017283735,
+          "profit_and_loss": -0.004666271444457263,
+          "log_algo_profit": -0.013344975553980088,
+          "algo_profit": -0.01325632614724955,
+          "log_excess_income": -0.023830943676396675
+        },
+        "20180315": {
+          "total_asset_value": 977284.9036827504,
+          "max_drawdown": -0.027033630473669135,
+          "benchmark_profit": 0.016201972440139198,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.016072121171614686,
+          "excess_income": -0.038296588486184224,
+          "profit_and_loss": -0.009585843234310457,
+          "log_algo_profit": -0.022977058719969395,
+          "algo_profit": -0.02271509631724958,
+          "log_excess_income": -0.03904917989158408
+        },
+        "20180316": {
+          "total_asset_value": 980231.4826027504,
+          "max_drawdown": -0.02410007222109445,
+          "benchmark_profit": 0.0063429968664960035,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.0063229647264479395,
+          "excess_income": -0.025946932949352797,
+          "profit_and_loss": 0.0030150664446941347,
+          "log_algo_profit": -0.019966528472438305,
+          "algo_profit": -0.019768517397249583,
+          "log_excess_income": -0.026289493198886245
+        },
+        "20180319": {
+          "total_asset_value": 982119.4826027504,
+          "max_drawdown": -0.02222041512341144,
+          "benchmark_profit": 0.010765210129493878,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.010707677785145711,
+          "excess_income": -0.028340634639644535,
+          "profit_and_loss": 0.0019260756601970238,
+          "log_algo_profit": -0.018042305317636717,
+          "algo_profit": -0.017880517397249582,
+          "log_excess_income": -0.028749983102782428
+        },
+        "20180320": {
+          "total_asset_value": 989313.4826027504,
+          "max_drawdown": -0.015058204762854577,
+          "benchmark_profit": 0.011622646104180063,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.011555621984789204,
+          "excess_income": -0.02205285101845389,
+          "profit_and_loss": 0.007324974330959121,
+          "log_algo_profit": -0.010744028318907875,
+          "algo_profit": -0.010686517397249583,
+          "log_excess_income": -0.02229965030369708
+        },
+        "20180321": {
+          "total_asset_value": 993481.4826027504,
+          "max_drawdown": -0.010908622780257837,
+          "benchmark_profit": 0.007491041168462878,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": 0.007463122658682082,
+          "excess_income": -0.013905392696558883,
+          "profit_and_loss": 0.004213022538654334,
+          "log_algo_profit": -0.006539855711775795,
+          "algo_profit": -0.006518517397249583,
+          "log_excess_income": -0.014002978370457877
+        },
+        "20180322": {
+          "total_asset_value": 996145.8671890005,
+          "max_drawdown": -0.008256011870034219,
+          "benchmark_profit": -0.0026063701772047554,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.002609772673350625,
+          "excess_income": -0.0012510232635197793,
+          "profit_and_loss": 0.0026818663788980056,
+          "log_algo_profit": -0.0038615791197281575,
+          "algo_profit": -0.003854132810999523,
+          "log_excess_income": -0.0012518064463775324
+        },
+        "20180323": {
+          "total_asset_value": 979024.8992727505,
+          "max_drawdown": -0.025301323767800143,
+          "benchmark_profit": -0.031238881856054848,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.03173722158668835,
+          "excess_income": 0.010594749248885815,
+          "profit_and_loss": -0.017187209705103967,
+          "log_algo_profit": -0.02119820340145342,
+          "algo_profit": -0.020975100727249518,
+          "log_excess_income": 0.010539018185234925
+        },
+        "20180326": {
+          "total_asset_value": 968199.5869650005,
+          "max_drawdown": -0.03607879999338126,
+          "benchmark_profit": -0.03745158378189197,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.03817091152106122,
+          "excess_income": 0.005871050901622432,
+          "profit_and_loss": -0.011057239009744658,
+          "log_algo_profit": -0.03231702807754242,
+          "algo_profit": -0.03180041303499951,
+          "log_excess_income": 0.005853883443518795
+        },
+        "20180327": {
+          "total_asset_value": 990005.3438295005,
+          "max_drawdown": -0.014369400808684873,
+          "benchmark_profit": -0.02917147923136598,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.029605426936765575,
+          "excess_income": 0.019753048711098398,
+          "profit_and_loss": 0.022521964642490865,
+          "log_algo_profit": -0.01004493806049334,
+          "algo_profit": -0.009994656170499511,
+          "log_excess_income": 0.019560488876272236
+        },
+        "20180328": {
+          "total_asset_value": 981560.3438295005,
+          "max_drawdown": -0.02277708311267468,
+          "benchmark_profit": -0.04667481332558015,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.0477992093192737,
+          "excess_income": 0.02961755081031292,
+          "profit_and_loss": -0.008530256985617246,
+          "log_algo_profit": -0.01861178592321676,
+          "algo_profit": -0.018439656170499513,
+          "log_excess_income": 0.02918742339605694
+        },
+        "20180329": {
+          "total_asset_value": 998828.3438295005,
+          "max_drawdown": -0.005585388852722417,
+          "benchmark_profit": -0.03393947522149707,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.03452879168215468,
+          "excess_income": 0.0339190125365183,
+          "profit_and_loss": 0.017592397766020073,
+          "log_algo_profit": -0.0011723430962033736,
+          "algo_profit": -0.001171656170499511,
+          "log_excess_income": 0.03335644858595131
+        },
+        "20180330": {
+          "total_asset_value": 1005564.3438295005,
+          "max_drawdown": 0,
+          "benchmark_profit": -0.03283601203308011,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.03338721365955232,
+          "excess_income": 0.03970407949462862,
+          "profit_and_loss": 0.006743901533845371,
+          "log_algo_profit": 0.00554892005736954,
+          "algo_profit": 0.005564343829500489,
+          "log_excess_income": 0.03893613371692186
+        },
+        "20180402": {
+          "total_asset_value": 995137.1325507505,
+          "max_drawdown": -0.01036951175002876,
+          "benchmark_profit": -0.03570855403403375,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.03636170022383437,
+          "excess_income": 0.03198792928613514,
+          "profit_and_loss": -0.010369511750028773,
+          "log_algo_profit": -0.004874729661030826,
+          "algo_profit": -0.00486286744924949,
+          "log_excess_income": 0.03148697056280354
+        },
+        "20180403": {
+          "total_asset_value": 990620.6783217505,
+          "max_drawdown": -0.014860973939111566,
+          "benchmark_profit": -0.04177161028545079,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.04266912679987612,
+          "excess_income": 0.03380435077367183,
+          "profit_and_loss": -0.004538524471922157,
+          "log_algo_profit": -0.009423584503420438,
+          "algo_profit": -0.009379321678249515,
+          "log_excess_income": 0.03324554229645568
+        },
+        "20180404": {
+          "total_asset_value": 984177.6783217505,
+          "max_drawdown": -0.021268321255607514,
+          "benchmark_profit": -0.04366130867176579,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.044643149040902004,
+          "excess_income": 0.029109966213801686,
+          "profit_and_loss": -0.006504003137624121,
+          "log_algo_profit": -0.01594883083006149,
+          "algo_profit": -0.015822321678249516,
+          "log_excess_income": 0.028694318210840515
+        },
+        "20180409": {
+          "total_asset_value": 972968.0590592504,
+          "max_drawdown": -0.03241591149315548,
+          "benchmark_profit": -0.04414093397408073,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.045144797273181866,
+          "excess_income": 0.0178990749174599,
+          "profit_and_loss": -0.011389832861902604,
+          "log_algo_profit": -0.027404024612193757,
+          "algo_profit": -0.027031940940749597,
+          "log_excess_income": 0.01774077266098811
+        },
+        "20180410": {
+          "total_asset_value": 973494.5401592505,
+          "max_drawdown": -0.031892343704350345,
+          "benchmark_profit": -0.02572208689526378,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.026058684309249607,
+          "excess_income": -0.0008040549159010757,
+          "profit_and_loss": 0.0005411083078196208,
+          "log_algo_profit": -0.026863062650684114,
+          "algo_profit": -0.026505459840749507,
+          "log_excess_income": -0.0008043783414345071
+        },
+        "20180411": {
+          "total_asset_value": 982203.1998342505,
+          "max_drawdown": -0.023231873861282226,
+          "benchmark_profit": -0.02295083854296011,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.023218309416110812,
+          "excess_income": 0.005275106494666559,
+          "profit_and_loss": 0.008945771461209617,
+          "log_algo_profit": -0.01795706755879054,
+          "algo_profit": -0.017796800165749506,
+          "log_excess_income": 0.005261241857320274
+        },
+        "20180412": {
+          "total_asset_value": 981067.6717392504,
+          "max_drawdown": -0.02436111845111688,
+          "benchmark_profit": -0.0328018505454016,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.0333518929850818,
+          "excess_income": 0.01433989745790254,
+          "profit_and_loss": -0.0011561030295886817,
+          "log_algo_profit": -0.01911383939100624,
+          "algo_profit": -0.01893232826074958,
+          "log_excess_income": 0.014238053594075564
+        },
+        "20180413": {
+          "total_asset_value": 976381.6717392504,
+          "max_drawdown": -0.029021188220649696,
+          "benchmark_profit": -0.03962201665954284,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.040428339366303745,
+          "excess_income": 0.016663947608553054,
+          "profit_and_loss": -0.00477642892023197,
+          "log_algo_profit": -0.02390171190206009,
+          "algo_profit": -0.02361832826074958,
+          "log_excess_income": 0.016526627464243656
+        },
+        "20180416": {
+          "total_asset_value": 962433.9462205004,
+          "max_drawdown": -0.04289173325771101,
+          "benchmark_profit": -0.05507315582111378,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.05664776805229537,
+          "excess_income": 0.018527468183875406,
+          "profit_and_loss": -0.014285116079559986,
+          "log_algo_profit": -0.03828984247853512,
+          "algo_profit": -0.037566053779499606,
+          "log_excess_income": 0.018357925573760252
+        },
+        "20180417": {
+          "total_asset_value": 945458.4011537503,
+          "max_drawdown": -0.059773343242112364,
+          "benchmark_profit": -0.07001336118548941,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.07258505980415747,
+          "excess_income": 0.016636542605560578,
+          "profit_and_loss": -0.01763814039749272,
+          "log_algo_profit": -0.05608538851596949,
+          "algo_profit": -0.05454159884624975,
+          "log_excess_income": 0.01649967128818798
+        },
+        "20180418": {
+          "total_asset_value": 945840.3317935001,
+          "max_drawdown": -0.05939352603589032,
+          "benchmark_profit": -0.06563691985042669,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.06789017951501446,
+          "excess_income": 0.012283502942014302,
+          "profit_and_loss": 0.00040396345231454456,
+          "log_algo_profit": -0.055681506634923175,
+          "algo_profit": -0.05415966820649989,
+          "log_excess_income": 0.012208672880091281
+        },
+        "20180419": {
+          "total_asset_value": 948689.0567935001,
+          "max_drawdown": -0.056560564607334496,
+          "benchmark_profit": -0.05433385855690315,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.05586568824187014,
+          "excess_income": 0.0031965989030655617,
+          "profit_and_loss": 0.0030118455560022815,
+          "log_algo_profit": -0.05267418759923826,
+          "algo_profit": -0.05131094320649991,
+          "log_excess_income": 0.003191500642631878
+        },
+        "20180420": {
+          "total_asset_value": 945370.0567935001,
+          "max_drawdown": -0.059861198744141975,
+          "benchmark_profit": -0.06698345802524419,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.06933234841548566,
+          "excess_income": 0.013240402782782157,
+          "profit_and_loss": -0.003498511947864117,
+          "log_algo_profit": -0.056178833651029894,
+          "algo_profit": -0.054629943206499915,
+          "log_excess_income": 0.013153514764455768
+        },
+        "20180423": {
+          "total_asset_value": 943212.5295345,
+          "max_drawdown": -0.06200678721119479,
+          "benchmark_profit": -0.06562607847779386,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.06787857662747783,
+          "excess_income": 0.009459390730741646,
+          "profit_and_loss": -0.002282203930086381,
+          "log_algo_profit": -0.0584636457775519,
+          "algo_profit": -0.05678747046550003,
+          "log_excess_income": 0.00941493084992593
+        },
+        "20180424": {
+          "total_asset_value": 945843.5022157499,
+          "max_drawdown": -0.05939037315734075,
+          "benchmark_profit": -0.04648301778364676,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.04759804370031558,
+          "excess_income": -0.008047554625369213,
+          "profit_and_loss": 0.002789374185421828,
+          "log_algo_profit": -0.05567815467706125,
+          "algo_profit": -0.054156497784250066,
+          "log_excess_income": -0.008080110976745665
+        },
+        "20180425": {
+          "total_asset_value": 945222.11042075,
+          "max_drawdown": -0.06000832644776222,
+          "benchmark_profit": -0.05015149515801219,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.051452775691398916,
+          "excess_income": -0.004870665582620948,
+          "profit_and_loss": -0.0006569710459967864,
+          "log_algo_profit": -0.05633534162310094,
+          "algo_profit": -0.05477788957925001,
+          "log_excess_income": -0.0048825659317020265
+        },
+        "20180426": {
+          "total_asset_value": 943939.5354082499,
+          "max_drawdown": -0.06128380426315061,
+          "benchmark_profit": -0.06831325037276831,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.07075862634285641,
+          "excess_income": 0.01315118604608334,
+          "profit_and_loss": -0.0013569033123115705,
+          "log_algo_profit": -0.057693166362331155,
+          "algo_profit": -0.05606046459175006,
+          "log_excess_income": 0.01306545998052526
+        },
+        "20180427": {
+          "total_asset_value": 944317.5354082499,
+          "max_drawdown": -0.06090789594627399,
+          "benchmark_profit": -0.06797029582980027,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.07039059337717611,
+          "excess_income": 0.0131839480899274,
+          "profit_and_loss": 0.0004004493781866193,
+          "log_algo_profit": -0.057292797142597905,
+          "algo_profit": -0.05568246459175006,
+          "log_excess_income": 0.013097796234578206
+        },
+        "20180502": {
+          "total_asset_value": 942022.9770372498,
+          "max_drawdown": -0.06318975725637355,
+          "benchmark_profit": -0.06629085060839077,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.06859029247032075,
+          "excess_income": 0.008904087157181495,
+          "profit_and_loss": -0.002429858903348775,
+          "log_algo_profit": -0.05972561294395958,
+          "algo_profit": -0.05797702296275017,
+          "log_excess_income": 0.00886467952636117
+        },
+        "20180503": {
+          "total_asset_value": 942854.7574797497,
+          "max_drawdown": -0.062362579515233385,
+          "benchmark_profit": -0.05900852446958575,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.0608211983852774,
+          "excess_income": 0.001980126279343075,
+          "profit_and_loss": 0.0008829725630641537,
+          "log_algo_profit": -0.058843029971853686,
+          "algo_profit": -0.057145242520250265,
+          "log_excess_income": 0.0019781684134237143
+        },
+        "20180504": {
+          "total_asset_value": 942861.7574797497,
+          "max_drawdown": -0.06235561825010605,
+          "benchmark_profit": -0.06357380911925152,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.06568457399921405,
+          "excess_income": 0.0068724760815888075,
+          "profit_and_loss": 0.000007424261207220289,
+          "log_algo_profit": -0.05883560573820618,
+          "algo_profit": -0.057138242520250265,
+          "log_excess_income": 0.006848968261007872
+        },
+        "20180507": {
+          "total_asset_value": 943190.0254797498,
+          "max_drawdown": -0.06202916673855996,
+          "benchmark_profit": -0.048790443932873864,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.050020887328099964,
+          "excess_income": -0.008430876809663257,
+          "profit_and_loss": 0.0003481613262982409,
+          "log_algo_profit": -0.05848750500599865,
+          "algo_profit": -0.056809974520250224,
+          "log_excess_income": -0.008466617677898684
+        },
+        "20180508": {
+          "total_asset_value": 943242.0254797498,
+          "max_drawdown": -0.061977454483328254,
+          "benchmark_profit": -0.03775333118540185,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.03848444869530716,
+          "excess_income": -0.019750282282879117,
+          "profit_and_loss": 0.00005513205037717655,
+          "log_algo_profit": -0.05843237447533705,
+          "algo_profit": -0.05675797452025022,
+          "log_excess_income": -0.019947925780029893
+        },
+        "20180509": {
+          "total_asset_value": 943226.0859164998,
+          "max_drawdown": -0.06199330584415641,
+          "benchmark_profit": -0.039505192806617684,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.04030670314588888,
+          "excess_income": -0.017978984527092456,
+          "profit_and_loss": -0.000016898699187866634,
+          "log_algo_profit": -0.05844927331730957,
+          "algo_profit": -0.05677391408350016,
+          "log_excess_income": -0.018142570171420694
+        },
+        "20180510": {
+          "total_asset_value": 942863.3296204999,
+          "max_drawdown": -0.062354054808880455,
+          "benchmark_profit": -0.03418589937335618,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.03478390570451923,
+          "excess_income": -0.02376313515328976,
+          "profit_and_loss": -0.0003845910343409344,
+          "log_algo_profit": -0.05883393832574941,
+          "algo_profit": -0.05713667037950014,
+          "log_excess_income": -0.024050032621230177
+        },
+        "20180511": {
+          "total_asset_value": 941784.8313724999,
+          "max_drawdown": -0.06342658512940946,
+          "benchmark_profit": -0.03920175841606204,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.03999083837630403,
+          "excess_income": -0.019789180900345205,
+          "profit_and_loss": -0.001143854272531761,
+          "log_algo_profit": -0.05997844729888197,
+          "algo_profit": -0.05821516862750007,
+          "log_excess_income": -0.01998760892257794
+        },
+        "20180514": {
+          "total_asset_value": 941358.8313724999,
+          "max_drawdown": -0.06385022783573058,
+          "benchmark_profit": -0.030157771245995484,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.03062187148284691,
+          "excess_income": -0.02936910410479676,
+          "profit_and_loss": -0.00045233261973350486,
+          "log_algo_profit": -0.06043088225187511,
+          "algo_profit": -0.058641168627500066,
+          "log_excess_income": -0.0298090107690282
+        },
+        "20180515": {
+          "total_asset_value": 944068.0513724999,
+          "max_drawdown": -0.061155999448830545,
+          "benchmark_profit": -0.026485051595382402,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.026842098967160527,
+          "excess_income": -0.030248017331808597,
+          "profit_and_loss": 0.0028779886157225855,
+          "log_algo_profit": -0.05755702711654811,
+          "algo_profit": -0.055931948627500096,
+          "log_excess_income": -0.03071492814938758
+        },
+        "20180516": {
+          "total_asset_value": 942947.1492349998,
+          "max_drawdown": -0.06227069901467974,
+          "benchmark_profit": -0.034238568101272966,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.03483844017862397,
+          "excess_income": -0.02362310391591571,
+          "profit_and_loss": -0.0011873107408629426,
+          "log_algo_profit": -0.058745043269226076,
+          "algo_profit": -0.05705285076500021,
+          "log_excess_income": -0.023906603090602108
+        },
+        "20180517": {
+          "total_asset_value": 942498.9473309998,
+          "max_drawdown": -0.06271642076958317,
+          "benchmark_profit": -0.0413818418519605,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.04226245007419159,
+          "excess_income": -0.01681504849457527,
+          "profit_and_loss": -0.00047532028106096513,
+          "log_algo_profit": -0.05922047655078082,
+          "algo_profit": -0.05750105266900023,
+          "log_excess_income": -0.016958026476589227
+        },
+        "20180518": {
+          "total_asset_value": 943366.9473309998,
+          "max_drawdown": -0.06185322389379255,
+          "benchmark_profit": -0.03170324984905799,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.03221667861221095,
+          "excess_income": -0.025746035826368363,
+          "profit_and_loss": 0.00092095593576845,
+          "log_algo_profit": -0.0582999444347373,
+          "algo_profit": -0.056633052669000226,
+          "log_excess_income": -0.026083265822526354
+        },
+        "20180521": {
+          "total_asset_value": 943913.3136509998,
+          "max_drawdown": -0.06130988092091105,
+          "benchmark_profit": -0.027193437302841114,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.027570021599364412,
+          "excess_income": -0.02970091912831163,
+          "profit_and_loss": 0.0005791662741055589,
+          "log_algo_profit": -0.057720945812689106,
+          "algo_profit": -0.0560866863490002,
+          "log_excess_income": -0.030150924213324694
+        },
+        "20180522": {
+          "total_asset_value": 947529.2650539997,
+          "max_drawdown": -0.057713938577500845,
+          "benchmark_profit": -0.030923167192150724,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.03141137941134812,
+          "excess_income": -0.02223514898340584,
+          "profit_and_loss": 0.00383080877312096,
+          "log_algo_profit": -0.05389745590200947,
+          "algo_profit": -0.052470734946000276,
+          "log_excess_income": -0.022486076490661353
+        },
+        "20180523": {
+          "total_asset_value": 937541.8833179997,
+          "max_drawdown": -0.06764605460496964,
+          "benchmark_profit": -0.04373077284424201,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.04471578721398018,
+          "excess_income": -0.019583756651313844,
+          "profit_and_loss": -0.010540446722171571,
+          "log_algo_profit": -0.06449384659629367,
+          "algo_profit": -0.06245811668200034,
+          "log_excess_income": -0.019778059382313494
+        },
+        "20180524": {
+          "total_asset_value": 932006.9307299998,
+          "max_drawdown": -0.07315037923816126,
+          "benchmark_profit": -0.05051977931530101,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.05184058024250664,
+          "excess_income": -0.018403005743604206,
+          "profit_and_loss": -0.005903685676858982,
+          "log_algo_profit": -0.07041502791861656,
+          "algo_profit": -0.0679930692700002,
+          "log_excess_income": -0.018574447676109926
+        },
+        "20180525": {
+          "total_asset_value": 931746.9893924999,
+          "max_drawdown": -0.0734088821764316,
+          "benchmark_profit": -0.05317901668948683,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.054645239240494865,
+          "excess_income": -0.01592063778023567,
+          "profit_and_loss": -0.0002789049404345989,
+          "log_algo_profit": -0.07069397176026747,
+          "algo_profit": -0.0682530106075001,
+          "log_excess_income": -0.016048732519772603
+        },
+        "20180528": {
+          "total_asset_value": 933073.8993249999,
+          "max_drawdown": -0.07208931477068348,
+          "benchmark_profit": -0.04902061843010023,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.05026289746052733,
+          "excess_income": -0.018828465255830373,
+          "profit_and_loss": 0.0014241097074701912,
+          "log_algo_profit": -0.06927087513531373,
+          "algo_profit": -0.06692610067500011,
+          "log_excess_income": -0.019007977674786396
+        },
+        "20180529": {
+          "total_asset_value": 931684.9093877499,
+          "max_drawdown": -0.0734706186581705,
+          "benchmark_profit": -0.05627729244235501,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.057922897981286345,
+          "excess_income": -0.012755651711559346,
+          "profit_and_loss": -0.0014886172877141388,
+          "log_algo_profit": -0.07076060151455434,
+          "algo_profit": -0.06831509061225015,
+          "log_excess_income": -0.012837703533267991
+        },
+        "20180530": {
+          "total_asset_value": 921391.4368877498,
+          "max_drawdown": -0.08370713168010135,
+          "benchmark_profit": -0.07628220504786705,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.07934867070810826,
+          "excess_income": -0.0025184727165548093,
+          "profit_and_loss": -0.01104823357798541,
+          "log_algo_profit": -0.08187032011179585,
+          "algo_profit": -0.07860856311225017,
+          "log_excess_income": -0.002521649403687584
+        },
+        "20180531": {
+          "total_asset_value": 923226.78982775,
+          "max_drawdown": -0.08188193476330274,
+          "benchmark_profit": -0.056682516654221374,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.05835237926106891,
+          "excess_income": -0.021297912815916975,
+          "profit_and_loss": 0.0019919361809998277,
+          "log_algo_profit": -0.07988036520505895,
+          "algo_profit": -0.07677321017225006,
+          "log_excess_income": -0.02152798594399004
+        },
+        "20180601": {
+          "total_asset_value": 920869.63782775,
+          "max_drawdown": -0.08422604333722383,
+          "benchmark_profit": -0.06456838721731206,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.06674723825683924,
+          "excess_income": -0.015567118703225802,
+          "profit_and_loss": -0.0025531668122843196,
+          "log_algo_profit": -0.08243679690611679,
+          "algo_profit": -0.07913036217225006,
+          "log_excess_income": -0.01568955864927754
+        },
+        "20180604": {
+          "total_asset_value": 922072.80275275,
+          "max_drawdown": -0.0830295361893888,
+          "benchmark_profit": -0.05539192194688022,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.056985169732507675,
+          "excess_income": -0.02385674633104551,
+          "profit_and_loss": 0.0013065529316811965,
+          "log_algo_profit": -0.08113109677198117,
+          "algo_profit": -0.07792719724725,
+          "log_excess_income": -0.0241459270394735
+        },
+        "20180605": {
+          "total_asset_value": 928695.93119075,
+          "max_drawdown": -0.07644305718519395,
+          "benchmark_profit": -0.04602956558917555,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.04712259919770939,
+          "excess_income": -0.026494011038910248,
+          "profit_and_loss": 0.007182869311650166,
+          "log_algo_profit": -0.07397390139772274,
+          "algo_profit": -0.07130406880925003,
+          "log_excess_income": -0.026851302200013347
+        },
+        "20180606": {
+          "total_asset_value": 932985.2794882499,
+          "max_drawdown": -0.07217744422484895,
+          "benchmark_profit": -0.048005647635691366,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.04919617659880055,
+          "excess_income": -0.019967631981060663,
+          "profit_and_loss": 0.004618678895255031,
+          "log_algo_profit": -0.06936585587099744,
+          "algo_profit": -0.06701472051175009,
+          "log_excess_income": -0.020169679272196893
+        },
+        "20180607": {
+          "total_asset_value": 930920.1981582498,
+          "max_drawdown": -0.07423109831737129,
+          "benchmark_profit": -0.0495780932228545,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.05084928057927723,
+          "excess_income": -0.020519001592698483,
+          "profit_and_loss": -0.0022134125536608547,
+          "log_algo_profit": -0.0715817216428826,
+          "algo_profit": -0.06907980184175017,
+          "log_excess_income": -0.020732441063605368
+        },
+        "20180608": {
+          "total_asset_value": 924993.2843299997,
+          "max_drawdown": -0.08012521525242355,
+          "benchmark_profit": -0.06232896153121266,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.06435609674453949,
+          "excess_income": -0.013520471059328298,
+          "profit_and_loss": -0.006366725998615193,
+          "log_algo_profit": -0.07796880167985121,
+          "algo_profit": -0.07500671567000029,
+          "log_excess_income": -0.01361270493531172
+        },
+        "20180611": {
+          "total_asset_value": 944477.1123069997,
+          "max_drawdown": -0.060749202074788844,
+          "benchmark_profit": -0.062238186742966065,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.06425929265130421,
+          "excess_income": 0.007160985822873611,
+          "profit_and_loss": 0.021063750739674567,
+          "log_algo_profit": -0.05712382493662252,
+          "algo_profit": -0.05552288769300026,
+          "log_excess_income": 0.007135467714681695
+        },
+        "20180612": {
+          "total_asset_value": 940640.1123069997,
+          "max_drawdown": -0.06456496983101967,
+          "benchmark_profit": -0.0508332612022328,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.0521707963347766,
+          "excess_income": -0.008983275690388703,
+          "profit_and_loss": -0.004062565360242201,
+          "log_algo_profit": -0.06119466493395744,
+          "algo_profit": -0.05935988769300026,
+          "log_excess_income": -0.009023868599180841
+        },
+        "20180613": {
+          "total_asset_value": 931765.9743819998,
+          "max_drawdown": -0.07339000224138181,
+          "benchmark_profit": -0.060164854854983664,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.06205079660382223,
+          "excess_income": -0.008585729959876609,
+          "profit_and_loss": -0.009434147883865332,
+          "log_algo_profit": -0.07067359627603995,
+          "algo_profit": -0.06823402561800018,
+          "log_excess_income": -0.00862279967221772
+        },
+        "20180614": {
+          "total_asset_value": 931822.6568599998,
+          "max_drawdown": -0.07333363341889143,
+          "benchmark_profit": -0.06387960032994489,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.06601117865082029,
+          "excess_income": -0.004591015014276056,
+          "profit_and_loss": 0.00006083338473219016,
+          "log_algo_profit": -0.07061276474158307,
+          "algo_profit": -0.06817734314000025,
+          "log_excess_income": -0.004601586090762777
+        },
+        "20180615": {
+          "total_asset_value": 926674.4672749998,
+          "max_drawdown": -0.07845333522275022,
+          "benchmark_profit": -0.06882438263902778,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.07130738645325853,
+          "excess_income": -0.004833835854432089,
+          "profit_and_loss": -0.0055248598508518655,
+          "log_algo_profit": -0.07615294307833284,
+          "algo_profit": -0.07332553272500017,
+          "log_excess_income": -0.004845556625074313
+        },
+        "20180619": {
+          "total_asset_value": 919904.3989099999,
+          "max_drawdown": -0.08518594105403643,
+          "benchmark_profit": -0.10165047121889702,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.10719605614189916,
+          "excess_income": 0.02399385699922707,
+          "profit_and_loss": -0.007305767671476018,
+          "log_algo_profit": -0.08348552856676955,
+          "algo_profit": -0.08009560109000012,
+          "log_excess_income": 0.023710527575129606
+        },
+        "20180620": {
+          "total_asset_value": 919590.12150275,
+          "max_drawdown": -0.08549847939052224,
+          "benchmark_profit": -0.0980961383650897,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.10324734815325845,
+          "excess_income": 0.01960991699911263,
+          "profit_and_loss": -0.0003416413788457698,
+          "log_algo_profit": -0.08382722831832656,
+          "algo_profit": -0.08040987849725002,
+          "log_excess_income": 0.019420119834931887
+        },
+        "20180621": {
+          "total_asset_value": 916576.26986775,
+          "max_drawdown": -0.08849565371705237,
+          "benchmark_profit": -0.1086344983541828,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.1150007205358314,
+          "excess_income": 0.028283311588101157,
+          "profit_and_loss": -0.0032773858314994494,
+          "log_algo_profit": -0.08710999654210527,
+          "algo_profit": -0.08342373013225,
+          "log_excess_income": 0.02789072399372612
+        },
+        "20180622": {
+          "total_asset_value": 916230.91509275,
+          "max_drawdown": -0.08883909745301943,
+          "benchmark_profit": -0.10468010148417894,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.11057419606033701,
+          "excess_income": 0.02335591626143163,
+          "profit_and_loss": -0.000376787820450386,
+          "log_algo_profit": -0.0874868553649222,
+          "algo_profit": -0.08376908490725002,
+          "log_excess_income": 0.023087340695414807
+        },
+        "20180625": {
+          "total_asset_value": 911085.744715,
+          "max_drawdown": -0.09395579675657217,
+          "benchmark_profit": -0.11669415339162914,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.12408376620125153,
+          "excess_income": 0.03144991988142687,
+          "profit_and_loss": -0.005615582592767135,
+          "log_algo_profit": -0.0931182646200478,
+          "algo_profit": -0.08891425528499997,
+          "log_excess_income": 0.03096550158120373
+        },
+        "20180626": {
+          "total_asset_value": 908845.8063812498,
+          "max_drawdown": -0.09618334027230568,
+          "benchmark_profit": -0.1239795806095625,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.13236587851097942,
+          "excess_income": 0.03747102951510328,
+          "profit_and_loss": -0.0024585373514442593,
+          "log_algo_profit": -0.0955798291370639,
+          "algo_profit": -0.0911541936187502,
+          "log_excess_income": 0.03678604937391551
+        },
+        "20180627": {
+          "total_asset_value": 908256.43844925,
+          "max_drawdown": -0.09676944690547784,
+          "benchmark_profit": -0.14180436016191006,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.15292318702712038,
+          "excess_income": 0.05833261821349356,
+          "profit_and_loss": -0.0006484795637078789,
+          "log_algo_profit": -0.09622851905458904,
+          "algo_profit": -0.09174356155075004,
+          "log_excess_income": 0.05669466797253134
+        },
+        "20180628": {
+          "total_asset_value": 882550.95672425,
+          "max_drawdown": -0.1223326859788777,
+          "benchmark_profit": -0.15067012211230915,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.16330761938755492,
+          "excess_income": 0.039114459177135075,
+          "profit_and_loss": -0.028302008812499366,
+          "log_algo_profit": -0.1249387505110568,
+          "algo_profit": -0.11744904327575001,
+          "log_excess_income": 0.038368868876498124
+        },
+        "20180629": {
+          "total_asset_value": 884196.95672425,
+          "max_drawdown": -0.12069579420750531,
+          "benchmark_profit": -0.12897273975304838,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.13808200497651163,
+          "excess_income": 0.015119729402687687,
+          "profit_and_loss": 0.0018650481170055396,
+          "log_algo_profit": -0.123075439436847,
+          "algo_profit": -0.11580304327575001,
+          "log_excess_income": 0.015006565539664632
+        },
+        "20180702": {
+          "total_asset_value": 883265.95672425,
+          "max_drawdown": -0.12162164246944196,
+          "benchmark_profit": -0.15453076715810332,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.16786350061146738,
+          "excess_income": 0.044705025817801,
+          "profit_and_loss": -0.0010529328255654087,
+          "log_algo_profit": -0.12412892698560501,
+          "algo_profit": -0.11673404327575002,
+          "log_excess_income": 0.04373457362586236
+        },
+        "20180703": {
+          "total_asset_value": 884900.2320922499,
+          "max_drawdown": -0.11999641045119425,
+          "benchmark_profit": -0.15420421112156626,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.16747733281824587,
+          "excess_income": 0.046233906254925294,
+          "profit_and_loss": 0.0018502641877661831,
+          "log_algo_profit": -0.12228037242810089,
+          "algo_profit": -0.11509976790775009,
+          "log_excess_income": 0.04519696039014498
+        },
+        "20180704": {
+          "total_asset_value": 885544.5295454998,
+          "max_drawdown": -0.11935567825220217,
+          "benchmark_profit": -0.1655002763805762,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.1809228670733233,
+          "excess_income": 0.06116815198533865,
+          "profit_and_loss": 0.0007281018016308462,
+          "log_algo_profit": -0.12155253556399365,
+          "algo_profit": -0.11445547045450018,
+          "log_excess_income": 0.05937033150932966
+        },
+        "20180705": {
+          "total_asset_value": 880114.6932109997,
+          "max_drawdown": -0.12475546829827877,
+          "benchmark_profit": -0.17078684722687487,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.18727803654302633,
+          "excess_income": 0.061385351001302046,
+          "profit_and_loss": -0.006131635568102874,
+          "log_algo_profit": -0.12770304680819997,
+          "algo_profit": -0.11988530678900029,
+          "log_excess_income": 0.05957498973482636
+        },
+        "20180706": {
+          "total_asset_value": 878058.5309334998,
+          "max_drawdown": -0.12680025269235284,
+          "benchmark_profit": -0.16515905844192008,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.18051406142864448,
+          "excess_income": 0.051767453204633274,
+          "profit_and_loss": -0.0023362435525286314,
+          "log_algo_profit": -0.13004202363559053,
+          "algo_profit": -0.1219414690665002,
+          "log_excess_income": 0.05047203779305395
+        },
+        "20180709": {
+          "total_asset_value": 884761.2291377498,
+          "max_drawdown": -0.12013464422544562,
+          "benchmark_profit": -0.14182381013020334,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.15294585107689965,
+          "excess_income": 0.030978532825510774,
+          "profit_and_loss": 0.007633543742379049,
+          "log_algo_profit": -0.12243746796058691,
+          "algo_profit": -0.11523877086225023,
+          "log_excess_income": 0.030508383116312737
+        },
+        "20180710": {
+          "total_asset_value": 888156.2291377498,
+          "max_drawdown": -0.11675843063868419,
+          "benchmark_profit": -0.13975680444364294,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.15054014418022774,
+          "excess_income": 0.032447840012660656,
+          "profit_and_loss": 0.0038371934576163797,
+          "log_algo_profit": -0.11860761775080571,
+          "algo_profit": -0.11184377086225024,
+          "log_excess_income": 0.03193252642942203
+        },
+        "20180711": {
+          "total_asset_value": 887104.9682737497,
+          "max_drawdown": -0.11780387429472772,
+          "benchmark_profit": -0.1546384614340744,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.16799088683833024,
+          "excess_income": 0.04937938125105368,
+          "profit_and_loss": -0.001183644081425479,
+          "log_algo_profit": -0.11979196289214505,
+          "algo_profit": -0.1128950317262503,
+          "log_excess_income": 0.04819892394618519
+        },
+        "20180712": {
+          "total_asset_value": 886008.8072929997,
+          "max_drawdown": -0.11889396961033472,
+          "benchmark_profit": -0.13639761629722766,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.14664282015218116,
+          "excess_income": 0.025945300769270485,
+          "profit_and_loss": -0.0012356609645452126,
+          "log_algo_profit": -0.12102838791517632,
+          "algo_profit": -0.1139911927070003,
+          "log_excess_income": 0.02561443223700484
+        },
+        "20180713": {
+          "total_asset_value": 860823.3865709997,
+          "max_drawdown": -0.14394002546598095,
+          "benchmark_profit": -0.133511429548109,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.14330636039022732,
+          "excess_income": -0.006538094181596343,
+          "profit_and_loss": -0.028425700190214058,
+          "log_algo_profit": -0.14986592152940623,
+          "algo_profit": -0.13917661342900026,
+          "log_excess_income": -0.00655956113917891
+        },
+        "20180716": {
+          "total_asset_value": 840768.1905259998,
+          "max_drawdown": -0.16388424501599363,
+          "benchmark_profit": -0.13862295067976765,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.1492229501809286,
+          "excess_income": -0.023925479336251554,
+          "profit_and_loss": -0.023297689581701274,
+          "log_algo_profit": -0.17343929252563922,
+          "algo_profit": -0.15923180947400023,
+          "log_excess_income": -0.024216342344710623
+        },
+        "20180717": {
+          "total_asset_value": 840542.3243169998,
+          "max_drawdown": -0.16410886138230174,
+          "benchmark_profit": -0.1442566439193829,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.15578476545752648,
+          "excess_income": -0.017763540500319475,
+          "profit_and_loss": -0.0002686426669623334,
+          "log_algo_profit": -0.17370797128350668,
+          "algo_profit": -0.15945767568300023,
+          "log_excess_income": -0.0179232058259802
+        },
+        "20180718": {
+          "total_asset_value": 840620.9878907498,
+          "max_drawdown": -0.1640306330976249,
+          "benchmark_profit": -0.14873574337791212,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.16103267379130168,
+          "excess_income": -0.012502896308100309,
+          "profit_and_loss": 0.00009358668977672438,
+          "log_algo_profit": -0.1736143889726911,
+          "algo_profit": -0.15937901210925018,
+          "log_excess_income": -0.012581715181389425
+        },
+        "20180719": {
+          "total_asset_value": 840620.1478907499,
+          "max_drawdown": -0.16403146844944005,
+          "benchmark_profit": -0.14947496621622375,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.16190143338330612,
+          "excess_income": -0.011645613591127368,
+          "profit_and_loss": -9.992612747810351e-7,
+          "log_algo_profit": -0.17361538823446518,
+          "algo_profit": -0.15937985210925015,
+          "log_excess_income": -0.011713954851159059
+        },
+        "20180720": {
+          "total_asset_value": 840929.1628867498,
+          "max_drawdown": -0.16372416340437146,
+          "benchmark_profit": -0.1334607951281005,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.14324792575837214,
+          "excess_income": -0.029554395047752702,
+          "profit_and_loss": 0.00036760360404797753,
+          "log_algo_profit": -0.17324785218006808,
+          "algo_profit": -0.15907083711325015,
+          "log_excess_income": -0.029999926421695938
+        },
+        "20180723": {
+          "total_asset_value": 841668.4988079999,
+          "max_drawdown": -0.1629889186378014,
+          "benchmark_profit": -0.1253095466175177,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.13388522277790635,
+          "excess_income": -0.037752732348666274,
+          "profit_and_loss": 0.0008791892990273418,
+          "log_algo_profit": -0.17236904914157175,
+          "algo_profit": -0.15833150119200012,
+          "log_excess_income": -0.0384838263636654
+        },
+        "20180724": {
+          "total_asset_value": 842504.5212999999,
+          "max_drawdown": -0.16215752232076797,
+          "benchmark_profit": -0.11142777677261463,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.11813934799727822,
+          "excess_income": -0.05184463426063768,
+          "profit_and_loss": 0.0009932918877016573,
+          "log_algo_profit": -0.17137625024183029,
+          "algo_profit": -0.1574954787000001,
+          "log_excess_income": -0.05323690224455206
+        },
+        "20180725": {
+          "total_asset_value": 842461.226204,
+          "max_drawdown": -0.16220057784104924,
+          "benchmark_profit": -0.11240858607934509,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.11924376133612895,
+          "excess_income": -0.05084567855079469,
+          "profit_and_loss": -0.00005138856220397829,
+          "log_algo_profit": -0.17142764012447168,
+          "algo_profit": -0.15753877379600006,
+          "log_excess_income": -0.05218387878834273
+        },
+        "20180726": {
+          "total_asset_value": 843535.4212039999,
+          "max_drawdown": -0.16113232695626845,
+          "benchmark_profit": -0.12270580615541374,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.13091288807944934,
+          "excess_income": -0.03848056088533369,
+          "profit_and_loss": 0.0012750675836324307,
+          "log_algo_profit": -0.17015338474917016,
+          "algo_profit": -0.1564645787960001,
+          "log_excess_income": -0.03924049666972082
+        },
+        "20180727": {
+          "total_asset_value": 842058.1158659998,
+          "max_drawdown": -0.16260145754653377,
+          "benchmark_profit": -0.1264317403238702,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.13516900743986113,
+          "excess_income": -0.036070614357957775,
+          "profit_and_loss": -0.001751325790079411,
+          "log_algo_profit": -0.17190624590313786,
+          "algo_profit": -0.15794188413400018,
+          "log_excess_income": -0.03673723846327673
+        },
+        "20180730": {
+          "total_asset_value": 841002.1853519997,
+          "max_drawdown": -0.16365154501282042,
+          "benchmark_profit": -0.12795685103921745,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.13691637354419753,
+          "excess_income": -0.035595673959223695,
+          "profit_and_loss": -0.0012539876928971466,
+          "log_algo_profit": -0.17316102049651308,
+          "algo_profit": -0.15899781464800028,
+          "log_excess_income": -0.03624464695231555
+        },
+        "20180731": {
+          "total_asset_value": 841286.8753519997,
+          "max_drawdown": -0.16336843036009152,
+          "benchmark_profit": -0.1273174333315743,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.13618340132908946,
+          "excess_income": -0.03597607253263124,
+          "profit_and_loss": 0.00033851279456638715,
+          "log_algo_profit": -0.17282256498447596,
+          "algo_profit": -0.15871312464800036,
+          "log_excess_income": -0.0366391636553865
+        },
+        "20180801": {
+          "total_asset_value": 840568.1753519997,
+          "max_drawdown": -0.16408315339538027,
+          "benchmark_profit": -0.14475011243892702,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.15636158659350732,
+          "excess_income": -0.017166576017848212,
+          "profit_and_loss": -0.0008542864759410931,
+          "log_algo_profit": -0.17367721657106275,
+          "algo_profit": -0.1594318246480003,
+          "log_excess_income": -0.017315629977555425
+        },
+        "20180802": {
+          "total_asset_value": 839025.0239319996,
+          "max_drawdown": -0.16561776570484554,
+          "benchmark_profit": -0.1637114250875168,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.178781540158162,
+          "excess_income": 0.003272134884543698,
+          "profit_and_loss": -0.0018358432608442609,
+          "log_algo_profit": -0.1755147470574501,
+          "algo_profit": -0.16097497606800043,
+          "log_excess_income": 0.003266793100711901
+        },
+        "20180803": {
+          "total_asset_value": 840976.6918669996,
+          "max_drawdown": -0.1636768974282642,
+          "benchmark_profit": -0.17752338343908136,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.19543522645991088,
+          "excess_income": 0.02249313224664884,
+          "profit_and_loss": 0.0023261140959226156,
+          "log_algo_profit": -0.1731913341768421,
+          "algo_profit": -0.1590233081330004,
+          "log_excess_income": 0.022243892283068778
+        },
+        "20180806": {
+          "total_asset_value": 841434.7538669996,
+          "max_drawdown": -0.16322137013872684,
+          "benchmark_profit": -0.18794576306877225,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.20818814680081515,
+          "excess_income": 0.036180485981824884,
+          "profit_and_loss": 0.0005446785914876187,
+          "log_algo_profit": -0.17264680386889641,
+          "algo_profit": -0.15856524613300035,
+          "log_excess_income": 0.03554134293191874
+        },
+        "20180807": {
+          "total_asset_value": 845088.2521349997,
+          "max_drawdown": -0.15958808869789287,
+          "benchmark_profit": -0.1642295285796569,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.17940125931204948,
+          "excess_income": 0.01114873165932928,
+          "profit_and_loss": 0.0043419864121485635,
+          "log_algo_profit": -0.16831421668203234,
+          "algo_profit": -0.15491174786500028,
+          "log_excess_income": 0.011087042630017141
+        },
+        "20180808": {
+          "total_asset_value": 847780.0361349997,
+          "max_drawdown": -0.15691119982795854,
+          "benchmark_profit": -0.17771599766590448,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.19566944197491157,
+          "excess_income": 0.03100636000278789,
+          "profit_and_loss": 0.0031852105306156625,
+          "log_algo_profit": -0.16513406818822515,
+          "algo_profit": -0.15221996386500028,
+          "log_excess_income": 0.030535373786686415
+        },
+        "20180809": {
+          "total_asset_value": 851829.1861349997,
+          "max_drawdown": -0.15288445601504685,
+          "benchmark_profit": -0.15711929992816165,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.1709298492964379,
+          "excess_income": 0.01061655114703508,
+          "profit_and_loss": 0.004776179937498836,
+          "log_algo_profit": -0.16036925800981988,
+          "algo_profit": -0.14817081386500028,
+          "log_excess_income": 0.010560591286618015
+        },
+        "20180810": {
+          "total_asset_value": 856071.1861349997,
+          "max_drawdown": -0.14866592934787692,
+          "benchmark_profit": -0.15526130697485535,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.16872793847270723,
+          "excess_income": 0.013415383009474535,
+          "profit_and_loss": 0.004979871632770891,
+          "log_algo_profit": -0.15540174492544692,
+          "algo_profit": -0.14392881386500025,
+          "log_excess_income": 0.013326193547260307
+        },
+        "20180813": {
+          "total_asset_value": 859723.1861349997,
+          "max_drawdown": -0.1450341378842973,
+          "benchmark_profit": -0.15890197387159732,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.17304706679048237,
+          "excess_income": 0.0221438636496738,
+          "profit_and_loss": 0.0042660003737400535,
+          "log_algo_profit": -0.15114481813518055,
+          "algo_profit": -0.14027681386500027,
+          "log_excess_income": 0.021902248655301826
+        },
+        "20180814": {
+          "total_asset_value": 863423.6963829998,
+          "max_drawdown": -0.14135410460675757,
+          "benchmark_profit": -0.16322621784277072,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.1782015172363637,
+          "excess_income": 0.031848409682562195,
+          "profit_and_loss": 0.004304304347817083,
+          "log_algo_profit": -0.14684975080884075,
+          "algo_profit": -0.13657630361700024,
+          "log_excess_income": 0.031351766427522965
+        },
+        "20180815": {
+          "total_asset_value": 861598.5932634999,
+          "max_drawdown": -0.14316910842098318,
+          "benchmark_profit": -0.18330575481642858,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2024904950691181,
+          "excess_income": 0.05498305925963165,
+          "profit_and_loss": -0.0021137978111389253,
+          "log_algo_profit": -0.1489657858438213,
+          "algo_profit": -0.1384014067365001,
+          "log_excess_income": 0.053524709225296785
+        },
+        "20180816": {
+          "total_asset_value": 861080.2272634999,
+          "max_drawdown": -0.14368460601512612,
+          "benchmark_profit": -0.18708867441494847,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.20713324600405203,
+          "excess_income": 0.0592548045062371,
+          "profit_and_loss": -0.0006016328300126507,
+          "log_algo_profit": -0.14956759972748732,
+          "algo_profit": -0.13891977273650014,
+          "log_excess_income": 0.057565646276564714
+        },
+        "20180817": {
+          "total_asset_value": 857134.0221814999,
+          "max_drawdown": -0.14760897456122202,
+          "benchmark_profit": -0.19877547564413692,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2216140661284029,
+          "excess_income": 0.06978006304860007,
+          "profit_and_loss": -0.0045828541372282825,
+          "log_algo_profit": -0.15416098733529737,
+          "algo_profit": -0.14286597781850013,
+          "log_excess_income": 0.06745307879310553
+        },
+        "20180820": {
+          "total_asset_value": 857137.2711814998,
+          "max_drawdown": -0.14760574353973654,
+          "benchmark_profit": -0.18943998703600068,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.21002989617494677,
+          "excess_income": 0.05746305945586938,
+          "profit_and_loss": 0.0000037905390707551684,
+          "log_algo_profit": -0.15415719680341058,
+          "algo_profit": -0.14286272881850018,
+          "log_excess_income": 0.05587269937153619
+        },
+        "20180821": {
+          "total_asset_value": 857502.2711814998,
+          "max_drawdown": -0.14724276328666785,
+          "benchmark_profit": -0.17470388229553976,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.19201302649675572,
+          "excess_income": 0.039023754972482116,
+          "profit_and_loss": 0.00042583610848805434,
+          "log_algo_profit": -0.1537314513373866,
+          "algo_profit": -0.14249772881850017,
+          "log_excess_income": 0.03828157515936911
+        },
+        "20180822": {
+          "total_asset_value": 857318.8064224998,
+          "max_drawdown": -0.14742521283365695,
+          "benchmark_profit": -0.17934170738817715,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.19764846492400595,
+          "excess_income": 0.04467208110942411,
+          "profit_and_loss": -0.00021395250504375936,
+          "log_algo_profit": -0.1539454267335327,
+          "algo_profit": -0.14268119357750017,
+          "log_excess_income": 0.04370303819047325
+        },
+        "20180823": {
+          "total_asset_value": 857246.9440664998,
+          "max_drawdown": -0.14749667753548423,
+          "benchmark_profit": -0.17634700767819741,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.1940059635941029,
+          "excess_income": 0.04078653517666342,
+          "profit_and_loss": -0.000083822208799865,
+          "log_algo_profit": -0.15402925245561022,
+          "algo_profit": -0.14275305593350018,
+          "log_excess_income": 0.03997671113849269
+        },
+        "20180824": {
+          "total_asset_value": 856425.5462804998,
+          "max_drawdown": -0.148313530073107,
+          "benchmark_profit": -0.17502991735078333,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.192408156760486,
+          "excess_income": 0.03812921740176378,
+          "profit_and_loss": -0.0009581810605280223,
+          "log_algo_profit": -0.15498789286506043,
+          "algo_profit": -0.14357445371950023,
+          "log_excess_income": 0.037420263895425576
+        },
+        "20180827": {
+          "total_asset_value": 857673.5408224998,
+          "max_drawdown": -0.14707244137534425,
+          "benchmark_profit": -0.15487568158308052,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.16827154005951322,
+          "excess_income": 0.014848966160490251,
+          "profit_and_loss": 0.0014572131195993683,
+          "log_algo_profit": -0.1535317404501754,
+          "algo_profit": -0.14232645917750023,
+          "log_excess_income": 0.014739799609337828
+        },
+        "20180828": {
+          "total_asset_value": 858621.5408224998,
+          "max_drawdown": -0.14612968718381258,
+          "benchmark_profit": -0.15646417835581222,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.1701529100327769,
+          "excess_income": 0.017883910547992432,
+          "profit_and_loss": 0.0011053156648517782,
+          "log_algo_profit": -0.15242703519692624,
+          "algo_profit": -0.14137845917750022,
+          "log_excess_income": 0.01772587483585067
+        },
+        "20180829": {
+          "total_asset_value": 858273.5408224998,
+          "max_drawdown": -0.14647576150728625,
+          "benchmark_profit": -0.1598373833798879,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.17415981466671956,
+          "excess_income": 0.02155645091095093,
+          "profit_and_loss": -0.00040530080303673746,
+          "log_algo_profit": -0.15283241815653295,
+          "algo_profit": -0.1417264591775002,
+          "log_excess_income": 0.021327396510186614
+        },
+        "20180830": {
+          "total_asset_value": 855400.4958224997,
+          "max_drawdown": -0.14933290835982738,
+          "benchmark_profit": -0.16863933752614113,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.18469156808468984,
+          "excess_income": 0.028916250712544223,
+          "profit_and_loss": -0.003347470081912054,
+          "log_algo_profit": -0.15618550355131608,
+          "algo_profit": -0.14459950417750025,
+          "log_excess_income": 0.02850606453337376
+        },
+        "20180831": {
+          "total_asset_value": 852541.2019762497,
+          "max_drawdown": -0.1521763801513598,
+          "benchmark_profit": -0.17275523859715214,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.18965466474462106,
+          "excess_income": 0.030579148703829828,
+          "profit_and_loss": -0.0033426375834640213,
+          "log_algo_profit": -0.15953374022842964,
+          "algo_profit": -0.1474587980237503,
+          "log_excess_income": 0.030120924516191416
+        },
+        "20180903": {
+          "total_asset_value": 851871.9230642497,
+          "max_drawdown": -0.15284195557287017,
+          "benchmark_profit": -0.1759006755614051,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.1934642169697243,
+          "excess_income": 0.03370054773989106,
+          "profit_and_loss": -0.0007850399610582736,
+          "log_algo_profit": -0.1603190884947233,
+          "algo_profit": -0.1481280769357503,
+          "log_excess_income": 0.03314512847500101
+        },
+        "20180904": {
+          "total_asset_value": 852661.9230642497,
+          "max_drawdown": -0.1520563270799271,
+          "benchmark_profit": -0.1654627905360721,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.18087794794209586,
+          "excess_income": 0.021718280976308346,
+          "profit_and_loss": 0.0009273694538004122,
+          "log_algo_profit": -0.15939214878230934,
+          "algo_profit": -0.14733807693575032,
+          "log_excess_income": 0.021485799159786517
+        },
+        "20180905": {
+          "total_asset_value": 852587.9230642497,
+          "max_drawdown": -0.15212991759698757,
+          "benchmark_profit": -0.18177625297303554,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.20061945040891146,
+          "excess_income": 0.041998507330236245,
+          "profit_and_loss": -0.00008678703481218306,
+          "log_algo_profit": -0.15947893958333417,
+          "algo_profit": -0.1474120769357503,
+          "log_excess_income": 0.04114051082557729
+        },
+        "20180906": {
+          "total_asset_value": 852458.9230642497,
+          "max_drawdown": -0.1522582037686201,
+          "benchmark_profit": -0.1905238762129592,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.21136800131235423,
+          "excess_income": 0.053099526983104495,
+          "profit_and_loss": -0.00015130404326672449,
+          "log_algo_profit": -0.1596302550742124,
+          "algo_profit": -0.1475410769357503,
+          "log_excess_income": 0.05173774623814181
+        },
+        "20180907": {
+          "total_asset_value": 852491.3773442496,
+          "max_drawdown": -0.15222592907610621,
+          "benchmark_profit": -0.18686137771915334,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.20685367685849917,
+          "excess_income": 0.04839612088898049,
+          "profit_and_loss": 0.000038071371091157086,
+          "log_algo_profit": -0.15959218442781747,
+          "algo_profit": -0.14750862265575038,
+          "log_excess_income": 0.0472614924306817
+        },
+        "20180910": {
+          "total_asset_value": 852304.8142217497,
+          "max_drawdown": -0.15241145984163584,
+          "benchmark_profit": -0.19866425854227596,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.22147526685275382,
+          "excess_income": 0.06360514092545899,
+          "profit_and_loss": -0.0002188445859489671,
+          "log_algo_profit": -0.15981105296373715,
+          "algo_profit": -0.14769518577825033,
+          "log_excess_income": 0.06166421388901666
+        },
+        "20180911": {
+          "total_asset_value": 852967.4911587497,
+          "max_drawdown": -0.1517524498627455,
+          "benchmark_profit": -0.20011717613551402,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.22329003221140514,
+          "excess_income": 0.06636555469186733,
+          "profit_and_loss": 0.0007775116671200665,
+          "log_algo_profit": -0.15903384340222965,
+          "algo_profit": -0.14703250884125033,
+          "log_excess_income": 0.0642561888091755
+        },
+        "20180912": {
+          "total_asset_value": 853257.4911587497,
+          "max_drawdown": -0.15146405459318413,
+          "benchmark_profit": -0.20562141792799332,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.23019512775258966,
+          "excess_income": 0.07411945691331079,
+          "profit_and_loss": 0.00033998951074446843,
+          "log_algo_profit": -0.1586939116748221,
+          "algo_profit": -0.1467425088412503,
+          "log_excess_income": 0.07150121607776755
+        },
+        "20180913": {
+          "total_asset_value": 854526.4911587497,
+          "max_drawdown": -0.1502020766722415,
+          "benchmark_profit": -0.19705216875953527,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.21946553446780495,
+          "excess_income": 0.06423662647995654,
+          "profit_and_loss": 0.0014872415573834099,
+          "log_algo_profit": -0.15720777496584842,
+          "algo_profit": -0.14547350884125032,
+          "log_excess_income": 0.06225775950195653
+        },
+        "20180914": {
+          "total_asset_value": 853438.1559999996,
+          "max_drawdown": -0.1512843894704512,
+          "benchmark_profit": -0.19568173987111265,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.21776024219804999,
+          "excess_income": 0.061070223450156336,
+          "profit_and_loss": -0.001273611959383808,
+          "log_algo_profit": -0.15848219865823887,
+          "algo_profit": -0.14656184400000039,
+          "log_excess_income": 0.059278043539811115
+        },
+        "20180917": {
+          "total_asset_value": 852158.1014359996,
+          "max_drawdown": -0.15255736078437543,
+          "benchmark_profit": -0.20490256297739715,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.22929060954536712,
+          "excess_income": 0.07176562488626748,
+          "profit_and_loss": -0.0014998796983714793,
+          "log_algo_profit": -0.15998320430216129,
+          "algo_profit": -0.14784189856400037,
+          "log_excess_income": 0.06930740524320583
+        },
+        "20180918": {
+          "total_asset_value": 853112.1000259996,
+          "max_drawdown": -0.15160864119636097,
+          "benchmark_profit": -0.18889863785471409,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2093622485270411,
+          "excess_income": 0.05179468293531064,
+          "profit_and_loss": 0.0011195089131844894,
+          "log_algo_profit": -0.15886432157177888,
+          "algo_profit": -0.1468878999740004,
+          "log_excess_income": 0.05049792695526223
+        },
+        "20180919": {
+          "total_asset_value": 853440.1000259996,
+          "max_drawdown": -0.15128245620182257,
+          "benchmark_profit": -0.1782184221019714,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.19628063955455616,
+          "excess_income": 0.03852425386432712,
+          "profit_and_loss": 0.0003844746780522792,
+          "log_algo_profit": -0.15847992078517664,
+          "algo_profit": -0.1465598999740004,
+          "log_excess_income": 0.037800718769379515
+        },
+        "20180920": {
+          "total_asset_value": 853722.1000259996,
+          "max_drawdown": -0.1510020166638354,
+          "benchmark_profit": -0.1788030375392575,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.19699229274733823,
+          "excess_income": 0.039606987180997866,
+          "profit_and_loss": 0.0003304274078419903,
+          "log_algo_profit": -0.15814954795644795,
+          "algo_profit": -0.1462778999740004,
+          "log_excess_income": 0.03884274479089028
+        },
+        "20180921": {
+          "total_asset_value": 853857.7567059995,
+          "max_drawdown": -0.1508671106472962,
+          "benchmark_profit": -0.15390514305042333,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.16712380160747256,
+          "excess_income": 0.009174975704745902,
+          "profit_and_loss": 0.00015890027913739946,
+          "log_algo_profit": -0.15799066030062264,
+          "algo_profit": -0.1461422432940005,
+          "log_excess_income": 0.009133141306849918
+        },
+        "20180925": {
+          "total_asset_value": 853719.7566259995,
+          "max_drawdown": -0.15100434709650679,
+          "benchmark_profit": -0.1615167541753984,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.17616067904598648,
+          "excess_income": 0.018171514907747044,
+          "profit_and_loss": -0.00016161951907821493,
+          "log_algo_profit": -0.15815229288154267,
+          "algo_profit": -0.14628024337400053,
+          "log_excess_income": 0.018008386164443807
+        },
+        "20180926": {
+          "total_asset_value": 854324.8086259995,
+          "max_drawdown": -0.1504026431839598,
+          "benchmark_profit": -0.1522291462290046,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.16514489931580634,
+          "excess_income": 0.007730809364171032,
+          "profit_and_loss": 0.0007087243738990668,
+          "log_algo_profit": -0.15744381953416403,
+          "algo_profit": -0.1456751913740005,
+          "log_excess_income": 0.007701079781642306
+        },
+        "20180927": {
+          "total_asset_value": 853260.8086259995,
+          "max_drawdown": -0.15146075548331595,
+          "benchmark_profit": -0.15561579753218102,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.16914767177154047,
+          "excess_income": 0.010512520405092207,
+          "profit_and_loss": -0.0012454279558043253,
+          "log_algo_profit": -0.15869002367989088,
+          "algo_profit": -0.14673919137400052,
+          "log_excess_income": 0.01045764809164959
+        },
+        "20180928": {
+          "total_asset_value": 853738.8086259995,
+          "max_drawdown": -0.150985400521763,
+          "benchmark_profit": -0.14686462665773453,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.15883704145370614,
+          "excess_income": 0.0007073148091023551,
+          "profit_and_loss": 0.0005602038616653686,
+          "log_algo_profit": -0.15812997667383083,
+          "algo_profit": -0.1462611913740005,
+          "log_excess_income": 0.0007070647798753105
+        },
+        "20181008": {
+          "total_asset_value": 852197.2154369993,
+          "max_drawdown": -0.15251846322278262,
+          "benchmark_profit": -0.18357299341139766,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.20281776849975214,
+          "excess_income": 0.04381311318676362,
+          "profit_and_loss": -0.0018056965121231632,
+          "log_algo_profit": -0.15993730542107776,
+          "algo_profit": -0.14780278456300067,
+          "log_excess_income": 0.04288046307867438
+        },
+        "20181009": {
+          "total_asset_value": 852140.1804369993,
+          "max_drawdown": -0.15257518261657377,
+          "benchmark_profit": -0.18412081764590432,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.20348899582068744,
+          "excess_income": 0.04444407807817585,
+          "profit_and_loss": -0.00006692699643566136,
+          "log_algo_profit": -0.16000423465722483,
+          "algo_profit": -0.1478598195630007,
+          "log_excess_income": 0.043484761163462615
+        },
+        "20181010": {
+          "total_asset_value": 852945.1804369993,
+          "max_drawdown": -0.1517746371269293,
+          "benchmark_profit": -0.1858804443692577,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.20564804952532062,
+          "excess_income": 0.047690323291861736,
+          "profit_and_loss": 0.0009446802515369893,
+          "log_algo_profit": -0.15906000033525813,
+          "algo_profit": -0.1470548195630007,
+          "log_excess_income": 0.046588049190062486
+        },
+        "20181011": {
+          "total_asset_value": 848877.4913119993,
+          "max_drawdown": -0.15581981747760576,
+          "benchmark_profit": -0.22495004719718392,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.254827796476499,
+          "excess_income": 0.09525520031605761,
+          "profit_and_loss": -0.004768992449099703,
+          "log_algo_profit": -0.16384040071284833,
+          "algo_profit": -0.15112250868800073,
+          "log_excess_income": 0.09098739576365067
+        },
+        "20181012": {
+          "total_asset_value": 848516.0150057493,
+          "max_drawdown": -0.15617929353547133,
+          "benchmark_profit": -0.21338617274464525,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2400178406297051,
+          "excess_income": 0.07869450752777007,
+          "profit_and_loss": -0.00042582859122731933,
+          "log_algo_profit": -0.1642663199948169,
+          "algo_profit": -0.1514839849942507,
+          "log_excess_income": 0.07575152063488821
+        },
+        "20181015": {
+          "total_asset_value": 847614.3150057493,
+          "max_drawdown": -0.1570760039305178,
+          "benchmark_profit": -0.22437009578290698,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.25407980012033093,
+          "excess_income": 0.09280767850398464,
+          "profit_and_loss": -0.0010626788228550333,
+          "log_algo_profit": -0.16532956386115422,
+          "algo_profit": -0.15238568499425065,
+          "log_excess_income": 0.08875023625917672
+        },
+        "20181016": {
+          "total_asset_value": 846878.7652957495,
+          "max_drawdown": -0.1578074834370391,
+          "benchmark_profit": -0.23069078968831144,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2622622962612302,
+          "excess_income": 0.10083013948660957,
+          "profit_and_loss": -0.0008677882109563337,
+          "log_algo_profit": -0.16619772881827308,
+          "algo_profit": -0.15312123470425046,
+          "log_excess_income": 0.09606456744295713
+        },
+        "20181017": {
+          "total_asset_value": 846955.9252957496,
+          "max_drawdown": -0.15773075040600681,
+          "benchmark_profit": -0.22640571854868805,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2567077269963931,
+          "excess_income": 0.0948321951227542,
+          "profit_and_loss": 0.00009111103402514356,
+          "log_algo_profit": -0.16610662193460612,
+          "algo_profit": -0.15304407470425044,
+          "log_excess_income": 0.09060110506178698
+        },
+        "20181018": {
+          "total_asset_value": 845815.7608837496,
+          "max_drawdown": -0.15886460565753435,
+          "benchmark_profit": -0.2447280104277631,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.28067734351890017,
+          "excess_income": 0.1198823371733857,
+          "profit_and_loss": -0.0013461909621824161,
+          "log_algo_profit": -0.16745371982586646,
+          "algo_profit": -0.15418423911625043,
+          "log_excess_income": 0.11322362369303371
+        },
+        "20181019": {
+          "total_asset_value": 851256.8796087496,
+          "max_drawdown": -0.15345359565266625,
+          "benchmark_profit": -0.22226287530220948,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.25136669789263627,
+          "excess_income": 0.09453034010627559,
+          "profit_and_loss": 0.006432983371360826,
+          "log_algo_profit": -0.16104133977867918,
+          "algo_profit": -0.14874312039125034,
+          "log_excess_income": 0.09032535811395709
+        },
+        "20181022": {
+          "total_asset_value": 856156.8796087496,
+          "max_drawdown": -0.14858071006352602,
+          "benchmark_profit": -0.18868992282505623,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2091049586365105,
+          "excess_income": 0.055277018855684146,
+          "profit_and_loss": 0.005756194302067918,
+          "log_algo_profit": -0.1553016490614252,
+          "algo_profit": -0.14384312039125036,
+          "log_excess_income": 0.05380330957508528
+        },
+        "20181023": {
+          "total_asset_value": 858866.8426327497,
+          "max_drawdown": -0.14588574276418875,
+          "benchmark_profit": -0.2102356003933558,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.23602060634600647,
+          "excess_income": 0.08749754111545571,
+          "profit_and_loss": 0.0031652645543635252,
+          "log_algo_profit": -0.15214138341111974,
+          "algo_profit": -0.1411331573672503,
+          "log_excess_income": 0.08387922293488673
+        },
+        "20181024": {
+          "total_asset_value": 856683.3528827498,
+          "max_drawdown": -0.14805715005741538,
+          "benchmark_profit": -0.20905071527134356,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2345214286572489,
+          "excess_income": 0.08310781667454714,
+          "profit_and_loss": -0.0025422913560229346,
+          "log_algo_profit": -0.1546869118774277,
+          "algo_profit": -0.14331664711725026,
+          "log_excess_income": 0.0798345167798212
+        },
+        "20181025": {
+          "total_asset_value": 867336.7350539997,
+          "max_drawdown": -0.13746271894356088,
+          "benchmark_profit": -0.2075357512869044,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.23260788628222853,
+          "excess_income": 0.09448058566994222,
+          "profit_and_loss": 0.012435612452840585,
+          "log_algo_profit": -0.142327986540138,
+          "algo_profit": -0.1326632649460003,
+          "log_excess_income": 0.09027989974209052
+        },
+        "20181026": {
+          "total_asset_value": 854045.3098879997,
+          "max_drawdown": -0.15068059530081324,
+          "benchmark_profit": -0.21266453922714995,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.23910086881422313,
+          "excess_income": 0.08472862259965686,
+          "profit_and_loss": -0.015324411648692035,
+          "log_algo_profit": -0.1577710305260499,
+          "algo_profit": -0.14595469011200032,
+          "log_excess_income": 0.08132983828817322
+        },
+        "20181029": {
+          "total_asset_value": 867457.1082429995,
+          "max_drawdown": -0.1373430118460106,
+          "benchmark_profit": -0.23666592414428014,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2700594983656836,
+          "excess_income": 0.1364055865979188,
+          "profit_and_loss": 0.015703848729944663,
+          "log_algo_profit": -0.1421892113310165,
+          "algo_profit": -0.13254289175700046,
+          "log_excess_income": 0.1278702870346671
+        },
+        "20181030": {
+          "total_asset_value": 887253.2670212495,
+          "max_drawdown": -0.11765639616624213,
+          "benchmark_profit": -0.22838688636497434,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2592720027152191,
+          "excess_income": 0.14986805089593358,
+          "profit_and_loss": 0.022820907904422306,
+          "log_algo_profit": -0.11962480527437072,
+          "algo_profit": -0.11274673297875049,
+          "log_excess_income": 0.1396471974408484
+        },
+        "20181031": {
+          "total_asset_value": 871388.7395782495,
+          "max_drawdown": -0.13343313640206123,
+          "benchmark_profit": -0.21757952636796715,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.24536299287379526,
+          "excess_income": 0.11370902084555867,
+          "profit_and_loss": -0.01788049481774413,
+          "log_algo_profit": -0.13766708760141852,
+          "algo_profit": -0.12861126042175047,
+          "log_excess_income": 0.10769590527237674
+        },
+        "20181101": {
+          "total_asset_value": 875607.3757419996,
+          "max_drawdown": -0.12923784428610952,
+          "benchmark_profit": -0.21182134340782144,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.23803049325802922,
+          "excess_income": 0.110925002115426,
+          "profit_and_loss": 0.004841279181312227,
+          "log_algo_profit": -0.13283748972569231,
+          "algo_profit": -0.1243926242580004,
+          "log_excess_income": 0.1051930035323369
+        },
+        "20181102": {
+          "total_asset_value": 887398.7106562494,
+          "max_drawdown": -0.11751175735133934,
+          "benchmark_profit": -0.18373506821096433,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.20301630540226182,
+          "excess_income": 0.08714545498274373,
+          "profit_and_loss": 0.013466463669584467,
+          "log_algo_profit": -0.11946089298378641,
+          "algo_profit": -0.11260128934375058,
+          "log_excess_income": 0.0835554124184754
+        },
+        "20181105": {
+          "total_asset_value": 894779.1681089995,
+          "max_drawdown": -0.11017214005281528,
+          "benchmark_profit": -0.19053521375825264,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.21138200743848698,
+          "excess_income": 0.10539603861380686,
+          "profit_and_loss": 0.008316957602171934,
+          "log_algo_profit": -0.11117833069550818,
+          "algo_profit": -0.10522083189100051,
+          "log_excess_income": 0.1002036767429788
+        },
+        "20181106": {
+          "total_asset_value": 872716.1681089995,
+          "max_drawdown": -0.13211305326775413,
+          "benchmark_profit": -0.19541871874375827,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.21743328439499038,
+          "excess_income": 0.08468365899138819,
+          "profit_and_loss": -0.024657480623545704,
+          "log_algo_profit": -0.13614489844730276,
+          "algo_profit": -0.1272838318910005,
+          "log_excess_income": 0.08128838594768761
+        },
+        "20181107": {
+          "total_asset_value": 868416.1681089995,
+          "max_drawdown": -0.13638925898883636,
+          "benchmark_profit": -0.2006881468246351,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.22400410501514834,
+          "excess_income": 0.08645476062829438,
+          "profit_and_loss": -0.004927146026545189,
+          "log_algo_profit": -0.14108422287748185,
+          "algo_profit": -0.1315838318910005,
+          "log_excess_income": 0.08291988213766649
+        },
+        "20181108": {
+          "total_asset_value": 919983.9505564995,
+          "max_drawdown": -0.08510682961080773,
+          "benchmark_profit": -0.20295476277253235,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.22684384242065764,
+          "excess_income": 0.15424308130448883,
+          "profit_and_loss": 0.0593814168151548,
+          "log_algo_profit": -0.08339905413850081,
+          "algo_profit": -0.08001604944350046,
+          "log_excess_income": 0.14344478828215684
+        },
+        "20181109": {
+          "total_asset_value": 938227.6772444994,
+          "max_drawdown": -0.06696405555567153,
+          "benchmark_profit": -0.21420039208059807,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.24105347081514067,
+          "excess_income": 0.19397829648794085,
+          "profit_and_loss": 0.019830483648072612,
+          "log_algo_profit": -0.06376263315571482,
+          "algo_profit": -0.061772322755500556,
+          "log_excess_income": 0.17729083765942585
+        },
+        "20181112": {
+          "total_asset_value": 1007040.6571507495,
+          "max_drawdown": 0,
+          "benchmark_profit": -0.2048484057314988,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.22922249789133847,
+          "excess_income": 0.26647631018985174,
+          "profit_and_loss": 0.07334358341287513,
+          "log_algo_profit": 0.007015987450442088,
+          "algo_profit": 0.007040657150749466,
+          "log_excess_income": 0.23623848534178055
+        },
+        "20181113": {
+          "total_asset_value": 1050852.0905482494,
+          "max_drawdown": 0,
+          "benchmark_profit": -0.19684970550540026,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.21921341630396018,
+          "excess_income": 0.30841275630674025,
+          "profit_and_loss": 0.04350512870200988,
+          "log_algo_profit": 0.04960134987718132,
+          "algo_profit": 0.05085209054824943,
+          "log_excess_income": 0.26881476618114153
+        },
+        "20181114": {
+          "total_asset_value": 1036853.0893329994,
+          "max_drawdown": -0.013321571457260428,
+          "benchmark_profit": -0.2048975268248926,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2292842755587126,
+          "excess_income": 0.30404963424714526,
+          "profit_and_loss": -0.013321571457260416,
+          "log_algo_profit": 0.03619025029433239,
+          "algo_profit": 0.03685308933299943,
+          "log_excess_income": 0.265474525853045
+        },
+        "20181115": {
+          "total_asset_value": 1051901.6867554993,
+          "max_drawdown": 0,
+          "benchmark_profit": -0.1956119531864071,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.21767348094840724,
+          "excess_income": 0.3077042739786817,
+          "profit_and_loss": 0.014513721931600328,
+          "log_algo_profit": 0.050599656293984954,
+          "algo_profit": 0.05190168675549934,
+          "log_excess_income": 0.2682731372423922
+        },
+        "20181116": {
+          "total_asset_value": 1067779.6867554993,
+          "max_drawdown": 0,
+          "benchmark_profit": -0.1918157361605847,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.21296519715412493,
+          "excess_income": 0.3212082126950013,
+          "profit_and_loss": 0.01509456653594152,
+          "log_algo_profit": 0.06558143344870147,
+          "algo_profit": 0.06777968675549934,
+          "log_excess_income": 0.2785466306028264
+        },
+        "20181119": {
+          "total_asset_value": 1076342.5065929992,
+          "max_drawdown": 0,
+          "benchmark_profit": -0.18265400721817102,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2016927819924433,
+          "excess_income": 0.31687500287323633,
+          "profit_and_loss": 0.008019275833499344,
+          "log_algo_profit": 0.07356872576573273,
+          "algo_profit": 0.07634250659299921,
+          "log_excess_income": 0.27526150775817604
+        },
+        "20181120": {
+          "total_asset_value": 1046363.8479337494,
+          "max_drawdown": -0.027852341123405733,
+          "benchmark_profit": -0.20155706919641286,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.22509178438391658,
+          "excess_income": 0.3105054945888792,
+          "profit_and_loss": -0.027852341123405712,
+          "log_algo_profit": 0.04532115213099048,
+          "algo_profit": 0.04636384793374944,
+          "log_excess_income": 0.27041293651490705
+        },
+        "20181121": {
+          "total_asset_value": 1046657.4979937494,
+          "max_drawdown": -0.02757951898900024,
+          "benchmark_profit": -0.19955148968522785,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2225830705194541,
+          "excess_income": 0.3075887886681892,
+          "profit_and_loss": 0.0002806385757496153,
+          "log_algo_profit": 0.04560175133510109,
+          "algo_profit": 0.04665749799374945,
+          "log_excess_income": 0.2681848218545552
+        },
+        "20181122": {
+          "total_asset_value": 1044257.8511657495,
+          "max_drawdown": -0.029808964368422952,
+          "benchmark_profit": -0.20254452721679464,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.22632927938256822,
+          "excess_income": 0.30948734669934264,
+          "profit_and_loss": -0.0022926762886614303,
+          "log_algo_profit": 0.04330644284018974,
+          "algo_profit": 0.044257851165749484,
+          "log_excess_income": 0.26963572222275795
+        },
+        "20181123": {
+          "total_asset_value": 1036307.2537692495,
+          "max_drawdown": -0.03719564411748011,
+          "benchmark_profit": -0.2201467733308882,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.24864954794190777,
+          "excess_income": 0.328849094073121,
+          "profit_and_loss": -0.007613634302700576,
+          "log_algo_profit": 0.0356636768643722,
+          "algo_profit": 0.03630725376924954,
+          "log_excess_income": 0.28431322480627996
+        },
+        "20181126": {
+          "total_asset_value": 1035058.9927292495,
+          "max_drawdown": -0.03835536886341728,
+          "benchmark_profit": -0.2207004524027893,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.24935977865734998,
+          "excess_income": 0.32819144566503833,
+          "profit_and_loss": -0.001204527938465977,
+          "log_algo_profit": 0.03445842289905734,
+          "algo_profit": 0.035058992729249526,
+          "log_excess_income": 0.2838182015564073
+        },
+        "20181127": {
+          "total_asset_value": 1037109.8742892494,
+          "max_drawdown": -0.036449951631042476,
+          "benchmark_profit": -0.2216933187051709,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.25063464058129203,
+          "excess_income": 0.3325208419949095,
+          "profit_and_loss": 0.0019814151409786956,
+          "log_algo_profit": 0.03643787762622429,
+          "algo_profit": 0.03710987428924942,
+          "log_excess_income": 0.28707251820751634
+        },
+        "20181128": {
+          "total_asset_value": 1030214.0025717494,
+          "max_drawdown": -0.04285671497566579,
+          "benchmark_profit": -0.21135027708390092,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.237433007388221,
+          "excess_income": 0.30630110255088394,
+          "profit_and_loss": -0.006649123577408713,
+          "log_algo_profit": 0.029766550147589103,
+          "algo_profit": 0.030214002571749384,
+          "log_excess_income": 0.2671995575358101
+        },
+        "20181129": {
+          "total_asset_value": 1017315.3350949993,
+          "max_drawdown": -0.0548405095371004,
+          "benchmark_profit": -0.22159088385940162,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.250503036795828,
+          "excess_income": 0.3069160085623266,
+          "profit_and_loss": -0.012520376780504657,
+          "log_algo_profit": 0.017167133013395168,
+          "algo_profit": 0.01731533509499929,
+          "log_excess_income": 0.2676701698092232
+        },
+        "20181130": {
+          "total_asset_value": 1019427.4478887494,
+          "max_drawdown": -0.05287820406201915,
+          "benchmark_profit": -0.21289898080925707,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.23939867896639289,
+          "excess_income": 0.29516723143983814,
+          "profit_and_loss": 0.0020761633299795834,
+          "log_algo_profit": 0.019241144094720136,
+          "algo_profit": 0.01942744788874942,
+          "log_excess_income": 0.258639823061113
+        },
+        "20181203": {
+          "total_asset_value": 1022648.4213114994,
+          "max_drawdown": -0.049885686900408954,
+          "benchmark_profit": -0.19100283168218227,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.21195986215496554,
+          "excess_income": 0.26409394415797016,
+          "profit_and_loss": 0.0031595906402370304,
+          "log_algo_profit": 0.022395753717676013,
+          "algo_profit": 0.022648421311499436,
+          "log_excess_income": 0.23435561587264156
+        },
+        "20181204": {
+          "total_asset_value": 1029598.4213114994,
+          "max_drawdown": -0.04342863446828016,
+          "benchmark_profit": -0.18932594174997466,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.20988920669865332,
+          "excess_income": 0.2700522618597896,
+          "profit_and_loss": 0.006796079527592626,
+          "log_algo_profit": 0.02916884399586491,
+          "algo_profit": 0.029598421311499434,
+          "log_excess_income": 0.23905805069451824
+        },
+        "20181205": {
+          "total_asset_value": 1020722.4213114994,
+          "max_drawdown": -0.051675080135557216,
+          "benchmark_profit": -0.19322223680142883,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.21470703500901733,
+          "excess_income": 0.2651841286065173,
+          "profit_and_loss": -0.008620836839176364,
+          "log_algo_profit": 0.020510632788874352,
+          "algo_profit": 0.020722421311499435,
+          "log_excess_income": 0.2352176677978917
+        },
+        "20181206": {
+          "total_asset_value": 1013456.6160702495,
+          "max_drawdown": -0.05842553846712384,
+          "benchmark_profit": -0.21067042130442357,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2365713283777949,
+          "excess_income": 0.28394607705574515,
+          "profit_and_loss": -0.007118296893992321,
+          "log_algo_profit": 0.013366879945611412,
+          "algo_profit": 0.013456616070249467,
+          "log_excess_income": 0.24993820832340632
+        },
+        "20181207": {
+          "total_asset_value": 1014433.9460367494,
+          "max_drawdown": -0.05751752827472367,
+          "benchmark_profit": -0.21069731386262494,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.23660539908419437,
+          "excess_income": 0.2852280422370068,
+          "profit_and_loss": 0.0009643530379125677,
+          "log_algo_profit": 0.014330768293859016,
+          "algo_profit": 0.014433946036749403,
+          "log_excess_income": 0.2509361673780534
+        },
+        "20181210": {
+          "total_asset_value": 1010990.0251892493,
+          "max_drawdown": -0.060717179711329394,
+          "benchmark_profit": -0.21982726294613078,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2482399260552791,
+          "excess_income": 0.29585408099109567,
+          "profit_and_loss": -0.0033949187731295923,
+          "log_algo_profit": 0.010930073708009871,
+          "algo_profit": 0.010990025189249311,
+          "log_excess_income": 0.25916999976328897
+        },
+        "20181211": {
+          "total_asset_value": 1013006.0251892493,
+          "max_drawdown": -0.058844169969865856,
+          "benchmark_profit": -0.21609289384244518,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.24346475269580864,
+          "excess_income": 0.29225263712005245,
+          "profit_and_loss": 0.0019940849561029257,
+          "log_algo_profit": 0.012922173115836322,
+          "algo_profit": 0.01300602518924931,
+          "log_excess_income": 0.25638692581164496
+        },
+        "20181212": {
+          "total_asset_value": 1016470.0251892493,
+          "max_drawdown": -0.05562586354901777,
+          "benchmark_profit": -0.21341519884528715,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.24005474137462193,
+          "excess_income": 0.29225739385894967,
+          "profit_and_loss": 0.003419525564374464,
+          "log_algo_profit": 0.01633586539692657,
+          "algo_profit": 0.01647002518924931,
+          "log_excess_income": 0.2563906067715485
+        },
+        "20181213": {
+          "total_asset_value": 1014607.6285492494,
+          "max_drawdown": -0.05735616466468685,
+          "benchmark_profit": -0.2012383278792794,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.22469266041347336,
+          "excess_income": 0.27022573060554533,
+          "profit_and_loss": -0.0018322199315746544,
+          "log_algo_profit": 0.014501964897319133,
+          "algo_profit": 0.014607628549249378,
+          "log_excess_income": 0.2391946253107925
+        },
+        "20181214": {
+          "total_asset_value": 1001740.0103044995,
+          "max_drawdown": -0.06931111224497,
+          "benchmark_profit": -0.21458078285080417,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.24153766916048744,
+          "excess_income": 0.27542080513445355,
+          "profit_and_loss": -0.012682359054552728,
+          "log_algo_profit": 0.0017384982403204072,
+          "algo_profit": 0.001740010304499534,
+          "log_excess_income": 0.24327616740080785
+        },
+        "20181217": {
+          "total_asset_value": 1002429.4554364994,
+          "max_drawdown": -0.0686705678757038,
+          "benchmark_profit": -0.21575033623760548,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2430278606492233,
+          "excess_income": 0.2782019575595345,
+          "profit_and_loss": 0.0006882475741288751,
+          "log_algo_profit": 0.0024265090807023193,
+          "algo_profit": 0.00242945543649944,
+          "log_excess_income": 0.24545436972992563
+        },
+        "20181218": {
+          "total_asset_value": 1001266.4554364994,
+          "max_drawdown": -0.06975107895175647,
+          "benchmark_profit": -0.22388015008925274,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.25344832496316483,
+          "excess_income": 0.29009257468629834,
+          "profit_and_loss": -0.0011601813910122798,
+          "log_algo_profit": 0.0012656541582638401,
+          "algo_profit": 0.0012664554364994402,
+          "log_excess_income": 0.2547139791214287
+        },
+        "20181219": {
+          "total_asset_value": 1002746.4554364994,
+          "max_drawdown": -0.06837605195901542,
+          "benchmark_profit": -0.23313401829472943,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.26544322338363635,
+          "excess_income": 0.30759021701119726,
+          "profit_and_loss": 0.0014781280167373608,
+          "log_algo_profit": 0.0027426908190945455,
+          "algo_profit": 0.00274645543649944,
+          "log_excess_income": 0.2681859142027309
+        },
+        "20181220": {
+          "total_asset_value": 1006200.4554364994,
+          "max_drawdown": -0.06516703626109122,
+          "benchmark_profit": -0.23901579786461669,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2731426806849659,
+          "excess_income": 0.32223566877343757,
+          "profit_and_loss": 0.0034445397251456353,
+          "log_algo_profit": 0.006181311705170873,
+          "algo_profit": 0.0062004554364994404,
+          "log_excess_income": 0.2793239923901368
+        },
+        "20181221": {
+          "total_asset_value": 1010446.5820054994,
+          "max_drawdown": -0.061222077715841094,
+          "benchmark_profit": -0.24844848669695346,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2856155248289241,
+          "excess_income": 0.34448080287220306,
+          "profit_and_loss": 0.004219960889560466,
+          "log_algo_profit": 0.010392393530547649,
+          "algo_profit": 0.010446582005499397,
+          "log_excess_income": 0.29600791835947177
+        },
+        "20181224": {
+          "total_asset_value": 1011041.3738409994,
+          "max_drawdown": -0.06066947310173665,
+          "benchmark_profit": -0.24626458273156887,
+          "trade_record": {
+            "buy": 0,
+            "sale": 0
+          },
+          "log_benchmark_profit": -0.2827138780354497,
+          "excess_income": 0.3413743744523188,
+          "profit_and_loss": 0.0005886425330070607,
+          "log_algo_profit": 0.010980862881497092,
+          "algo_profit": 0.01104137384099944,
+          "log_excess_income": 0.29369474091694675
+        }
+      }
+    },
+    "performance": {
+      "yield": 0.011,
+      "information_ratio": 1.3097,
+      "max_drawdown": 0.1656,
+      "volatility": 0.1596,
+      "win_rate": 0.4895,
+      "sharpe_ratio": -0.1187,
+      "alpha": 0.0437,
+      "tracking_error": 0.2264,
+      "benchmark_annual_yield": -0.256,
+      "progress": 1,
+      "benchmark_yield": -0.2463,
+      "beta": 0.2186,
+      "sortino": -0.1364,
+      "annual_yield": 0.0116,
+      "downside_risk": 0.1389
+    }
+  }
+}

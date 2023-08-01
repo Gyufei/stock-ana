@@ -1,3 +1,16 @@
+.policy-dir .ant-tree-node-content-wrapper.ant-tree-node-content-wrapper-normal {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.policy-dir .ant-tree-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 200px;
+}
+
 .policy-item-tab .ant-tabs-tabpane {
   padding-left: 0 !important;
 }

@@ -1,7 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Link from 'next/link';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './ant.css';
