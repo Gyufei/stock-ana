@@ -2,10 +2,11 @@ import fetcher from '@/lib/fetcher';
 import Table, { ColumnsType } from 'antd/es/table';
 import { useState } from 'react';
 import useSWR from 'swr';
-import { DatePicker } from 'antd';
 import { formatDecimal } from '@/lib/numUtil';
+import { OpMap } from '@/lib/constant';
 
-const { RangePicker } = DatePicker;
+// import { DatePicker } from 'antd';
+// const { RangePicker } = DatePicker;
 
 interface DataType {
   key: string | number;
@@ -17,53 +18,57 @@ interface DataType {
   price: number;
   count: number;
   sum: number;
-  margin: number | null;
+  // margin: number | null;
   rate: number | null;
 }
 
-const OpMap = {
-  OPEN_SHORT: '开空',
-  OPEN_LONG: '开多',
-  CLOSE_SHORT: '平空',
-  CLOSE_LONG: '平多',
-  BUY: '买入',
-  SALE: '卖出',
-  CLOSE_BUY: '平仓买入',
-  CLOSE_SALE: '平仓卖出',
-  OPEN_BUY: '开仓买入',
-};
-
 export default function TradeLog() {
   const [tablePage, setTablePage] = useState(1);
-  const [searchDates, setSearchDates] = useState<any>([null, null]);
 
   const tradeFetch = async (url: string) => {
+    console.log(url);
     const response = await fetcher(url);
-    const data = response.data.map((item: any, index: number) => {
-      const [date, time] = item.trade_date.split(' ');
-      const opera = OpMap[item.operation_type as keyof typeof OpMap];
-      const price = Number(item.trade_price).toFixed(2);
-      const sum = Number(item.trade_value).toFixed(2);
-      const c = isNaN(item.commissions) ? 0 : item.commissions;
-      const d = isNaN(item.cost) ? 0 : item.cost;
-      const rate = Number(c) + Number(d);
+    console.log('response', response);
+    //   {
+    //     "date": "2003-09-16",
+    //     "code": "600480",
+    //     "codeName": "",
+    //     "buy": 1457.725947521866,
+    //     "sell": 0.0,
+    //     "clsPrice": 6.86,
+    //     "money": 10000.0,
+    //     "rate": 0.005
+    // },
+    if (!response) {
+      return undefined;
+    }
+
+    const data = response.transactionDetailsList.map((item: any, index: number) => {
+      console.log('item', item.buy, item.sell);
+      const type = Number(item.buy) > 0 ? 'BUY' : 'SALE';
+      const opera = OpMap[type as keyof typeof OpMap];
+      const price = Number(item.clsPrice).toFixed(2);
+      const count = Number(item.buy || item.sell).toFixed(2);
 
       return {
         key: index,
-        date,
-        time,
-        code: item.asset_code,
-        name: item.stock_name,
-        type: item.operation_type,
+        date: item.date,
+        time: '09:30:00',
+        code: item.code,
+        name: item.codeName,
+        type: type,
         opera,
+
         price,
-        count: item.trade_amount,
-        sum,
-        margin: item?.margin || null,
-        rate,
+        count,
+        sum: Number(item.money).toFixed(2),
+        // margin: item?.margin || null,
+        rate: item?.rate || null,
       };
     });
-    const total = response.total;
+    const total = response.transactionDetailsList.length;
+
+    console.log('data', data, total);
 
     return {
       data,
@@ -71,23 +76,20 @@ export default function TradeLog() {
     };
   };
 
+  // const [searchDates, setSearchDates] = useState<any>([null, null]);
+  // const disabledDate: any = (_date: any, _partial: any) => {};
+
+  const { data, isLoading } = useSWR(
+    `http://localhost:8080/getAlapaBackTest?windowSize=30&code=002560&startTime=1990-7-27&endTime=2023-07-27&initCash=10000&serviceCharge=0.005`,
+    tradeFetch
+  );
+  console.log('data', data);
+  const tradeData: DataType[] = data?.data || [];
+  const tradeDataTotal: number = data?.total || 0;
+
   const rowClassName = (record: DataType, index: number) => {
     return tradeData[index].date !== tradeData[index + 1]?.date ? 'border-b-[18px] border-b-[#f1f5f9]' : '';
   };
-
-  const disabledDate: any = (date: any, partial: any) => {};
-
-  const fetchUrl = () => {
-    if (searchDates[0] && searchDates[1]) {
-      return `/api/local?file=trade-log&page=${1}&start=${searchDates[0]}&end=${searchDates[1]}`;
-    } else {
-      return `/api/local?file=trade-log&page=${1}`;
-    }
-  };
-
-  const { data, isLoading } = useSWR(fetchUrl(), tradeFetch);
-  const tradeData: Array<DataType> = data?.data || [];
-  const tradeDataTotal: number = data?.total || 0;
 
   const columns: ColumnsType<DataType> = [
     {
@@ -144,15 +146,15 @@ export default function TradeLog() {
       key: 'sum',
       width: '8%',
     },
-    {
-      title: '保证金',
-      dataIndex: 'margin',
-      key: 'margin',
-      render: (margin: number | null) => {
-        return formatDecimal(margin);
-      },
-      width: '8%',
-    },
+    // {
+    //   title: '保证金',
+    //   dataIndex: 'margin',
+    //   key: 'margin',
+    //   render: (margin: number | null) => {
+    //     return formatDecimal(margin);
+    //   },
+    //   width: '8%',
+    // },
     {
       title: '费率',
       dataIndex: 'rate',
@@ -166,7 +168,7 @@ export default function TradeLog() {
       title: '',
       dataIndex: 'rate',
       key: 'rate',
-      render: (rate: number | null) => {
+      render: () => {
         return null;
       },
       width: '22%',
@@ -175,12 +177,12 @@ export default function TradeLog() {
 
   return (
     <div className="relative flex w-full h-full flex-col justify-stretch p-3">
-      <RangePicker
+      {/* <RangePicker
         value={searchDates}
         onChange={setSearchDates}
         disabledTime={disabledDate}
         className="absolute top-[20px] right-[120px] w-[200px] z-10"
-      />
+      /> */}
       <Table
         className="trade-log-table"
         loading={isLoading}

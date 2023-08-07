@@ -1,3 +1,4 @@
+import { PosMap } from '@/lib/constant';
 import fetcher from '@/lib/fetcher';
 import { formatDecimal } from '@/lib/numUtil';
 import Table, { ColumnsType } from 'antd/es/table';
@@ -9,112 +10,75 @@ interface DataType {
   date: string;
   isChild: boolean;
 
-  avgPrice?: number;
+  avgPrice?: string;
   posType?: string;
-  posDirection?: string;
-  margin?: number;
+  // posDirection?: string;
+  // margin?: number;
   code?: string;
   name?: string;
-  closePrice?: number;
-  amount?: number;
-  sum?: number;
-  floating?: number;
+  closePrice?: string;
+  amount?: string;
+  sum?: string;
+  floating?: string;
   children?: DataType[];
 
-  asset?: number;
-  cash?: number;
-  totalProfitAndLoss?: number;
+  asset?: string;
+  cash?: string | null;
+  totalProfitAndLoss?: string;
   len?: number;
 }
 
-const setPosType = function (t: string) {
-  switch (t) {
-    case 'METAL':
-      return 'T+D';
-    case 'STOCK':
-      return '股票';
-    case 'A':
-      return '股票（旧）';
-    case 'US':
-      return '美股';
-    case 'FOREX':
-      return '外汇';
-    case 'STKFUS':
-      return '股票期货';
-    case 'TICK':
-      return '股票T+0';
-    case 'FUTURES':
-    case 'FUTURE':
-      return '期货';
-    default:
-      return '--';
-  }
+const setPosType = function (t: keyof typeof PosMap) {
+  return PosMap[t] || '--';
 };
 
-const setPosDirection = (t: string) => {
-  switch (t) {
-    case 'LONG':
-      return '多';
-    case 'SHORT':
-      return '空';
-    default:
-      return '--';
-  }
-};
-
-const setPosDirectionClass = (t: string) => {
-  switch (t) {
-    case 'LONG':
-      return 'red';
-    case 'SHORT':
-      return 'green';
-    default:
-      return '';
-  }
-};
+// const setPosDirection = (t: keyof typeof PosDirect) => {
+//   return PosDirect[t] || '--';
+// };
 
 export default function HistoryGain() {
   const [tablePage, setTablePage] = useState(1);
-  const [searchDates, setSearchDates] = useState<any>([null, null]);
+  // const [searchDates, setSearchDates] = useState<any>([null, null]);
 
   const tradeFetch = async (url: string) => {
     const response = await fetcher(url);
-    const data = response.data.map((row: any, row_index: number) => {
-      const reg = new RegExp('([0-9-]+)T([0-9:]+)');
-      const day = row.position_date.match(reg)[1];
-      const time = row.position_date.slice(11, 19);
+    const historyRes: Array<any> = response.historicalPositionList;
 
-      const children = row.daily_position.map((child: any, c_index: number) => {
-        return {
-          key: `${row_index}-${c_index}`,
+    const data = historyRes.reverse().map((row: any, row_index: number) => {
+      const day = row.date;
+      const time = '09:30:00';
+
+      const children = [
+        {
+          key: `${row_index}-${row.code}`,
           date: time,
-          avgPrice: formatDecimal(child.avg_price),
-          posType: child.pos_type,
-          posDirection: child.pos_direction,
-          margin: formatDecimal(child.margin),
-          code: child.asset_code,
-          name: child.stock_name,
-          closePrice: child.close_price,
-          amount: child.pos_amount,
-          sum: formatDecimal(child.pos_value.toFixed(2)),
-          floating: formatDecimal(child.profit_and_loss.toFixed(2)),
+          avgPrice: formatDecimal(row.closPrice),
+          posType: 'STOCK',
+          posDirection: null,
+          margin: null,
+          code: row.code,
+          name: row.codeName,
+          closePrice: formatDecimal(row.closPrice),
+          amount: formatDecimal(row.value.toFixed(2)),
+          sum: formatDecimal(row.num),
+          floating: formatDecimal(row.count),
           isChild: true,
-        };
-      });
+        },
+      ];
 
       return {
         key: row_index,
         date: day,
-        asset: row.total_asset_value.toFixed(2),
-        cash: row.ending_cash.toFixed(2),
-        totalProfitAndLoss: row.profit_and_loss.toFixed(2),
+        asset: formatDecimal(row.value.toFixed(2)),
+        cash: null,
+        totalProfitAndLoss: formatDecimal(row.count),
         len: children.length,
+        isChild: false,
 
         children,
       };
     });
     const total = response.total;
-    console.log(data);
 
     return {
       data,
@@ -122,11 +86,15 @@ export default function HistoryGain() {
     };
   };
 
-  const rowClassName = (record: DataType, index: number) => {
+  const rowClassName = (record: DataType) => {
     return record.isChild ? 'child-row' : 'border-t-[18px] border-t-[#f1f5f9]';
   };
 
-  const { data, isLoading } = useSWR(`/api/local?file=history-gains&page=${1}`, tradeFetch);
+  const { data, isLoading } = useSWR(
+    // `/api/local?file=history-gains&page=${1}`,
+    'http://localhost:8080/avgAndRsi2?code=600480&&n=14&&money=10000.0&beginDate=2000-01-01&endDate=2010-01-01',
+    tradeFetch
+  );
   const tradeData = data?.data || [];
   const tradeDataTotal = data?.total || 0;
 
@@ -154,20 +122,19 @@ export default function HistoryGain() {
       dataIndex: 'posType',
       key: 'posType',
       width: '5%',
-      render: (posType: string, record: DataType) => {
+      render: (posType: any, record: DataType) => {
         return record.isChild ? setPosType(posType) : '';
       },
     },
-    {
-      title: '方向',
-      dataIndex: 'posDirection',
-      key: 'posDirection',
-      width: '5%',
-      render: (dir: string, record) => {
-        return;
-        return record.isChild ? setPosDirection(dir) : '';
-      },
-    },
+    // {
+    //   title: '方向',
+    //   dataIndex: 'posDirection',
+    //   key: 'posDirection',
+    //   width: '5%',
+    //   render: (dir: any, record) => {
+    //     return record.isChild ? setPosDirection(dir) : '';
+    //   },
+    // },
     {
       title: '成交数量',
       dataIndex: 'count',
@@ -195,15 +162,15 @@ export default function HistoryGain() {
         return record.isChild ? amount : '';
       },
     },
-    {
-      title: '保证金',
-      dataIndex: 'margin',
-      key: 'margin',
-      width: '7%',
-      render: (margin: number, record) => {
-        return record.isChild ? margin : '';
-      },
-    },
+    // {
+    //   title: '保证金',
+    //   dataIndex: 'margin',
+    //   key: 'margin',
+    //   width: '7%',
+    //   render: (margin: number, record) => {
+    //     return record.isChild ? margin : '';
+    //   },
+    // },
     {
       title: '市值',
       dataIndex: 'sum',
@@ -219,7 +186,7 @@ export default function HistoryGain() {
       key: 'avgPrice',
       width: '12%',
       render: (sum: number, record) => {
-        return record.isChild ? sum : `现金: ${record.cash}`;
+        return record.isChild ? sum : `${record.cash || ''}`;
       },
     },
     {

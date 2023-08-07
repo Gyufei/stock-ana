@@ -1,16 +1,17 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import useSWR from 'swr';
 import dayjs from 'dayjs';
-import { Tree, DatePicker, InputNumber, Select, Button } from 'antd';
+import { Tree, DatePicker, InputNumber, Select, Button, Tag } from 'antd';
 import type { DataNode, DirectoryTreeProps } from 'antd/es/tree';
-import Highcharts, { chart } from 'highcharts/highstock';
+import Highcharts from 'highcharts/highstock';
 
 import StockChart from '@/components/stock-chart';
 import fetcher from '@/lib/fetcher';
 import { chartOptions } from '@/lib/chart-options/policy-basic';
+import { PosMap } from '@/lib/constant';
 
 const { DirectoryTree } = Tree;
 const { RangePicker } = DatePicker;
@@ -18,9 +19,10 @@ const { RangePicker } = DatePicker;
 export default function PolicyLibrary() {
   const [currentPolicy, setCurrentPolicy] = useState<Record<string, any> | null>(null);
 
+  const chartInstance = useRef<any>(null);
   const { data: policies } = useSWR('/api/local?file=policy', fetcher);
 
-  const { data: policyIncome } = useSWR(() => {
+  const { data: policyIncome, isLoading: chartDataLoading } = useSWR(() => {
     if (!currentPolicy?.id) return null;
 
     return `/api/local?file=${currentPolicy.id}`;
@@ -113,7 +115,6 @@ export default function PolicyLibrary() {
     if (!currentPolicy) return;
     const start = dayjs(currentPolicy?.begin_date);
     const end = dayjs(currentPolicy?.end_date);
-    console.log(start, end);
     return [start, end] as any;
   }, [currentPolicy]);
 
@@ -138,7 +139,12 @@ export default function PolicyLibrary() {
         </div>
       </div>
       <div className="flex flex-1 flex-col bg-white ">
-        <div className="flex items-center h-10 border-b p-2 font-bold">{currentPolicy?.name || ''}</div>
+        <div className="flex items-center h-10 border-b p-2 font-bold">
+          {currentPolicy?.name || ''}
+          <Tag className="ml-4" color="cyan">
+            {currentPolicy?.stock_market ? PosMap[currentPolicy?.stock_market as keyof typeof PosMap] : '--'}
+          </Tag>
+        </div>
       </div>
       <div className="flex flex-col flex-1 justify-between items-stretch gap-y-3">
         <div className="bg-white h-[300px] flex flex-col">
@@ -161,7 +167,7 @@ export default function PolicyLibrary() {
             </Button>
           </div>
           <div className="flex-1">
-            <StockChart highcharts={Highcharts} options={stockOptions} />
+            <StockChart loading={chartDataLoading} ref={chartInstance} highcharts={Highcharts} options={stockOptions} />
           </div>
         </div>
         <div className="flex flex-1 relative flex-col item-stretch bg-white justify-center">

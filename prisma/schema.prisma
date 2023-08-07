@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model company_profile {
+  id                Int     @id @default(autoincrement())
+  code              String? @db.VarChar(255)
+  name              String? @db.VarChar(255)
+  territory         String? @db.VarChar(255)
+  involved_concept  String? @db.VarChar(255)
+  main_business     String? @db.VarChar(255)
+  list_date         String? @db.VarChar(255)
+  navps             String? @db.VarChar(255)
+  eps               String? @db.VarChar(255)
+  teta_profits      String? @db.VarChar(255)
+  npgr              String? @db.VarChar(255)
+  taking            String? @db.VarChar(255)
+  cfps              String? @db.VarChar(255)
+  rps               String? @db.VarChar(255)
+  udpps             String? @db.VarChar(255)
+  general_capital   String? @db.VarChar(255)
+  circulation_stock String? @db.VarChar(255)
+}
+
+model gyb_index_data {
+  id         Int     @id @default(autoincrement())
+  code       String? @db.VarChar(255)
+  date       String? @db.VarChar(255)
+  closePoint String? @db.VarChar(255)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model strategy {
+  id        Int     @id @default(autoincrement())
+  name      String? @db.VarChar(255)
+  type      String? @db.VarChar(255)
+  parameter String? @db.VarChar(255)
+  title     String? @db.VarChar(255)
+}
+
+model trd_co {
+  id                Int     @id @default(autoincrement())
+  Stkcd             String? @db.VarChar(255)
+  Stknme            String? @db.VarChar(255)
+  Listdt            String? @db.VarChar(255)
+  Cuntrycd          String? @db.VarChar(255)
+  Conme             String? @db.VarChar(255)
+  Conme_en          String? @db.VarChar(255)
+  Indcd             String? @db.VarChar(255)
+  Indnme            String? @db.VarChar(255)
+  Nindcd            String? @db.VarChar(255)
+  Nindnme           String? @db.VarChar(255)
+  Nnindcd           String? @db.VarChar(255)
+  Nnindnme          String? @db.VarChar(255)
+  Estbdt            String? @db.VarChar(255)
+  PROVINCE          String? @db.VarChar(255)
+  PROVINCECODE      String? @db.VarChar(255)
+  CITY              String? @db.VarChar(255)
+  CITYCODE          String? @db.VarChar(255)
+  OWNERSHIPTYPE     String? @db.VarChar(255)
+  OWNERSHIPTYPECODE String? @db.VarChar(255)
+  Favaldt           String? @db.VarChar(255)
+  Curtrd            String? @db.VarChar(255)
+  Ipoprm            String? @db.VarChar(255)
+  Ipoprc            String? @db.VarChar(255)
+  Ipocur            String? @db.VarChar(255)
+  Nshripo           String? @db.VarChar(255)
+  Parvcur           String? @db.VarChar(255)
+  Ipodt             String? @db.VarChar(255)
+  Parval            String? @db.VarChar(255)
+  Sctcd             String? @db.VarChar(255)
+  Statco            String? @db.VarChar(255)
+  Crcd              String? @db.VarChar(255)
+  Statdt            String? @db.VarChar(255)
+  Commnt            String? @db.VarChar(255)
+  Markettype        String? @db.VarChar(255)
+}
+
+model trd_dalyr {
+  id            Int     @id @default(autoincrement())
+  Stkcd         String? @db.VarChar(255)
+  Trddt         String? @db.VarChar(255)
+  Opnprc        String? @db.VarChar(255)
+  Hiprc         String? @db.VarChar(255)
+  Loprc         String? @db.VarChar(255)
+  Clsprc        String? @db.VarChar(255)
+  Dnshrtrd      String? @db.VarChar(255)
+  Dnvaltrd      String? @db.VarChar(255)
+  Dsmvosd       String? @db.VarChar(255)
+  Dsmvtll       String? @db.VarChar(255)
+  Dretwd        String? @db.VarChar(255)
+  Dretnd        String? @db.VarChar(255)
+  Adjprcwd      String? @db.VarChar(255)
+  Adjprcnd      String? @db.VarChar(255)
+  Markettype    String? @db.VarChar(255)
+  Capchgdt      String? @db.VarChar(255)
+  Trdsta        String? @db.VarChar(255)
+  Ahshrtrd_D    String? @db.VarChar(255)
+  Ahvaltrd_D    String? @db.VarChar(255)
+  PreClosePrice String? @db.VarChar(255)
+  ChangeRatio   String? @db.VarChar(255)
+
+  @@index([Clsprc], map: "sy_clsprc")
+  @@index([Stkcd], map: "sy_stkcd")
+  @@index([Trddt], map: "sy_trddt")
+}

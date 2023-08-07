@@ -5,9 +5,15 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@ant-design/cssinjs':
+    specifier: ^1.16.1
+    version: 1.16.1(react-dom@18.2.0)(react@18.2.0)
   '@fortawesome/fontawesome-free':
     specifier: ^6.4.0
     version: 6.4.0
+  '@prisma/client':
+    specifier: ^5.1.1
+    version: 5.1.1(prisma@5.1.1)
   '@types/node':
     specifier: 20.4.4
     version: 20.4.4
@@ -73,6 +79,9 @@ devDependencies:
   prettier-plugin-tailwindcss:
     specifier: ^0.2.1
     version: 0.2.8(prettier@2.8.8)
+  prisma:
+    specifier: ^5.1.1
+    version: 5.1.1
   tailwindcss:
     specifier: ^3.2.4
     version: 3.3.3
@@ -95,8 +104,8 @@ packages:
       '@ctrl/tinycolor': 3.6.0
     dev: false
 
-  /@ant-design/cssinjs@1.13.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-II3QJx6V6boYkAIUiEd1/hquSeX1r67sUOtsvco35fTmV46JvkJz946/6K+ikiuODBSE1kLf7fJ5gHetQyUyww==}
+  /@ant-design/cssinjs@1.16.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-KKVB5Or6BDC1Bo3Y4KMlOkyQU0P+6GTodubrQ9YfrtXG1TgO4wpaEfg9I4ZA49R7M+Ij2KKNwb+5abvmXy6K8w==}
     peerDependencies:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
@@ -106,7 +115,7 @@ packages:
       '@emotion/unitless': 0.7.5
       classnames: 2.3.2
       csstype: 3.1.2
-      rc-util: 5.34.1(react-dom@18.2.0)(react@18.2.0)
+      rc-util: 5.35.1(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       stylis: 4.3.0
@@ -387,6 +396,28 @@ packages:
       tslib: 2.6.0
     dev: false
 
+  /@prisma/client@5.1.1(prisma@5.1.1):
+    resolution: {integrity: sha512-fxcCeK5pMQGcgCqCrWsi+I2rpIbk0rAhdrN+ke7f34tIrgPwA68ensrpin+9+fZvuV2OtzHmuipwduSY6HswdA==}
+    engines: {node: '>=16.13'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': 5.1.1-1.6a3747c37ff169c90047725a05a6ef02e32ac97e
+      prisma: 5.1.1
+    dev: false
+
+  /@prisma/engines-version@5.1.1-1.6a3747c37ff169c90047725a05a6ef02e32ac97e:
+    resolution: {integrity: sha512-owZqbY/wucbr65bXJ/ljrHPgQU5xXTSkmcE/JcbqE1kusuAXV/TLN3/exmz21SZ5rJ7WDkyk70J2G/n68iogbQ==}
+    dev: false
+
+  /@prisma/engines@5.1.1:
+    resolution: {integrity: sha512-NV/4nVNWFZSJCCIA3HIFJbbDKO/NARc9ej0tX5S9k2EVbkrFJC4Xt9b0u4rNZWL4V+F5LAjvta8vzEUw0rw+HA==}
+    requiresBuild: true
+
   /@rc-component/color-picker@1.4.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-vh5EWqnsayZa/JwUznqDaPJz39jznx/YDbyBuVJntv735tKXKwEUZZb2jYEldOg+NKWZwtALjGMrNeGBmqFoEw==}
     peerDependencies:
@@ -655,7 +686,7 @@ packages:
       react-dom: '>=16.9.0'
     dependencies:
       '@ant-design/colors': 7.0.0
-      '@ant-design/cssinjs': 1.13.2(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/cssinjs': 1.16.1(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/icons': 5.1.4(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/react-slick': 1.0.2(react@18.2.0)
       '@babel/runtime': 7.22.6
@@ -2548,6 +2579,14 @@ packages:
     hasBin: true
     dev: true
 
+  /prisma@5.1.1:
+    resolution: {integrity: sha512-WJFG/U7sMmcc6TjJTTifTfpI6Wjoh55xl4AzopVwAdyK68L9/ogNo8QQ2cxuUjJf/Wa82z/uhyh3wMzvRIBphg==}
+    engines: {node: '>=16.13'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 5.1.1
+
   /prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
     dependencies:
@@ -3071,6 +3110,18 @@ packages:
 
   /rc-util@5.34.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-SqiUT8Ssgh5C+hu4y887xwCrMNcxLm6ScOo8AFlWYYF3z9uNNiPpwwSjvicqOlWd79rNw1g44rnP7tz9MrO1ZQ==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@babel/runtime': 7.22.6
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-is: 16.13.1
+    dev: false
+
+  /rc-util@5.35.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-TFB8FMe/lLB8Bv97PNRShfueayQ7oXqfKC9Y6wtxKvjSQvqlPbSG+xjUqZYppdvtMrukZfX4/xKbLV3ldwT1YQ==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
