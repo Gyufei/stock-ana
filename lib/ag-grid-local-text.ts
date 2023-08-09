@@ -61,7 +61,7 @@ export const AG_GRID_LOCALE_ZH = {
   // 其它
   loadingOoo: '加载中...',
   loadingError: '错误',
-  noRowsToShow: '没有行',
+  noRowsToShow: '暂无数据',
   enabled: '启用',
 
   // 菜单

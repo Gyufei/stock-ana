@@ -26,25 +26,12 @@ export default function TradeLog() {
   const [tablePage, setTablePage] = useState(1);
 
   const tradeFetch = async (url: string) => {
-    console.log(url);
     const response = await fetcher(url);
-    console.log('response', response);
-    //   {
-    //     "date": "2003-09-16",
-    //     "code": "600480",
-    //     "codeName": "",
-    //     "buy": 1457.725947521866,
-    //     "sell": 0.0,
-    //     "clsPrice": 6.86,
-    //     "money": 10000.0,
-    //     "rate": 0.005
-    // },
     if (!response) {
       return undefined;
     }
 
     const data = response.transactionDetailsList.map((item: any, index: number) => {
-      console.log('item', item.buy, item.sell);
       const type = Number(item.buy) > 0 ? 'BUY' : 'SALE';
       const opera = OpMap[type as keyof typeof OpMap];
       const price = Number(item.clsPrice).toFixed(2);
@@ -68,8 +55,6 @@ export default function TradeLog() {
     });
     const total = response.transactionDetailsList.length;
 
-    console.log('data', data, total);
-
     return {
       data,
       total,
@@ -83,7 +68,6 @@ export default function TradeLog() {
     `http://localhost:8080/getAlapaBackTest?windowSize=30&code=002560&startTime=1990-7-27&endTime=2023-07-27&initCash=10000&serviceCharge=0.005`,
     tradeFetch
   );
-  console.log('data', data);
   const tradeData: DataType[] = data?.data || [];
   const tradeDataTotal: number = data?.total || 0;
 
