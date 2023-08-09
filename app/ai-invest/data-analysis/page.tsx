@@ -51,7 +51,6 @@ export default function DataAnalysis() {
     }
     return null;
   }, fetcher);
-  console.log(tableData);
 
   const tableList = [
     {
