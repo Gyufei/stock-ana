@@ -1,7 +1,5 @@
-import fetcher from '@/lib/fetcher';
 import Table, { ColumnsType } from 'antd/es/table';
-import { useState } from 'react';
-import useSWR from 'swr';
+import { useMemo, useState } from 'react';
 import { formatDecimal } from '@/lib/numUtil';
 import { OpMap } from '@/lib/constant';
 
@@ -22,16 +20,11 @@ interface DataType {
   rate: number | null;
 }
 
-export default function TradeLog() {
+export default function TradeLog({ tradeData }: any) {
   const [tablePage, setTablePage] = useState(1);
 
-  const tradeFetch = async (url: string) => {
-    const response = await fetcher(url);
-    if (!response) {
-      return undefined;
-    }
-
-    const data = response.transactionDetailsList.map((item: any, index: number) => {
+  const logData = useMemo(() => {
+    const data = (tradeData?.transactionDetailsList || []).map((item: any, index: number) => {
       const type = Number(item.buy) > 0 ? 'BUY' : 'SALE';
       const opera = OpMap[type as keyof typeof OpMap];
       const price = Number(item.clsPrice).toFixed(2);
@@ -53,26 +46,17 @@ export default function TradeLog() {
         rate: item?.rate || null,
       };
     });
-    const total = response.transactionDetailsList.length;
 
-    return {
-      data,
-      total,
-    };
-  };
+    return data;
+  }, [tradeData]);
 
   // const [searchDates, setSearchDates] = useState<any>([null, null]);
   // const disabledDate: any = (_date: any, _partial: any) => {};
 
-  const { data, isLoading } = useSWR(
-    `http://localhost:8080/getAlapaBackTest?windowSize=30&code=002560&startTime=1990-7-27&endTime=2023-07-27&initCash=10000&serviceCharge=0.005`,
-    tradeFetch
-  );
-  const tradeData: DataType[] = data?.data || [];
-  const tradeDataTotal: number = data?.total || 0;
+  const logLen: number = logData.length;
 
   const rowClassName = (record: DataType, index: number) => {
-    return tradeData[index].date !== tradeData[index + 1]?.date ? 'border-b-[18px] border-b-[#f1f5f9]' : '';
+    return logData[index].date !== logData[index + 1]?.date ? 'border-b-[18px] border-b-[#f1f5f9]' : '';
   };
 
   const columns: ColumnsType<DataType> = [
@@ -169,11 +153,10 @@ export default function TradeLog() {
       /> */}
       <Table
         className="trade-log-table"
-        loading={isLoading}
         pagination={{
           position: ['bottomCenter'],
           current: tablePage,
-          total: tradeDataTotal,
+          total: logLen,
           pageSize: 20,
           showSizeChanger: false,
           onChange: (p) => {
@@ -182,7 +165,7 @@ export default function TradeLog() {
         }}
         rowClassName={rowClassName}
         columns={columns}
-        dataSource={tradeData}
+        dataSource={logData}
       />
     </div>
   );

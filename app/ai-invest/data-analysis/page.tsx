@@ -6,10 +6,10 @@ import type { UploadProps } from 'antd';
 import * as XLSX from 'xlsx';
 import { Radio, Select, Button, message, Upload } from 'antd';
 
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
 import fetcher from '@/lib/fetcher';
-import SourceGrid from '@/components/ai-invest/source-grid';
+import { PathMap } from '@/lib/path-map';
+import useSWRMutation from 'swr/mutation';
+import Grid from '@/components/grid';
 
 export default function DataAnalysis() {
   const sourceType = [
@@ -60,8 +60,22 @@ export default function DataAnalysis() {
     return null;
   }, fetcher);
 
+  const saveDataSet = async (url: string, { arg }: any) => {
+    const res = await fetcher(`${PathMap.saveDataSet}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        title: arg.title,
+        content: JSON.stringify(arg.data),
+      }),
+    });
+
+    return res;
+  };
+
+  const { trigger: saveTrigger } = useSWRMutation(`${PathMap.saveDataSet}`, saveDataSet);
+
   return (
-    <div className="p-2 flex flex-col h-[900px]">
+    <div className="p-2 flex flex-col h-[850px]">
       <div className="px-10 pt-5 flex items-center gap-x-3">
         <div className="flex items-center">
           <span className="mr-4">数据集:</span>
@@ -93,7 +107,7 @@ export default function DataAnalysis() {
         )}
       </div>
 
-      <SourceGrid data={selectedType === 'mysql' ? tableData : excelData} />
+      <Grid data={selectedType === 'mysql' ? tableData : excelData} saveData={saveTrigger} />
     </div>
   );
 }

@@ -2,21 +2,13 @@
 
 import Highcharts from 'highcharts/highstock';
 import IncomeChartHeader from './income-chart-header';
-import useSWR from 'swr';
-import fetcher from '@/lib/fetcher';
 import { useEffect, useState } from 'react';
 import { Radio } from 'antd';
 import { chartOptions } from '@/lib/chart-options/income-view';
 import StockChart from '../stock-chart';
 import dayjs from 'dayjs';
 
-export default function IncomeView() {
-  const { data: incomeView } = useSWR(
-    // '/api/local?file=income-view',
-    'http://localhost:8080/avgAndRsi2?code=600480&&n=14&&money= 10000.0&beginDate=2000-01-01&endDate=2010-01-01',
-    fetcher
-  );
-
+export default function IncomeView({ tradeData: incomeView }: any) {
   const [stockOptions, setStockOptions] = useState(chartOptions);
 
   function initChart() {
@@ -29,6 +21,7 @@ export default function IncomeView() {
       },
     });
   }
+
   initChart();
 
   useEffect(() => {

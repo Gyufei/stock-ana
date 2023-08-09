@@ -1,9 +1,7 @@
 import { PosMap } from '@/lib/constant';
-import fetcher from '@/lib/fetcher';
 import { formatDecimal } from '@/lib/numUtil';
 import Table, { ColumnsType } from 'antd/es/table';
-import { useState } from 'react';
-import useSWR from 'swr';
+import { useMemo, useState } from 'react';
 
 interface DataType {
   key: string | number;
@@ -36,15 +34,12 @@ const setPosType = function (t: keyof typeof PosMap) {
 //   return PosDirect[t] || '--';
 // };
 
-export default function HistoryGain() {
+export default function HistoryGain({ tradeData }: any) {
   const [tablePage, setTablePage] = useState(1);
   // const [searchDates, setSearchDates] = useState<any>([null, null]);
 
-  const tradeFetch = async (url: string) => {
-    const response = await fetcher(url);
-    const historyRes: Array<any> = response.historicalPositionList;
-
-    const data = historyRes.reverse().map((row: any, row_index: number) => {
+  const hisData = useMemo(() => {
+    const data = (tradeData?.historicalPositionList || []).reverse().map((row: any, row_index: number) => {
       const day = row.date;
       const time = '09:30:00';
 
@@ -78,25 +73,15 @@ export default function HistoryGain() {
         children,
       };
     });
-    const total = response.total;
 
-    return {
-      data,
-      total,
-    };
-  };
+    return data;
+  }, [tradeData]);
 
   const rowClassName = (record: DataType) => {
     return record.isChild ? 'child-row' : 'border-t-[18px] border-t-[#f1f5f9]';
   };
 
-  const { data, isLoading } = useSWR(
-    // `/api/local?file=history-gains&page=${1}`,
-    'http://localhost:8080/avgAndRsi2?code=600480&&n=14&&money=10000.0&beginDate=2000-01-01&endDate=2010-01-01',
-    tradeFetch
-  );
-  const tradeData = data?.data || [];
-  const tradeDataTotal = data?.total || 0;
+  const tradeDataTotal = hisData?.length || 0;
 
   const columns: ColumnsType<DataType> = [
     {
@@ -204,7 +189,6 @@ export default function HistoryGain() {
     <div className="relative flex w-full h-full flex-col justify-stretch p-3">
       <Table
         className="history-gain-table"
-        loading={isLoading}
         pagination={{
           position: ['bottomCenter'],
           current: tablePage,
@@ -217,7 +201,7 @@ export default function HistoryGain() {
         }}
         rowClassName={rowClassName}
         columns={columns}
-        dataSource={tradeData}
+        dataSource={hisData}
       />
     </div>
   );

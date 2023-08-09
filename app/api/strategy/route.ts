@@ -3,7 +3,7 @@ import prisma from '@/lib/prisma';
 
 async function handler(_req: Request, _res: Response) {
   // const url = new URL(req.url);
-  const result = await prisma.trd_co.findMany();
+  const result = await prisma.strategy.findMany();
 
   return NextResponse.json(result);
 }

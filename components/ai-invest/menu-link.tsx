@@ -3,7 +3,8 @@
 import { Menu } from 'antd';
 import Link from 'next/link';
 import type { MenuProps } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function MenuLink() {
   const items: MenuProps['items'] = [
@@ -44,7 +45,11 @@ export default function MenuLink() {
     },
   ];
 
-  const [current, setCurrent] = useState('data-analysis');
+  const pathname = usePathname();
+  const [current, setCurrent] = useState('');
+  useEffect(() => {
+    setCurrent(pathname.split('/')[2]);
+  }, [pathname]);
 
   const onClick: MenuProps['onClick'] = (e) => {
     setCurrent(e.key);

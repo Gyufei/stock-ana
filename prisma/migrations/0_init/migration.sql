@@ -22,12 +22,26 @@ CREATE TABLE `company_profile` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `gyb_index_data` (
+CREATE TABLE `dataset` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `code` VARCHAR(255) NULL,
-    `date` VARCHAR(255) NULL,
-    `closePoint` VARCHAR(255) NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `content` BLOB NOT NULL,
+    `type` VARCHAR(255) NOT NULL,
 
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `rs_ttshs` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `Stkcd` VARCHAR(255) NULL,
+    `Annodt` VARCHAR(255) NULL,
+    `Nmsthldr` VARCHAR(255) NULL,
+    `Nsthld` VARCHAR(255) NULL,
+    `Sign` VARCHAR(255) NULL,
+    `Psthld` VARCHAR(255) NULL,
+
+    INDEX `sy_annodt`(`Annodt`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

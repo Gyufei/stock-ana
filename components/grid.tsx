@@ -5,9 +5,9 @@ import { AgGridReact } from 'ag-grid-react';
 import { ColDef, RowSelectedEvent } from 'ag-grid-community';
 import { Button, Input, Modal } from 'antd';
 import { AG_GRID_LOCALE_ZH } from '@/lib/ag-grid-local-text';
-import { PathMap } from '@/lib/path-map';
-import fetcher from '@/lib/fetcher';
-import useSWRMutation from 'swr/mutation';
+
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
 
 function checkValueType(value: any) {
   if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
@@ -17,7 +17,7 @@ function checkValueType(value: any) {
   }
 }
 
-export default function SourceGrid({ data }: { data: Array<Record<string, any>> }) {
+export default function SourceGrid({ data, saveData }: { data: Array<Record<string, any>>; saveData: (_arg: any) => void }) {
   const [selectedRows, setSelectedRows] = useState<Record<string, any>[]>([]);
 
   const gridRef = useRef<AgGridReact>(null);
@@ -60,7 +60,7 @@ export default function SourceGrid({ data }: { data: Array<Record<string, any>> 
     const title = inputRef.current?.input.value;
     const data = getCurrentData();
 
-    saveTrigger({ title, data } as any);
+    saveData({ title, data } as any);
   };
 
   const getCurrentData = () => {
@@ -75,20 +75,6 @@ export default function SourceGrid({ data }: { data: Array<Record<string, any>> 
 
     return data;
   };
-
-  const saveDataSet = async (url: string, { arg }: any) => {
-    const res = await fetcher(`${PathMap.saveDataSet}`, {
-      method: 'POST',
-      body: JSON.stringify({
-        title: arg.title,
-        data: arg.data,
-      }),
-    });
-
-    return res;
-  };
-
-  const { trigger: saveTrigger, isMutating: saving } = useSWRMutation(`${PathMap.saveDataSet}`, saveDataSet);
 
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -125,17 +111,17 @@ export default function SourceGrid({ data }: { data: Array<Record<string, any>> 
   }, []);
 
   return (
-    <div className="relative ag-theme-alpine mt-4 p-4 h-[90%]">
-      <div className="absolute flex items-center top-[-50px] right-4 gap-x-3">
+    <div className="relative ag-theme-alpine mt-12 h-[90%]">
+      <div className="absolute flex items-center top-[-30px] right-0 gap-x-3">
         {selectedRows.length > 0 && (
-          <Button size="middle" onClick={onDelete}>
+          <Button size="small" onClick={onDelete}>
             删除{selectedRows.length ? `(${selectedRows.length})` : ''}
           </Button>
         )}
-        <Button disabled={!gridData.length} size="middle" onClick={onBtnExport}>
+        <Button disabled={!gridData.length} size="small" onClick={onBtnExport}>
           下载
         </Button>
-        <Button disabled={!gridData.length} loading={saving} className="bg-primary" type="primary" size="middle" onClick={onSave}>
+        <Button disabled={!gridData.length} className="bg-primary" type="primary" size="small" onClick={onSave}>
           保存
         </Button>
       </div>
@@ -152,9 +138,9 @@ export default function SourceGrid({ data }: { data: Array<Record<string, any>> 
         groupSelectsFiltered={true}
       ></AgGridReact>
 
-      <Modal title="保存数据集" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Modal title="保存" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <div className="flex items-center mt-3">
-          <div className="mr-5 whitespace-nowrap">数据集名称:</div>
+          <div className="mr-5 whitespace-nowrap">名称:</div>
           <Input ref={inputRef} />
         </div>
       </Modal>

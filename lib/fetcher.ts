@@ -4,6 +4,7 @@ export default async function fetcher(input: URL | RequestInfo, init?: RequestIn
   const newInit = {
     ...init,
     headers: {
+      'Content-Type': 'application/json',
       ...init?.headers,
     },
   };

@@ -28,11 +28,23 @@ model company_profile {
   circulation_stock String? @db.VarChar(255)
 }
 
-model gyb_index_data {
-  id         Int     @id @default(autoincrement())
-  code       String? @db.VarChar(255)
-  date       String? @db.VarChar(255)
-  closePoint String? @db.VarChar(255)
+model dataset {
+  id      Int    @id @default(autoincrement())
+  name    String @db.VarChar(255)
+  content Bytes  @db.Blob
+  type    String @db.VarChar(255)
+}
+
+model rs_ttshs {
+  id       Int     @id @default(autoincrement())
+  Stkcd    String? @db.VarChar(255)
+  Annodt   String? @db.VarChar(255)
+  Nmsthldr String? @db.VarChar(255)
+  Nsthld   String? @db.VarChar(255)
+  Sign     String? @db.VarChar(255)
+  Psthld   String? @db.VarChar(255)
+
+  @@index([Annodt], map: "sy_annodt")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
