@@ -6,8 +6,6 @@ import useSWR from 'swr';
 import dayjs from 'dayjs';
 import { Tree, DatePicker, InputNumber, Select, Button, Tag } from 'antd';
 import type { DataNode, DirectoryTreeProps } from 'antd/es/tree';
-import Highcharts from 'highcharts/highstock';
-
 import StockChart from '@/components/stock-chart';
 import fetcher from '@/lib/fetcher';
 import { chartOptions } from '@/lib/chart-options/policy-basic';
@@ -28,7 +26,7 @@ export default function PolicyLibrary() {
     return `/api/local?file=${currentPolicy.id}`;
   }, fetcher);
 
-  const [stockOptions, setStockOptions] = useState<Highcharts.Options>(chartOptions);
+  const [stockOptions, setStockOptions] = useState(chartOptions);
   useEffect(() => {
     if (!policyIncome) return;
 
@@ -167,7 +165,7 @@ export default function PolicyLibrary() {
             </Button>
           </div>
           <div className="flex-1">
-            <StockChart loading={chartDataLoading} ref={chartInstance} highcharts={Highcharts} options={stockOptions} />
+            <StockChart loading={chartDataLoading} ref={chartInstance} options={stockOptions} />
           </div>
         </div>
         <div className="flex flex-1 relative flex-col item-stretch bg-white justify-center">

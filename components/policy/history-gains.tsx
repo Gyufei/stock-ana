@@ -10,19 +10,14 @@ interface DataType {
 
   avgPrice?: string;
   posType?: string;
-  // posDirection?: string;
-  // margin?: number;
   code?: string;
-  name?: string;
+  codeName?: string;
   closePrice?: string;
-  amount?: string;
-  sum?: string;
-  floating?: string;
+  value?: string;
+  num?: string;
+  count?: string;
   children?: DataType[];
 
-  asset?: string;
-  cash?: string | null;
-  totalProfitAndLoss?: string;
   len?: number;
 }
 
@@ -40,33 +35,29 @@ export default function HistoryGain({ tradeData }: any) {
 
   const hisData = useMemo(() => {
     const data = (tradeData?.historicalPositionList || []).reverse().map((row: any, row_index: number) => {
-      const day = row.date;
-      const time = '09:30:00';
-
       const children = [
         {
           key: `${row_index}-${row.code}`,
-          date: time,
-          avgPrice: formatDecimal(row.closPrice),
-          posType: 'STOCK',
-          posDirection: null,
-          margin: null,
+          date: '09:30:00',
           code: row.code,
           name: row.codeName,
+          avgPrice: formatDecimal(row.closPrice),
           closePrice: formatDecimal(row.closPrice),
-          amount: formatDecimal(row.value.toFixed(2)),
-          sum: formatDecimal(row.num),
-          floating: formatDecimal(row.count),
+          posType: 'STOCK',
+          // posDirection: null,
+          // margin: null,
+          value: formatDecimal(row.value),
+          num: formatDecimal(row.num),
+          count: formatDecimal(row.count),
           isChild: true,
         },
       ];
 
       return {
         key: row_index,
-        date: day,
-        asset: formatDecimal(row.value.toFixed(2)),
-        cash: null,
-        totalProfitAndLoss: formatDecimal(row.count),
+        date: row.date,
+        value: formatDecimal(row.value),
+        count: formatDecimal(row.count),
         len: children.length,
         isChild: false,
 
@@ -95,10 +86,10 @@ export default function HistoryGain({ tradeData }: any) {
     },
     {
       title: '代码/名称',
-      dataIndex: 'name',
-      key: 'name',
-      render: (name: string, record: DataType) => {
-        return record.isChild ? `${record.code} ${name}` : `持有${record.len}只证券`;
+      dataIndex: 'codeName',
+      key: 'codeName',
+      render: (cn: string, record: DataType) => {
+        return record.isChild ? `${record.code} ${cn}` : `持有${record.len}只证券`;
       },
       width: '12%',
     },
@@ -140,11 +131,11 @@ export default function HistoryGain({ tradeData }: any) {
     },
     {
       title: '数量',
-      dataIndex: 'amount',
-      key: 'amount',
+      dataIndex: 'value',
+      key: 'value',
       width: '7%',
-      render: (amount: number, record) => {
-        return record.isChild ? amount : '';
+      render: (value: number, record) => {
+        return record.isChild ? value : '';
       },
     },
     // {
@@ -158,11 +149,11 @@ export default function HistoryGain({ tradeData }: any) {
     // },
     {
       title: '市值',
-      dataIndex: 'sum',
-      key: 'sum',
+      dataIndex: 'num',
+      key: 'num',
       width: '12%',
-      render: (sum: number, record) => {
-        return record.isChild ? sum : `总资产: ${record.asset}`;
+      render: (num: number, record) => {
+        return record.isChild ? num : `总资产: ${record.value}`;
       },
     },
     {
@@ -170,17 +161,17 @@ export default function HistoryGain({ tradeData }: any) {
       dataIndex: 'avgPrice',
       key: 'avgPrice',
       width: '12%',
-      render: (sum: number, record) => {
-        return record.isChild ? sum : `${record.cash || ''}`;
+      render: (avg: number, record) => {
+        return record.isChild ? avg : '';
       },
     },
     {
       title: '累计盈亏',
-      dataIndex: 'floating',
-      key: 'floating',
+      dataIndex: 'count',
+      key: 'count',
       width: '14%',
-      render: (floating: number, record) => {
-        return record.isChild ? floating : `累计盈亏: ${record.totalProfitAndLoss}`;
+      render: (count: number, record) => {
+        return record.isChild ? count : `累计盈亏: ${count}`;
       },
     },
   ];

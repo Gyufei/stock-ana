@@ -123,11 +123,13 @@ export const chartOptions: Highcharts.Options = {
     followPointer: true,
     borderColor: '#eeeeee',
     padding: 5,
+    // eslint-disable-next-line no-unused-vars
     formatter: function (this: any) {
       let t = this.points,
         e = [],
         n = Highcharts.dateFormat('%Y-%m-%d', this.x as any),
         i = dateUtils.getWeekByDay(n),
+        // eslint-disable-next-line no-unused-vars
         r = 0;
       return (
         e.push('<div style="background: #eeeeee; border: 0; border-radius: 3px;">'),

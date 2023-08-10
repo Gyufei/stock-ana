@@ -61,7 +61,7 @@ export default function IncomeChartHeader() {
   ];
 
   return (
-    <div className="bg-slate-200 flex gap-x-2 px-3 justify-between items-center h-[60px]">
+    <div className="md:hidden bg-slate-200 flex gap-x-2 px-3 justify-between items-center h-[60px]">
       {headerData.map((item: any) => (
         <div key={item.label + item.value} className="flex flex-col justify-between items-center py-1">
           {item.label === '最大回撤' ? (

@@ -65,7 +65,7 @@ export default function AiPickStock() {
 
   const { trigger: pickTrigger, isMutating: picking } = useSWRMutation(`${PathMap.pickStock}`, pickStockFetcher);
 
-  const saveStock = async (url: string, { arg }: any) => {
+  const saveStockFetcher = async (url: string, { arg }: any) => {
     const res = await fetcher(`${PathMap.saveDataSet}`, {
       method: 'POST',
       body: JSON.stringify({
@@ -77,7 +77,7 @@ export default function AiPickStock() {
     return res;
   };
 
-  const { trigger: saveTrigger } = useSWRMutation(`${PathMap.saveDataSet}`, saveStock);
+  const { trigger: saveTrigger } = useSWRMutation(`${PathMap.saveStocks}`, saveStockFetcher);
 
   return (
     <div className="flex flex-col h-[850px]">

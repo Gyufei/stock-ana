@@ -5,5 +5,7 @@ export function WithHost(path: string) {
 export const PathMap = {
   // 保存数据集
   saveDataSet: WithHost('/saveDataSet'),
+  saveStocks: WithHost('/saveStocks'),
   pickStock: WithHost('/pickStock'),
+  predict: WithHost('/predict'),
 };

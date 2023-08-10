@@ -19,13 +19,13 @@ export default function AiTrade() {
   const [selectedStrategyId, setSelectedStrategyId] = useState<string>('');
 
   const [backTestParams, setBackTestParams] = useState<{
-    runTime: number | null;
-    asset: number | null;
+    money: number | null;
     beginDate: string | null;
     endDate: string | null;
+    runTime: number | null;
   }>({
     runTime: null,
-    asset: null,
+    money: null,
     beginDate: null,
     endDate: null,
   });
@@ -44,11 +44,12 @@ export default function AiTrade() {
     const searchParams = new URLSearchParams();
 
     searchParams.append('code', selectedStocks.join(','));
-    if (tDuration) {
-      searchParams.append('n', tDuration.toString());
+
+    if (tN) {
+      searchParams.append('n', tN.toString());
     }
-    if (tBeginAsset) {
-      searchParams.append('money', tBeginAsset.toString());
+    if (tMoney) {
+      searchParams.append('money', tMoney.toString());
     }
 
     const beginDate = tBeginDate.format('YYYY-MM-DD');
@@ -67,7 +68,7 @@ export default function AiTrade() {
     const timeEnd = new Date().getTime();
     setBackTestParams({
       runTime: timeEnd - timeBegin,
-      asset: tBeginAsset,
+      money: tMoney,
       beginDate,
       endDate,
     });
@@ -75,9 +76,9 @@ export default function AiTrade() {
     return res;
   };
 
-  const [tDuration, setTDuration] = useState<number | null>(null);
+  const [tN, setTN] = useState<number | null>(null);
   const [tFee, setTFee] = useState<number | null>(null);
-  const [tBeginAsset, setTBeginAsset] = useState<number | null>(null);
+  const [tMoney, setTMoney] = useState<number | null>(null);
   const [tBeginDate, setTBeginDate] = useState<any>();
   const [tEndDate, setTEndDate] = useState<any>();
   const [tBuyPoint, setTBuyPoint] = useState<string | null>(null);
@@ -153,7 +154,7 @@ export default function AiTrade() {
             <div className="flex items-center">
               <div className="mr-2 text-slate-500 text-sm">调仓周期:</div>
               <div className="flex items-center gap-x-1">
-                <InputNumber value={tDuration} onChange={(e) => setTDuration(e)} />
+                <InputNumber value={tN} onChange={(e) => setTN(e)} />
               </div>
             </div>
             <div className="flex items-center">
@@ -165,7 +166,7 @@ export default function AiTrade() {
             <div className="flex items-center">
               <div className="mr-2 text-slate-500 text-sm">初始资金:</div>
               <div className="flex items-center gap-x-1">
-                <InputNumber value={tBeginAsset} onChange={(e) => setTBeginAsset(e)} />
+                <InputNumber value={tMoney} onChange={(e) => setTMoney(e)} />
               </div>
             </div>
             <div className="flex items-center">
@@ -214,13 +215,13 @@ export default function AiTrade() {
       </div>
 
       <div className="flex flex-col justify-stretch w-full h-full">
-        <div className="flex flex-col justify-stretch rounded">
+        <div className="flex flex-col justify-stretch rounded border-b">
           <div className="flex items-center gap-x-4 bg-white py-5 px-2 text-sm">
             <div>
               回测日期：{backTestParams.beginDate || 'xxxx'} 至 {backTestParams.endDate || 'xxxx'}
             </div>
             <div>|</div>
-            <div> 资金：{backTestParams.asset || 'xxxx'} </div>
+            <div> 资金：{backTestParams.money || 'xxxx'} </div>
             <div>|</div>
             <div>频率：每日</div>
             <div>|</div>

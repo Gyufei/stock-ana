@@ -1,9 +1,6 @@
 'use client';
 
 import { Tabs } from 'antd';
-import IncomeView from '@/components/policy/income-view';
-import TradeLog from '@/components/policy/trade-log';
-import HistoryGain from '@/components/policy/history-gains';
 import Link from 'next/link';
 
 export default function PolicyItem() {
@@ -11,17 +8,17 @@ export default function PolicyItem() {
     {
       label: '收益概览',
       key: '1',
-      children: IncomeView(),
+      children: '',
     },
     {
       label: '交易明细',
       key: '2',
-      children: TradeLog(),
+      children: '',
     },
     {
       label: '历史持仓',
       key: '3',
-      children: HistoryGain(),
+      children: '',
     },
     // {
     //   label: '输出日志',

@@ -11,11 +11,11 @@ interface DataType {
   date: string;
   time: string;
   code: string;
-  name: string;
+  codeName: string;
   opera: string;
-  price: number;
+  clsPrice: number;
   count: number;
-  sum: number;
+  money: number;
   // margin: number | null;
   rate: number | null;
 }
@@ -27,7 +27,6 @@ export default function TradeLog({ tradeData }: any) {
     const data = (tradeData?.transactionDetailsList || []).map((item: any, index: number) => {
       const type = Number(item.buy) > 0 ? 'BUY' : 'SALE';
       const opera = OpMap[type as keyof typeof OpMap];
-      const price = Number(item.clsPrice).toFixed(2);
       const count = Number(item.buy || item.sell).toFixed(2);
 
       return {
@@ -35,15 +34,14 @@ export default function TradeLog({ tradeData }: any) {
         date: item.date,
         time: '09:30:00',
         code: item.code,
-        name: item.codeName,
-        type: type,
+        codeName: item.codeName,
+        clsPrice: Number(item.clsPrice).toFixed(2),
+        type,
         opera,
-
-        price,
         count,
-        sum: Number(item.money).toFixed(2),
-        // margin: item?.margin || null,
+        money: Number(item.money).toFixed(2),
         rate: item?.rate || null,
+        // margin: item?.margin || null,
       };
     });
 
@@ -74,10 +72,10 @@ export default function TradeLog({ tradeData }: any) {
     },
     {
       title: '代码/名称',
-      dataIndex: 'name',
-      key: 'name',
-      render: (name: string, record: DataType) => {
-        return `${record.code} ${name}`;
+      dataIndex: 'codeName',
+      key: 'codeName',
+      render: (cn: string, record: DataType) => {
+        return `${record.code} ${cn}`;
       },
       width: '8%',
     },
@@ -98,8 +96,8 @@ export default function TradeLog({ tradeData }: any) {
     },
     {
       title: '成交价',
-      dataIndex: 'price',
-      key: 'price',
+      dataIndex: 'clsPrice',
+      key: 'clsPrice',
       width: '8%',
     },
     {
@@ -110,8 +108,8 @@ export default function TradeLog({ tradeData }: any) {
     },
     {
       title: '成交金额',
-      dataIndex: 'sum',
-      key: 'sum',
+      dataIndex: 'money',
+      key: 'money',
       width: '8%',
     },
     // {
