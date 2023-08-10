@@ -9,10 +9,10 @@ import useSWRMutation from 'swr/mutation';
 import IncomeView from '@/components/policy/income-view';
 import TradeLog from '@/components/policy/trade-log';
 import HistoryGain from '@/components/policy/history-gains';
+import { StrategySelect } from '@/components/ai-invest/strategy-select';
 
 export default function AiTrade() {
   const { data: stockSets } = useSWR('/api/dataset', fetcher);
-  const { data: strategy } = useSWR('/api/strategy', fetcher);
 
   const [selectedStockSetId, setSelectedStockSetId] = useState<string>('');
   const [selectedStocks, setSelectedStocks] = useState<string[]>([]);
@@ -141,13 +141,7 @@ export default function AiTrade() {
             )}
             <div className="flex items-center">
               <div className="mr-2">选择策略:</div>
-              <Select
-                value={selectedStrategyId}
-                onChange={setSelectedStrategyId}
-                style={{ width: 220 }}
-                options={strategy}
-                fieldNames={{ label: 'name', value: 'id' }}
-              />
+              <StrategySelect style={{ width: 220 }} value={selectedStrategyId} onChange={setSelectedStrategyId} />
             </div>
           </div>
           <div className="flex items-center flex-wrap mt-4 gap-x-8 gap-y-4">

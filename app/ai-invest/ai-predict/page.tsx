@@ -1,18 +1,14 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Button, DatePicker, InputNumber, Select } from 'antd';
-import useSWR from 'swr';
-
-import fetcher from '@/lib/fetcher';
 // import { WithHost } from '@/lib/path-map';
 import useSWRMutation from 'swr/mutation';
 import { StockSearchSelect } from '@/components/ai-invest/stock-search-select';
 import { chartOptions } from '@/lib/chart-options/predict';
 import NormalChart from '@/components/normal-chart';
+import { StrategySelect } from '@/components/ai-invest/strategy-select';
 
 export default function AiPredict() {
-  const { data: strategy } = useSWR('/api/strategy', fetcher);
-
   const [chartOpts, setChartOpts] = useState(chartOptions);
   const [selectedStockId, setSelectedStockId] = useState<string>('');
   const [selectedStrategyId, setSelectedStrategyId] = useState<string>('');
@@ -83,18 +79,12 @@ export default function AiPredict() {
         <div className="flex flex-col py-2">
           <div className="flex items-center gap-x-10 mb-2">
             <div className="flex items-center">
-              <div className="mr-2">选择策略:</div>
-              <Select
-                value={selectedStrategyId}
-                onChange={setSelectedStrategyId}
-                style={{ width: 220 }}
-                options={strategy}
-                fieldNames={{ label: 'name', value: 'id' }}
-              />
-            </div>
-            <div className="flex items-center">
               <div className="mr-2">选择股票:</div>
               <StockSearchSelect style={{ width: 220 }} value={selectedStockId} onChange={setSelectedStockId} />
+            </div>
+            <div className="flex items-center">
+              <div className="mr-2">选择策略:</div>
+              <StrategySelect style={{ width: 220 }} value={selectedStrategyId} onChange={setSelectedStrategyId} />
             </div>
           </div>
           <div className="flex items-center flex-wrap mt-4 gap-x-8 gap-y-4">

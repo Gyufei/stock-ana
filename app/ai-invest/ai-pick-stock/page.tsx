@@ -7,18 +7,23 @@ import fetcher from '@/lib/fetcher';
 import { PathMap } from '@/lib/path-map';
 import useSWRMutation from 'swr/mutation';
 import Grid from '@/components/grid';
+import { StrategySelect } from '@/components/ai-invest/strategy-select';
 
 export default function AiPickStock() {
   const { data: dataSet } = useSWR('/api/dataset', fetcher);
-  const { data: strategy } = useSWR('/api/strategy', fetcher);
 
   const [selectedDataSetId, setSelectedDataSetId] = useState<string>('');
   const [selectedStrategyId, setSelectedStrategyId] = useState<string>('');
+  const [selectStrategy, setSelectStrategy] = useState<any>(null);
 
-  const selectedStr = strategy?.find((item: Record<string, any>) => item.id === selectedStrategyId);
-  const strategyParameter = selectedStr?.parameter ? JSON.parse(selectedStr.parameter) : {};
+  const strategyParameter = selectStrategy?.parameter ? JSON.parse(selectStrategy.parameter) : {};
   const strategyParameterKeys = Object.keys(strategyParameter);
   const strategyOptions = strategyParameterKeys.map((key) => ({ label: strategyParameter[key], value: key }));
+
+  const handleSelectStrategy = (id: string, obj: Record<string, any>) => {
+    setSelectedStrategyId(id);
+    setSelectStrategy(obj);
+  };
 
   const [strategyParams, setStrategyParams] = useState<{
     [key: string]: {
@@ -96,13 +101,7 @@ export default function AiPickStock() {
             </div>
             <div className="flex items-center">
               <div className="mr-2">选择策略:</div>
-              <Select
-                value={selectedStrategyId}
-                onChange={setSelectedStrategyId}
-                style={{ width: 220 }}
-                options={strategy}
-                fieldNames={{ label: 'name', value: 'id' }}
-              />
+              <StrategySelect style={{ width: 220 }} value={selectedStrategyId} onChange={(id, obj) => handleSelectStrategy(id, obj)} />
             </div>
           </div>
           {strategyOptions.length > 0 && (
