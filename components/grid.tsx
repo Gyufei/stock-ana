@@ -5,6 +5,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { ColDef, RowSelectedEvent } from 'ag-grid-community';
 import { Button, Input, Modal } from 'antd';
 import { AG_GRID_LOCALE_ZH } from '@/lib/ag-grid-local-text';
+import * as XLSX from 'xlsx';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
@@ -81,7 +82,17 @@ export default function SourceGrid({ data, saveData }: { data: Array<Record<stri
   };
 
   const onBtnExport = useCallback(() => {
-    gridRef.current!.api.exportDataAsCsv();
+    const data = getCurrentData();
+    const workSheet = XLSX.utils.json_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, workSheet, '数据表');
+    const wbOut = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    const blob = new Blob([wbOut], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8' });
+
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = 'data.xlsx';
+    link.click();
   }, []);
 
   const onRowSelected = useCallback((_event: RowSelectedEvent) => {
@@ -91,8 +102,7 @@ export default function SourceGrid({ data, saveData }: { data: Array<Record<stri
 
   const onDelete = useCallback(() => {
     setGridData((prev) => {
-      const newData = prev.filter((item) => !selectedRows.includes(item.id));
-      return newData;
+      return prev.filter((item) => !selectedRows.includes(item.id));
     });
   }, [selectedRows]);
 

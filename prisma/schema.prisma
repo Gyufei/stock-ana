@@ -54,6 +54,7 @@ model strategy {
   type      String? @db.VarChar(255)
   parameter String? @db.VarChar(255)
   title     String? @db.VarChar(255)
+  method    String  @db.VarChar(255)
 }
 
 model trd_co {

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Button, Tabs, DatePicker, Input, InputNumber, Select } from 'antd';
 import useSWR from 'swr';
 
@@ -10,13 +10,20 @@ import IncomeView from '@/components/policy/income-view';
 import TradeLog from '@/components/policy/trade-log';
 import HistoryGain from '@/components/policy/history-gains';
 import { StrategySelect } from '@/components/ai-invest/strategy-select';
+import dayjs from 'dayjs';
 
 export default function AiTrade() {
-  const { data: stockSets } = useSWR('/api/dataset', fetcher);
+  const { data: stockSets } = useSWR('/api/dataset?type=2', fetcher);
 
   const [selectedStockSetId, setSelectedStockSetId] = useState<string>('');
   const [selectedStocks, setSelectedStocks] = useState<string[]>([]);
   const [selectedStrategyId, setSelectedStrategyId] = useState<string>('');
+  const [selectStrategy, setSelectStrategy] = useState<any>(null);
+
+  const handleSelectStrategy = (id: string, obj: Record<string, any>) => {
+    setSelectedStrategyId(id);
+    setSelectStrategy(obj);
+  };
 
   const [backTestParams, setBackTestParams] = useState<{
     money: number | null;
@@ -30,17 +37,22 @@ export default function AiTrade() {
     endDate: null,
   });
 
-  const stockOptions = stockSets?.find((item: Record<string, any>) => item.id === selectedStockSetId)?.stocks || [
-    {
-      id: '600480',
-      name: '600480',
-    },
-  ];
+  const selectStockSet = useMemo(
+    () => stockSets?.find((item: Record<string, any>) => item.id === selectedStockSetId),
+    [stockSets, selectedStockSetId]
+  );
+  const stockOptions = selectStockSet?.content || [];
 
-  const tradeByStrategy = async (url: string) => {
+  const tradeByStrategy = async (_key: string) => {
+    const method = selectStrategy?.method;
+    if (!method) {
+      return;
+    }
+
+    const url = WithHost(`/${method}`);
+
     const timeBegin = new Date().getTime();
 
-    // 'http://localhost:8080/avgAndRsi2?code=600480&&n=14&&money= 10000.0&beginDate=2000-01-01&endDate=2010-01-01',
     const searchParams = new URLSearchParams();
 
     searchParams.append('code', selectedStocks.join(','));
@@ -76,16 +88,16 @@ export default function AiTrade() {
     return res;
   };
 
-  const [tN, setTN] = useState<number | null>(null);
-  const [tFee, setTFee] = useState<number | null>(null);
-  const [tMoney, setTMoney] = useState<number | null>(null);
-  const [tBeginDate, setTBeginDate] = useState<any>();
-  const [tEndDate, setTEndDate] = useState<any>();
+  const [tN, setTN] = useState<number | null>(14);
+  const [tFee, setTFee] = useState<number | null>(0);
+  const [tMoney, setTMoney] = useState<number | null>(10000);
+  const [tBeginDate, setTBeginDate] = useState<any>(dayjs('2001-01-01'));
+  const [tEndDate, setTEndDate] = useState<any>(dayjs('2010-01-01'));
   const [tBuyPoint, setTBuyPoint] = useState<string | null>(null);
   const [tSellPoint, setTSellPoint] = useState<string | null>(null);
   const [tMaxRollback, setTMaxRollback] = useState<number | null>(null);
 
-  const { data: tradeData, trigger: tradeTrigger, isMutating: picking } = useSWRMutation(WithHost('/avgAndRsi2'), tradeByStrategy);
+  const { data: tradeData, trigger: tradeTrigger, isMutating: picking } = useSWRMutation('trade', tradeByStrategy);
 
   const itemsOrigin = [
     {
@@ -112,7 +124,7 @@ export default function AiTrade() {
   }, [tradeData]);
 
   return (
-    <div className="flex flex-col h-[850px]">
+    <div className="flex flex-col h-[800px]">
       <div className="flex border-b justify-between border-x px-2">
         <div className="flex flex-col pb-2 px-2">
           <div className="flex items-center gap-x-10 mt-2">
@@ -132,16 +144,16 @@ export default function AiTrade() {
                 <Select
                   mode="multiple"
                   value={selectedStocks as any}
-                  onChange={setSelectedStocks}
+                  onChange={(e) => setSelectedStocks(e)}
                   style={{ width: 220 }}
                   options={stockOptions}
-                  fieldNames={{ label: 'name', value: 'id' }}
+                  fieldNames={{ label: 'name', value: 'code' }}
                 />
               </div>
             )}
             <div className="flex items-center">
               <div className="mr-2">选择策略:</div>
-              <StrategySelect style={{ width: 220 }} value={selectedStrategyId} onChange={setSelectedStrategyId} />
+              <StrategySelect strategyType={2} style={{ width: 220 }} value={selectedStrategyId} onChange={handleSelectStrategy} />
             </div>
           </div>
           <div className="flex items-center flex-wrap mt-4 gap-x-8 gap-y-4">

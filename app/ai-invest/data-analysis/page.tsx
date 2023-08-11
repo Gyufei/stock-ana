@@ -64,10 +64,13 @@ export default function DataAnalysis() {
     const res = await fetcher(`${PathMap.saveDataSet}`, {
       method: 'POST',
       body: JSON.stringify({
-        title: arg.title,
+        name: arg.title,
         content: JSON.stringify(arg.data),
+        type: 1,
       }),
     });
+
+    message.success(`数据集${arg.title}保存成功`);
 
     return res;
   };

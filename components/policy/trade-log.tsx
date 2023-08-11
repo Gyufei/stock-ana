@@ -24,7 +24,7 @@ export default function TradeLog({ tradeData }: any) {
   const [tablePage, setTablePage] = useState(1);
 
   const logData = useMemo(() => {
-    const data = (tradeData?.transactionDetailsList || []).map((item: any, index: number) => {
+    return (tradeData?.transactionDetailsList || []).map((item: any, index: number) => {
       const type = Number(item.buy) > 0 ? 'BUY' : 'SALE';
       const opera = OpMap[type as keyof typeof OpMap];
       const count = Number(item.buy || item.sell).toFixed(2);
@@ -44,8 +44,6 @@ export default function TradeLog({ tradeData }: any) {
         // margin: item?.margin || null,
       };
     });
-
-    return data;
   }, [tradeData]);
 
   // const [searchDates, setSearchDates] = useState<any>([null, null]);
@@ -104,13 +102,13 @@ export default function TradeLog({ tradeData }: any) {
       title: '成交数量',
       dataIndex: 'count',
       key: 'count',
-      width: '8%',
+      width: '12%',
     },
     {
       title: '成交金额',
       dataIndex: 'money',
       key: 'money',
-      width: '8%',
+      width: '12%',
     },
     // {
     //   title: '保证金',
@@ -161,6 +159,7 @@ export default function TradeLog({ tradeData }: any) {
             setTablePage(p);
           },
         }}
+        scroll={{ y: 455 }}
         rowClassName={rowClassName}
         columns={columns}
         dataSource={logData}

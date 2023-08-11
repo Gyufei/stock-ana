@@ -63,3 +63,7 @@
 .upload-control .ant-upload-list-item {
   margin-top: 0 !important;
 }
+
+.ant-btn-primary {
+  background-color: #1677ff;
+}

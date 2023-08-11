@@ -34,7 +34,7 @@ export default function HistoryGain({ tradeData }: any) {
   // const [searchDates, setSearchDates] = useState<any>([null, null]);
 
   const hisData = useMemo(() => {
-    const data = (tradeData?.historicalPositionList || []).reverse().map((row: any, row_index: number) => {
+    return (tradeData?.historicalPositionList || []).reverse().map((row: any, row_index: number) => {
       const children = [
         {
           key: `${row_index}-${row.code}`,
@@ -64,8 +64,6 @@ export default function HistoryGain({ tradeData }: any) {
         children,
       };
     });
-
-    return data;
   }, [tradeData]);
 
   const rowClassName = (record: DataType) => {
@@ -190,6 +188,7 @@ export default function HistoryGain({ tradeData }: any) {
             setTablePage(p);
           },
         }}
+        scroll={{ y: 455 }}
         rowClassName={rowClassName}
         columns={columns}
         dataSource={hisData}

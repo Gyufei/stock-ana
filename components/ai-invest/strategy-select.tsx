@@ -7,13 +7,15 @@ import fetcher from '@/lib/fetcher';
 export function StrategySelect({
   value,
   onChange,
+  strategyType,
   style,
 }: {
   value: string;
   onChange: (_v: string, _obj: Record<string, any>) => void;
+  strategyType: number;
   style: CSSProperties;
 }) {
-  const { data: strategy } = useSWR('/api/strategy', fetcher);
+  const { data: strategy } = useSWR(`/api/strategy?type=${strategyType}`, fetcher);
 
   const handleSelect = (v: string) => {
     const obj = strategy?.find((item: Record<string, any>) => item.id === v);
