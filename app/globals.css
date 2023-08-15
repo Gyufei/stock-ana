@@ -13,6 +13,10 @@
   tab-size: 4;
 }
 
+:root {
+  --primary: #1677ff;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, /* Firefox supports this but not yet `system-ui` */ 'Segoe UI', Roboto, Helvetica, Arial,

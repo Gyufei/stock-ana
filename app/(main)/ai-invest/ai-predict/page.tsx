@@ -5,7 +5,7 @@ import useSWRMutation from 'swr/mutation';
 
 import { StockSearchSelect } from '@/components/ai-invest/stock-search-select';
 import { chartOptions } from '@/lib/chart-options/predict';
-import NormalChart from '@/components/normal-chart';
+import NormalChart from '@/components/share/normal-chart';
 import { StrategySelect } from '@/components/ai-invest/strategy-select';
 import { WithAiHost } from '@/lib/path-map';
 import fetcher from '@/lib/fetcher';

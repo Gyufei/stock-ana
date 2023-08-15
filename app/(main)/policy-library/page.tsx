@@ -1,12 +1,11 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import Link from 'next/link';
 import useSWR from 'swr';
 import dayjs from 'dayjs';
-import { Tree, DatePicker, InputNumber, Select, Button, Tag } from 'antd';
+import { Tree, DatePicker, InputNumber, Select, Tag } from 'antd';
 import type { DataNode, DirectoryTreeProps } from 'antd/es/tree';
-import StockChart from '@/components/stock-chart';
+import StockChart from '@/components/share/stock-chart';
 import fetcher from '@/lib/fetcher';
 import { chartOptions } from '@/lib/chart-options/policy-basic';
 import { PosMap } from '@/lib/constant';
@@ -160,9 +159,9 @@ export default function PolicyLibrary() {
                 ]}
               />
             </div>
-            <Button className="bg-primary" type="primary">
+            {/* <Button className="bg-primary" type="primary">
               <Link href="/policy-library/1">回测详情</Link>
-            </Button>
+            </Button> */}
           </div>
           <div className="flex-1">
             <StockChart loading={chartDataLoading} ref={chartInstance} options={stockOptions} />

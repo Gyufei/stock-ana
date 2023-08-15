@@ -6,7 +6,7 @@ import useSWR from 'swr';
 import fetcher from '@/lib/fetcher';
 import { PathMap } from '@/lib/path-map';
 import useSWRMutation from 'swr/mutation';
-import Grid from '@/components/grid';
+import Grid from '@/components/share/grid';
 import { StrategySelect } from '@/components/ai-invest/strategy-select';
 
 export default function AiPickStock() {

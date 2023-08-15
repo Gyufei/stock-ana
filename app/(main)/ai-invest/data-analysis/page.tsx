@@ -9,7 +9,7 @@ import { Radio, Select, Button, message, Upload } from 'antd';
 import fetcher from '@/lib/fetcher';
 import { PathMap } from '@/lib/path-map';
 import useSWRMutation from 'swr/mutation';
-import Grid from '@/components/grid';
+import Grid from '@/components/share/grid';
 
 export default function DataAnalysis() {
   const sourceType = [
