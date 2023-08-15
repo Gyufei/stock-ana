@@ -46,7 +46,7 @@ export default function SideBar() {
   );
 
   return (
-    <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} className="h-screen">
+    <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} className="min-h-screen fixed top-0">
       {!collapsed && <div className="text-lg h-14 flex items-center justify-center text-white">智能会计平台</div>}
       <Menu theme="dark" selectedKeys={selectedKey} onClick={({ key }) => setSelectedKey([key])} mode="inline" items={items} />
     </Sider>

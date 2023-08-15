@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import Link from 'next/link';
 import { Tabs } from 'antd';
+import ArimaDesc from '@/components/lesson/arima-desc';
 
 export default function Arima() {
   const items = useMemo(
@@ -8,6 +9,7 @@ export default function Arima() {
       {
         label: 'ARIMA模型介绍',
         key: 'desc',
+        children: <ArimaDesc />,
       },
       {
         label: '数据预处理',
