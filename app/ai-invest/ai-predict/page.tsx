@@ -73,8 +73,8 @@ export default function AiPredict() {
           new Date(item['日期']).getTime(),
           toFixed(item['开盘价']),
           toFixed(item['最高价']),
-          toFixed(item['收盘价']),
           toFixed(item['最低价']),
+          toFixed(item['收盘价']),
         ];
       });
       series[1].data = predictData.map((item: any) => {

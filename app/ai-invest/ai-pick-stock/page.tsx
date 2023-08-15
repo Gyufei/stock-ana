@@ -53,7 +53,7 @@ export default function AiPickStock() {
     const res = await fetcher(url, {
       method: 'POST',
       body: JSON.stringify({
-        dataSetId: selectedDataSetId,
+        id: selectedDataSetId,
         ...strategyParams,
       }),
     });
