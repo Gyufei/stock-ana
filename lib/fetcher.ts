@@ -8,9 +8,10 @@ export default async function fetcher(input: URL | RequestInfo, init?: RequestIn
       ...init?.headers,
     },
   };
+
   const res = await fetch(input, newInit);
 
-  if (!res.ok) {
+  if (!res || !res.ok) {
     const error = new Error('An error occurred while fetching the data.') as any;
 
     const resBody = await res.text();

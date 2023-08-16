@@ -18,7 +18,7 @@ function checkValueType(value: any) {
   }
 }
 
-export default function SourceGrid({ data, saveData }: { data: Array<Record<string, any>>; saveData: (_arg: any) => void }) {
+export default function SourceGrid({ data, saveData }: { data: Array<Record<string, any>>; saveData?: (_arg: any) => void }) {
   const [selectedRows, setSelectedRows] = useState<Record<string, any>[]>([]);
 
   const gridRef = useRef<AgGridReact>(null);
@@ -61,7 +61,7 @@ export default function SourceGrid({ data, saveData }: { data: Array<Record<stri
     const title = inputRef.current?.input.value;
     const data = getCurrentData();
 
-    saveData({ title, data } as any);
+    saveData && saveData({ title, data } as any);
   };
 
   const getCurrentData = () => {
@@ -131,9 +131,11 @@ export default function SourceGrid({ data, saveData }: { data: Array<Record<stri
         <Button disabled={!gridData.length} size="small" onClick={onBtnExport}>
           下载
         </Button>
-        <Button disabled={!gridData.length} className="bg-primary" type="primary" size="small" onClick={onSave}>
-          保存
-        </Button>
+        {saveData && (
+          <Button disabled={!gridData.length} className="bg-primary" type="primary" size="small" onClick={onSave}>
+            保存
+          </Button>
+        )}
       </div>
       <AgGridReact
         ref={gridRef}

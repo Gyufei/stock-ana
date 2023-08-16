@@ -8,7 +8,7 @@ const { Sider } = Layout;
 
 type MenuItem = Required<MenuProps>['items'][number];
 
-const routes = ['/ai-invest', '/lesson'];
+const routes = ['/data-ana', '/ai-invest', '/lesson', '/generic'];
 
 export default function SideBar() {
   const [collapsed, setCollapsed] = useState(false);
@@ -26,20 +26,27 @@ export default function SideBar() {
     () => [
       {
         key: '1',
-        label: '智能投资',
+        label: '数据处理',
         icon: <i className="fa-solid fa-money-bill" />,
-        onClick: () => router.push('/ai-invest/data-analysis'),
+        onClick: () => router.push('/data-ana'),
       },
       {
         key: '2',
+        label: '智能投资',
+        icon: <i className="fa-solid fa-money-bill" />,
+        onClick: () => router.push('/ai-invest/ai-pick-stock'),
+      },
+      {
+        key: '3',
         label: '课程实例',
         icon: <i className="fa-solid fa-person-chalkboard" />,
         onClick: () => router.push('/lesson'),
       },
       {
-        key: '3',
+        key: '4',
         label: '通用算法',
         icon: <i className="fa-solid fa-toolbox" />,
+        onClick: () => router.push('/generic'),
       },
     ],
     []

@@ -1,7 +1,6 @@
 'use client';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Tabs, DatePicker, Input, InputNumber, Select } from 'antd';
-import useSWR from 'swr';
 
 import fetcher from '@/lib/fetcher';
 import { WithHost } from '@/lib/path-map';
@@ -9,20 +8,21 @@ import useSWRMutation from 'swr/mutation';
 import IncomeView from '@/components/policy/income-view';
 import TradeLog from '@/components/policy/trade-log';
 import HistoryGain from '@/components/policy/history-gains';
-import { StrategySelect } from '@/components/ai-invest/strategy-select';
+import StrategySelect from '@/components/share/strategy-select';
 import dayjs from 'dayjs';
+import DatasetSelect from '@/components/share/dataset-select';
+import { useStrategy } from '@/lib/hook/use-strategy';
 
 export default function AiTrade() {
-  const { data: stockSets } = useSWR('/api/dataset?type=2', fetcher);
-
-  const [selectedStockSetId, setSelectedStockSetId] = useState<string>('');
+  const [selectedDataSetId, setSelectedDatasetId] = useState<string>('');
+  const [stockOptions, setStockOptions] = useState([]);
   const [selectedStocks, setSelectedStocks] = useState<string[]>([]);
-  const [selectedStrategyId, setSelectedStrategyId] = useState<string>('');
-  const [selectStrategy, setSelectStrategy] = useState<any>(null);
 
-  const handleSelectStrategy = (id: string, obj: Record<string, any>) => {
-    setSelectedStrategyId(id);
-    setSelectStrategy(obj);
+  const { id: selectedStrategyId, obj: selectStrategy, handleSelect: handleSelectStrategy } = useStrategy();
+
+  const handleSelectDataset = (id: string, obj: Record<string, any>) => {
+    setSelectedDatasetId(id);
+    setStockOptions(obj.content);
   };
 
   const [backTestParams, setBackTestParams] = useState<{
@@ -36,12 +36,6 @@ export default function AiTrade() {
     beginDate: null,
     endDate: null,
   });
-
-  const selectStockSet = useMemo(
-    () => stockSets?.find((item: Record<string, any>) => item.id === selectedStockSetId),
-    [stockSets, selectedStockSetId]
-  );
-  const stockOptions = selectStockSet?.content || [];
 
   const tradeByStrategy = async (_key: string) => {
     const method = selectStrategy?.method;
@@ -103,17 +97,17 @@ export default function AiTrade() {
     {
       label: '收益概览',
       key: '1',
-      children: IncomeView({ tradeData }),
+      children: <IncomeView tradeData={tradeData} />,
     },
     {
       label: '交易明细',
       key: '2',
-      children: TradeLog({ tradeData }),
+      children: <TradeLog tradeData={tradeData} />,
     },
     {
       label: '历史持仓',
       key: '3',
-      children: HistoryGain({ tradeData }),
+      children: <HistoryGain tradeData={tradeData} />,
     },
   ];
 
@@ -130,15 +124,14 @@ export default function AiTrade() {
           <div className="flex items-center gap-x-10 mt-2">
             <div className="flex items-center">
               <div className="mr-2">选择股票集:</div>
-              <Select
+              <DatasetSelect
+                datasetType={2}
+                value={selectedDataSetId}
+                onChange={(id, obj) => handleSelectDataset(id, obj)}
                 style={{ width: 220 }}
-                value={selectedStockSetId}
-                onChange={setSelectedStockSetId}
-                options={stockSets}
-                fieldNames={{ label: 'name', value: 'id' }}
               />
             </div>
-            {selectedStockSetId && (
+            {selectedDataSetId && (
               <div className="flex items-center">
                 <div className="mr-2">选择股票:</div>
                 <Select
@@ -211,7 +204,7 @@ export default function AiTrade() {
           <Button
             loading={picking}
             onClick={() => tradeTrigger()}
-            disabled={!selectedStockSetId || !selectedStrategyId || !selectedStocks.length}
+            disabled={!selectedDataSetId || !selectedStrategyId || !selectedStocks.length}
             type="primary"
             className="bg-primary"
           >

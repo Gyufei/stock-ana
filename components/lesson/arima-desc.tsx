@@ -1,69 +1,40 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import type { CollapseProps } from 'antd';
 import { Collapse } from 'antd';
+
+import CapTitle from './common/cap-title';
 import SmoothTimeSeries from './smooth-time-series';
-import { SmoothTimeSeriesCode1, UnSmoothTimeSeriesCode1 } from '@/data/code/arima';
-import CodeDialog from '../share/code-dialog';
 import UnSmoothTimeSeries from './un-smooth-time-series';
+import ArpModel from './arp-model';
+
+import { SmoothTimeSeriesCode } from '@/data/code/arima';
+import MaModel from './ma-model';
 
 export default function ArimaDesc() {
-  const [code, setCode] = useState('');
-  const [showDialog, setShowDialog] = useState(false);
-
-  const genExtra = () => (
-    <i
-      className="fa-solid fa-code"
-      onClick={(event) => {
-        event.stopPropagation();
-      }}
-    />
-  );
-
   const items: CollapseProps['items'] = [
     {
       key: '1',
-      label: '平稳时间序列',
+      label: <CapTitle className="text-lime-900" title="平稳时间序列" code={SmoothTimeSeriesCode} />,
       children: <SmoothTimeSeries />,
-      extra: (
-        <i
-          className="fa-solid fa-code"
-          onClick={(event) => {
-            setCode(SmoothTimeSeriesCode1);
-            setShowDialog(true);
-            event.stopPropagation();
-          }}
-        />
-      ),
     },
     {
       key: '2',
-      label: '非平稳时间序列',
+      label: <CapTitle className="text-lime-900" title="非平稳时间序列" />,
       children: <UnSmoothTimeSeries />,
-      extra: (
-        <i
-          className="fa-solid fa-code"
-          onClick={(event) => {
-            setCode(UnSmoothTimeSeriesCode1);
-            setShowDialog(true);
-            event.stopPropagation();
-          }}
-        />
-      ),
     },
     {
       key: '3',
-      label: 'This is panel header 3',
-      children: <p></p>,
-      extra: genExtra(),
+      label: <CapTitle className="text-lime-900" title="模拟AR(P)模型" tip="AR（1）" />,
+      children: <ArpModel />,
+    },
+    {
+      key: '4',
+      label: <CapTitle className="text-lime-900" title="模拟MA(q)模型" tip="模拟一个MA(1)过程：y(t)=α+ε(t)+β1*ε(t-1) α=0 β1=0.6" />,
+      children: <MaModel />,
     },
   ];
 
-  return (
-    <>
-      <Collapse defaultActiveKey="1" accordion items={items} />
-      <CodeDialog open={showDialog} setShow={setShowDialog} code={code} />
-    </>
-  );
+  return <Collapse defaultActiveKey="1" accordion items={items} />;
 }

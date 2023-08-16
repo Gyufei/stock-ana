@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Button, Input, InputNumber, Switch, message } from 'antd';
+import { Button } from 'antd';
 
 import fetcher from '@/lib/fetcher';
 import { PathMap } from '@/lib/path-map';
@@ -8,9 +8,10 @@ import useSWRMutation from 'swr/mutation';
 import Grid from '@/components/share/grid';
 import StrategySelect from '@/components/share/strategy-select';
 import DatasetSelect from '@/components/share/dataset-select';
+import StrategyOptions from '@/components/share/strategy-options';
 import { useStrategy } from '@/lib/hook/use-strategy';
 
-export default function AiPickStock() {
+export default function Generic() {
   const [selectedDataSetId, setSelectedDataSetId] = useState<string>('');
 
   const {
@@ -40,23 +41,6 @@ export default function AiPickStock() {
 
   const { data: pickData, trigger: pickTrigger, isMutating: picking } = useSWRMutation(`${PathMap.pickStock}`, pickStockFetcher);
 
-  const saveStockFetcher = async (url: string, { arg }: any) => {
-    const res = await fetcher(`${PathMap.saveDataSet}`, {
-      method: 'POST',
-      body: JSON.stringify({
-        name: arg.title,
-        content: JSON.stringify(arg.data),
-        type: 2,
-      }),
-    });
-
-    message.success(`股票集${arg.title}保存成功`);
-
-    return res;
-  };
-
-  const { trigger: saveTrigger } = useSWRMutation(`${PathMap.saveStocks}`, saveStockFetcher);
-
   return (
     <div className="flex flex-col h-[850px]">
       <div className="flex justify-between border-b px-3 border-x">
@@ -64,41 +48,24 @@ export default function AiPickStock() {
           <div className="flex items-center gap-x-10 mb-2">
             <div className="flex items-center">
               <div className="mr-2">选择数据集:</div>
-              <DatasetSelect value={selectedDataSetId} onChange={(id, obj) => handleSelectDataset(id, obj)} style={{ width: 220 }} />
+              <DatasetSelect
+                datasetType={1}
+                value={selectedDataSetId}
+                onChange={(id, obj) => handleSelectDataset(id, obj)}
+                style={{ width: 220 }}
+              />
             </div>
             <div className="flex items-center">
               <div className="mr-2">选择策略:</div>
               <StrategySelect
-                strategyType={1}
+                strategyType={3}
                 style={{ width: 220 }}
                 value={selectedStrategyId}
                 onChange={(id, obj) => handleSelectStrategy(id, obj)}
               />
             </div>
           </div>
-          {strategyParameter.length > 0 && (
-            <div className="flex items-center my-4 gap-x-8">
-              {strategyParameter.map((item) => (
-                <div key={item.key} className="flex items-center">
-                  <div className="mr-2 text-slate-500 text-sm">{item.label}:</div>
-                  <div className="flex items-center gap-x-1">
-                    {(() => {
-                      switch (item.type) {
-                        case 'text':
-                          return <Input onChange={(e) => handleParamChange(item.value, e.target.value)} />;
-                        case 'number':
-                          return <InputNumber min={0} onChange={(e) => handleParamChange(item.value, e)} />;
-                        case 'boolean':
-                          return <Switch onChange={(e) => handleParamChange(item.value, e)} />;
-                        default:
-                          return null;
-                      }
-                    })()}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+          <StrategyOptions params={strategyParameter} onChange={handleParamChange} />
         </div>
 
         <div className="flex items-center border-l px-10">
@@ -108,7 +75,7 @@ export default function AiPickStock() {
         </div>
       </div>
 
-      <Grid data={pickData} saveData={saveTrigger} />
+      <Grid data={pickData} />
     </div>
   );
 }

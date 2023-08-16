@@ -4,7 +4,7 @@ import useSWR from 'swr';
 
 import fetcher from '@/lib/fetcher';
 
-export function StrategySelect({
+export default function StrategySelect({
   value,
   onChange,
   strategyType,
@@ -19,7 +19,6 @@ export function StrategySelect({
 
   const handleSelect = (v: string) => {
     const obj = strategy?.find((item: Record<string, any>) => item.id === v);
-
     onChange(v, obj);
   };
 

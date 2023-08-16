@@ -1,19 +1,29 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Button, InputNumber } from 'antd';
+import { Button } from 'antd';
 import useSWRMutation from 'swr/mutation';
 
 import { StockSearchSelect } from '@/components/ai-invest/stock-search-select';
 import { chartOptions } from '@/lib/chart-options/predict';
 import NormalChart from '@/components/share/normal-chart';
-import { StrategySelect } from '@/components/ai-invest/strategy-select';
+import StrategySelect from '@/components/share/strategy-select';
 import { WithAiHost } from '@/lib/path-map';
 import fetcher from '@/lib/fetcher';
+import StrategyOptions from '@/components/share/strategy-options';
+import { useStrategy } from '@/lib/hook/use-strategy';
 
 export default function AiPredict() {
   const [chartOpts, setChartOpts] = useState(chartOptions);
   const [selectedStockId, setSelectedStockId] = useState<string>('');
-  const [selectedStrategyId, setSelectedStrategyId] = useState<string>('');
+
+  const {
+    id: selectedStrategyId,
+    handleSelect: handleSelectStrategy,
+
+    parameters: strategyParameter,
+    params: strategyParams,
+    handleParamChange: handleParamChange,
+  } = useStrategy();
 
   const predictFetcher = async (_key: string) => {
     const searchParams = new URLSearchParams();
@@ -22,16 +32,10 @@ export default function AiPredict() {
       searchParams.append('stkcd_code', selectedStockId);
     }
 
-    if (pWindowSize) {
-      searchParams.append('window_size', pWindowSize);
-    }
-
-    if (pSize) {
-      searchParams.append('num', pSize);
-    }
-
-    if (pDays) {
-      searchParams.append('days', pDays.toString());
+    for (const [k, v] of Object.entries(strategyParams)) {
+      if (v) {
+        searchParams.append(k, v);
+      }
     }
 
     const query = searchParams.toString();
@@ -40,22 +44,6 @@ export default function AiPredict() {
 
     return res;
   };
-
-  const [pWindowSize, setPWindowSize] = useState<any>(30);
-  const [pSize, setPSize] = useState<any>(0.8);
-  const [pDays, setPDays] = useState<number | null>(30);
-
-  // const [pTag, setPTag] = useState<string>('');
-  // const tagsOptions = [
-  //   {
-  //     label: '日期',
-  //     value: 'date',
-  //   },
-  //   {
-  //     label: '收盘价',
-  //     value: 'close',
-  //   },
-  // ];
 
   const { data: predictData, trigger: predictTrigger, isMutating: predicting } = useSWRMutation('predict', predictFetcher);
 
@@ -98,35 +86,15 @@ export default function AiPredict() {
             </div>
             <div className="flex items-center">
               <div className="mr-2">选择策略:</div>
-              <StrategySelect strategyType={3} style={{ width: 220 }} value={selectedStrategyId} onChange={setSelectedStrategyId} />
+              <StrategySelect
+                strategyType={3}
+                style={{ width: 220 }}
+                value={selectedStrategyId}
+                onChange={(val, obj) => handleSelectStrategy(val, obj)}
+              />
             </div>
           </div>
-          <div className="flex items-center flex-wrap mt-4 gap-x-8 gap-y-4">
-            <div className="flex items-center">
-              <div className="mr-2 text-slate-500 text-sm">训练集大小:</div>
-              <div className="flex items-center gap-x-1">
-                <InputNumber min={0} max={1} value={pSize} onChange={(e) => setPSize(e)} />
-              </div>
-            </div>
-            <div className="flex items-center">
-              <div className="mr-2 text-slate-500 text-sm">窗口大小:</div>
-              <div className="flex items-center gap-x-1">
-                <InputNumber value={pWindowSize} onChange={(e) => setPWindowSize(e)} />
-              </div>
-            </div>
-            <div className="flex items-center">
-              <div className="mr-2 text-slate-500 text-sm">预测天数:</div>
-              <div className="flex items-center gap-x-1">
-                <InputNumber value={pDays} onChange={(e) => setPDays(e)} />
-              </div>
-            </div>
-            {/* <div className="flex items-center">
-              <div className="mr-2 text-slate-500 text-sm">特征标签:</div>
-              <div className="flex items-center gap-x-1">
-                <Select value={pTag} onChange={setPTag} style={{ width: 220 }} options={tagsOptions} />
-              </div>
-            </div> */}
-          </div>
+          <StrategyOptions params={strategyParameter} onChange={handleParamChange} />
         </div>
 
         <div className="flex items-center border-l px-10">

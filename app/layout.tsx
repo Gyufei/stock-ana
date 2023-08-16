@@ -5,8 +5,9 @@ import { Inter } from 'next/font/google';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './ant.css';
 
-import AntdProvider from '@/lib/context/antd-provider';
-import StyledComponentsRegistry from '@/lib/context/antd-registry';
+import AntdProvider from '@/lib/provider/antd-provider';
+import StyledComponentsRegistry from '@/lib/provider/antd-registry';
+import SwrConfigProvider from '@/lib/provider/swr-config-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,11 +20,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="h-screen">
       <body className={`${inter.className} min-h-full bg-teal-50 text-blueGray-700`}>
-        <AntdProvider>
-          <StyledComponentsRegistry>
-            <div className=" flex-1 relative bg-blueGray-100 h-full flex flex-col">{children}</div>
-          </StyledComponentsRegistry>
-        </AntdProvider>
+        <SwrConfigProvider>
+          <AntdProvider>
+            <StyledComponentsRegistry>
+              <div className=" flex-1 relative bg-blueGray-100 h-full flex flex-col">{children}</div>
+            </StyledComponentsRegistry>
+          </AntdProvider>
+        </SwrConfigProvider>
       </body>
     </html>
   );

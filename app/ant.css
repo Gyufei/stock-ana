@@ -67,3 +67,8 @@
 .ant-btn-primary {
   background-color: #1677ff;
 }
+
+.ant-collapse-header {
+  display: flex;
+  align-items: center;
+}
