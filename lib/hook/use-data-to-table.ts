@@ -1,7 +1,7 @@
 import { ColumnsType } from 'antd/es/table';
 import { useMemo } from 'react';
 
-export function useDatasetContent(datasetContent: Array<any>) {
+export function useDataToTable(datasetContent: Array<any>) {
   const content = useMemo(
     () =>
       datasetContent

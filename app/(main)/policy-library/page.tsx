@@ -17,19 +17,20 @@ export default function PolicyLibrary() {
   const [currentPolicy, setCurrentPolicy] = useState<Record<string, any> | null>(null);
 
   const chartInstance = useRef<any>(null);
-  const { data: policies } = useSWR('/api/local?file=policy', fetcher);
+  const { data: policies } = useSWR('/api/local?file=policy/policy', fetcher);
 
   const { data: policyIncome, isLoading: chartDataLoading } = useSWR(() => {
     if (!currentPolicy?.id) return null;
 
-    return `/api/local?file=${currentPolicy.id}`;
+    return `/api/local?file=policy/simple-income/${currentPolicy.id}`;
   }, fetcher);
 
   const [stockOptions, setStockOptions] = useState(chartOptions);
   useEffect(() => {
+    console.log(policyIncome);
     if (!policyIncome) return;
 
-    const chartDataMap = policyIncome.data.profit.list;
+    const chartDataMap = policyIncome.profit.list;
     let chartData: Array<Record<string, any>> = [];
     for (const date in chartDataMap) {
       chartData.push({

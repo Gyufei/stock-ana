@@ -2,9 +2,9 @@ import { Button, Collapse, CollapseProps } from 'antd';
 import { useState } from 'react';
 
 import { MaCode } from '@/data/code/arima';
-import ResetBtn from './common/reset-btn';
-import ImageDisplay from './common/image-display';
-import CapTitle from './common/cap-title';
+import ResetBtn from '../common/reset-btn';
+import ImageDisplay from '../common/image-display';
+import CapTitle from '../common/cap-title';
 
 export default function ArpModel() {
   const [chartData, setChartData] = useState<any[]>([]);

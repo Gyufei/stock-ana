@@ -2,12 +2,12 @@ import { Button, Collapse, CollapseProps, InputNumber } from 'antd';
 import { useState } from 'react';
 
 import { ArpCode } from '@/data/code/arima';
-import ResetBtn from './common/reset-btn';
-import ImageDisplay from './common/image-display';
-import DataDisplay from './common/data-display';
-import CapTitle from './common/cap-title';
-import LabelText from '../share/label-text';
-import TooltipBtn from './common/tooltip-btn';
+import ResetBtn from '../common/reset-btn';
+import ImageDisplay from '../common/image-display';
+import DataDisplay from '../common/data-display';
+import CapTitle from '../common/cap-title';
+import LabelText from '../../share/label-text';
+import TooltipBtn from '../common/tooltip-btn';
 
 export default function ArpModel() {
   const [randomNum, setRandomNum] = useState<number | null>(1000);

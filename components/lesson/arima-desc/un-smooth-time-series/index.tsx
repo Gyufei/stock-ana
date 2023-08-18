@@ -4,7 +4,7 @@ import { ExRandomWalkCode, MultiRandomWalkCode, RandomWalkCode } from '@/data/co
 import MultiRandomWalk from './multi-random-walk';
 import RandomWalk from './random-walk';
 import ExRandomWalk from './ex-random-walk';
-import CapTitle from './common/cap-title';
+import CapTitle from '../../common/cap-title';
 
 export default function UnSmoothTimeSeries() {
   const randomDataCon: CollapseProps['items'] = [

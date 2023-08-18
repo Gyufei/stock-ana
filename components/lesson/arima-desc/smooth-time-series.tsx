@@ -1,10 +1,10 @@
 import { Button, Collapse, CollapseProps, InputNumber } from 'antd';
 import { useState } from 'react';
-import ResetBtn from './common/reset-btn';
-import CapTitle from './common/cap-title';
-import LabelText from '../share/label-text';
-import DataDisplay from './common/data-display';
-import ImageDisplay from './common/image-display';
+import ResetBtn from '../common/reset-btn';
+import CapTitle from '../common/cap-title';
+import LabelText from '../../share/label-text';
+import DataDisplay from '../common/data-display';
+import ImageDisplay from '../common/image-display';
 
 export default function SmoothTimeSeries() {
   const [randomNum, setRandomNum] = useState<number | null>(1000);

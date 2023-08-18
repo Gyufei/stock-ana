@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import Link from 'next/link';
 import { Tabs } from 'antd';
 import ArimaDesc from '@/components/lesson/arima-desc';
+import ArimaDataAna from '@/components/lesson/arima-data-ana';
 
 export default function Arima() {
   const items = useMemo(
@@ -14,6 +15,7 @@ export default function Arima() {
       {
         label: '数据预处理',
         key: 'data-pre',
+        children: <ArimaDataAna />,
       },
       {
         label: '建立ARIMA模型',
@@ -32,7 +34,7 @@ export default function Arima() {
         </Link>
       </div>
       <div>
-        <Tabs defaultActiveKey="1" centered items={items} />
+        <Tabs defaultActiveKey="data-pre" centered items={items} />
       </div>
     </div>
   );

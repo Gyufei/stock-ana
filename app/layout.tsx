@@ -1,6 +1,5 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './ant.css';
@@ -8,8 +7,6 @@ import './ant.css';
 import AntdProvider from '@/lib/provider/antd-provider';
 import StyledComponentsRegistry from '@/lib/provider/antd-registry';
 import SwrConfigProvider from '@/lib/provider/swr-config-provider';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: '智能会计教学平台',
@@ -19,7 +16,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="h-screen">
-      <body className={`${inter.className} min-h-full bg-teal-50 text-blueGray-700`}>
+      <body className={`min-h-full bg-teal-50 text-blueGray-700`}>
         <SwrConfigProvider>
           <AntdProvider>
             <StyledComponentsRegistry>

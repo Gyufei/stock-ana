@@ -4,13 +4,13 @@ import React from 'react';
 import type { CollapseProps } from 'antd';
 import { Collapse } from 'antd';
 
-import CapTitle from './common/cap-title';
+import CapTitle from '../common/cap-title';
 import SmoothTimeSeries from './smooth-time-series';
 import UnSmoothTimeSeries from './un-smooth-time-series';
 import ArpModel from './arp-model';
+import MaModel from './ma-model';
 
 import { SmoothTimeSeriesCode } from '@/data/code/arima';
-import MaModel from './ma-model';
 
 export default function ArimaDesc() {
   const items: CollapseProps['items'] = [

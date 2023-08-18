@@ -8,7 +8,7 @@ import DatasetSelect from '@/components/share/dataset-select';
 import StrategyOptions from '@/components/share/strategy-options';
 
 import { useStrategy } from '@/lib/hook/use-strategy';
-import { useDatasetContent } from '@/lib/hook/use-dataset-content';
+import { useDataToTable } from '@/lib/hook/use-data-to-table';
 import { PathMap } from '@/lib/path-map';
 import fetcher from '@/lib/fetcher';
 
@@ -19,7 +19,7 @@ import CommonField from '@/components/generic/common-field';
 export default function Classification() {
   const [selectedDataSetId, setSelectedDataSetId] = useState<string>('');
   const [selectedDataSet, setSelectedDataSet] = useState<Record<string, any>>({});
-  const { content, columns } = useDatasetContent(selectedDataSet?.content || []);
+  const { content, columns } = useDataToTable(selectedDataSet?.content || []);
 
   const [chartOpts, setChartOpts] = useState(chartOptions);
   const {

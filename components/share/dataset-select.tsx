@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import { Drawer, Select, Table } from 'antd';
 
 import fetcher from '@/lib/fetcher';
-import { useDatasetContent } from '@/lib/hook/use-dataset-content';
+import { useDataToTable } from '@/lib/hook/use-data-to-table';
 
 export default function DatasetSelect({
   value,
@@ -18,7 +18,7 @@ export default function DatasetSelect({
 }) {
   const { data: datasets } = useSWR(`/api/dataset?type=${datasetType}`, fetcher);
   const selectedDataSet: Record<string, any> = datasets?.find((item: Record<string, any>) => item.id === value);
-  const { content, columns } = useDatasetContent(selectedDataSet?.content || []);
+  const { content, columns } = useDataToTable(selectedDataSet?.content || []);
 
   const handleSelect = (v: string) => {
     const obj = datasets?.find((item: Record<string, any>) => item.id === v);

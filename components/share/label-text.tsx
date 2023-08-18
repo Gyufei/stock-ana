@@ -5,7 +5,7 @@ export default function LabelTitle({ label, tip, className }: { label: string; t
     <label htmlFor={label} className={`mr-2 ${className}`}>
       {tip ? (
         <Tooltip title={tip}>
-          <div className="flex items-center">
+          <div className="inline-flex items-center">
             {label}
             <i className="mx-1 fa-solid fa-circle-info"></i>:
           </div>
