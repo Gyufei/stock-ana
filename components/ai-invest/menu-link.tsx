@@ -43,6 +43,11 @@ export default function MenuLink() {
       key: 'ai-predict',
       icon: <i className="fa-solid fa-money-bill-trend-up"></i>,
     },
+    {
+      label: <Link href="/ai-invest/policy-library">策略库</Link>,
+      key: 'policy-library',
+      icon: <i className="fa-solid fa-book"></i>,
+    },
   ];
 
   const pathname = usePathname();

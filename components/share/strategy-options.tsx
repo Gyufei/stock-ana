@@ -15,7 +15,8 @@ export default function StrategyOptions({ params, onChange }: { params: Array<an
               )}
               <div className="flex items-center gap-x-1 flex-wrap">
                 {(() => {
-                  switch (item.type) {
+                  const type = Array.isArray(item.type) ? item.type[0] : item.type;
+                  switch (type) {
                     case 'str':
                       return <Input onChange={(e) => onChange(item.key, e.target.value)} />;
                     case 'float':

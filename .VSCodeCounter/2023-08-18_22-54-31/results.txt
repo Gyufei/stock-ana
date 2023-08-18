@@ -1,0 +1,241 @@
+Date : 2023-08-18 22:54:31
+Directory : /Users/guoyufei/Projects/zhkj-ui
+Total : 146 files,  593323 codes, 106 comments, 1341 blanks, all 594770 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |         39 |    583,979 |          0 |         39 |    584,018 |
+| TypeScript JSX     |         68 |      3,878 |         58 |        580 |      4,516 |
+| YAML               |          1 |      3,287 |          0 |        443 |      3,730 |
+| TypeScript         |         26 |      1,750 |         28 |        211 |      1,989 |
+| Prisma             |          1 |        114 |          2 |         10 |        126 |
+| SQL                |          1 |        112 |          6 |         13 |        131 |
+| CSS                |          3 |         87 |          0 |         21 |        108 |
+| JSON with Comments |          2 |         52 |          6 |          0 |         58 |
+| JavaScript         |          4 |         43 |          6 |         10 |         59 |
+| Markdown           |          1 |         21 |          0 |         14 |         35 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                   | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                      |        146 |    593,323 |        106 |      1,341 |    594,770 |
+| . (Files)                                                                                                              |          9 |     10,005 |          8 |        463 |     10,476 |
+| app                                                                                                                    |         28 |      1,291 |          5 |        226 |      1,522 |
+| app (Files)                                                                                                            |          4 |        115 |          0 |         27 |        142 |
+| app/(main)                                                                                                             |         17 |      1,072 |          5 |        166 |      1,243 |
+| app/(main) (Files)                                                                                                     |          1 |          5 |          0 |          2 |          7 |
+| app/(main)/ai-invest                                                                                                   |          7 |        595 |          3 |         83 |        681 |
+| app/(main)/ai-invest (Files)                                                                                           |          2 |         12 |          0 |          3 |         15 |
+| app/(main)/ai-invest/ai-pick-stock                                                                                     |          1 |         99 |          0 |         16 |        115 |
+| app/(main)/ai-invest/ai-predict                                                                                        |          1 |         95 |          0 |         18 |        113 |
+| app/(main)/ai-invest/ai-trade                                                                                          |          1 |        222 |          0 |         24 |        246 |
+| app/(main)/ai-invest/policy-library                                                                                    |          2 |        167 |          3 |         22 |        192 |
+| app/(main)/data-ana                                                                                                    |          2 |         99 |          0 |         22 |        121 |
+| app/(main)/generic                                                                                                     |          4 |        302 |          2 |         49 |        353 |
+| app/(main)/generic (Files)                                                                                             |          2 |         14 |          0 |          5 |         19 |
+| app/(main)/generic/classification                                                                                      |          1 |        150 |          1 |         21 |        172 |
+| app/(main)/generic/regression                                                                                          |          1 |        138 |          1 |         23 |        162 |
+| app/(main)/lesson                                                                                                      |          3 |         71 |          0 |         10 |         81 |
+| app/(main)/lesson (Files)                                                                                              |          2 |         32 |          0 |          7 |         39 |
+| app/(main)/lesson/arima                                                                                                |          1 |         39 |          0 |          3 |         42 |
+| app/api                                                                                                                |          6 |         97 |          0 |         30 |        127 |
+| app/api/dataset                                                                                                        |          2 |         37 |          0 |         12 |         49 |
+| app/api/dataset (Files)                                                                                                |          1 |         21 |          0 |          6 |         27 |
+| app/api/dataset/[...id]                                                                                                |          1 |         16 |          0 |          6 |         22 |
+| app/api/local                                                                                                          |          1 |         11 |          0 |          4 |         15 |
+| app/api/stock                                                                                                          |          1 |         28 |          0 |          5 |         33 |
+| app/api/strategy                                                                                                       |          1 |         14 |          0 |          5 |         19 |
+| app/api/trd_co                                                                                                         |          1 |          7 |          0 |          4 |         11 |
+| app/theme                                                                                                              |          1 |          7 |          0 |          3 |         10 |
+| components                                                                                                             |         46 |      2,737 |         53 |        398 |      3,188 |
+| components/ai-invest                                                                                                   |          2 |         91 |          0 |         12 |        103 |
+| components/generic                                                                                                     |          2 |         81 |          0 |          8 |         89 |
+| components/layout                                                                                                      |          2 |         73 |          0 |         14 |         87 |
+| components/lesson                                                                                                      |         28 |      1,668 |          2 |        259 |      1,929 |
+| components/lesson/arima-data-ana                                                                                       |         14 |        595 |          0 |         87 |        682 |
+| components/lesson/arima-data-ana (Files)                                                                               |          1 |         48 |          0 |          7 |         55 |
+| components/lesson/arima-data-ana/data-pre                                                                              |         12 |        468 |          0 |         66 |        534 |
+| components/lesson/arima-data-ana/data-pre (Files)                                                                      |          4 |        178 |          0 |         24 |        202 |
+| components/lesson/arima-data-ana/data-pre/series-calm                                                                  |          3 |         80 |          0 |         14 |         94 |
+| components/lesson/arima-data-ana/data-pre/series-calm-judge                                                            |          5 |        210 |          0 |         28 |        238 |
+| components/lesson/arima-data-ana/data-prepare                                                                          |          1 |         79 |          0 |         14 |         93 |
+| components/lesson/arima-desc                                                                                           |          8 |        909 |          2 |        150 |      1,061 |
+| components/lesson/arima-desc (Files)                                                                                   |          4 |        431 |          2 |         71 |        504 |
+| components/lesson/arima-desc/un-smooth-time-series                                                                     |          4 |        478 |          0 |         79 |        557 |
+| components/lesson/common                                                                                               |          6 |        164 |          0 |         22 |        186 |
+| components/policy                                                                                                      |          4 |        454 |         45 |         40 |        539 |
+| components/share                                                                                                       |          8 |        370 |          6 |         65 |        441 |
+| data                                                                                                                   |         40 |    577,952 |          4 |        116 |    578,072 |
+| data (Files)                                                                                                           |          2 |      5,776 |          4 |          7 |      5,787 |
+| data/code                                                                                                              |          2 |        575 |          0 |         73 |        648 |
+| data/policy                                                                                                            |         36 |    571,601 |          0 |         36 |    571,637 |
+| data/policy (Files)                                                                                                    |          5 |     12,774 |          0 |          5 |     12,779 |
+| data/policy/simple-income                                                                                              |         31 |    558,827 |          0 |         31 |    558,858 |
+| lib                                                                                                                    |         20 |      1,111 |         28 |        115 |      1,254 |
+| lib (Files)                                                                                                            |          9 |        340 |         24 |         71 |        435 |
+| lib/chart-options                                                                                                      |          5 |        645 |          4 |         15 |        664 |
+| lib/hook                                                                                                               |          3 |         86 |          0 |         19 |        105 |
+| lib/provider                                                                                                           |          3 |         40 |          0 |         10 |         50 |
+| prisma                                                                                                                 |          2 |        226 |          8 |         23 |        257 |
+| prisma (Files)                                                                                                         |          1 |        114 |          2 |         10 |        126 |
+| prisma/migrations                                                                                                      |          1 |        112 |          6 |         13 |        131 |
+| prisma/migrations/0_init                                                                                               |          1 |        112 |          6 |         13 |        131 |
+| style                                                                                                                  |          1 |          1 |          0 |          0 |          1 |
++------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                               | language           | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| /Users/guoyufei/Projects/zhkj-ui/.eslintrc.json                                                                        | JSON with Comments |         17 |          0 |          0 |         17 |
+| /Users/guoyufei/Projects/zhkj-ui/README.md                                                                             | Markdown           |         21 |          0 |         14 |         35 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/ai-invest/ai-pick-stock/page.tsx                                           | TypeScript JSX     |         99 |          0 |         16 |        115 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/ai-invest/ai-predict/page.tsx                                              | TypeScript JSX     |         95 |          0 |         18 |        113 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/ai-invest/ai-trade/page.tsx                                                | TypeScript JSX     |        222 |          0 |         24 |        246 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/ai-invest/layout.tsx                                                       | TypeScript JSX     |          9 |          0 |          2 |         11 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/ai-invest/page.tsx                                                         | TypeScript JSX     |          3 |          0 |          1 |          4 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/ai-invest/policy-library/layout.tsx                                        | TypeScript JSX     |          3 |          0 |          1 |          4 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/ai-invest/policy-library/page.tsx                                          | TypeScript JSX     |        164 |          3 |         21 |        188 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/data-ana/layout.tsx                                                        | TypeScript JSX     |          3 |          0 |          1 |          4 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/data-ana/page.tsx                                                          | TypeScript JSX     |         96 |          0 |         21 |        117 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/generic/classification/page.tsx                                            | TypeScript JSX     |        150 |          1 |         21 |        172 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/generic/layout.tsx                                                         | TypeScript JSX     |          9 |          0 |          2 |         11 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/generic/page.tsx                                                           | TypeScript JSX     |          5 |          0 |          3 |          8 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/generic/regression/page.tsx                                                | TypeScript JSX     |        138 |          1 |         23 |        162 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/layout.tsx                                                                 | TypeScript JSX     |          5 |          0 |          2 |          7 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/lesson/arima/page.tsx                                                      | TypeScript JSX     |         39 |          0 |          3 |         42 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/lesson/layout.tsx                                                          | TypeScript JSX     |          3 |          0 |          1 |          4 |
+| /Users/guoyufei/Projects/zhkj-ui/app/(main)/lesson/page.tsx                                                            | TypeScript JSX     |         29 |          0 |          6 |         35 |
+| /Users/guoyufei/Projects/zhkj-ui/app/ant.css                                                                           | CSS                |         66 |          0 |         16 |         82 |
+| /Users/guoyufei/Projects/zhkj-ui/app/api/dataset/[...id]/route.ts                                                      | TypeScript         |         16 |          0 |          6 |         22 |
+| /Users/guoyufei/Projects/zhkj-ui/app/api/dataset/route.ts                                                              | TypeScript         |         21 |          0 |          6 |         27 |
+| /Users/guoyufei/Projects/zhkj-ui/app/api/local/route.ts                                                                | TypeScript         |         11 |          0 |          4 |         15 |
+| /Users/guoyufei/Projects/zhkj-ui/app/api/stock/route.ts                                                                | TypeScript         |         28 |          0 |          5 |         33 |
+| /Users/guoyufei/Projects/zhkj-ui/app/api/strategy/route.ts                                                             | TypeScript         |         14 |          0 |          5 |         19 |
+| /Users/guoyufei/Projects/zhkj-ui/app/api/trd_co/route.ts                                                               | TypeScript         |          7 |          0 |          4 |         11 |
+| /Users/guoyufei/Projects/zhkj-ui/app/globals.css                                                                       | CSS                |         20 |          0 |          5 |         25 |
+| /Users/guoyufei/Projects/zhkj-ui/app/layout.tsx                                                                        | TypeScript JSX     |         26 |          0 |          5 |         31 |
+| /Users/guoyufei/Projects/zhkj-ui/app/page.tsx                                                                          | TypeScript JSX     |          3 |          0 |          1 |          4 |
+| /Users/guoyufei/Projects/zhkj-ui/app/theme/theme-config.ts                                                             | TypeScript         |          7 |          0 |          3 |         10 |
+| /Users/guoyufei/Projects/zhkj-ui/components/ai-invest/menu-link.tsx                                                    | TypeScript JSX     |         59 |          0 |          6 |         65 |
+| /Users/guoyufei/Projects/zhkj-ui/components/ai-invest/stock-search-select.tsx                                          | TypeScript JSX     |         32 |          0 |          6 |         38 |
+| /Users/guoyufei/Projects/zhkj-ui/components/generic/common-field.tsx                                                   | TypeScript JSX     |         41 |          0 |          2 |         43 |
+| /Users/guoyufei/Projects/zhkj-ui/components/generic/head-segment.tsx                                                   | TypeScript JSX     |         40 |          0 |          6 |         46 |
+| /Users/guoyufei/Projects/zhkj-ui/components/layout/baseLayout.tsx                                                      | TypeScript JSX     |         13 |          0 |          4 |         17 |
+| /Users/guoyufei/Projects/zhkj-ui/components/layout/side-bar.tsx                                                        | TypeScript JSX     |         60 |          0 |         10 |         70 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-data-ana/data-pre/index.tsx                                   | TypeScript JSX     |         59 |          0 |          4 |         63 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-data-ana/data-pre/ln-series-chart.tsx                         | TypeScript JSX     |         39 |          0 |          6 |         45 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-data-ana/data-pre/origin-data-series-chart.tsx                | TypeScript JSX     |         45 |          0 |          6 |         51 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-data-ana/data-pre/origin-data-series-data.tsx                 | TypeScript JSX     |         35 |          0 |          8 |         43 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-data-ana/data-pre/series-calm-judge/box-check.tsx             | TypeScript JSX     |         71 |          0 |          9 |         80 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-data-ana/data-pre/series-calm-judge/index.tsx                 | TypeScript JSX     |         14 |          0 |          2 |         16 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-data-ana/data-pre/series-calm-judge/ref-ln-income-2-chart.tsx | TypeScript JSX     |         35 |          0 |          5 |         40 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-data-ana/data-pre/series-calm-judge/rel-ln-income-1-chart.tsx | TypeScript JSX     |         35 |          0 |          5 |         40 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-data-ana/data-pre/series-calm-judge/rel-ratio.tsx             | TypeScript JSX     |         55 |          0 |          7 |         62 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-data-ana/data-pre/series-calm/index.tsx                       | TypeScript JSX     |         10 |          0 |          2 |         12 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-data-ana/data-pre/series-calm/ln-income-1-chart.tsx           | TypeScript JSX     |         35 |          0 |          6 |         41 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-data-ana/data-pre/series-calm/ln-income-2-chart.tsx           | TypeScript JSX     |         35 |          0 |          6 |         41 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-data-ana/data-prepare/index.tsx                               | TypeScript JSX     |         79 |          0 |         14 |         93 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-data-ana/index.tsx                                            | TypeScript JSX     |         48 |          0 |          7 |         55 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-desc/arp-model.tsx                                            | TypeScript JSX     |        273 |          2 |         44 |        319 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-desc/index.tsx                                                | TypeScript JSX     |         35 |          0 |          6 |         41 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-desc/ma-model.tsx                                             | TypeScript JSX     |         41 |          0 |          9 |         50 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-desc/smooth-time-series.tsx                                   | TypeScript JSX     |         82 |          0 |         12 |         94 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-desc/un-smooth-time-series/ex-random-walk.tsx                 | TypeScript JSX     |        153 |          0 |         26 |        179 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-desc/un-smooth-time-series/index.tsx                          | TypeScript JSX     |         26 |          0 |          4 |         30 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-desc/un-smooth-time-series/multi-random-walk.tsx              | TypeScript JSX     |        162 |          0 |         26 |        188 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/arima-desc/un-smooth-time-series/random-walk.tsx                    | TypeScript JSX     |        137 |          0 |         23 |        160 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/common/cap-title.tsx                                                | TypeScript JSX     |         47 |          0 |          5 |         52 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/common/data-display.tsx                                             | TypeScript JSX     |         36 |          0 |          5 |         41 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/common/gen-data-con.tsx                                             | TypeScript JSX     |         19 |          0 |          5 |         24 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/common/image-display.tsx                                            | TypeScript JSX     |         29 |          0 |          3 |         32 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/common/reset-btn.tsx                                                | TypeScript JSX     |         10 |          0 |          2 |         12 |
+| /Users/guoyufei/Projects/zhkj-ui/components/lesson/common/tooltip-btn.tsx                                              | TypeScript JSX     |         23 |          0 |          2 |         25 |
+| /Users/guoyufei/Projects/zhkj-ui/components/policy/history-gains.tsx                                                   | TypeScript JSX     |        161 |         24 |         14 |        199 |
+| /Users/guoyufei/Projects/zhkj-ui/components/policy/income-chart-header.tsx                                             | TypeScript JSX     |         78 |          0 |          3 |         81 |
+| /Users/guoyufei/Projects/zhkj-ui/components/policy/income-view.tsx                                                     | TypeScript JSX     |         77 |          0 |         12 |         89 |
+| /Users/guoyufei/Projects/zhkj-ui/components/policy/trade-log.tsx                                                       | TypeScript JSX     |        138 |         21 |         11 |        170 |
+| /Users/guoyufei/Projects/zhkj-ui/components/share/code-dialog.tsx                                                      | TypeScript JSX     |         18 |          0 |          2 |         20 |
+| /Users/guoyufei/Projects/zhkj-ui/components/share/dataset-select.tsx                                                   | TypeScript JSX     |         44 |          0 |          8 |         52 |
+| /Users/guoyufei/Projects/zhkj-ui/components/share/grid.tsx                                                             | TypeScript JSX     |        135 |          0 |         27 |        162 |
+| /Users/guoyufei/Projects/zhkj-ui/components/share/label-text.tsx                                                       | TypeScript JSX     |         17 |          0 |          2 |         19 |
+| /Users/guoyufei/Projects/zhkj-ui/components/share/normal-chart.tsx                                                     | TypeScript JSX     |         33 |          6 |          8 |         47 |
+| /Users/guoyufei/Projects/zhkj-ui/components/share/stock-chart.tsx                                                      | TypeScript JSX     |         37 |          0 |          8 |         45 |
+| /Users/guoyufei/Projects/zhkj-ui/components/share/strategy-options.tsx                                                 | TypeScript JSX     |         47 |          0 |          2 |         49 |
+| /Users/guoyufei/Projects/zhkj-ui/components/share/strategy-select.tsx                                                  | TypeScript JSX     |         39 |          0 |          8 |         47 |
+| /Users/guoyufei/Projects/zhkj-ui/data/code/arima-data-ana.ts                                                           | TypeScript         |        200 |          0 |         19 |        219 |
+| /Users/guoyufei/Projects/zhkj-ui/data/code/arima.ts                                                                    | TypeScript         |        375 |          0 |         54 |        429 |
+| /Users/guoyufei/Projects/zhkj-ui/data/debt-data.json                                                                   | JSON               |      5,756 |          0 |          1 |      5,757 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/history-gains.json                                                        | JSON               |      1,357 |          0 |          1 |      1,358 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/income-view.json                                                          | JSON               |      7,358 |          0 |          1 |      7,359 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/policy-income.json                                                        | JSON               |      2,454 |          0 |          1 |      2,455 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/policy.json                                                               | JSON               |        820 |          0 |          1 |        821 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c21c0645e1f06000ca63f2a.json                               | JSON               |      3,629 |          0 |          1 |      3,630 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c340089e052f2000b4b1094.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c34020775019f000c97f7b3.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c340544ac17c6000cb7e2f9.json                               | JSON               |     18,343 |          0 |          1 |     18,344 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c34093efa25f1000a07660c.json                               | JSON               |     18,343 |          0 |          1 |     18,344 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c340ae775019f000c97f7c1.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c340bb0e052f2000ae08f1c.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c340d2d5919f2000cf32de2.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c340df0a59c54000ae938bc.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c34101a75019f000bf41475.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c34111b5919f2000cf32dea.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c3411f3ac17c6000cb7e302.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c3412e875019f000ae54492.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c3413e0fa25f1000a07661c.json                               | JSON               |     23,225 |          0 |          1 |     23,226 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c34176975019f000ae54499.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c3418c15919f2000cf32df9.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c343584ac17c6000cb7e317.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c34378f6158be000a0db1dc.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c3438b175019f000c97f7e7.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c343ab05919f2000bfb50f8.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c343b88fa25f1000c7bbda5.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c343caefa25f1000a07663c.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c344008a59c54000b3fd01f.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c34411dac17c6000a02a94b.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c34420375019f000ae544ad.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c3442ecac17c6000a02a951.json                               | JSON               |     18,343 |          0 |          1 |     18,344 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c344396ac17c6000a02a955.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c344d045919f2000ac3192b.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c344f7a4b82ee000ca252ac.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c3450753eefe6000c3b829a.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/simple-income/5c3451009366c2000b33b87e.json                               | JSON               |     18,344 |          0 |          1 |     18,345 |
+| /Users/guoyufei/Projects/zhkj-ui/data/policy/trade-log.json                                                            | JSON               |        785 |          0 |          1 |        786 |
+| /Users/guoyufei/Projects/zhkj-ui/data/util.js                                                                          | JavaScript         |         20 |          4 |          6 |         30 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/ag-grid-local-text.ts                                                             | TypeScript         |        135 |         19 |         19 |        173 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/chart-options/classification.ts                                                   | TypeScript         |         28 |          0 |          1 |         29 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/chart-options/income-view.ts                                                      | TypeScript         |        390 |          2 |          7 |        399 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/chart-options/policy-basic.ts                                                     | TypeScript         |        136 |          1 |          4 |        141 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/chart-options/predict.ts                                                          | TypeScript         |         55 |          0 |          2 |         57 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/chart-options/regression.ts                                                       | TypeScript         |         36 |          1 |          1 |         38 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/constant.ts                                                                       | TypeScript         |         26 |          0 |          3 |         29 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/data-process-poster.ts                                                            | TypeScript         |          9 |          0 |          3 |         12 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/dateUtil.ts                                                                       | TypeScript         |         95 |          0 |         18 |        113 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/fetcher.ts                                                                        | TypeScript         |         20 |          1 |          7 |         28 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/hook/use-chart-image.ts                                                           | TypeScript         |         23 |          0 |          6 |         29 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/hook/use-data-to-table.ts                                                         | TypeScript         |         26 |          0 |          4 |         30 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/hook/use-strategy.ts                                                              | TypeScript         |         37 |          0 |          9 |         46 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/numUtil.ts                                                                        | TypeScript         |         26 |          0 |          7 |         33 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/path-map.ts                                                                       | TypeScript         |         13 |          3 |          5 |         21 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/prisma.ts                                                                         | TypeScript         |          7 |          1 |          5 |         13 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/provider/antd-provider.tsx                                                        | TypeScript JSX     |         10 |          0 |          2 |         12 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/provider/antd-registry.tsx                                                        | TypeScript JSX     |         10 |          0 |          4 |         14 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/provider/swr-config-provider.tsx                                                  | TypeScript JSX     |         20 |          0 |          4 |         24 |
+| /Users/guoyufei/Projects/zhkj-ui/lib/util.ts                                                                           | TypeScript         |          9 |          0 |          4 |         13 |
+| /Users/guoyufei/Projects/zhkj-ui/next.config.js                                                                        | JavaScript         |          2 |          1 |          2 |          5 |
+| /Users/guoyufei/Projects/zhkj-ui/package-lock.json                                                                     | JSON               |      6,579 |          0 |          1 |      6,580 |
+| /Users/guoyufei/Projects/zhkj-ui/package.json                                                                          | JSON               |         43 |          0 |          1 |         44 |
+| /Users/guoyufei/Projects/zhkj-ui/pnpm-lock.yaml                                                                        | YAML               |      3,287 |          0 |        443 |      3,730 |
+| /Users/guoyufei/Projects/zhkj-ui/postcss.config.js                                                                     | JavaScript         |          6 |          0 |          1 |          7 |
+| /Users/guoyufei/Projects/zhkj-ui/prisma/migrations/0_init/migration.sql                                                | SQL                |        112 |          6 |         13 |        131 |
+| /Users/guoyufei/Projects/zhkj-ui/prisma/schema.prisma                                                                  | Prisma             |        114 |          2 |         10 |        126 |
+| /Users/guoyufei/Projects/zhkj-ui/style/monokai.min.css                                                                 | CSS                |          1 |          0 |          0 |          1 |
+| /Users/guoyufei/Projects/zhkj-ui/tailwind.config.js                                                                    | JavaScript         |         15 |          1 |          1 |         17 |
+| /Users/guoyufei/Projects/zhkj-ui/tsconfig.json                                                                         | JSON with Comments |         35 |          6 |          0 |         41 |
+| Total                                                                                                                  |                    |    593,323 |        106 |      1,341 |    594,770 |
++------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

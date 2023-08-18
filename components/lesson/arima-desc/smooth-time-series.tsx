@@ -72,7 +72,7 @@ export default function SmoothTimeSeries() {
         <LabelText label="长度" tip="服从标准正态分布的随机数" />
         <InputNumber id="randomNum" min={100} value={randomNum} onChange={(e) => setRandomNum(e || null)} />
 
-        <Button type="primary" className="ml-5" onClick={handleGen}>
+        <Button type="primary" className="ml-5 mb-2" onClick={handleGen}>
           生成随机数
         </Button>
 

@@ -1,12 +1,12 @@
 import { Button, Collapse, CollapseProps } from 'antd';
-import { useState } from 'react';
 import ResetBtn from '../../../common/reset-btn';
 import ImageDisplay from '../../../common/image-display';
 import CapTitle from '../../../common/cap-title';
 import { ArimaDataAnaCode } from '@/data/code/arima-data-ana';
+import { useChartImage } from '@/lib/hook/use-chart-image';
 
 export default function LnIncome2Chart() {
-  const [chartData, setChartData] = useState<any[]>([]);
+  const { chartData, handleDraw, resetChartData } = useChartImage(5, 'lnIncome_2时序图');
 
   const chartCon: CollapseProps['items'] = [
     {
@@ -16,16 +16,8 @@ export default function LnIncome2Chart() {
     },
   ];
 
-  const handleDraw = () => {
-    setChartData([
-      {
-        name: '白噪声数据的折线图',
-      },
-    ]);
-  };
-
   const handleReset = () => {
-    setChartData([]);
+    resetChartData();
   };
 
   return (

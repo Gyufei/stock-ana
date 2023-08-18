@@ -27,7 +27,7 @@ export default function SideBar() {
       {
         key: '1',
         label: '数据处理',
-        icon: <i className="fa-solid fa-money-bill" />,
+        icon: <i className="fa-solid fa-database"></i>,
         onClick: () => router.push('/data-ana'),
       },
       {

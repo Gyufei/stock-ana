@@ -15,6 +15,7 @@ import fetcher from '@/lib/fetcher';
 import { chartOptions } from '@/lib/chart-options/regression';
 import NormalChart from '@/components/share/normal-chart';
 import CommonField from '@/components/generic/common-field';
+import { toBase64 } from '@/lib/util';
 
 export default function Classification() {
   const [selectedDataSetId, setSelectedDataSetId] = useState<string>('');
@@ -64,7 +65,7 @@ export default function Classification() {
       test_size: 0.01,
     };
 
-    const url = `${PathMap.algoIndex}/${methodPath}/`;
+    const url = `${PathMap.AiIndex}/${methodPath}/`;
 
     const res = await fetcher(url, {
       method: 'POST',
@@ -145,7 +146,7 @@ export default function Classification() {
                 </div>
                 {algoResult.image ? (
                   <div className="flex-1 flex justify-center">
-                    <Image alt="algoResult" style={{ height: '400px' }} src={`data:image/png;base64,${algoResult.image}`} />
+                    <Image alt="algoResult" style={{ height: '400px' }} src={toBase64(algoResult.image)} />
                   </div>
                 ) : null}
               </div>

@@ -52,7 +52,7 @@ export default function Classification() {
       ...strategyParams,
     };
 
-    const url = `${PathMap.algoIndex}/${methodPath}/`;
+    const url = `${PathMap.AiIndex}/${methodPath}/`;
 
     const res = await fetcher(url, {
       method: 'POST',

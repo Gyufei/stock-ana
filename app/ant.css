@@ -72,3 +72,11 @@
   display: flex;
   align-items: center;
 }
+
+.ant-alert-description {
+  white-space: pre-line;
+}
+
+.ant-collapse {
+  margin-top: 1rem !important;
+}

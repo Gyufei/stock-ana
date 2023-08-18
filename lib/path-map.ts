@@ -13,5 +13,8 @@ export const PathMap = {
   pickStock: WithHost('/selectUtils/getStockByPEG'),
 
   // algo
-  algoIndex: WithAiHost('/index'),
+  AiIndex: WithAiHost('/index'),
+
+  // lesson
+  lessonIndex: WithAiHost('/index/dataPreprocessing'),
 };

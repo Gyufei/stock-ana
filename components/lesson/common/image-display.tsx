@@ -16,7 +16,7 @@ export default function ImageDisplay({ images }: { images: Array<Record<string, 
             )}
           </div>
         ) : null}
-        <Image key="img.name" src={`/img/${img.name}.png`} width={500} height={200} alt={img.name} />
+        <Image key={img.name} src={img.src || `/img/${img.name}.png`} width={500} height={200} alt={img.name} />
       </div>
     );
   };

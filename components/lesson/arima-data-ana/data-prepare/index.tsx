@@ -1,31 +1,31 @@
 import { Button, Collapse, CollapseProps, Select } from 'antd';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import ResetBtn from '../../common/reset-btn';
 import CapTitle from '../../common/cap-title';
 import TooltipBtn from '../../common/tooltip-btn';
 import fetcher from '@/lib/fetcher';
-import { formatDecimal } from '@/lib/numUtil';
 import GenDataCon from '../../common/gen-data-con';
+import { DataContext } from '..';
+import { PathMap } from '@/lib/path-map';
 
 export default function DataPrepare() {
-  const [excelData, setExcelData] = useState<Array<any>>([]);
+  const { setOriginData } = useContext(DataContext);
+  const [oData, setOData] = useState<Array<any>>([]);
 
   const handleRead = async () => {
-    const dataset = await fetcher('/api/dataset/10');
-    const ctt = dataset.content;
-
-    setExcelData(ctt);
+    const ctt = await fetcher(PathMap.AiIndex + '/showdata?id=10');
+    setOData(ctt);
   };
 
   const excelDataCon: CollapseProps['items'] = [
     {
       key: '1',
-      label: `读取的原始Excel数据`,
-      children: <GenDataCon data={excelData} />,
+      label: `读取的原始数据`,
+      children: <GenDataCon data={oData} />,
     },
   ];
 
-  const reGenColOptions = Object.keys(excelData[0] || {}).map((key) => ({ label: key, value: key }));
+  const reGenColOptions = Object.keys(oData[0] || {}).map((key) => ({ label: key, value: key }));
   const reGenCalcOptions = [
     { value: 100000, label: '十万' },
     { value: 1000000, label: '百万' },
@@ -38,13 +38,12 @@ export default function DataPrepare() {
   const handleReGen = () => {
     if (!reGenCalcNum) return;
 
-    const postfix = reGenCalcOptions.find((item: any) => item.value === reGenCalcNum)?.label || '';
-    const rD = excelData.map((item: Record<string, any>) => {
-      item['营业收入'] = formatDecimal(Number(Number(item['营业收入'] / reGenCalcNum).toFixed(2))) + ' ' + postfix;
-      console.log(item);
+    const rD = oData.map((item: Record<string, any>) => {
+      item['营业收入'] = Number(Number(item['营业收入'] / reGenCalcNum).toFixed(2));
       return item;
     });
 
+    setOriginData(rD);
     setReGenData(rD);
   };
 
@@ -57,7 +56,7 @@ export default function DataPrepare() {
   ];
 
   const handleReset = () => {
-    setExcelData([]);
+    setOData([]);
     setReGenData([]);
   };
 
@@ -70,7 +69,7 @@ export default function DataPrepare() {
           读取数据
         </TooltipBtn>
 
-        {excelData.length > 0 ? (
+        {oData.length > 0 ? (
           <>
             <Collapse defaultActiveKey="1" items={excelDataCon} />
             <CapTitle className="my-2" index={2} title="处理原始数据" />

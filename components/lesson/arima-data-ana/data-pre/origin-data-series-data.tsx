@@ -1,13 +1,18 @@
 import { Button, Collapse, CollapseProps } from 'antd';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import ResetBtn from '../../common/reset-btn';
 import GenDataCon from '../../common/gen-data-con';
+import { DataContext } from '..';
+import dataProcessPoster from '@/lib/data-process-poster';
 
 export default function OriginTimeSeriesData() {
+  const { originData } = useContext(DataContext);
   const [timeSeriesData, setRandomData] = useState<Array<number>>([]);
 
-  const handleGen = () => {
-    setRandomData([]);
+  const handleGen = async () => {
+    const res = await dataProcessPoster(1, originData);
+
+    setRandomData(res);
   };
 
   const randomDataCon: CollapseProps['items'] = [
@@ -26,7 +31,7 @@ export default function OriginTimeSeriesData() {
     <div>
       <ResetBtn onClick={handleReset} />
       <div className="border-y py-2">
-        <Button type="primary" className="ml-5" onClick={handleGen}>
+        <Button type="primary" className="mb-2" onClick={handleGen}>
           生成序列
         </Button>
 
