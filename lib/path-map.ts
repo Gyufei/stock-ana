@@ -10,5 +10,8 @@ export const PathMap = {
   // 保存数据集
   saveDataSet: WithHost('/saveDataSet'),
   saveStocks: WithHost('/saveStocks'),
-  pickStock: WithHost('/selectUtils/getStockByPEG')
+  pickStock: WithHost('/selectUtils/getStockByPEG'),
+
+  // algo
+  algoIndex: WithAiHost('/index'),
 };

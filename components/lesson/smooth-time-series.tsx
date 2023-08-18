@@ -2,7 +2,7 @@ import { Button, Collapse, CollapseProps, InputNumber } from 'antd';
 import { useState } from 'react';
 import ResetBtn from './common/reset-btn';
 import CapTitle from './common/cap-title';
-import LabelText from './common/label-text';
+import LabelText from '../share/label-text';
 import DataDisplay from './common/data-display';
 import ImageDisplay from './common/image-display';
 

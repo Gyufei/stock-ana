@@ -1,9 +1,9 @@
-import { CSSProperties, useMemo, useState } from 'react';
+import { CSSProperties, useState } from 'react';
 import useSWR from 'swr';
 import { Drawer, Select, Table } from 'antd';
-import type { ColumnsType } from 'antd/es/table';
 
 import fetcher from '@/lib/fetcher';
+import { useDatasetContent } from '@/lib/hook/use-dataset-content';
 
 export default function DatasetSelect({
   value,
@@ -18,24 +18,7 @@ export default function DatasetSelect({
 }) {
   const { data: datasets } = useSWR(`/api/dataset?type=${datasetType}`, fetcher);
   const selectedDataSet: Record<string, any> = datasets?.find((item: Record<string, any>) => item.id === value);
-  const content = useMemo(
-    () =>
-      selectedDataSet?.content
-        ? selectedDataSet.content.map((row: Record<string, any>) => ({
-            ...row,
-            key: row.id,
-          }))
-        : [],
-    [selectedDataSet?.content]
-  );
-
-  const columns: ColumnsType<any> = Object.keys(content[0] || {}).map((key: string, index) => {
-    return {
-      title: key,
-      dataIndex: key,
-      key: key + index,
-    };
-  });
+  const { content, columns } = useDatasetContent(selectedDataSet?.content || []);
 
   const handleSelect = (v: string) => {
     const obj = datasets?.find((item: Record<string, any>) => item.id === v);

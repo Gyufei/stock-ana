@@ -10,7 +10,7 @@ export default function BaseLayout({ children }: { children: React.ReactNode }) 
   return (
     <Layout hasSider>
       <SideBar />
-      <Content>{children}</Content>
+      <Content style={{ marginLeft: 200 }}>{children}</Content>
     </Layout>
   );
 }

@@ -4,7 +4,7 @@ import { ExRandomWalkCode } from '@/data/code/arima';
 import ResetBtn from './common/reset-btn';
 import DataDisplay from './common/data-display';
 import CapTitle from './common/cap-title';
-import LabelText from './common/label-text';
+import LabelText from '../share/label-text';
 import ImageDisplay from './common/image-display';
 
 export default function ExRandomWalk() {

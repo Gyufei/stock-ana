@@ -22,6 +22,7 @@ export function useStrategy() {
   }, [id]);
 
   const handleParamChange = (key: string, value: any) => {
+    console.log(key, value);
     setParams((prev) => {
       return {
         ...prev,

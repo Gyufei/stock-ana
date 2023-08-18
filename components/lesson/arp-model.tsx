@@ -6,7 +6,7 @@ import ResetBtn from './common/reset-btn';
 import ImageDisplay from './common/image-display';
 import DataDisplay from './common/data-display';
 import CapTitle from './common/cap-title';
-import LabelText from './common/label-text';
+import LabelText from '../share/label-text';
 import TooltipBtn from './common/tooltip-btn';
 
 export default function ArpModel() {

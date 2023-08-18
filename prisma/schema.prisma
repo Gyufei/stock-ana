@@ -31,7 +31,7 @@ model company_profile {
 model dataset {
   id      Int    @id @default(autoincrement())
   name    String @db.VarChar(255)
-  content Bytes  @db.Blob
+  content String @db.MediumText
   type    String @db.VarChar(255)
 }
 
@@ -52,7 +52,7 @@ model strategy {
   id        Int     @id @default(autoincrement())
   name      String? @db.VarChar(255)
   type      String? @db.VarChar(255)
-  parameter String? @db.VarChar(255)
+  parameter String? @db.VarChar(2000)
   title     String? @db.VarChar(255)
   method    String  @db.VarChar(255)
 }

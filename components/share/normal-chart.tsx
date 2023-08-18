@@ -6,14 +6,17 @@ import { forwardRef } from 'react';
 // import HighChartsIndicators from 'highcharts/indicators/indicators';
 // import HighChartsPivotPoints from 'highcharts/indicators/pivot-points';
 // import HighChartsMacd from 'highcharts/indicators/macd';
+import HighChartMore from 'highcharts/highcharts-more';
 
+require('highcharts/highcharts-more')(Highcharts);
 if (typeof Highcharts === 'object') {
   HighchartsExporting(Highcharts);
-}
+  HighChartMore(Highcharts);
 
-// HighChartsIndicators(Highcharts);
-// HighChartsPivotPoints(Highcharts);
-// HighChartsMacd(Highcharts);
+  // HighChartsIndicators(Highcharts);
+  // HighChartsPivotPoints(Highcharts);
+  // HighChartsMacd(Highcharts);
+}
 
 const NormalChart = forwardRef(({ options, loading, ...reset }: any, ref: any) => {
   if (loading) {
