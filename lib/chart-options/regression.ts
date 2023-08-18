@@ -26,12 +26,12 @@ export const chartOptions = {
     {
       name: '真实值',
       data: [],
-      color: '#FF0000',
+      color: '#0000FF',
     },
     {
       name: '预测值',
       data: [],
-      color: '#0000FF',
+      color: '#FF0000',
     },
   ],
 };

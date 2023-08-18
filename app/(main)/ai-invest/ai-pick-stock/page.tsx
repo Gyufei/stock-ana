@@ -64,7 +64,7 @@ export default function AiPickStock() {
           <div className="flex items-center gap-x-10 mb-2">
             <div className="flex items-center">
               <div className="mr-2">选择数据集:</div>
-              <DatasetSelect value={selectedDataSetId} onChange={(id, obj) => handleSelectDataset(id, obj)} style={{ width: 220 }} />
+              <DatasetSelect datasetType={1} value={selectedDataSetId} onChange={(id, obj) => handleSelectDataset(id, obj)} style={{ width: 220 }} />
             </div>
             <div className="flex items-center">
               <div className="mr-2">选择策略:</div>

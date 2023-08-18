@@ -16,7 +16,7 @@ export function useStrategy() {
   useEffect(() => {
     const newParams = {} as any;
     for (const kv of parameters) {
-      newParams[kv.key] = null;
+      newParams[kv.key] = kv.default;
     }
     setParams(newParams);
   }, [id]);

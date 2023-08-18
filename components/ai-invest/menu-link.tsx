@@ -24,11 +24,6 @@ export default function MenuLink() {
       ],
     },
     {
-      label: <Link href="/ai-invest/data-analysis">数据分析</Link>,
-      key: 'data-analysis',
-      icon: <i className="fa-solid fa-database"></i>,
-    },
-    {
       label: <Link href="/ai-invest/ai-pick-stock">智能选股</Link>,
       key: 'ai-pick-stock',
       icon: <i className="fa-solid fa-crosshairs"></i>,

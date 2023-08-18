@@ -33,8 +33,8 @@ export default function Classification() {
     handleParamChange: handleParamChange,
   } = useStrategy();
 
-  const [features, setFeatures] = useState<string[]>(['年龄', '教育', '工龄', '地址', '收入', '负债率', '信用卡负债', '其他负债']);
-  const [target, setTarget] = useState<string>('违约');
+  const [features, setFeatures] = useState<string[]>(['年龄', '教育', '工龄', '地址', '收入', '违约', '信用卡负债', '其他负债']);
+  const [target, setTarget] = useState<string>('负债率');
 
   const handleSelectDataset = (id: string, obj: Record<string, any>) => {
     setSelectedDataSetId(id);
@@ -53,16 +53,6 @@ export default function Classification() {
       target,
 
       ...strategyParams,
-      // ===
-      criterion: 'poisson',
-      splitter: 'best',
-      max_depth: 31,
-      min_samples_split: 5,
-      min_samples_leaf: 5,
-      max_features: 'sqrt',
-      random_state: 5,
-      max_leaf_nodes: 5,
-      test_size: 0.01,
     };
 
     const url = `${PathMap.AiIndex}/${methodPath}/`;

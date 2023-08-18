@@ -2,6 +2,22 @@ import { Input, InputNumber, Switch } from 'antd';
 import LabelText from './label-text';
 
 export default function StrategyOptions({ params, onChange }: { params: Array<any>; onChange: (_key: string, _value: any) => void }) {
+  const getTargetType = (typeStr: string) => {
+    if (typeStr.includes('str')) {
+      return 'str';
+    }
+    if (typeStr.includes('float')) {
+      return 'float';
+    }
+    if (typeStr.includes('int')) {
+      return 'int';
+    }
+    if (typeStr.includes('bool')) {
+      return 'bool';
+    }
+    return 'NoneType';
+  };
+
   return (
     <>
       {params.length > 0 ? (
@@ -15,10 +31,14 @@ export default function StrategyOptions({ params, onChange }: { params: Array<an
               )}
               <div className="flex items-center gap-x-1 flex-wrap">
                 {(() => {
-                  const type = Array.isArray(item.type) ? item.type[0] : item.type;
+                  const joinType = Array.isArray(item.type) ? item.type.join(',') : item.type;
+                  const type = getTargetType(joinType);
+
                   switch (type) {
                     case 'str':
-                      return <Input onChange={(e) => onChange(item.key, e.target.value)} />;
+                      return <Input defaultValue={item.default} onChange={(e) => onChange(item.key, e.target.value)} />;
+                    case 'NoneType':
+                      return <Input defaultValue={item.default} onChange={(e) => onChange(item.key, e.target.value)} />;
                     case 'float':
                       return (
                         <InputNumber
@@ -31,7 +51,7 @@ export default function StrategyOptions({ params, onChange }: { params: Array<an
                         />
                       );
                     case 'int':
-                      return <InputNumber precision={0} min={0} onChange={(e) => onChange(item.key, e)} />;
+                      return <InputNumber defaultValue={item.default} precision={0} min={0} onChange={(e) => onChange(item.key, e)} />;
                     case 'bool':
                       return <Switch onChange={(e) => onChange(item.value, e)} />;
                     default:
