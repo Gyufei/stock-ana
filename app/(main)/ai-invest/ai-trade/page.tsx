@@ -1,17 +1,18 @@
 'use client';
 import { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
+import useSWRMutation from 'swr/mutation';
 import { Button, Tabs, DatePicker, Input, InputNumber, Select } from 'antd';
 
 import fetcher from '@/lib/fetcher';
 import { WithHost } from '@/lib/path-map';
-import useSWRMutation from 'swr/mutation';
+import { useStrategy } from '@/lib/hook/use-strategy';
+
 import IncomeView from '@/components/policy/income-view';
 import TradeLog from '@/components/policy/trade-log';
 import HistoryGain from '@/components/policy/history-gains';
 import StrategySelect from '@/components/share/strategy-select';
-import dayjs from 'dayjs';
 import DatasetSelect from '@/components/share/dataset-select';
-import { useStrategy } from '@/lib/hook/use-strategy';
 
 export default function AiTrade() {
   const [selectedDataSetId, setSelectedDatasetId] = useState<string>('');

@@ -1,28 +1,15 @@
 'use client';
 
-import Highcharts from 'highcharts/highstock';
-import IncomeChartHeader from './income-chart-header';
 import { useEffect, useState } from 'react';
 import { Radio } from 'antd';
+
+import IncomeChartHeader from './income-chart-header';
 import { chartOptions } from '@/lib/chart-options/income-view';
 import StockChart from '../share/stock-chart';
 import dayjs from 'dayjs';
 
 export default function IncomeView({ tradeData }: any) {
   const [stockOptions, setStockOptions] = useState(chartOptions);
-
-  function initChart() {
-    Highcharts.setOptions({
-      lang: {
-        loading: '数据加载中...',
-        rangeSelectorZoom: '缩放:',
-        rangeSelectorFrom: '从',
-        rangeSelectorTo: '至',
-      },
-    });
-  }
-
-  initChart();
 
   useEffect(() => {
     if (!tradeData) return;
@@ -81,7 +68,7 @@ export default function IncomeView({ tradeData }: any) {
           <Radio value="normal">普通轴</Radio>
           <Radio value="log">对数轴</Radio>
         </Radio.Group>
-        <StockChart highcharts={Highcharts} options={stockOptions} />
+        <StockChart options={stockOptions} />
       </div>
     </div>
   );

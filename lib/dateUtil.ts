@@ -8,8 +8,8 @@ const dateUtils = {
     const t = new Date();
     const e = new Date(t.getTime() - 2592000000);
     const n = e.getFullYear();
-    let i = e.getMonth() + 1;
-    let r = e.getDate();
+    let i: string | number = e.getMonth() + 1;
+    let r: string | number = e.getDate();
     i = i < 10 ? '0' + i : String(i);
     r = r < 10 ? '0' + r : String(r);
     return `${n}-${i}-${r}`;

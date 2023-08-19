@@ -9,11 +9,10 @@ import { forwardRef } from 'react';
 
 if (typeof Highcharts === 'object') {
   HighchartsExporting(Highcharts);
+  HighChartsIndicators(Highcharts);
+  HighChartsPivotPoints(Highcharts);
+  HighChartsMacd(Highcharts);
 }
-
-HighChartsIndicators(Highcharts);
-HighChartsPivotPoints(Highcharts);
-HighChartsMacd(Highcharts);
 
 const StockChart = forwardRef(({ options, loading, ...reset }: any, ref: any) => {
   if (loading) {

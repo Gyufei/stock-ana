@@ -1,6 +1,5 @@
 import { Input, InputNumber, Switch } from 'antd';
 import LabelText from './label-text';
-import { useId } from 'react';
 
 export default function StrategyOptions({
   params,
