@@ -12,6 +12,9 @@ export default function StrategyOptions({
   onChange: (_key: string, _value: any) => void;
 }) {
   const getTargetType = (typeStr: string) => {
+    if (typeStr.includes('list')) {
+      return 'list';
+    }
     if (typeStr.includes('str')) {
       return 'str';
     }
@@ -27,8 +30,6 @@ export default function StrategyOptions({
     return 'NoneType';
   };
 
-  const id = useId();
-
   return (
     <>
       {params.length > 0 ? (
@@ -40,7 +41,7 @@ export default function StrategyOptions({
               ) : (
                 <div className="mr-2 text-slate-500 text-sm break-keep">{item.label}:</div>
               )}
-              <div key={id} className="flex items-center gap-x-1 flex-wrap">
+              <div key={Math.random()} className="flex items-center gap-x-1 flex-wrap">
                 {(() => {
                   const joinType = Array.isArray(item.type) ? item.type.join(',') : item.type;
                   const type = getTargetType(joinType);
@@ -50,6 +51,13 @@ export default function StrategyOptions({
                   switch (type) {
                     case 'str':
                       return <Input defaultValue={defaultVal} onChange={(e) => onChange(item.key, e.target.value)} />;
+                    case 'list':
+                      return (
+                        <Input
+                          defaultValue={JSON.stringify(defaultVal)}
+                          onChange={(e) => onChange(item.key, JSON.parse(e.target.value || 'null'))}
+                        />
+                      );
                     case 'float':
                       return (
                         <InputNumber
