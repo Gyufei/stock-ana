@@ -35,10 +35,9 @@ export default function StrategyOptions({ params, onChange }: { params: Array<an
                   const type = getTargetType(joinType);
                   if (item.default === 'None') item.default = null;
 
+                  console.log('type', type);
                   switch (type) {
                     case 'str':
-                      return <Input defaultValue={item.default} onChange={(e) => onChange(item.key, e.target.value)} />;
-                    case 'NoneType':
                       return <Input defaultValue={item.default} onChange={(e) => onChange(item.key, e.target.value)} />;
                     case 'float':
                       return (
@@ -55,6 +54,8 @@ export default function StrategyOptions({ params, onChange }: { params: Array<an
                       return <InputNumber defaultValue={item.default} precision={0} min={0} onChange={(e) => onChange(item.key, e)} />;
                     case 'bool':
                       return <Switch onChange={(e) => onChange(item.value, e)} />;
+                    case 'NoneType':
+                      return <Input defaultValue={item.default} onChange={(e) => onChange(item.key, e.target.value)} />;
                     default:
                       return null;
                   }

@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Button, Input, InputNumber, Switch, message } from 'antd';
+import { Button, message } from 'antd';
 
 import fetcher from '@/lib/fetcher';
 import { PathMap } from '@/lib/path-map';
@@ -9,6 +9,7 @@ import Grid from '@/components/share/grid';
 import StrategySelect from '@/components/share/strategy-select';
 import DatasetSelect from '@/components/share/dataset-select';
 import { useStrategy } from '@/lib/hook/use-strategy';
+import StrategyOptions from '@/components/share/strategy-options';
 
 export default function AiPickStock() {
   const [selectedDataSetId, setSelectedDataSetId] = useState<string>('');
@@ -64,7 +65,12 @@ export default function AiPickStock() {
           <div className="flex items-center gap-x-10 mb-2">
             <div className="flex items-center">
               <div className="mr-2">选择数据集:</div>
-              <DatasetSelect datasetType={1} value={selectedDataSetId} onChange={(id, obj) => handleSelectDataset(id, obj)} style={{ width: 220 }} />
+              <DatasetSelect
+                datasetType={1}
+                value={selectedDataSetId}
+                onChange={(id, obj) => handleSelectDataset(id, obj)}
+                style={{ width: 220 }}
+              />
             </div>
             <div className="flex items-center">
               <div className="mr-2">选择策略:</div>
@@ -76,29 +82,7 @@ export default function AiPickStock() {
               />
             </div>
           </div>
-          {strategyParameter.length > 0 && (
-            <div className="flex items-center my-4 gap-x-8">
-              {strategyParameter.map((item) => (
-                <div key={item.key} className="flex items-center">
-                  <div className="mr-2 text-slate-500 text-sm">{item.label}:</div>
-                  <div className="flex items-center gap-x-1">
-                    {(() => {
-                      switch (item.type) {
-                        case 'text':
-                          return <Input onChange={(e) => handleParamChange(item.value, e.target.value)} />;
-                        case 'number':
-                          return <InputNumber min={0} onChange={(e) => handleParamChange(item.value, e)} />;
-                        case 'boolean':
-                          return <Switch onChange={(e) => handleParamChange(item.value, e)} />;
-                        default:
-                          return null;
-                      }
-                    })()}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+          <StrategyOptions params={strategyParameter} onChange={handleParamChange} />
         </div>
 
         <div className="flex items-center border-l px-10">
