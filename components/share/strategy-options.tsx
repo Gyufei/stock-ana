@@ -33,6 +33,7 @@ export default function StrategyOptions({ params, onChange }: { params: Array<an
                 {(() => {
                   const joinType = Array.isArray(item.type) ? item.type.join(',') : item.type;
                   const type = getTargetType(joinType);
+                  if (item.default === 'None') item.default = null;
 
                   switch (type) {
                     case 'str':

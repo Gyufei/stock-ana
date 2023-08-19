@@ -1,5 +1,6 @@
 import { CSSProperties, useState } from 'react';
-import { Drawer, Select } from 'antd';
+import { Drawer, Select, Typography } from 'antd';
+const { Paragraph } = Typography;
 import useSWR from 'swr';
 
 import fetcher from '@/lib/fetcher';
@@ -17,8 +18,12 @@ export default function StrategySelect({
 }) {
   const { data: strategy } = useSWR(`/api/strategy?type=${strategyType}`, fetcher);
 
+  const [selected, setSelected] = useState<Record<string, any> | null>();
+
   const handleSelect = (v: string) => {
     const obj = strategy?.find((item: Record<string, any>) => item.id === v);
+
+    setSelected(obj);
     onChange(v, obj);
   };
 
@@ -40,7 +45,13 @@ export default function StrategySelect({
           策略简介
         </div>
       )}
-      <Drawer width={640} title="策略简介" placement="right" onClose={onClose} open={open}></Drawer>
+      <Drawer width={640} title={`${selected?.name}简介`} placement="right" onClose={onClose} open={open}>
+        <Typography>
+          <Paragraph>
+            <div className="whitespace-pre-line">{selected?.describe}</div>
+          </Paragraph>
+        </Typography>
+      </Drawer>
     </div>
   );
 }
