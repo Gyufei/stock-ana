@@ -11,8 +11,12 @@ export default function OriginTimeSeriesData() {
 
   const handleGen = async () => {
     const res = await dataProcessPoster(1, originData);
+    const resData = res['季度'].map((item: any, index: number) => ({
+      季度: item,
+      营业收入: res['营业收入'][index],
+    }));
 
-    setRandomData(res);
+    setRandomData(resData);
   };
 
   const randomDataCon: CollapseProps['items'] = [

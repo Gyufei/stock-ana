@@ -32,7 +32,6 @@ export default function HeadSegment() {
   const [selected, setSelected] = useState(options[0].value);
 
   const onChange = (val: any) => {
-    console.log(val);
     setSelected(val);
     router.push(val);
   };
