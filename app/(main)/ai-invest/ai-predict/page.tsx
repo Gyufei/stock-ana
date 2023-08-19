@@ -94,7 +94,7 @@ export default function AiPredict() {
               />
             </div>
           </div>
-          <StrategyOptions params={strategyParameter} onChange={handleParamChange} />
+          <StrategyOptions params={strategyParameter} value={strategyParams} onChange={handleParamChange} />
         </div>
 
         <div className="flex items-center border-l px-10">

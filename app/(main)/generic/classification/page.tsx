@@ -139,7 +139,7 @@ export default function Classification() {
           {selectedDataSetId && (
             <CommonField options={columns} features={features} target={target} setFeatures={setFeatures} setTarget={setTarget} />
           )}
-          <StrategyOptions params={strategyParameter} onChange={handleParamChange} />
+           <StrategyOptions params={strategyParameter} value={strategyParams} onChange={handleParamChange} />
         </div>
 
         <div className="flex items-center border-l px-10">
