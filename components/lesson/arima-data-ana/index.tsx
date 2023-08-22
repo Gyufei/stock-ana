@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import type { CollapseProps } from 'antd';
 import { Collapse } from 'antd';
 
@@ -7,6 +7,7 @@ import CapTitle from '../common/cap-title';
 import DataPrepare from './data-prepare';
 import { ArimaDataAnaCode } from '@/data/code/arima-data-ana';
 import DataPre from './data-pre';
+import dataProcessPoster from '@/lib/data-process-poster';
 
 interface DataContextProps {
   originData: Array<Record<string, any>>;
@@ -19,7 +20,7 @@ export const DataContext = createContext<DataContextProps>({
 });
 
 export default function ArimaDataAna() {
-  const [originData, setOriginData] = React.useState<DataContextProps['originData']>([]);
+  const [originData, setOriginData] = useState<DataContextProps['originData']>([]);
 
   const items: CollapseProps['items'] = [
     {
@@ -33,6 +34,15 @@ export default function ArimaDataAna() {
       children: <DataPre />,
     },
   ];
+
+  useEffect(() => {
+    async function getOrigin() {
+      const proData = await dataProcessPoster('processed_data');
+      setOriginData(proData);
+    }
+
+    getOrigin();
+  }, []);
 
   return (
     <DataContext.Provider

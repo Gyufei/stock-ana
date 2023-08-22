@@ -55,7 +55,7 @@ export default function Classification() {
       ...strategyParams,
     };
 
-    const url = `${PathMap.AiIndex}/${methodPath}/`;
+    const url = `${PathMap.strategyPath}/${methodPath}/`;
 
     const res = await fetcher(url, {
       method: 'POST',

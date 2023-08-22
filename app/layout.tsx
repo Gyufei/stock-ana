@@ -18,11 +18,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="h-screen">
       <body className={`min-h-full bg-teal-50 text-blueGray-700`}>
         <SwrConfigProvider>
-          <AntdProvider>
-            <StyledComponentsRegistry>
+          <StyledComponentsRegistry>
+            <AntdProvider>
               <div className=" flex-1 relative bg-blueGray-100 h-full flex flex-col">{children}</div>
-            </StyledComponentsRegistry>
-          </AntdProvider>
+            </AntdProvider>
+          </StyledComponentsRegistry>
         </SwrConfigProvider>
       </body>
     </html>

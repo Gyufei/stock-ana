@@ -12,9 +12,8 @@ export const PathMap = {
   saveStocks: WithHost('/saveStocks'),
   pickStock: WithHost('/selectUtils/getStockByPEG'),
 
-  // algo
-  AiIndex: WithAiHost('/index'),
-
-  // lesson
-  lessonIndex: WithAiHost('/index/dataPreprocessing'),
+  // algo and strategy
+  strategyPath: WithAiHost('/strategy'),
+  // lesson arima
+  lessonArimaPreprocessing: WithAiHost('/arima/preprocessing'),
 };
