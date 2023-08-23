@@ -1,12 +1,12 @@
-import { Button, Collapse, CollapseProps, Select } from 'antd';
+import { Button, Select } from 'antd';
 import { useState } from 'react';
 import ResetBtn from '../../common/reset-btn';
 import CapTitle from '../../common/cap-title';
 import TooltipBtn from '../../common/tooltip-btn';
-import GenDataCon from '../../common/gen-data-con';
-import dataProcessPoster from '@/lib/data-process-poster';
+import dataProcessPoster from '@/lib/http/data-process-poster';
 import LabelText from '@/components/share/label-text';
 import { cloneDeep } from 'lodash';
+import ResultDisplay from '../../common/result-display';
 
 export default function DataPrepare() {
   const [oData, setOData] = useState<Array<any>>([]);
@@ -39,14 +39,6 @@ export default function DataPrepare() {
     setDisplayOData(newCtt);
   };
 
-  const excelDataCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `读取的原始数据`,
-      children: <GenDataCon data={displayOData} />,
-    },
-  ];
-
   const reGenColOptions = Object.keys(oData[0] || {}).map((key) => ({ label: key, value: key }));
   const reGenCalcOptions = [
     { value: 100000, label: '十万' },
@@ -76,14 +68,6 @@ export default function DataPrepare() {
     setReGenData(rD);
   };
 
-  const reGenDataCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `处理后的数据`,
-      children: <GenDataCon data={reGenData} />,
-    },
-  ];
-
   const handleReset = () => {
     setOData([]);
     setReGenData([]);
@@ -103,7 +87,7 @@ export default function DataPrepare() {
 
         {oData.length > 0 ? (
           <>
-            <Collapse defaultActiveKey="1" items={excelDataCon} />
+            <ResultDisplay type="table" title="读取的原始数据" data={displayOData} />
             <CapTitle className="my-2" index={2} title="处理原始数据" />
             <div>
               <span>为方便数据展示和查看，设置</span>
@@ -127,7 +111,7 @@ export default function DataPrepare() {
           </>
         ) : null}
 
-        {reGenData.length > 0 ? <Collapse className="mt-4" defaultActiveKey="1" items={reGenDataCon} /> : null}
+        {reGenData.length > 0 ? <ResultDisplay type="table" title="处理后的数据" data={reGenData} /> : null}
       </div>
     </div>
   );

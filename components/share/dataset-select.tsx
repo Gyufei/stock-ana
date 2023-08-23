@@ -2,7 +2,7 @@ import { CSSProperties, useState } from 'react';
 import useSWR from 'swr';
 import { Drawer, Select, Table } from 'antd';
 
-import fetcher from '@/lib/fetcher';
+import fetcher from '@/lib/http/fetcher';
 import { useDataToTable } from '@/lib/hook/use-data-to-table';
 
 export default function DatasetSelect({

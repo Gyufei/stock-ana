@@ -1,5 +1,5 @@
 import { Select } from 'antd';
-import fetcher from '@/lib/fetcher';
+import fetcher from '@/lib/http/fetcher';
 import useSWRMutation from 'swr/mutation';
 import { CSSProperties } from 'react';
 

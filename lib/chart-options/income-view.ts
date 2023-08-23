@@ -1,5 +1,5 @@
 import Highcharts from 'highcharts';
-import dateUtils from '../dateUtil';
+import dateUtils from '../utils/dateUtil';
 
 const formatYAxis = (value: any) => {
   if (value === 0) {

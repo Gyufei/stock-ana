@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import dataProcessPoster from '../data-process-poster';
-import { toBase64 } from '../util';
+import dataProcessPoster from '../http/data-process-poster';
+import { IImageConfig } from '@/components/lesson/common/image-config';
 
 export function useChartImage(index: number, name: string) {
   const [chartData, setChartData] = useState<any[]>([]);
 
-  const handleDraw = async () => {
-    const cD = await dataProcessPoster(index);
+  const handleDraw = async (config?: IImageConfig) => {
+    const cD = await dataProcessPoster(index, config);
 
     setChartData([
       {
         name,
-        src: toBase64(cD.image),
+        src: cD.image,
       },
     ]);
   };

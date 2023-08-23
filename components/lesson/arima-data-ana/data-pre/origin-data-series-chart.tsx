@@ -1,34 +1,43 @@
-import { Alert, Button, Collapse, CollapseProps } from 'antd';
-import ResetBtn from '../../common/reset-btn';
-import ImageDisplay from '../../common/image-display';
+import { useState } from 'react';
+import { Alert, Button } from 'antd';
+
 import { useChartImage } from '@/lib/hook/use-chart-image';
+import ResetBtn from '../../common/reset-btn';
+import ImageConfig, { IImageConfig } from '../../common/image-config';
+import ResultDisplay from '../../common/result-display';
 
 export default function OriginDataSeriesChart() {
-  const { chartData, handleDraw, resetChartData } = useChartImage(2, '原始数据时序图');
+  const title = '原始数据时序图';
 
-  const chartCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `原始数据时序图`,
-      children: <ImageDisplay images={chartData} />,
-    },
-  ];
+  const { chartData, handleDraw, resetChartData } = useChartImage(2, title);
+
+  const [imageConfig, setImageConfig] = useState<IImageConfig>({
+    x: '季度',
+    y: '营业收入（百万元）',
+    title: '营业收入趋势',
+  });
 
   const handleReset = () => {
     resetChartData();
+    setImageConfig({
+      x: '季度',
+      y: '营业收入（百万元）',
+      title: '营业收入趋势',
+    });
   };
 
   return (
     <div>
       <ResetBtn onClick={handleReset} />
       <div className="border-y py-2">
-        <Button className="mb-2" onClick={handleDraw} type="primary">
+        <ImageConfig config={imageConfig} setConfig={setImageConfig} />
+        <Button className="mb-2" onClick={() => handleDraw(imageConfig)} type="primary">
           绘制
         </Button>
 
         {chartData.length ? (
           <>
-            <Collapse defaultActiveKey="1" items={chartCon} />
+            <ResultDisplay data={chartData} type="image" title={title} />
             <Alert
               className="mt-2"
               type="info"

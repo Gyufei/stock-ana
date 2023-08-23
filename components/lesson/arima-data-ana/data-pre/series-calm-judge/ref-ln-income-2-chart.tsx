@@ -1,20 +1,13 @@
-import { Button, Collapse, CollapseProps } from 'antd';
+import { Button } from 'antd';
 import ResetBtn from '../../../common/reset-btn';
-import ImageDisplay from '../../../common/image-display';
 import CapTitle from '../../../common/cap-title';
 import { ArimaDataAnaCode } from '@/data/code/arima-data-ana';
 import { useChartImage } from '@/lib/hook/use-chart-image';
+import ResultDisplay from '../../../common/result-display';
 
 export default function RelLnIncome2Chart() {
+  const title = '二阶差分（lnIncome_2）的自相关图与偏自相关图';
   const { chartData, handleDraw, resetChartData } = useChartImage(9, '二阶差分（lnIncome_1）的自相关图与偏自相关');
-
-  const chartCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `二阶差分（lnIncome_1）的自相关图与偏自相关`,
-      children: <ImageDisplay images={chartData} />,
-    },
-  ];
 
   const handleReset = () => {
     resetChartData();
@@ -24,15 +17,11 @@ export default function RelLnIncome2Chart() {
     <div>
       <ResetBtn onClick={handleReset} />
       <div className="border-y py-2">
-        <CapTitle className="mb-2" title="二阶差分（lnIncome_2）的自相关图与偏自相关图" code={ArimaDataAnaCode[9]} />
-        <Button className='mb-2' onClick={handleDraw} type="primary">
+        <CapTitle className="mb-2" title={title} code={ArimaDataAnaCode[9]} />
+        <Button className="mb-2" onClick={() => handleDraw()} type="primary">
           绘制
         </Button>
-        {chartData.length ? (
-          <>
-            <Collapse defaultActiveKey="1" items={chartCon} />
-          </>
-        ) : null}
+        {chartData.length ? <ResultDisplay type="image" title={title} data={chartData}></ResultDisplay> : null}
       </div>
     </div>
   );

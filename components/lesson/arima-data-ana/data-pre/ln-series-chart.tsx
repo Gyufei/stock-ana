@@ -1,34 +1,41 @@
-import { Alert, Button, Collapse, CollapseProps } from 'antd';
+import { Alert, Button } from 'antd';
 import ResetBtn from '../../common/reset-btn';
-import ImageDisplay from '../../common/image-display';
 import { useChartImage } from '@/lib/hook/use-chart-image';
+import ResultDisplay from '../../common/result-display';
+import { useState } from 'react';
+import ImageConfig from '../../common/image-config';
 
 export default function LnSeriesChart() {
-  const { chartData, handleDraw, resetChartData } = useChartImage(3, '对数营业收入（lnIncome）的时序图');
+  const title = '对数营业收入（lnIncome）的时序图';
+  const { chartData, handleDraw, resetChartData } = useChartImage(3, title);
 
-  const chartCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `对数营业收入（lnIncome）的时序图`,
-      children: <ImageDisplay images={chartData} />,
-    },
-  ];
+  const [imageConfig, setImageConfig] = useState<IImageConfig>({
+    x: '季度',
+    y: '对数营业收入',
+    title: '对数营业收入趋势',
+  });
 
   const handleReset = () => {
     resetChartData();
+    setImageConfig({
+      x: '季度',
+      y: '对数营业收入',
+      title: '对数营业收入趋势',
+    });
   };
 
   return (
     <div>
       <ResetBtn onClick={handleReset} />
       <div className="border-y py-2">
-        <Button className="mb-2" onClick={handleDraw} type="primary">
+        <ImageConfig config={imageConfig} setConfig={setImageConfig} />
+        <Button className="mb-2" onClick={() => handleDraw()} type="primary">
           绘制
         </Button>
 
         {chartData.length ? (
           <>
-            <Collapse defaultActiveKey="1" items={chartCon} />
+            <ResultDisplay title={title} type="image" data={chartData} />
             <Alert
               className="mt-2"
               type="info"

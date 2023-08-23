@@ -1,11 +1,10 @@
-import { Button, Collapse, CollapseProps, InputNumber } from 'antd';
+import { Button, InputNumber } from 'antd';
 import { useState } from 'react';
 import { ExRandomWalkCode } from '@/data/code/arima';
 import ResetBtn from '../../common/reset-btn';
-import DataDisplay from '../../common/data-display';
 import CapTitle from '../../common/cap-title';
 import LabelText from '../../../share/label-text';
-import ImageDisplay from '../../common/image-display';
+import ResultDisplay from '../../common/result-display';
 
 export default function ExRandomWalk() {
   const [randomNum, setRandomNum] = useState<number | null>(50);
@@ -66,47 +65,6 @@ export default function ExRandomWalk() {
     setRefWalk2(data4);
   };
 
-  const noiseDataCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `噪声序列`,
-      children: (
-        <DataDisplay
-          displayData={[
-            {
-              data: noiseData,
-            },
-          ]}
-        />
-      ),
-    },
-  ];
-
-  const randomWorkCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `${randomNum}个随机游走序列`,
-      children: (
-        <DataDisplay
-          displayData={[
-            { title: '正漂移随机序列', tip: `每一步将噪声序列项累积并加上漂移项${exNum}`, data: randomWalk1 },
-            { title: '负漂移随机序列', tip: `每一步将噪声序列项累积并加上漂移项 -${exNum}`, data: randomWalk2 },
-            { title: '正漂移参考线序列', tip: `初始值为 ${exNum}，等差为${exNum}的数组，用于绘制正序列的漂移参考线`, data: refWalk1 },
-            { title: '负漂移参考线序列', tip: `初始值为 -${exNum}，等差为 -${exNum} 的数组，用于绘制正序列的漂移参考线`, data: refWalk2 },
-          ]}
-        />
-      ),
-    },
-  ];
-
-  const chartCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `带漂移项的随机游走时序图`,
-      children: <ImageDisplay images={chartData} />,
-    },
-  ];
-
   const handleDraw = () => {
     setChartData([
       {
@@ -150,7 +108,15 @@ export default function ExRandomWalk() {
 
         {noiseData.length ? (
           <>
-            <Collapse className="mt-4" defaultActiveKey="1" items={noiseDataCon} />
+            <ResultDisplay
+              type="json"
+              title="噪声序列"
+              data={[
+                {
+                  data: noiseData,
+                },
+              ]}
+            />
             <CapTitle className="my-2" index={2} title="生成带漂移项的随机游走序列和漂移参考线序列 (正负两组)" />
             <LabelText label="漂移项" tip="每一步将累积并偏移漂移项值" className="mx-2" />
             <InputNumber id="exNum" min={0} value={exNum} onChange={(e) => setExNum(e || null)} />
@@ -163,15 +129,28 @@ export default function ExRandomWalk() {
 
         {randomWalk1.length ? (
           <>
-            <Collapse className="mt-4" defaultActiveKey="1" items={randomWorkCon} />
+            <ResultDisplay
+              type="json"
+              title={`${randomNum}个随机游走序列`}
+              data={[
+                { title: '正漂移随机序列', tip: `每一步将噪声序列项累积并加上漂移项${exNum}`, data: randomWalk1 },
+                { title: '负漂移随机序列', tip: `每一步将噪声序列项累积并加上漂移项 -${exNum}`, data: randomWalk2 },
+                { title: '正漂移参考线序列', tip: `初始值为 ${exNum}，等差为${exNum}的数组，用于绘制正序列的漂移参考线`, data: refWalk1 },
+                {
+                  title: '负漂移参考线序列',
+                  tip: `初始值为 -${exNum}，等差为 -${exNum} 的数组，用于绘制正序列的漂移参考线`,
+                  data: refWalk2,
+                },
+              ]}
+            />
             <CapTitle className="my-2" index={3} title="绘制带漂移项的随机游走时序图" code={ExRandomWalkCode[1]} />
-            <Button onClick={handleDraw} type="primary">
+            <Button onClick={() => handleDraw()} type="primary">
               绘制
             </Button>
           </>
         ) : null}
 
-        {chartData.length ? <Collapse className="mt-4" defaultActiveKey="1" items={chartCon} /> : null}
+        {chartData.length ? <ResultDisplay type="image" data={chartData} title="带漂移项的随机游走时序图" /> : null}
       </div>
     </div>
   );

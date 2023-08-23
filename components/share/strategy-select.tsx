@@ -3,7 +3,7 @@ import { Drawer, Select, Typography } from 'antd';
 const { Paragraph } = Typography;
 import useSWR from 'swr';
 
-import fetcher from '@/lib/fetcher';
+import fetcher from '@/lib/http/fetcher';
 
 export default function StrategySelect({
   value,

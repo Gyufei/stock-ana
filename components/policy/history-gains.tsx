@@ -1,5 +1,5 @@
 import { PosMap } from '@/lib/constant';
-import { formatDecimal } from '@/lib/numUtil';
+import { formatDecimal } from '@/lib/utils/numUtil';
 import Table, { ColumnsType } from 'antd/es/table';
 import { useMemo, useState } from 'react';
 

@@ -1,6 +1,6 @@
 import Table, { ColumnsType } from 'antd/es/table';
 import { useMemo, useState } from 'react';
-import { formatDecimal } from '@/lib/numUtil';
+import { formatDecimal } from '@/lib/utils/numUtil';
 import { OpMap } from '@/lib/constant';
 
 // import { DatePicker } from 'antd';

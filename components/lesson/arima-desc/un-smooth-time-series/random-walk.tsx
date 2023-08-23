@@ -1,11 +1,10 @@
-import { Button, Collapse, CollapseProps, InputNumber } from 'antd';
+import { Button, InputNumber } from 'antd';
 import { useState } from 'react';
 import { RandomWalkCode } from '@/data/code/arima';
 import ResetBtn from '../../common/reset-btn';
 import CapTitle from '../../common/cap-title';
 import LabelText from '../../../share/label-text';
-import DataDisplay from '../../common/data-display';
-import ImageDisplay from '../../common/image-display';
+import ResultDisplay from '../../common/result-display';
 
 export default function RandomWalk() {
   const [randomNum, setRandomNum] = useState<number | null>(1000);
@@ -57,44 +56,6 @@ export default function RandomWalk() {
     setRandomWalk2(data2);
   };
 
-  const randomDataCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `${randomNum}个随机数据`,
-      children: (
-        <DataDisplay
-          displayData={[
-            { title: '随机序列1', data: randomData1 },
-            { title: '随机序列2', data: randomData1 },
-          ]}
-        />
-      ),
-    },
-  ];
-
-  const randomWorkCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `${randomNum}个随机游走序列`,
-      children: (
-        <DataDisplay
-          displayData={[
-            { title: '游走序列1', data: randomWalk1 },
-            { title: '游走序列2', data: randomWalk2 },
-          ]}
-        />
-      ),
-    },
-  ];
-
-  const chartCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `随机游走图形`,
-      children: <ImageDisplay images={chartData} />,
-    },
-  ];
-
   const handleDraw = () => {
     setChartData([
       {
@@ -130,7 +91,14 @@ export default function RandomWalk() {
 
         {randomData1.length ? (
           <>
-            <Collapse className="mt-4" defaultActiveKey="1" items={randomDataCon} />
+            <ResultDisplay
+              title={`${randomNum}个随机数据`}
+              type="json"
+              data={[
+                { title: '随机序列1', data: randomData1 },
+                { title: '随机序列2', data: randomData1 },
+              ]}
+            />
             <CapTitle className="my-2" index={2} title="根据随机数列累加生成游走序列(两组)" code={RandomWalkCode[0]} />
 
             <LabelText label="设置第一项起始值" tip="为 0 可以从原点开始" className="mr-2" />
@@ -144,15 +112,22 @@ export default function RandomWalk() {
 
         {randomWalk1.length ? (
           <>
-            <Collapse className="mt-4" defaultActiveKey="1" items={randomWorkCon} />
+            <ResultDisplay
+              title="随机游走图形"
+              type="json"
+              data={[
+                { title: '游走序列1', data: randomWalk1 },
+                { title: '游走序列2', data: randomWalk2 },
+              ]}
+            />
             <CapTitle className="my-2" index={3} title="绘制随机游走图形" code={RandomWalkCode[1]} />
-            <Button onClick={handleDraw} type="primary">
+            <Button onClick={() => handleDraw()} type="primary">
               绘制
             </Button>
           </>
         ) : null}
 
-        {chartData ? <Collapse className="mt-4" defaultActiveKey="1" items={chartCon} /> : null}
+        {chartData?.length ? <ResultDisplay title="随机游走图形" type="image" data={chartData} /> : null}
       </div>
     </div>
   );

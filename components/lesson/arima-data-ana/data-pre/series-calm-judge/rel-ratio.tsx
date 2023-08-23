@@ -1,11 +1,10 @@
-import { Collapse, CollapseProps } from 'antd';
 import { useState } from 'react';
 import ResetBtn from '../../../common/reset-btn';
-import DataDisplay from '../../../common/data-display';
 import TooltipBtn from '../../../common/tooltip-btn';
 import CapTitle from '../../../common/cap-title';
 import { ArimaDataAnaCode } from '@/data/code/arima-data-ana';
-import dataProcessPoster from '@/lib/data-process-poster';
+import dataProcessPoster from '@/lib/http/data-process-poster';
+import ResultDisplay from '@/components/lesson/common/result-display';
 
 export default function RelRatio() {
   const [relData, setRelData] = useState<Record<string, any>>();
@@ -14,27 +13,6 @@ export default function RelRatio() {
     const res = await dataProcessPoster(6);
     setRelData(res);
   };
-
-  const randomDataCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `自相关与偏自相关系数`,
-      children: (
-        <DataDisplay
-          displayData={[
-            {
-              title: 'ACF_lnIncome',
-              data: relData?.ACF_lnIncome || [],
-            },
-            {
-              title: 'PACF_lnIncome',
-              data: relData?.PACF_lnIncome || [],
-            },
-          ]}
-        />
-      ),
-    },
-  ];
 
   const handleReset = () => {
     setRelData([]);
@@ -54,7 +32,22 @@ export default function RelRatio() {
           计算
         </TooltipBtn>
 
-        {relData ? <Collapse className="mt-4" defaultActiveKey="1" items={randomDataCon} /> : null}
+        {relData ? (
+          <ResultDisplay
+            title="自相关与偏自相关系数"
+            type="json"
+            data={[
+              {
+                title: 'ACF_lnIncome',
+                data: relData?.ACF_lnIncome || [],
+              },
+              {
+                title: 'PACF_lnIncome',
+                data: relData?.PACF_lnIncome || [],
+              },
+            ]}
+          />
+        ) : null}
       </div>
     </div>
   );

@@ -4,8 +4,8 @@ import dayjs from 'dayjs';
 import useSWRMutation from 'swr/mutation';
 import { Button, Tabs, DatePicker, Input, InputNumber, Select } from 'antd';
 
-import fetcher from '@/lib/fetcher';
-import { WithHost } from '@/lib/path-map';
+import fetcher from '@/lib/http/fetcher';
+import { WithHost } from '@/lib/http/path-map';
 import { useStrategy } from '@/lib/hook/use-strategy';
 
 import IncomeView from '@/components/policy/income-view';

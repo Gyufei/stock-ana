@@ -7,8 +7,8 @@ import { StockSearchSelect } from '@/components/ai-invest/stock-search-select';
 import { chartOptions } from '@/lib/chart-options/predict';
 import NormalChart from '@/components/share/normal-chart';
 import StrategySelect from '@/components/share/strategy-select';
-import { WithAiHost } from '@/lib/path-map';
-import fetcher from '@/lib/fetcher';
+import { WithAiHost } from '@/lib/http/path-map';
+import fetcher from '@/lib/http/fetcher';
 import StrategyOptions from '@/components/share/strategy-options';
 import { useStrategy } from '@/lib/hook/use-strategy';
 

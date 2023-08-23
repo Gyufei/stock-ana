@@ -9,13 +9,13 @@ import StrategyOptions from '@/components/share/strategy-options';
 
 import { useStrategy } from '@/lib/hook/use-strategy';
 import { useDataToTable } from '@/lib/hook/use-data-to-table';
-import { PathMap } from '@/lib/path-map';
-import fetcher from '@/lib/fetcher';
+import { PathMap } from '@/lib/http/path-map';
+import fetcher from '@/lib/http/fetcher';
 
 import { chartOptions } from '@/lib/chart-options/regression';
 import NormalChart from '@/components/share/normal-chart';
 import CommonField from '@/components/generic/common-field';
-import { toBase64 } from '@/lib/util';
+import { toBase64 } from '@/lib/utils/util';
 
 export default function Classification() {
   const [selectedDataSetId, setSelectedDataSetId] = useState<string>('');

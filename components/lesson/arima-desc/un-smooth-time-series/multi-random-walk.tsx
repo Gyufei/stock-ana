@@ -1,10 +1,10 @@
-import { Button, Collapse, CollapseProps, InputNumber } from 'antd';
+import { Button, InputNumber } from 'antd';
 import { useState } from 'react';
 import ResetBtn from '../../common/reset-btn';
 import CapTitle from '../../common/cap-title';
 import LabelText from '../../../share/label-text';
-import DataDisplay from '../../common/data-display';
-import ImageDisplay from '../../common/image-display';
+
+import ResultDisplay from '../../common/result-display';
 
 export default function MultiRandomWalk() {
   const [times, setTimes] = useState<number | null>(8);
@@ -57,62 +57,6 @@ export default function MultiRandomWalk() {
     setRandomWalk(data);
   };
 
-  const randomDataCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `随机数组`,
-      children: (
-        <DataDisplay
-          displayData={[
-            {
-              data: randomData,
-            },
-          ]}
-        />
-      ),
-    },
-  ];
-
-  const stepDataCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `获取步长之后的随机数组`,
-      children: (
-        <DataDisplay
-          displayData={[
-            {
-              data: stepData,
-            },
-          ]}
-        />
-      ),
-    },
-  ];
-
-  const randomWorkCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `游走序列`,
-      children: (
-        <DataDisplay
-          displayData={[
-            {
-              data: randomWalk,
-            },
-          ]}
-        />
-      ),
-    },
-  ];
-
-  const chartCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `多个随机游走图形`,
-      children: <ImageDisplay images={chartData} />,
-    },
-  ];
-
   const handleDraw = () => {
     setChartData([
       {
@@ -145,7 +89,15 @@ export default function MultiRandomWalk() {
 
         {randomData.length ? (
           <>
-            <Collapse className="mt-4" defaultActiveKey="1" items={randomDataCon} />
+            <ResultDisplay
+              type="json"
+              data={[
+                {
+                  data: randomData,
+                },
+              ]}
+              title="随机数组"
+            />
 
             <CapTitle
               className="my-2"
@@ -162,7 +114,15 @@ export default function MultiRandomWalk() {
 
         {stepData.length ? (
           <>
-            <Collapse className="mt-4" defaultActiveKey="1" items={stepDataCon} />
+            <ResultDisplay
+              type="json"
+              title="获取步长之后的随机数组"
+              data={[
+                {
+                  data: stepData,
+                },
+              ]}
+            />
             <CapTitle className="my-2" index={3} title="累加生成游走序列" tip="对每一次游走的步长进行累积求和" />
             <Button type="primary" onClick={handleGenWalk}>
               生成游走序列
@@ -172,15 +132,24 @@ export default function MultiRandomWalk() {
 
         {randomWalk.length ? (
           <>
-            <Collapse className="mt-4" defaultActiveKey="1" items={randomWorkCon} />
+            <ResultDisplay
+              type="json"
+              title="游走序列"
+              data={[
+                {
+                  data: randomWalk,
+                },
+              ]}
+            />
+
             <CapTitle className="my-2" index={4} title="绘制多个随机游走图形" />
-            <Button onClick={handleDraw} type="primary">
+            <Button onClick={() => handleDraw()} type="primary">
               绘制
             </Button>
           </>
         ) : null}
 
-        {chartData ? <Collapse className="mt-4" defaultActiveKey="1" items={chartCon} /> : null}
+        {chartData?.length ? <ResultDisplay type="image" data={chartData} title="多个随机游走图形" /> : null}
       </div>
     </div>
   );

@@ -1,10 +1,9 @@
-import { Button, Collapse, CollapseProps, InputNumber } from 'antd';
+import { Button, InputNumber } from 'antd';
 import { useState } from 'react';
 import ResetBtn from '../common/reset-btn';
 import CapTitle from '../common/cap-title';
 import LabelText from '../../share/label-text';
-import DataDisplay from '../common/data-display';
-import ImageDisplay from '../common/image-display';
+import ResultDisplay from '../common/result-display';
 
 export default function SmoothTimeSeries() {
   const [randomNum, setRandomNum] = useState<number | null>(1000);
@@ -20,30 +19,6 @@ export default function SmoothTimeSeries() {
     }
     setRandomData(data);
   };
-
-  const randomDataCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `${randomNum}个随机数据`,
-      children: (
-        <DataDisplay
-          displayData={[
-            {
-              data: randomData,
-            },
-          ]}
-        />
-      ),
-    },
-  ];
-
-  const chartCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `白噪声数据的折线图`,
-      children: <ImageDisplay images={chartData} />,
-    },
-  ];
 
   const handleDraw = () => {
     setChartData([
@@ -78,15 +53,23 @@ export default function SmoothTimeSeries() {
 
         {randomData.length > 0 ? (
           <>
-            <Collapse className="mt-4" defaultActiveKey="1" items={randomDataCon} />
+            <ResultDisplay
+              title={`${randomNum}个随机数据`}
+              type="json"
+              data={[
+                {
+                  data: randomData,
+                },
+              ]}
+            />
             <CapTitle className="my-2" index={2} title="绘制白噪声折线图" />
-            <Button onClick={handleDraw} type="primary">
+            <Button onClick={() => handleDraw()} type="primary">
               绘制
             </Button>
           </>
         ) : null}
 
-        {chartData.length ? <Collapse className="mt-4" defaultActiveKey="1" items={chartCon} /> : null}
+        {chartData.length ? <ResultDisplay type="image" data={chartData} title="白噪声数据的折线图" /> : null}
       </div>
     </div>
   );

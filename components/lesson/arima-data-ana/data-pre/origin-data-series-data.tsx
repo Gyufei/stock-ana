@@ -1,16 +1,18 @@
-import { Button, Collapse, CollapseProps, Select, Tooltip } from 'antd';
-import { useContext, useMemo, useState } from 'react';
+import { Button, Select, Tooltip } from 'antd';
+import { useMemo, useState } from 'react';
 import ResetBtn from '../../common/reset-btn';
-import GenDataCon from '../../common/gen-data-con';
-import dataProcessPoster from '@/lib/data-process-poster';
+import dataProcessPoster from '@/lib/http/data-process-poster';
 import LabelText from '@/components/share/label-text';
-import { DataContext } from '..';
-import ErrorCon from '../../common/error-con';
+import ResultDisplay from '../../common/result-display';
+import { useAtomValue } from 'jotai';
+import { originDataAtom } from '../state';
 
 export default function OriginTimeSeriesData() {
-  const { originData } = useContext(DataContext);
+  const title = '日期性序列——季度序列';
 
-  const [timeSeriesData, setTimeSeriesData] = useState<Array<number>>([]);
+  const originData = useAtomValue(originDataAtom);
+
+  const [timeSeriesData, setTimeSeriesData] = useState<Array<any>>([]);
   const [indexType, setIndexType] = useState<string>('');
 
   const [errorText, setErrorText] = useState<string>('');
@@ -51,31 +53,6 @@ export default function OriginTimeSeriesData() {
   const [start, setStart] = useState('2010Q1');
   const [end, setEnd] = useState('2020Q4');
 
-  const randomDataCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `日期性序列——季度序列`,
-      children: (
-        <div>
-          {errorText ? (
-            <ErrorCon errorStr={errorText} />
-          ) : (
-            <>
-              <div className="pb-2 border-b mb-2">
-                <Tooltip className="mr-2" title={`类型应是 <class 'pandas._libs.tslibs.period.Period'>`}>
-                  索引类型
-                  <i className="mx-1 fa-solid fa-circle-info"></i>:
-                </Tooltip>
-                <code>{indexType}</code>
-              </div>
-              <GenDataCon data={timeSeriesData} />
-            </>
-          )}
-        </div>
-      ),
-    },
-  ];
-
   const handleReset = () => {
     setTimeSeriesData([]);
     setErrorText('');
@@ -101,7 +78,29 @@ export default function OriginTimeSeriesData() {
           生成序列
         </Button>
 
-        {timeSeriesData?.length > 0 || errorText ? <Collapse className="mt-4" defaultActiveKey="1" items={randomDataCon} /> : null}
+        {timeSeriesData?.length > 0 || errorText ? (
+          errorText ? (
+            <ResultDisplay
+              type="error"
+              title={title}
+              data={[
+                {
+                  text: errorText,
+                },
+              ]}
+            />
+          ) : (
+            <ResultDisplay type="table" title={title} data={timeSeriesData}>
+              <div className="pb-2 border-b mb-2">
+                <Tooltip className="mr-2" title={`类型应是 <class 'pandas._libs.tslibs.period.Period'>`}>
+                  索引类型
+                  <i className="mx-1 fa-solid fa-circle-info"></i>:
+                </Tooltip>
+                <code>{indexType}</code>
+              </div>
+            </ResultDisplay>
+          )
+        ) : null}
       </div>
     </div>
   );

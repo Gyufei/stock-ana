@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import Highcharts from 'highcharts';
-import dateUtils from '../dateUtil';
+import dateUtils from '../utils/dateUtil';
 
 export const chartOptions: Highcharts.Options = {
   colors: ['#aa4643', '#4572a7', '#89a54e', '#80699b', '#18a5ca'],

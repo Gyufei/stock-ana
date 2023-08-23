@@ -1,13 +1,12 @@
-import { Button, Collapse, CollapseProps, InputNumber } from 'antd';
+import { Button, InputNumber } from 'antd';
 import { useState } from 'react';
 
 import { ArpCode } from '@/data/code/arima';
 import ResetBtn from '../common/reset-btn';
-import ImageDisplay from '../common/image-display';
-import DataDisplay from '../common/data-display';
 import CapTitle from '../common/cap-title';
 import LabelText from '../../share/label-text';
 import TooltipBtn from '../common/tooltip-btn';
+import ResultDisplay from '../common/result-display';
 
 export default function ArpModel() {
   const [randomNum, setRandomNum] = useState<number | null>(1000);
@@ -50,91 +49,6 @@ export default function ArpModel() {
     }
     setAr1Data(data);
   };
-
-  const noiseDataCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `${randomNum}个随机数据`,
-      children: (
-        <DataDisplay
-          displayData={[
-            {
-              title: '随机序列',
-              data: noiseData,
-            },
-            {
-              title: '白噪声序列',
-              data: whiteNoiseData,
-            },
-          ]}
-        />
-      ),
-    },
-  ];
-
-  const ar1DataCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `AR(1)序列`,
-      children: (
-        <DataDisplay
-          displayData={[
-            {
-              data: ar1Data,
-            },
-          ]}
-        />
-      ),
-    },
-  ];
-
-  const ResidualDataCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `残差序列`,
-      children: (
-        <DataDisplay
-          displayData={[
-            {
-              data: residualData,
-            },
-          ]}
-        />
-      ),
-    },
-  ];
-
-  const TimeChartCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `滞后时序图`,
-      children: <ImageDisplay images={timeChartData} />,
-    },
-  ];
-
-  const RelChartCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `自相关与偏自相关图`,
-      children: <ImageDisplay images={relChartData} />,
-    },
-  ];
-
-  const ResidualChartCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `残差`,
-      children: <ImageDisplay images={residualChartData} />,
-    },
-  ];
-
-  const ResidualDisChartCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `残差`,
-      children: <ImageDisplay images={residualDisChartData} />,
-    },
-  ];
 
   const handleTimeDraw1 = () => {
     setTimeChartData((val: Array<string>) => {
@@ -249,7 +163,20 @@ export default function ArpModel() {
 
         {whiteNoiseData.length ? (
           <>
-            <Collapse className="mt-4" defaultActiveKey="1" items={noiseDataCon} />
+            <ResultDisplay
+              type="json"
+              title={`${randomNum}个随机数据`}
+              data={[
+                {
+                  title: '随机序列',
+                  data: noiseData,
+                },
+                {
+                  title: '白噪声序列',
+                  data: whiteNoiseData,
+                },
+              ]}
+            />
             <CapTitle className="my-2" index={2} title="生成AR1序列" tip="生成AR(1)线性序列:y(t)=0.5y(t-1)+ε(t)" code={ArpCode[1]} />
             <Button type="primary" onClick={handleGenAr1}>
               生成AR1序列
@@ -257,7 +184,17 @@ export default function ArpModel() {
           </>
         ) : null}
 
-        {ar1Data.length ? <Collapse className="mt-4" defaultActiveKey="1" items={ar1DataCon} /> : null}
+        {ar1Data.length ? (
+          <ResultDisplay
+            title="AR(1)序列"
+            type="json"
+            data={[
+              {
+                data: ar1Data,
+              },
+            ]}
+          ></ResultDisplay>
+        ) : null}
 
         {ar1Data.length ? (
           <>
@@ -269,7 +206,7 @@ export default function ArpModel() {
               绘制(延迟为i+1)
             </TooltipBtn>
 
-            {timeChartData.length ? <Collapse className="mt-4" defaultActiveKey="1" items={TimeChartCon} /> : null}
+            {timeChartData.length ? <ResultDisplay type="image" title="滞后序列图" data={timeChartData} /> : null}
           </>
         ) : null}
 
@@ -283,7 +220,7 @@ export default function ArpModel() {
               绘制(方法2)
             </TooltipBtn>
 
-            {relChartData.length ? <Collapse className="mt-4" defaultActiveKey="1" items={RelChartCon} /> : null}
+            {relChartData.length ? <ResultDisplay type="image" title="自相关与偏自相关图" data={relChartData} /> : null}
           </>
         ) : null}
 
@@ -293,13 +230,25 @@ export default function ArpModel() {
             <TooltipBtn onClick={handleCalcResidual} type="primary" tip="残差是观测值与预测值之间的差异">
               计算残差
             </TooltipBtn>
-            {residualData.length ? <Collapse className="mt-4" defaultActiveKey="1" items={ResidualDataCon} /> : null}
+
+            {residualData.length ? (
+              <ResultDisplay
+                type="json"
+                title="残差序列"
+                data={[
+                  {
+                    data: residualData,
+                  },
+                ]}
+              />
+            ) : null}
 
             <br />
             <Button className="mt-2" type="primary" onClick={handleResidualDraw}>
               绘制残差
             </Button>
-            {residualChartData.length ? <Collapse className="mt-4" defaultActiveKey="1" items={ResidualChartCon} /> : null}
+
+            {residualChartData.length ? <ResultDisplay type="image" title="残差" data={residualChartData}></ResultDisplay> : null}
           </>
         ) : null}
 
@@ -309,7 +258,7 @@ export default function ArpModel() {
             <Button type="primary" onClick={handleResidualDisDraw}>
               绘制残差分布
             </Button>
-            {residualDisChartData.length ? <Collapse className="mt-4" defaultActiveKey="1" items={ResidualDisChartCon} /> : null}
+            {residualDisChartData.length ? <ResultDisplay type="image" title="残差" data={residualDisChartData}></ResultDisplay> : null}
           </>
         ) : null}
       </div>

@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import { Tree, DatePicker, InputNumber, Select, Tag } from 'antd';
 import type { DataNode, DirectoryTreeProps } from 'antd/es/tree';
 import StockChart from '@/components/share/stock-chart';
-import fetcher from '@/lib/fetcher';
+import fetcher from '@/lib/http/fetcher';
 import { chartOptions } from '@/lib/chart-options/policy-basic';
 import { PosMap } from '@/lib/constant';
 

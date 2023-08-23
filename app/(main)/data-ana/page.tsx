@@ -6,8 +6,8 @@ import type { UploadProps } from 'antd';
 import * as XLSX from 'xlsx';
 import { Radio, Select, Button, message, Upload } from 'antd';
 
-import fetcher from '@/lib/fetcher';
-import { PathMap } from '@/lib/path-map';
+import fetcher from '@/lib/http/fetcher';
+import { PathMap } from '@/lib/http/path-map';
 import useSWRMutation from 'swr/mutation';
 import Grid from '@/components/share/grid';
 

@@ -1,12 +1,11 @@
-import { Button, Collapse, CollapseProps } from 'antd';
+import { Button } from 'antd';
 import { useMemo, useState } from 'react';
 import ResetBtn from '../../../common/reset-btn';
-import DataDisplay from '../../../common/data-display';
 import CapTitle from '../../../common/cap-title';
 import { ArimaDataAnaCode } from '@/data/code/arima-data-ana';
-import dataProcessPoster from '@/lib/data-process-poster';
-import { likeArrayObjToArray } from '@/lib/util';
-import GenDataCon from '@/components/lesson/common/gen-data-con';
+import dataProcessPoster from '@/lib/http/data-process-poster';
+import { likeArrayObjToArray } from '@/lib/utils/util';
+import ResultDisplay from '@/components/lesson/common/result-display';
 
 export default function BoxCheck() {
   const [boxCheckData, setBoxCheck] = useState<Record<string, any>>();
@@ -36,30 +35,6 @@ export default function BoxCheck() {
     return data;
   }, [boxCheckData]);
 
-  const randomDataCon: CollapseProps['items'] = [
-    {
-      key: '1',
-      label: `Ljung-Box检验统计量, acf值, pacf值`,
-      children: (
-        <>
-          <DataDisplay
-            displayData={[
-              {
-                title: 'r',
-                data: likeArrayObjToArray(boxCheckData?.AC),
-              },
-              {
-                title: 'b',
-                data: likeArrayObjToArray(boxCheckData?.PAC),
-              },
-            ]}
-          />
-          <GenDataCon data={tData} />
-        </>
-      ),
-    },
-  ];
-
   const handleReset = () => {
     setBoxCheck([]);
   };
@@ -72,7 +47,8 @@ export default function BoxCheck() {
         <Button className="mb-2" type="primary" onClick={handleGen}>
           计算
         </Button>
-        {boxCheckData ? <Collapse defaultActiveKey="1" items={randomDataCon} /> : null}
+
+        {boxCheckData ? <ResultDisplay type="table" data={tData} title="Ljung-Box检验统计量, acf值, pacf值" /> : null}
       </div>
     </div>
   );

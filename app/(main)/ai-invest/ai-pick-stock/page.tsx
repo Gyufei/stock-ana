@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import { Button, message } from 'antd';
 
-import fetcher from '@/lib/fetcher';
-import { PathMap } from '@/lib/path-map';
+import fetcher from '@/lib/http/fetcher';
+import { PathMap } from '@/lib/http/path-map';
 import useSWRMutation from 'swr/mutation';
 import Grid from '@/components/share/grid';
 import StrategySelect from '@/components/share/strategy-select';
