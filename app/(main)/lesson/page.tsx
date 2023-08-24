@@ -21,16 +21,18 @@ export default function Lesson() {
   };
 
   return (
-    <Card title="课程列表">
-      <Card.Grid onClick={() => handleClick()} style={gridStyle}>
-        基于ARIMA模型的营业收入预测
-      </Card.Grid>
-      <Card.Grid style={gridStyle}>费用核算与管理的实战应用</Card.Grid>
-      <Card.Grid style={gridStyle}>往来核算与管理的实战应用</Card.Grid>
+    <div className="p-3 h-full w-full flex-col">
+      <Card title="课程列表">
+        <Card.Grid onClick={() => handleClick()} style={gridStyle}>
+          基于ARIMA模型的营业收入预测
+        </Card.Grid>
+        <Card.Grid style={gridStyle}>费用核算与管理的实战应用</Card.Grid>
+        <Card.Grid style={gridStyle}>往来核算与管理的实战应用</Card.Grid>
 
-      <Card.Grid style={gridStyle}>成本核算与管理的实战应用</Card.Grid>
-      <Card.Grid style={gridStyle}>全面预算管理的实战应用</Card.Grid>
-      <Card.Grid style={gridStyle}>企业财务综合分析的实战应用</Card.Grid>
-    </Card>
+        <Card.Grid style={gridStyle}>成本核算与管理的实战应用</Card.Grid>
+        <Card.Grid style={gridStyle}>全面预算管理的实战应用</Card.Grid>
+        <Card.Grid style={gridStyle}>企业财务综合分析的实战应用</Card.Grid>
+      </Card>
+    </div>
   );
 }

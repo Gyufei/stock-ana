@@ -394,8 +394,7 @@ def tsplot(y, lags=None, figsize=(16, 10), style='bmh'):
 
 print("自定义时间序列数据时序图、acf、pacf、QQ图、pp图集成输出函数")
   `,
-  `
-  # Simulate an MA(1) process
+  `# Simulate an MA(1) process
 # 导入 scipy 的统计模块，用于执行各种统计计算和分析
 import scipy.stats as scs
 # 设置时间序列的长度为 200
@@ -424,5 +423,23 @@ tsplot(ma1, lags=30)
 plt.savefig("时间序列数据的时序图、ACF、PACF、QQ图和 PP图1.png")
 # 显示绘制的图形
 plt.show()
+  `,
+];
+
+export const BuildModelCode = [
+  `# 对数营业收入（lnIncome）的自相关图与偏自相关图
+  import statsmodels.api as sm
+  fig = plt.figure(figsize=(8, 6))
+  ax1 = fig.add_subplot(211)
+  fig = sm.graphics.tsa.plot_acf(lnIncome.values.squeeze(), lags=20, ax=ax1)
+  ax2 = fig.add_subplot(212)
+  fig = sm.graphics.tsa.plot_pacf(lnIncome, method='ywm',lags=20, ax=ax2)
+  fig.savefig("5.png")`,
+  `# 利用Ljung-Box Q统计量，检验lnIncome序列的自相关性
+import statsmodels.api as sm
+from statsmodels.stats.diagnostic import acorr_ljungbox 
+lag=range(1,15,1)
+print(sm.stats.diagnostic.acorr_ljungbox(lnIncome_1, 
+                    lags=lag,boxpierce=True,return_df=True)) 
   `,
 ];

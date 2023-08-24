@@ -14,6 +14,6 @@ export const PathMap = {
 
   // algo and strategy
   strategyPath: WithAiHost('/strategy'),
-  // lesson arima
-  lessonArimaPreprocessing: WithAiHost('/arima/preprocessing'),
+  // arima
+  lessonArima: WithAiHost('/arima'),
 };

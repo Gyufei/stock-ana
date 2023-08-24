@@ -18,7 +18,7 @@ export default function SideBar() {
   const path = usePathname();
 
   useEffect(() => {
-    const index = routes.findIndex((route) => path.includes(route));
+    const index = routes.findIndex((route) => path.startsWith(route));
     setSelectedKey([String(index + 1)]);
   }, [path]);
 

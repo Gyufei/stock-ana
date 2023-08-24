@@ -5,7 +5,7 @@ import { Radio } from 'antd';
 
 import IncomeChartHeader from './income-chart-header';
 import { chartOptions } from '@/lib/chart-options/income-view';
-import StockChart from '../share/stock-chart';
+import StockChart from '@/components/share/stock-chart';
 import dayjs from 'dayjs';
 
 export default function IncomeView({ tradeData }: any) {

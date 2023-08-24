@@ -1,7 +1,7 @@
 import { Button, Modal } from 'antd';
 import { useAtomValue } from 'jotai';
 import { useCallback, useState } from 'react';
-import { filesAtom } from '../lesson/arima-data-ana/state';
+import { filesAtom } from '../../lib/states/lesson-arima-state';
 
 export function DownloadBtn() {
   const files = useAtomValue(filesAtom);
@@ -18,7 +18,7 @@ export function DownloadBtn() {
 
   return (
     <>
-      <Button size="small" type="default" disabled={!files.length} className="bg-primary w-20 mt-3" onClick={handleClick}>
+      <Button size="small" type="default" disabled={!files.length} className="bg-primary w-20" onClick={handleClick}>
         下载
       </Button>
 

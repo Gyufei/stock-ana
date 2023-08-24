@@ -1,5 +1,5 @@
 import { Select } from 'antd';
-import LabelText from '../share/label-text';
+import LabelText from '@/components/share/label-text';
 
 export default function CommonField({
   options,

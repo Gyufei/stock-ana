@@ -1,7 +1,7 @@
 import { Button, Input, Modal, message } from 'antd';
 import { useSetAtom } from 'jotai';
 import { useCallback, useState } from 'react';
-import { filesAtom } from '../lesson/arima-data-ana/state';
+import { filesAtom } from '../../lib/states/lesson-arima-state';
 
 export function SaveFileBtn({ link, type, defaultVal }: { link: string; type: 'file' | 'image'; defaultVal?: string }) {
   const setFileAtom = useSetAtom(filesAtom);

@@ -6,7 +6,13 @@ export const likeArrayObjToArray = (data: Record<string, any>) => {
   if (!data) return [];
 
   const length = Object.keys(data).length;
-  const arr = Array.from({ ...data, length });
+  const arr = Array.from({
+    ...{
+      '0': data[0] || null,
+      ...data,
+    },
+    length: data[0] ? length : length + 1,
+  });
   return arr;
 };
 
