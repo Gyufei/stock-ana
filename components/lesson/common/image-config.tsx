@@ -7,7 +7,15 @@ export interface IImageConfig {
   title: string;
 }
 
-export default function ImageConfig({ config, setConfig }: { config: IImageConfig; setConfig: (_c: IImageConfig) => void }) {
+export default function ImageConfig({
+  config,
+  setConfig,
+  children,
+}: {
+  config: IImageConfig;
+  setConfig: (_c: IImageConfig) => void;
+  children: React.ReactNode;
+}) {
   return (
     <div className="flex items-center my-2">
       <LabelText className="w-8" label="标题" />
