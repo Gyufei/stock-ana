@@ -9,8 +9,11 @@ import { cloneDeep } from 'lodash';
 import ResultDisplay from '../../common/result-display';
 
 export default function DataPrepare() {
-  const [oData, setOData] = useState<Array<any>>([]);
-  const [displayOData, setDisplayOData] = useState<Array<any>>([]);
+  const reGenCalcOptions = [
+    { value: 100000, label: '十万' },
+    { value: 1000000, label: '百万' },
+    { value: 10000000, label: '千万' },
+  ];
 
   const colOptions = [
     {
@@ -22,6 +25,13 @@ export default function DataPrepare() {
       value: '报表日期',
     },
   ];
+
+  const [oData, setOData] = useState<Array<any>>([]);
+  const [displayOData, setDisplayOData] = useState<Array<any>>([]);
+  const [reGenCol, setReGenCol] = useState<string | null>('营业收入');
+  const [reGenCalcNum, setReGenCalcNum] = useState<number | null>(1000000);
+  const reGenCalcLabel = reGenCalcOptions.find((item) => item.value === reGenCalcNum)?.label;
+  const [reGenData, setReGenData] = useState<Array<any>>([]);
 
   const [indexColName, setIndexColName] = useState(colOptions[1].value);
 
@@ -40,17 +50,6 @@ export default function DataPrepare() {
   };
 
   const reGenColOptions = Object.keys(oData[0] || {}).map((key) => ({ label: key, value: key }));
-  const reGenCalcOptions = [
-    { value: 100000, label: '十万' },
-    { value: 1000000, label: '百万' },
-    { value: 10000000, label: '千万' },
-  ];
-
-  const [reGenCol, setReGenCol] = useState<string | null>('营业收入');
-  const [reGenCalcNum, setReGenCalcNum] = useState<number | null>(1000000);
-  const reGenCalcLabel = reGenCalcOptions.find((item) => item.value === reGenCalcNum)?.label;
-  const [reGenData, setReGenData] = useState<Array<any>>([]);
-
   const handleReGen = async () => {
     if (!reGenCalcNum) return;
 
@@ -70,7 +69,10 @@ export default function DataPrepare() {
 
   const handleReset = () => {
     setOData([]);
+    setDisplayOData([]);
     setReGenData([]);
+    setReGenCol('营业收入');
+    setReGenCalcNum(1000000);
   };
 
   return (

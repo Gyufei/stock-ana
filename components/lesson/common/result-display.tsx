@@ -97,7 +97,7 @@ function ErrorDisplayBase({ errorObj }: { errorObj: Record<string, any> }) {
   return (
     <>
       <div className="text-lg">{errorObj.title || '发生错误!'} </div>
-      <div className="text-red-600">{errorObj.text}</div>
+      <div className="text-red-600">{errorObj.error}</div>
     </>
   );
 }

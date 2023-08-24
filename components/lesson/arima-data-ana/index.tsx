@@ -31,8 +31,8 @@ function ArimaDataAnaBase() {
 
   useEffect(() => {
     async function getOrigin() {
-      const proData = await dataProcessPoster('processed_data');
-      setOriginData(proData);
+      const proData = await dataProcessPoster(1);
+      setOriginData(proData.data || []);
     }
 
     getOrigin();
@@ -40,7 +40,7 @@ function ArimaDataAnaBase() {
 
   return (
     <div className="h-[calc(100vh-120px)]">
-      <div className='flex items-center'>
+      <div className="flex items-center">
         <DownloadBtn />
         <div className="text-sm text-center p-2 flex-1">
           根据给定的数据集

@@ -9,7 +9,7 @@ import ResultDisplay from '../../common/result-display';
 export default function OriginDataSeriesChart() {
   const title = '原始数据时序图';
 
-  const { chartData, handleDraw, resetChartData } = useChartImage(2, title);
+  const { chartData, handleDraw, resetChartData, errorText } = useChartImage(2, title);
 
   const [imageConfig, setImageConfig] = useState<IImageConfig>({
     x: '季度',
@@ -35,7 +35,7 @@ export default function OriginDataSeriesChart() {
           绘制
         </Button>
 
-        {chartData.length ? (
+        {chartData.length && !errorText ? (
           <>
             <ResultDisplay data={chartData} type="image" title={title} />
             <Alert
@@ -53,6 +53,18 @@ export default function OriginDataSeriesChart() {
             />
           </>
         ) : null}
+
+        {errorText && (
+          <ResultDisplay
+            type="error"
+            title={title}
+            data={[
+              {
+                error: errorText,
+              },
+            ]}
+          />
+        )}
       </div>
     </div>
   );

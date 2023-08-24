@@ -15,8 +15,7 @@ export default async function fetcher(input: URL | RequestInfo, init?: RequestIn
     const error = new Error('An error occurred while fetching the data.') as any;
 
     const resBody = await res.text();
-    const errorTip = resBody.length > 100 ? `Failed: An error occurred ${resBody.substring(1, 40)}...` : resBody;
-    error.info = errorTip;
+    error.info = resBody;
     error.status = res.status;
 
     throw error;

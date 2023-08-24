@@ -1,6 +1,10 @@
 import { atom } from 'jotai';
 
 export const originDataAtom = atom<Array<any>>([]);
+export const originColOptionsAtom = atom<Array<any>>((get) => {
+  const originData = get(originDataAtom);
+  return originData.length ? Object.keys(originData[0]).map((key) => ({ label: key, value: key })) : [];
+});
 
 interface IFile {
   name: string;

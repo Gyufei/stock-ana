@@ -6,6 +6,7 @@ import LabelText from '@/components/share/label-text';
 import ResultDisplay from '../../common/result-display';
 import { useAtomValue } from 'jotai';
 import { originDataAtom } from '../state';
+import { useFetchError } from '@/lib/hook/use-fetch-error';
 
 export default function OriginTimeSeriesData() {
   const title = '日期性序列——季度序列';
@@ -15,26 +16,28 @@ export default function OriginTimeSeriesData() {
   const [timeSeriesData, setTimeSeriesData] = useState<Array<any>>([]);
   const [indexType, setIndexType] = useState<string>('');
 
-  const [errorText, setErrorText] = useState<string>('');
+  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
 
-  const handleGen = async () => {
-    setErrorText('');
+  const [freq, setFreq] = useState('Q-JAN');
+  const [start, setStart] = useState('2010Q1');
+  const [end, setEnd] = useState('2020Q4');
 
-    try {
-      const index = freqOptions.find((o) => o.value === freq)?.label;
-      const res = await dataProcessPoster(1, {
-        index,
-        freq,
-        start,
-        end,
-      });
+  const handleGen = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        const index = freqOptions.find((o) => o.value === freq)?.label;
+        const res = await dataProcessPoster(1, {
+          index,
+          freq,
+          start,
+          end,
+        });
 
-      setTimeSeriesData(res.data);
-      setIndexType(res.type);
-    } catch (e: any) {
-      setErrorText(e?.info || '未知错误, 请重置后重试');
-    }
-  };
+        setTimeSeriesData(res.data);
+        setIndexType(res.type);
+      }),
+    [freq, start, end]
+  );
 
   const freqOptions = [
     { label: '日', value: 'D' },
@@ -49,13 +52,9 @@ export default function OriginTimeSeriesData() {
     return dO;
   }, [originData]);
 
-  const [freq, setFreq] = useState('Q-JAN');
-  const [start, setStart] = useState('2010Q1');
-  const [end, setEnd] = useState('2020Q4');
-
   const handleReset = () => {
+    setErrorText(null);
     setTimeSeriesData([]);
-    setErrorText('');
     setFreq('Q-JAN');
     setStart('2010Q1');
     setEnd('2020Q4');
@@ -78,29 +77,29 @@ export default function OriginTimeSeriesData() {
           生成序列
         </Button>
 
-        {timeSeriesData?.length > 0 || errorText ? (
-          errorText ? (
-            <ResultDisplay
-              type="error"
-              title={title}
-              data={[
-                {
-                  text: errorText,
-                },
-              ]}
-            />
-          ) : (
-            <ResultDisplay type="table" title={title} data={timeSeriesData}>
-              <div className="pb-2 border-b mb-2">
-                <Tooltip className="mr-2" title={`类型应是 <class 'pandas._libs.tslibs.period.Period'>`}>
-                  索引类型
-                  <i className="mx-1 fa-solid fa-circle-info"></i>:
-                </Tooltip>
-                <code>{indexType}</code>
-              </div>
-            </ResultDisplay>
-          )
+        {timeSeriesData?.length > 0 && !errorText ? (
+          <ResultDisplay type="table" title={title} data={timeSeriesData}>
+            <div className="pb-2 border-b mb-2">
+              <Tooltip className="mr-2" title={`类型应是 <class 'pandas._libs.tslibs.period.Period'>`}>
+                索引类型
+                <i className="mx-1 fa-solid fa-circle-info"></i>:
+              </Tooltip>
+              <code>{indexType}</code>
+            </div>
+          </ResultDisplay>
         ) : null}
+
+        {errorText && (
+          <ResultDisplay
+            type="error"
+            title={title}
+            data={[
+              {
+                error: errorText,
+              },
+            ]}
+          />
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button, InputNumber, Select } from 'antd';
 import { useMemo, useState } from 'react';
 import ResetBtn from '../../../common/reset-btn';
 import CapTitle from '../../../common/cap-title';
@@ -6,14 +6,35 @@ import { ArimaDataAnaCode } from '@/data/code/arima-data-ana';
 import dataProcessPoster from '@/lib/http/data-process-poster';
 import { likeArrayObjToArray } from '@/lib/utils/util';
 import ResultDisplay from '@/components/lesson/common/result-display';
+import { useAtomValue } from 'jotai';
+import { originColOptionsAtom } from '../../state';
+import LabelText from '@/components/share/label-text';
+import { useFetchError } from '@/lib/hook/use-fetch-error';
 
 export default function BoxCheck() {
+  const originColOptions = useAtomValue(originColOptionsAtom);
+
+  const [rpqData, setRpqData] = useState<Record<string, any>>();
   const [boxCheckData, setBoxCheck] = useState<Record<string, any>>();
 
-  const handleGen = async () => {
-    const res = await dataProcessPoster(7);
-    setBoxCheck(res);
-  };
+  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
+
+  const [reqParams, setReqParams] = useState({
+    lnCol: '营业收入',
+    nflags: 15,
+  });
+
+  const handleGen = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        const res = await dataProcessPoster(7);
+
+        const { r, p, q, data } = res;
+        setRpqData({ r, p, q });
+        setBoxCheck(data);
+      }),
+    [reqParams]
+  );
 
   const tData = useMemo(() => {
     const ac = likeArrayObjToArray(boxCheckData?.AC);
@@ -37,6 +58,11 @@ export default function BoxCheck() {
 
   const handleReset = () => {
     setBoxCheck([]);
+    setErrorText(null);
+    setReqParams({
+      lnCol: '营业收入',
+      nflags: 15,
+    });
   };
 
   return (
@@ -44,11 +70,65 @@ export default function BoxCheck() {
       <ResetBtn onClick={handleReset} />
       <div className="border-y py-2">
         <CapTitle className="mb-2" title="获得Ljung-Box检验统计量" tip="也可获得acf和pacf值" code={ArimaDataAnaCode[7]} />
+        <div className="mb-2">
+          <LabelText className="w-18" label="选取对数列" />
+          <Select
+            style={{ width: 150 }}
+            value={reqParams.lnCol}
+            onChange={(val) => {
+              setReqParams({ ...reqParams, lnCol: val });
+            }}
+            options={originColOptions}
+          />
+          <LabelText className="w-18 ml-4" label="最大滞后阶数" />
+          <InputNumber
+            value={reqParams.nflags}
+            onChange={(e) =>
+              setReqParams({
+                ...reqParams,
+                nflags: e || 0,
+              })
+            }
+          />
+        </div>
         <Button className="mb-2" type="primary" onClick={handleGen}>
           计算
         </Button>
 
-        {boxCheckData ? <ResultDisplay type="table" data={tData} title="Ljung-Box检验统计量, acf值, pacf值" /> : null}
+        {rpqData && !errorText ? (
+          <ResultDisplay
+            type="json"
+            data={[
+              {
+                title: 'r',
+                data: rpqData.r,
+              },
+              {
+                title: 'p',
+                data: rpqData.p,
+              },
+              {
+                title: 'q',
+                data: rpqData.q,
+              },
+            ]}
+            title="Ljung-Box检验统计量 r, p, q"
+          />
+        ) : null}
+
+        {boxCheckData && !errorText ? <ResultDisplay type="table" data={tData} title="Ljung-Box检验统计量: acf值, pacf值" /> : null}
+
+        {errorText && (
+          <ResultDisplay
+            type="error"
+            data={[
+              {
+                error: errorText,
+              },
+            ]}
+            title="Ljung-Box检验统计量"
+          />
+        )}
       </div>
     </div>
   );

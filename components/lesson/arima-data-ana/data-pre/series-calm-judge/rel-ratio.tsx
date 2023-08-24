@@ -1,21 +1,46 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { InputNumber, Select } from 'antd';
+import { useAtomValue } from 'jotai';
+
 import ResetBtn from '../../../common/reset-btn';
 import TooltipBtn from '../../../common/tooltip-btn';
 import CapTitle from '../../../common/cap-title';
 import { ArimaDataAnaCode } from '@/data/code/arima-data-ana';
 import dataProcessPoster from '@/lib/http/data-process-poster';
 import ResultDisplay from '@/components/lesson/common/result-display';
+import { useFetchError } from '@/lib/hook/use-fetch-error';
+import LabelText from '@/components/share/label-text';
+import { originColOptionsAtom } from '../../state';
 
 export default function RelRatio() {
+  const title = '自相关与偏自相关系数';
+  const originColOptions = useAtomValue(originColOptionsAtom);
+
   const [relData, setRelData] = useState<Record<string, any>>();
 
-  const handleGen = async () => {
-    const res = await dataProcessPoster(6);
-    setRelData(res);
-  };
+  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
+
+  const [reqParams, setReqParams] = useState({
+    lnCol: '营业收入',
+    nflags: 15,
+  });
+
+  const handleGen = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        const res = await dataProcessPoster(6, reqParams);
+        setRelData(res);
+      }),
+    [reqParams]
+  );
 
   const handleReset = () => {
     setRelData([]);
+    setErrorText(null);
+    setReqParams({
+      lnCol: '营业收入',
+      nflags: 15,
+    });
   };
 
   return (
@@ -23,6 +48,27 @@ export default function RelRatio() {
       <ResetBtn onClick={handleReset} />
       <div className="border-y py-2">
         <CapTitle className="mb-2" index={1} title="计算自相关与偏自相关系数" code={ArimaDataAnaCode[6]} />
+        <div className="mb-2">
+          <LabelText className="w-18" label="选取对数列" />
+          <Select
+            style={{ width: 150 }}
+            value={reqParams.lnCol}
+            onChange={(val) => {
+              setReqParams({ ...reqParams, lnCol: val });
+            }}
+            options={originColOptions}
+          />
+          <LabelText className="w-18 ml-4" label="最大滞后阶数" />
+          <InputNumber
+            value={reqParams.nflags}
+            onChange={(e) =>
+              setReqParams({
+                ...reqParams,
+                nflags: e || 0,
+              })
+            }
+          />
+        </div>
         <TooltipBtn
           className="mb-2"
           tip="使用时间序列工具包（statsmodels.tsa.stattools）中的acf和pacf函数"
@@ -32,9 +78,9 @@ export default function RelRatio() {
           计算
         </TooltipBtn>
 
-        {relData ? (
+        {relData && !errorText ? (
           <ResultDisplay
-            title="自相关与偏自相关系数"
+            title={title}
             type="json"
             data={[
               {
@@ -48,6 +94,18 @@ export default function RelRatio() {
             ]}
           />
         ) : null}
+
+        {errorText && (
+          <ResultDisplay
+            type="error"
+            title={title}
+            data={[
+              {
+                error: errorText,
+              },
+            ]}
+          />
+        )}
       </div>
     </div>
   );
