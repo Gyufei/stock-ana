@@ -35,7 +35,7 @@ export function DownloadBtn() {
 
                     return (
                       <a href={href} download={file.name + '.png'}>
-                        {file.name}
+                        {`${file.name}.png`}
                       </a>
                     );
                   }

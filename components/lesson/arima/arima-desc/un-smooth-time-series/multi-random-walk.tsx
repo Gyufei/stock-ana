@@ -1,77 +1,69 @@
 import { Button, InputNumber } from 'antd';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
 import LabelText from '@/components/share/label-text';
 
 import ResultDisplay from '@/components/share/result-display';
+import { useFetchError } from '@/lib/hook/use-fetch-error';
+import dataPoster from '@/lib/http/data-process-poster';
 
 export default function MultiRandomWalk() {
-  const [times, setTimes] = useState<number | null>(8);
-  const [step, setSteps] = useState<number | null>(500);
+  const title = '生成随机整数数组';
+  const [nWalks, setNWalks] = useState<number | null>(8);
+  const [nStep, setNSteps] = useState<number | null>(500);
+
+  const [res, setRes] = useState<any>(null);
   const [randomData, setRandomData] = useState<Array<Array<number>>>([]);
   const [stepData, setStepData] = useState<Array<Array<number>>>([]);
   const [randomWalk, setRandomWalk] = useState<Array<Array<number>>>([]);
 
   const [chartData, setChartData] = useState<any[]>([]);
 
-  const handleGen = () => {
-    if (!times || !step) return;
+  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
 
-    const data: Array<Array<number>> = [];
-
-    for (let i = 0; i < times; i++) {
-      const arr: Array<number> = [];
-      for (let j = 0; j < step; j++) {
-        arr.push(Math.random() > 0.5 ? 1 : 0);
-      }
-      data.push(arr);
-    }
-
-    setRandomData(data);
-  };
+  const handleGen = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        const res = await dataPoster('desc/8', {
+          nwalks: nWalks,
+          nsteps: nStep,
+        });
+        setRes(res);
+        setRandomData(res.draws);
+      }),
+    []
+  );
 
   const handleGenStep = () => {
     if (!randomData.length) return;
-
-    const data: Array<Array<number>> = randomData.map((arr) => {
-      return arr.map((item) => {
-        return item > 0 ? 1 : -1;
-      });
-    });
-
-    setStepData(data);
+    setStepData(res.steps);
   };
 
   const handleGenWalk = () => {
     if (!stepData.length) return;
 
-    const data = stepData.map((arr) => {
-      let sum = 0;
-      return arr.map((item) => {
-        sum = sum + item;
-        return sum;
-      });
-    });
-
-    setRandomWalk(data);
+    setRandomWalk(res.walks);
   };
 
   const handleDraw = () => {
+    if (!randomWalk.length) return;
     setChartData([
       {
-        name: '多个随机游走图形',
+        src: res.fig.image,
       },
     ]);
   };
 
   const handleReset = () => {
-    setTimes(8);
-    setSteps(500);
+    setRes(null);
+    setNWalks(8);
+    setNSteps(500);
     setRandomData([]);
     setStepData([]);
     setRandomWalk([]);
     setChartData([]);
+    setErrorText(null);
   };
 
   return (
@@ -80,9 +72,9 @@ export default function MultiRandomWalk() {
       <div className="border-y py-2">
         <CapTitle className="my-2" index={1} title="生成随机整数数组" tip="生成一个大小为[次数, 步数]的随机整数数组，每个元素取值为0或1" />
         <LabelText label="游走次数" />
-        <InputNumber id="randomNum" min={1} value={times} onChange={(e) => setTimes(e || null)} />
+        <InputNumber id="randomNum" min={1} value={nWalks} onChange={(e) => setNWalks(e || null)} />
         <LabelText label="游走步数" className="mx-2" />
-        <InputNumber id="randomNum" min={1} value={step} onChange={(e) => setSteps(e || null)} />
+        <InputNumber id="randomNum" min={1} value={nStep} onChange={(e) => setNSteps(e || null)} />
         <Button type="primary" className="ml-5" onClick={handleGen}>
           生成随机数组
         </Button>
@@ -142,7 +134,7 @@ export default function MultiRandomWalk() {
               ]}
             />
 
-            <CapTitle className="my-2" index={4} title="绘制多个随机游走图形" />
+            <CapTitle className="my-2" index={4} title="绘制多个随机游走图形" tip="遍历每一次游走，将游走序列绘制在图上" />
             <Button onClick={() => handleDraw()} type="primary">
               绘制
             </Button>
@@ -150,6 +142,18 @@ export default function MultiRandomWalk() {
         ) : null}
 
         {chartData?.length ? <ResultDisplay type="image" data={chartData} title="多个随机游走图形" /> : null}
+
+        {errorText && (
+          <ResultDisplay
+            type="error"
+            title={title}
+            data={[
+              {
+                error: errorText,
+              },
+            ]}
+          />
+        )}
       </div>
     </div>
   );

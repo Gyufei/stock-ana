@@ -1,37 +1,52 @@
 import { Button, InputNumber } from 'antd';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
 import LabelText from '@/components/share/label-text';
 import ResultDisplay from '@/components/share/result-display';
+import dataPoster from '@/lib/http/data-process-poster';
+import { useFetchError } from '@/lib/hook/use-fetch-error';
 
 export default function SmoothTimeSeries() {
+  const title = '白噪声数据的折线图';
   const [randomNum, setRandomNum] = useState<number | null>(1000);
   const [randomData, setRandomData] = useState<Array<number>>([]);
   const [chartData, setChartData] = useState<any[]>([]);
 
-  const handleGen = () => {
-    if (!randomNum) return;
+  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
 
-    const data = [];
-    for (let i = 0; i < randomNum; i++) {
-      data.push(Math.floor(Math.random() * 1000));
-    }
-    setRandomData(data);
-  };
+  const handleGen = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        if (!randomNum) return;
 
-  const handleDraw = () => {
-    setChartData([
-      {
-        name: '白噪声数据的折线图',
-      },
-    ]);
-  };
+        const res = await dataPoster('desc/1', {
+          size: randomNum,
+        });
+        setRandomData(res);
+      }),
+    [randomNum]
+  );
+
+  const handleDraw = useMemo(() => 
+    catchErrorWrapper(
+      async () => {
+        const res = await dataPoster('desc/2');
+
+        setChartData([
+          {
+            src: res.image
+          },
+        ]);
+      }
+    ), [randomData]
+  );
 
   const handleReset = () => {
     setRandomNum(1000);
     setRandomData([]);
     setChartData([]);
+    setErrorText(null);
   };
 
   return (
@@ -41,15 +56,27 @@ export default function SmoothTimeSeries() {
         <CapTitle
           className="mb-2"
           index={1}
-          title="白噪声数据的生成"
+          title={title}
           tip="白噪声是一种具有均值为零、方差为一的随机信号，通常用于模拟随机性或噪声"
         />
         <LabelText label="长度" tip="服从标准正态分布的随机数" />
-        <InputNumber id="randomNum" min={100} value={randomNum} onChange={(e) => setRandomNum(e || null)} />
+        <InputNumber id="randomNum" min={1} value={randomNum} onChange={(e) => setRandomNum(e || null)} />
 
         <Button type="primary" className="ml-5 mb-2" onClick={handleGen}>
           生成随机数
         </Button>
+
+        {errorText && (
+          <ResultDisplay
+            type="error"
+            title={title}
+            data={[
+              {
+                error: errorText,
+              },
+            ]}
+          />
+        )}
 
         {randomData.length > 0 ? (
           <>

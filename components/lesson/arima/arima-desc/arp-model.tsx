@@ -1,5 +1,5 @@
 import { Button, InputNumber } from 'antd';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { ArpCode } from '@/data/code/arima';
 import ResetBtn from '@/components/share/reset-btn';
@@ -7,10 +7,12 @@ import CapTitle from '@/components/share/cap-title';
 import LabelText from '@/components/share/label-text';
 import TooltipBtn from '@/components/share/tooltip-btn';
 import ResultDisplay from '@/components/share/result-display';
+import { useFetchError } from '@/lib/hook/use-fetch-error';
+import dataPoster from '@/lib/http/data-process-poster';
 
 export default function ArpModel() {
   const [randomNum, setRandomNum] = useState<number | null>(1000);
-  const [randomSeed, setRandomSeed] = useState<number | null>(5);
+  const [randomSeed, setRandomSeed] = useState<number | null>(12345);
 
   const [noiseData, setNoiseData] = useState<Array<number>>([]);
   const [whiteNoiseData, setWhiteNoiseData] = useState<Array<number>>([]);
@@ -24,116 +26,147 @@ export default function ArpModel() {
   const [residualChartData, setResidualChartData] = useState<any[]>([]);
   const [residualDisChartData, setResidualDisChartData] = useState<any[]>([]);
 
-  const handleGen = () => {
-    if (!randomNum) return;
+  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
 
-    const data1 = [];
-    for (let i = 0; i < randomNum; i++) {
-      data1.push(Math.floor(Math.random() * 1000));
-    }
-    setNoiseData(data1);
+  const handleGen = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        const res = await dataPoster('desc/8', {
+          size: randomNum,
+          seed: randomSeed,
+        });
+        setNoiseData(res.noise);
+        setWhiteNoiseData(res.wnoise);
+      }),
+    [randomNum, randomSeed]
+  );
 
-    const data2 = [];
-    for (let i = 0; i < randomNum; i++) {
-      data2.push(Math.floor(Math.random() * 1000));
-    }
-    setWhiteNoiseData(data2);
-  };
+  const handleGenAr1 = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        const res = await dataPoster('desc/9', {
+          size: randomNum,
+        });
+        setAr1Data(res);
+      }),
+    [randomNum]
+  );
 
-  const handleGenAr1 = () => {
-    if (!randomNum || !whiteNoiseData.length) return;
+  const handleTimeDraw1 = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        const res = await dataPoster('desc/10');
 
-    const data = [];
-    for (let i = 0; i < randomNum; i++) {
-      data.push(Math.floor(Math.random() * 1000));
-    }
-    setAr1Data(data);
-  };
+        setTimeChartData((val: Array<string>) => {
+          const newImg = {
+            title: '时间序列的滞后图(延迟为1)',
+            tip: '延迟为1的时间序列图，即前一个时间步之间的散点图',
+            src: res.image,
+          };
 
-  const handleTimeDraw1 = () => {
-    setTimeChartData((val: Array<string>) => {
-      const newImg = {
-        title: '时间序列的滞后图(延迟为1)',
-        name: '时间序列的滞后图',
-        tip: '延迟为1的时间序列图，即前一个时间步之间的散点图',
-      };
+          const newVal = val.filter((item: any) => item.title !== newImg.title);
+          return [...newVal, newImg];
+        });
+      }),
+    []
+  );
 
-      const newVal = val.filter((item: any) => item.name !== newImg.name);
-      return [...newVal, newImg];
-    });
-  };
+  const handleTimeDraw2 = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        const res = await dataPoster('desc/11');
 
-  const handleTimeDraw2 = () => {
-    setTimeChartData((val: Array<any>) => {
-      const newImg = {
-        title: '时间序列的滞后图(延迟为i + 1)',
-        name: '不同滞后阶数的时间序列滞后图',
-        tip: '第i个子图上绘制延迟为i+1的时间序列滞后图',
-      };
+        setTimeChartData((val: Array<string>) => {
+          const newImg = {
+            title: '时间序列的滞后图(延迟为i + 1)',
+            tip: '第i个子图上绘制延迟为i+1的时间序列滞后图',
+            src: res.image,
+          };
 
-      const newVal = val.filter((item: any) => item.name !== newImg.name);
-      return [...newVal, newImg];
-    });
-  };
+          const newVal = val.filter((item: any) => item.title !== newImg.title);
+          return [...newVal, newImg];
+        });
+      }),
+    []
+  );
 
-  const handleRelDraw1 = () => {
-    setRelChartData((val: Array<string>) => {
-      const newImg = {
-        title: '时间序列的自相关图',
-        name: '时间序列的自相关图',
-        tip: '自相关图，用于展示时间序列数据之间的自相关性, 横轴是滞后阶数，纵轴是自相关系数',
-      };
+  const handleRelDraw1 = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        const res = await dataPoster('desc/12');
 
-      const newVal = val.filter((item: any) => item.name !== newImg.name);
-      return [...newVal, newImg];
-    });
-  };
+        setRelChartData((val: Array<string>) => {
+          const newImg = {
+            title: '时间序列的自相关图',
+            tip: '自相关图，用于展示时间序列数据之间的自相关性, 横轴是滞后阶数，纵轴是自相关系数',
+            src: res.image,
+          };
 
-  const handleRelDraw2 = () => {
-    setRelChartData((val: Array<any>) => {
-      const newImg = {
-        title: '时间序列的自相关图和偏自相关图',
-        name: '时间序列的自相关图和偏自相关图',
-      };
+          const newVal = val.filter((item: any) => item.title !== newImg.title);
+          return [...newVal, newImg];
+        });
+      }),
+    []
+  );
 
-      const newVal = val.filter((item: any) => item.name !== newImg.name);
-      return [...newVal, newImg];
-    });
-  };
+  const handleRelDraw2 = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        const res = await dataPoster('desc/13');
 
-  const handleCalcResidual = () => {
-    if (!ar1Data.length || !randomNum) return;
+        setRelChartData((val: Array<string>) => {
+          const newImg = {
+            title: '时间序列的自相关图和偏自相关图',
+            src: res.image,
+          };
 
-    const data = [];
-    for (let i = 0; i < randomNum; i++) {
-      data.push(Math.floor(Math.random() * 1000));
-    }
-    setResidualData(data);
-  };
+          const newVal = val.filter((item: any) => item.title !== newImg.title);
+          return [...newVal, newImg];
+        });
+      }),
+    []
+  );
 
-  const handleResidualDraw = () => {
-    setResidualChartData((val: Array<any>) => {
-      const newImg = {
-        // title: 'AR模型的预测值和残差',
-        name: 'AR模型的预测值和残差',
-      };
+  const handleCalcResidual = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        const res = await dataPoster('desc/14');
+        setResidualData(res);
+      }),
+    [randomNum, randomSeed]
+  )
 
-      const newVal = val.filter((item: any) => item.name !== newImg.name);
-      return [...newVal, newImg];
-    });
-  };
+  const handleResidualDraw = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        const res = await dataPoster('desc/15');
 
-  const handleResidualDisDraw = () => {
-    setResidualDisChartData((val: Array<any>) => {
-      const newImg = {
-        // title: 'AR模型的预测值和残差',
-        name: '残差分布图',
-      };
+        setResidualChartData((val: Array<any>) => {
+          const newImg = {
+            title: 'AR模型的预测值和残差',
+            src: res.image
+          };
 
-      const newVal = val.filter((item: any) => item.name !== newImg.name);
-      return [...newVal, newImg];
-    });
-  };
+          const newVal = val.filter((item: any) => item.title !== newImg.title);
+          return [...newVal, newImg];
+        });
+      }),
+    []
+  )
+
+  const handleResidualDisDraw = useMemo(() => {
+    catchErrorWrapper(async () => {
+      setResidualDisChartData((val: Array<any>) => {
+        const newImg = {
+          // title: 'AR模型的预测值和残差',
+          name: '残差分布图',
+        };
+
+        const newVal = val.filter((item: any) => item.name !== newImg.name);
+        return [...newVal, newImg];
+      });
+    })
+  }, []);
 
   const handleReset = () => {
     setRandomNum(100);
@@ -146,6 +179,7 @@ export default function ArpModel() {
     setRelChartData([]);
     setResidualChartData([]);
     setResidualDisChartData([]);
+    setErrorText(null);
   };
 
   return (
@@ -173,6 +207,7 @@ export default function ArpModel() {
                 },
                 {
                   title: '白噪声序列',
+                  tip: '对随机数进行白噪声化处理，将其标准化为均值为 0，标准差为 1 的白噪声数组',
                   data: whiteNoiseData,
                 },
               ]}
@@ -261,6 +296,18 @@ export default function ArpModel() {
             {residualDisChartData.length ? <ResultDisplay type="image" title="残差" data={residualDisChartData}></ResultDisplay> : null}
           </>
         ) : null}
+
+        {errorText && (
+          <ResultDisplay
+            type="error"
+            title="AR(1)模型拟合"
+            data={[
+              {
+                error: errorText,
+              },
+            ]}
+          />
+        )}
       </div>
     </div>
   );

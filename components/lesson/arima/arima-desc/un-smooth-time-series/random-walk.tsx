@@ -1,85 +1,62 @@
 import { Button, InputNumber } from 'antd';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { RandomWalkCode } from '@/data/code/arima';
 import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
 import LabelText from '@/components/share/label-text';
 import ResultDisplay from '@/components/share/result-display';
+import dataPoster from '@/lib/http/data-process-poster';
+import { useFetchError } from '@/lib/hook/use-fetch-error';
 
 export default function RandomWalk() {
+  const title = '生成随机数列(两组)';
   const [randomNum, setRandomNum] = useState<number | null>(1000);
   const [randomData1, setRandomData1] = useState<Array<number>>([]);
   const [randomData2, setRandomData2] = useState<Array<number>>([]);
   const [randomSeed, setRandomSeed] = useState<number | null>(5);
 
-  const [randomWalk1, setRandomWalk1] = useState<Array<number>>([]);
-  const [randomWalk2, setRandomWalk2] = useState<Array<number>>([]);
-
   const [chartData, setChartData] = useState<any[]>([]);
-  const [beginNum, setBeginNum] = useState<number | null>(0);
 
-  const handleGen = () => {
-    if (!randomNum) return;
+  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
 
-    const data1 = [];
-    for (let i = 0; i < randomNum; i++) {
-      data1.push(Math.floor(Math.random() * 1000));
-    }
-    setRandomData1(data1);
+  const handleGen = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        if (!randomNum) return;
 
-    const data2 = [];
-    for (let i = 0; i < randomNum; i++) {
-      data2.push(Math.floor(Math.random() * 1000));
-    }
-    setRandomData2(data2);
-  };
+        const res = await dataPoster('desc/3', {
+          size: randomNum,
+          seed: randomSeed,
+        });
+        setRandomData1(res[0]);
+        setRandomData2(res[1]);
+      }),
+    [randomNum, randomSeed]
+  );
 
-  const handleGenWalk = () => {
-    if (!randomData1.length) return;
-
-    const data1: Array<number> = [];
-    let sum = 0;
-    randomData1.forEach((item) => {
-      sum += item;
-      data1.push(sum);
-    });
-    data1[0] = beginNum || 0;
-    setRandomWalk1(data1);
-
-    const data2: Array<number> = [];
-    randomData2.forEach((item) => {
-      sum += item;
-      data2.push(sum);
-    });
-
-    data2[0] = beginNum || 0;
-    setRandomWalk2(data2);
-  };
-
-  const handleDraw = () => {
+  const handleDraw = catchErrorWrapper(async () => {
+    const res = await dataPoster('desc/4');
     setChartData([
       {
-        name: '随机游走图形',
+        src: res.image
       },
     ]);
-  };
+  });
 
   const handleReset = () => {
     setRandomData1([]);
     setRandomData2([]);
-    setRandomWalk1([]);
-    setRandomWalk2([]);
     setChartData([]);
     setRandomNum(1000);
     setRandomSeed(5);
-    setBeginNum(0);
+    setErrorText(null);
   };
 
   return (
     <div>
       <ResetBtn onClick={handleReset} />
       <div className="border-y py-2">
-        <CapTitle className="mb-2" index={1} title="生成随机数列(两组)" code={RandomWalkCode[0]} />
+        <CapTitle className="mb-2" index={1} title="根据随机数列累加生成游走序列(两组)" code={RandomWalkCode[0]} />
         <LabelText label="长度" className="mr-2" />
         <InputNumber id="randomNum" min={100} value={randomNum} onChange={(e) => setRandomNum(e || null)} />
 
@@ -96,28 +73,7 @@ export default function RandomWalk() {
               type="json"
               data={[
                 { title: '随机序列1', data: randomData1 },
-                { title: '随机序列2', data: randomData1 },
-              ]}
-            />
-            <CapTitle className="my-2" index={2} title="根据随机数列累加生成游走序列(两组)" code={RandomWalkCode[0]} />
-
-            <LabelText label="设置第一项起始值" tip="为 0 可以从原点开始" className="mr-2" />
-            <InputNumber id="beginNum" min={0} value={beginNum} onChange={(e) => setBeginNum(e || null)} />
-
-            <Button type="primary" className="ml-5" onClick={handleGenWalk}>
-              累加生成游走序列
-            </Button>
-          </>
-        ) : null}
-
-        {randomWalk1.length ? (
-          <>
-            <ResultDisplay
-              title="随机游走图形"
-              type="json"
-              data={[
-                { title: '游走序列1', data: randomWalk1 },
-                { title: '游走序列2', data: randomWalk2 },
+                { title: '随机序列2', data: randomData2 },
               ]}
             />
             <CapTitle className="my-2" index={3} title="绘制随机游走图形" code={RandomWalkCode[1]} />
@@ -126,6 +82,18 @@ export default function RandomWalk() {
             </Button>
           </>
         ) : null}
+
+        {errorText && (
+          <ResultDisplay
+            type="error"
+            title={title}
+            data={[
+              {
+                error: errorText,
+              },
+            ]}
+          />
+        )}
 
         {chartData?.length ? <ResultDisplay title="随机游走图形" type="image" data={chartData} /> : null}
       </div>
