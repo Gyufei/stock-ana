@@ -426,6 +426,78 @@ plt.show()
   `,
 ];
 
+export const ArmaModelCode = [
+  `
+  # 导入 NumPy 数学库，用于数组操作和数值计算
+import numpy as np
+# 导入 statsmodels 核心模块，用于拟合和分析统计模型
+import statsmodels.api as sm
+# 导入 pandas 数据处理库，用于数据操作和处理
+import pandas as pd
+# 从 statsmodels.tsa.arima_process 导入生成 ARMA 模型时间序列数据的函数
+from statsmodels.tsa.arima_process import arma_generate_sample # 调取arima模型数据产生过程函数
+# 从 statsmodels.tsa.arima.model 导入 ARIMA 模型类
+from statsmodels.tsa.arima.model import ARIMA
+
+# 设置随机种子
+np.random.seed(12345) 
+
+# 模拟ARMA模型
+arparams = np.array([.75, -.25]) # 设置 AR(2) 模型的自回归系数参数
+maparams = np.array([.65, .35])  # 设置 MA(2) 模型的移动平均系数参数
+
+arparams = np.r_[1, -arparams]   # 将 AR(2) 参数转换为 ARMA 模型的参数
+maparams = np.r_[1, maparams]    # 将 MA(2) 参数转换为 ARMA 模型的参数
+# 设置生成的时间序列的长度
+nobs = 510
+# 使用设置的参数产生 ARMA 时间序列数据
+y = arma_generate_sample(arparams, maparams, nobs)
+print("已产生ARMA 时间序列数据")
+  `,
+  `
+  # 使用statsmodels库日期范围字符串创建1980年1月到当前的日期序列,长度为 nobs（设定的时间序列长度）,并指定频率为月度（'M'）
+# dates = sm.tsa.datetools.dates_from_range('1980m1', length = nobs) #产生月份序列
+# 使用 pd.date_range 创建日期序列，指定频率为月度（'M'）
+dates = pd.date_range(start='1980-01-01', periods=nobs, freq='M')
+
+# 使用生成的时间序列数据 'y' 创建 pandas Series，以日期序列 'dates' 作为索引
+y = pd.Series(y, index=dates)
+# 创建 ARMA 模型对象，指定ARMA(p, q)的阶数 (2, 0, 2) ，不包含趋势项
+arma_mod = ARIMA(y, order=(2,0,2),trend='n') #arma模型实例化
+# 对 ARMA 模型进行拟合，获取拟合结果对象
+arma_res = arma_mod.fit() #获得arma模型拟合值
+# 打印 ARMA 模型拟合结果的摘要信息
+print(arma_res.summary()) # 输出arma模型结果
+  `,
+  `
+  # 导入绘图库 matplotlib
+import matplotlib.pyplot as plt
+# 从 statsmodels.graphics.tsaplots 导入绘制预测图的函数
+from statsmodels.graphics.tsaplots import plot_predict
+
+# 创建一个图形和坐标轴对象，设置图形的尺寸为 10x8 英寸
+fig, ax = plt.subplots(figsize=(10, 8)) # 设置绘图区大小
+# 使用 ARMA 模型的拟合结果 'arma_res'，绘制预测图
+# 设置预测的起始日期为 "2019-06-30"，终止日期为 "2022-10-31"，并在指定的坐标轴上绘制图形
+fig = plot_predict(arma_res, start="2019-06-30", end="2022-10-31", ax=ax) # 绘制某段时期的拟合数据时序图
+# 设置图例在左上角
+legend = ax.legend(loc="upper left")
+
+# 保存图片
+plt.savefig("预测图.png")
+# 显示绘制的图形
+plt.show()
+  `,
+  `
+  # 使用自定义函数绘制时间序列数据的时序图、ACF、PACF、QQ 图和 PP 图, 计算 ACF 和 PACF 时将考虑最多 30 个滞后值。
+tsplot(y, lags=30)
+# 保存图片
+plt.savefig("时间序列数据的时序图、ACF、PACF、QQ图和PP图2.png")
+# 显示绘制的图形
+plt.show()
+  `,
+];
+
 export const BuildModelCode = [
   `# 对数营业收入（lnIncome）的自相关图与偏自相关图
   import statsmodels.api as sm

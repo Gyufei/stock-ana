@@ -134,7 +134,7 @@ export default function ArpModel() {
         setResidualData(res);
       }),
     [randomNum, randomSeed]
-  )
+  );
 
   const handleResidualDraw = useMemo(
     () =>
@@ -144,6 +144,24 @@ export default function ArpModel() {
         setResidualChartData((val: Array<any>) => {
           const newImg = {
             title: 'AR模型的预测值和残差',
+            src: res.image,
+          };
+
+          const newVal = val.filter((item: any) => item.title !== newImg.title);
+          return [...newVal, newImg];
+        });
+      }),
+    []
+  );
+
+  const handleResidualDisDraw = useMemo(
+    () =>
+      catchErrorWrapper(async () => {
+        const res = await dataPoster('desc/16');
+
+        setResidualDisChartData((val: Array<any>) => {
+          const newImg = {
+            title: '残差分布图',
             src: res.image
           };
 
@@ -152,21 +170,7 @@ export default function ArpModel() {
         });
       }),
     []
-  )
-
-  const handleResidualDisDraw = useMemo(() => {
-    catchErrorWrapper(async () => {
-      setResidualDisChartData((val: Array<any>) => {
-        const newImg = {
-          // title: 'AR模型的预测值和残差',
-          name: '残差分布图',
-        };
-
-        const newVal = val.filter((item: any) => item.name !== newImg.name);
-        return [...newVal, newImg];
-      });
-    })
-  }, []);
+  );
 
   const handleReset = () => {
     setRandomNum(100);
@@ -290,7 +294,7 @@ export default function ArpModel() {
         {ar1Data.length ? (
           <>
             <CapTitle className="my-2" index={6} title="查看残差分布" code={ArpCode[8]} />
-            <Button type="primary" onClick={handleResidualDisDraw}>
+            <Button type="primary" onClick={() => handleResidualDisDraw()}>
               绘制残差分布
             </Button>
             {residualDisChartData.length ? <ResultDisplay type="image" title="残差" data={residualDisChartData}></ResultDisplay> : null}

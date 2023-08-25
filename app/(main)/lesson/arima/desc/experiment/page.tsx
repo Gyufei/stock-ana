@@ -12,6 +12,7 @@ import MaModel from '@/components/lesson/arima/arima-desc/ma-model';
 
 import { SmoothTimeSeriesCode } from '@/data/code/arima';
 import { DownloadBtn } from '@/components/share/download-btn';
+import ArmaModel from '@/components/lesson/arima/arima-desc/arma-model';
 
 export default function ArimaDesc() {
   const items: CollapseProps['items'] = [
@@ -34,6 +35,11 @@ export default function ArimaDesc() {
       key: '4',
       label: <CapTitle className="text-lime-900" title="模拟MA(q)模型" tip="模拟一个MA(1)过程：y(t)=α+ε(t)+β1*ε(t-1) α=0 β1=0.6" />,
       children: <MaModel />,
+    },
+    {
+      key: '5',
+      label: <CapTitle className="text-lime-900" title="模拟ARMA模型" tip="模拟ARMA(2,2)过程" />,
+      children: <ArmaModel />,
     },
   ];
 
