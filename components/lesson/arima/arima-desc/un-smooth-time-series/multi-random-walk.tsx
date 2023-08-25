@@ -1,10 +1,11 @@
 import {Button, InputNumber} from 'antd';
 import {useMemo, useState} from 'react';
+
 import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
 import LabelText from '@/components/share/label-text';
-
 import ResultDisplay from '@/components/share/result-display';
+
 import {useFetchError} from '@/lib/hook/use-fetch-error';
 import dataPoster from '@/lib/http/data-process-poster';
 
