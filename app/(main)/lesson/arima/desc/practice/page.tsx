@@ -11,7 +11,7 @@ import ArpModel from '@/components/lesson/arima/arima-desc/arp-model';
 import MaModel from '@/components/lesson/arima/arima-desc/ma-model';
 
 import { SmoothTimeSeriesCode } from '@/data/code/arima';
-import { DownloadBtn } from '@/components/share/download-btn';
+import CommonBtn from '@/components/share/common-btn-group';
 
 export default function ArimaDesc() {
   const items: CollapseProps['items'] = [
@@ -39,9 +39,9 @@ export default function ArimaDesc() {
 
   return (
     <div className="h-screen p-4">
-      <div className="flex items-center justify-between">
-        <div className="text-gray-600 text-lg mb-4">ARIMA模型介绍-课堂练习</div>
-        <DownloadBtn />
+      <div className="flex items-center justify-between mb-2">
+        <div className="text-gray-600 text-lg">ARIMA模型介绍-课堂练习</div>
+        <CommonBtn />
       </div>
       <Collapse defaultActiveKey="1" accordion items={items} />
     </div>

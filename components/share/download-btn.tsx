@@ -18,7 +18,7 @@ export function DownloadBtn() {
 
   return (
     <>
-      <Button size="small" type="default" disabled={!files.length} className="bg-primary w-20" onClick={handleClick}>
+      <Button size="middle" type="default" disabled={!files.length} className="bg-primary w-20" onClick={handleClick}>
         下载
       </Button>
 
