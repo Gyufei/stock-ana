@@ -5,29 +5,29 @@ import { MaCode } from '@/data/code/arima';
 import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
 import ResultDisplay from '@/components/share/result-display';
-import dataPoster from '@/lib/http/data-process-poster';
+import { useLessonPoster } from '@/lib/http/lesson-poster';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
 import LabelText from '@/components/share/label-text';
 
 export default function ArpModel() {
+  const { lessonPoster } = useLessonPoster();
   const [chartData, setChartData] = useState<any[]>([]);
   const [timeSNum, setTimeSNum] = useState<number | null>(200);
 
   const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
-  
 
   const handleDraw = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/17', {
-          size: timeSNum
+        const res = await lessonPoster('desc/17', {
+          size: timeSNum,
         });
 
         setChartData((val: Array<any>) => {
           const newImg = {
             // title: 'AR模型的预测值和残差',
             name: '残差分布图',
-            src: res.image
+            src: res.image,
           };
 
           const newVal = val.filter((item: any) => item.name !== newImg.name);
@@ -39,7 +39,7 @@ export default function ArpModel() {
 
   const handleReset = () => {
     setChartData([]);
-    setErrorText(null)
+    setErrorText(null);
   };
 
   return (

@@ -6,13 +6,14 @@ import ResetBtn from '@/components/share/reset-btn';
 import TooltipBtn from '@/components/share/tooltip-btn';
 import CapTitle from '@/components/share/cap-title';
 import { ArimaDataAnaCode } from '@/data/code/arima-data-ana';
-import dataPoster from '@/lib/http/data-process-poster';
+import { useLessonPoster } from '@/lib/http/lesson-poster';
 import ResultDisplay from '@/components/share/result-display';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
 import LabelText from '@/components/share/label-text';
 import { originColOptionsAtom } from '@/lib/states/lesson-arima-state';
 
 export default function RelRatio() {
+  const { lessonPoster } = useLessonPoster();
   const title = '自相关与偏自相关系数';
   const originColOptions = useAtomValue(originColOptionsAtom);
 
@@ -28,7 +29,7 @@ export default function RelRatio() {
   const handleGen = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('preprocessing/6', reqParams);
+        const res = await lessonPoster('preprocessing/6', reqParams);
         setRelData(res);
       }),
     [reqParams]

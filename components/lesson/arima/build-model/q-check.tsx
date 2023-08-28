@@ -4,7 +4,7 @@ import { InputNumber } from 'antd';
 import ResetBtn from '@/components/share/reset-btn';
 import TooltipBtn from '@/components/share/tooltip-btn';
 import CapTitle from '@/components/share/cap-title';
-import dataPoster from '@/lib/http/data-process-poster';
+import { useLessonPoster } from '@/lib/http/lesson-poster';
 import ResultDisplay from '@/components/share/result-display';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
 import LabelText from '@/components/share/label-text';
@@ -12,6 +12,7 @@ import { BuildModelCode } from '@/data/code/arima';
 import { likeArrayObjToArray } from '@/lib/utils/util';
 
 export default function QCheck() {
+  const { lessonPoster } = useLessonPoster();
   const title = 'Q统计量检验';
 
   const [qResData, setRelData] = useState<any>();
@@ -27,7 +28,7 @@ export default function QCheck() {
   const handleGen = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('buildModel/2', reqParams);
+        const res = await lessonPoster('buildModel/2', reqParams);
         const resParsed = JSON.parse(res);
         setRelData(resParsed);
       }),

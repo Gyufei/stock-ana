@@ -13,8 +13,13 @@ import MaModel from '@/components/lesson/arima/arima-desc/ma-model';
 import { SmoothTimeSeriesCode } from '@/data/code/arima';
 import ArmaModel from '@/components/lesson/arima/arima-desc/arma-model';
 import CommonBtn from '@/components/share/common-btn-group';
+import { useLessonId } from '@/lib/hook/use-lesson-id';
+import { useLessonFiles } from '@/lib/hook/use-lesson-files';
 
 export default function ArimaDesc() {
+  useLessonId(1, 2);
+  useLessonFiles([]);
+
   const items: CollapseProps['items'] = [
     {
       key: '1',

@@ -8,9 +8,10 @@ import LabelText from '@/components/share/label-text';
 import TooltipBtn from '@/components/share/tooltip-btn';
 import ResultDisplay from '@/components/share/result-display';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
-import dataPoster from '@/lib/http/data-process-poster';
+import { useLessonPoster } from '@/lib/http/lesson-poster';
 
 export default function ArpModel() {
+  const { lessonPoster } = useLessonPoster();
   const [randomNum, setRandomNum] = useState<number | null>(1000);
   const [randomSeed, setRandomSeed] = useState<number | null>(12345);
 
@@ -31,7 +32,7 @@ export default function ArpModel() {
   const handleGen = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/8', {
+        const res = await lessonPoster('desc/8', {
           size: randomNum,
           seed: randomSeed,
         });
@@ -44,7 +45,7 @@ export default function ArpModel() {
   const handleGenAr1 = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/9', {
+        const res = await lessonPoster('desc/9', {
           size: randomNum,
         });
         setAr1Data(res);
@@ -55,7 +56,7 @@ export default function ArpModel() {
   const handleTimeDraw1 = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/10');
+        const res = await lessonPoster('desc/10');
 
         setTimeChartData((val: Array<string>) => {
           const newImg = {
@@ -74,7 +75,7 @@ export default function ArpModel() {
   const handleTimeDraw2 = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/11');
+        const res = await lessonPoster('desc/11');
 
         setTimeChartData((val: Array<string>) => {
           const newImg = {
@@ -93,7 +94,7 @@ export default function ArpModel() {
   const handleRelDraw1 = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/12');
+        const res = await lessonPoster('desc/12');
 
         setRelChartData((val: Array<string>) => {
           const newImg = {
@@ -112,7 +113,7 @@ export default function ArpModel() {
   const handleRelDraw2 = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/13');
+        const res = await lessonPoster('desc/13');
 
         setRelChartData((val: Array<string>) => {
           const newImg = {
@@ -130,7 +131,7 @@ export default function ArpModel() {
   const handleCalcResidual = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/14');
+        const res = await lessonPoster('desc/14');
         setResidualData(res);
       }),
     [randomNum, randomSeed]
@@ -139,7 +140,7 @@ export default function ArpModel() {
   const handleResidualDraw = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/15');
+        const res = await lessonPoster('desc/15');
 
         setResidualChartData((val: Array<any>) => {
           const newImg = {
@@ -157,12 +158,12 @@ export default function ArpModel() {
   const handleResidualDisDraw = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/16');
+        const res = await lessonPoster('desc/16');
 
         setResidualDisChartData((val: Array<any>) => {
           const newImg = {
             title: '残差分布图',
-            src: res.image
+            src: res.image,
           };
 
           const newVal = val.filter((item: any) => item.title !== newImg.title);

@@ -5,10 +5,11 @@ import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
 import LabelText from '@/components/share/label-text';
 import ResultDisplay from '@/components/share/result-display';
-import dataPoster from '@/lib/http/data-process-poster';
+import { useLessonPoster } from '@/lib/http/lesson-poster';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
 
 export default function ExRandomWalk() {
+  const { lessonPoster } = useLessonPoster();
   const [randomNum, setRandomNum] = useState<number | null>(50);
   const [randomSeed, setRandomSeed] = useState<number | null>(5);
   const [exNum, setExNum] = useState<number | null>(0.2);
@@ -29,7 +30,7 @@ export default function ExRandomWalk() {
   const handleGenNoise = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/6', {
+        const res = await lessonPoster('desc/6', {
           size: randomNum,
           seed: randomSeed,
           ex_num: exNum,
@@ -49,7 +50,7 @@ export default function ExRandomWalk() {
 
   const handleDraw = useMemo(
     () => catchErrorWrapper(async () => {
-      const res = await dataPoster('desc/7');
+      const res = await lessonPoster('desc/7');
 
       setChartData([
         {

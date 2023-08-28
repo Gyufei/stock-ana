@@ -95,7 +95,6 @@ export default function LnIncome1Chart() {
             ]}
           />
         )}
-
       </div>
     </div>
   );

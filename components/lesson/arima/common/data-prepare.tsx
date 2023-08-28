@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { cloneDeep } from 'lodash';
 
 import { useFetchError } from '@/lib/hook/use-fetch-error';
-import dataPoster from '@/lib/http/data-process-poster';
+import { useLessonPoster } from '@/lib/http/lesson-poster';
 
 import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
@@ -12,6 +12,7 @@ import LabelText from '@/components/share/label-text';
 import ResultDisplay from '@/components/share/result-display';
 
 export default function DataPrepare() {
+  const { lessonPoster } = useLessonPoster();
   const reGenCalcOptions = [
     { value: 100000, label: '十万' },
     { value: 1000000, label: '百万' },
@@ -41,7 +42,7 @@ export default function DataPrepare() {
   const [indexColName, setIndexColName] = useState(colOptions[1].value);
 
   const handleRead = catchErrorWrapper(async () => {
-    const ctt = await dataPoster('preprocessing/data');
+    const ctt = await lessonPoster('preprocessing/data');
 
     const newCtt = cloneDeep(ctt).map((item: Record<string, any>) => {
       if (!indexColName) return item;

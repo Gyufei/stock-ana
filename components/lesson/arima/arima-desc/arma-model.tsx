@@ -8,16 +8,17 @@ import LabelText from '@/components/share/label-text';
 import TooltipBtn from '@/components/share/tooltip-btn';
 import ResultDisplay from '@/components/share/result-display';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
-import dataPoster from '@/lib/http/data-process-poster';
+import { useLessonPoster } from '@/lib/http/lesson-poster';
 import dayjs from 'dayjs';
 
 export default function ArmaModel() {
+  const { lessonPoster } = useLessonPoster();
   const [randomNum, setRandomNum] = useState<number | null>(510);
   const [randomSeed, setRandomSeed] = useState<number | null>(12345);
 
   const [timeSeriesData, setTimeSeriesData] = useState<Array<number>>([]);
 
-  const [fitDate, setFitDate] = useState<dayjs>(dayjs('1980-01-01'));
+  const [fitDate, setFitDate] = useState<dayjs.Dayjs | null>(dayjs('1980-01-01'));
   const freqOptions = [
     { label: '日', value: 'D' },
     { label: '月', value: 'M' },
@@ -37,7 +38,7 @@ export default function ArmaModel() {
   const handleGen = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/18', {
+        const res = await lessonPoster('desc/18', {
           size: randomNum,
           seed: randomSeed,
         });
@@ -49,8 +50,8 @@ export default function ArmaModel() {
   const handleFit = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/19', {
-          date: fitDate.format('YYYY-MM-DD'),
+        const res = await lessonPoster('desc/19', {
+          date: fitDate?.format('YYYY-MM-DD'),
           freq,
         });
         setFitData(res);
@@ -58,15 +59,15 @@ export default function ArmaModel() {
     [fitDate, freq]
   );
 
-  const [startDate, setStartDate] = useState<dayjs>(dayjs('2019-06-30'));
-  const [endDate, setEndDate] = useState<dayjs>(dayjs('2022-10-31'));
+  const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(dayjs('2019-06-30'));
+  const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(dayjs('2022-10-31'));
 
   const handleDraw1 = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/20', {
-          start: startDate.format('YYYY-MM-DD'),
-          end: endDate.format('YYYY-MM-DD'),
+        const res = await lessonPoster('desc/20', {
+          start: startDate?.format('YYYY-MM-DD'),
+          end: endDate?.format('YYYY-MM-DD'),
         });
 
         setTimeChartData((val: Array<string>) => {
@@ -87,7 +88,7 @@ export default function ArmaModel() {
   const handleDraw2 = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('desc/21', {
+        const res = await lessonPoster('desc/21', {
           size: delayNums,
         });
 

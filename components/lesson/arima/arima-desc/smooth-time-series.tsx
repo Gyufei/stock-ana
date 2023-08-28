@@ -4,10 +4,11 @@ import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
 import LabelText from '@/components/share/label-text';
 import ResultDisplay from '@/components/share/result-display';
-import dataPoster from '@/lib/http/data-process-poster';
+import { useLessonPoster } from '@/lib/http/lesson-poster';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
 
 export default function SmoothTimeSeries() {
+  const { lessonPoster } = useLessonPoster();
   const title = '白噪声数据的折线图';
   const [randomNum, setRandomNum] = useState<number | null>(1000);
   const [randomData, setRandomData] = useState<Array<number>>([]);
@@ -20,7 +21,7 @@ export default function SmoothTimeSeries() {
       catchErrorWrapper(async () => {
         if (!randomNum) return;
 
-        const res = await dataPoster('desc/1', {
+        const res = await lessonPoster('desc/1', {
           size: randomNum,
         });
         setRandomData(res);
@@ -31,7 +32,7 @@ export default function SmoothTimeSeries() {
   const handleDraw = useMemo(() => 
     catchErrorWrapper(
       async () => {
-        const res = await dataPoster('desc/2');
+        const res = await lessonPoster('desc/2');
 
         setChartData([
           {

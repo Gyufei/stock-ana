@@ -2,7 +2,7 @@
 
 import type { CollapseProps } from 'antd';
 import { Collapse } from 'antd';
-import { Provider, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 
 import { ArimaDataAnaCode } from '@/data/code/arima-data-ana';
 
@@ -11,11 +11,22 @@ import DataPrepare from '@/components/lesson/arima/common/data-prepare';
 import DataPreprocess from '@/components/lesson/arima/arima-ana/data-preprocess';
 
 import { filesAtom } from '@/lib/states/lesson-arima-state';
-import { useOriginData } from '@/lib/hook/use-lesson-global-state';
+import { useOriginData } from '@/lib/hook/use-origin-data';
 import CommonBtn from '@/components/share/common-btn-group';
+import { useLessonId } from '@/lib/hook/use-lesson-id';
+import { useLessonFiles } from '@/lib/hook/use-lesson-files';
 
-function ArimaDataAnaBase() {
+export default function ArimaDataAna() {
+  useLessonId(1, 2);
   useOriginData('preprocessing/1');
+  useLessonFiles([
+    {
+      name: '格力电器营业收入.xlsx',
+      link: '/file/格力电器营业收入.xlsx',
+      type: 'file',
+    },
+  ]);
+
   const files = useAtomValue(filesAtom);
 
   const items: CollapseProps['items'] = [
@@ -49,13 +60,5 @@ function ArimaDataAnaBase() {
       </div>
       <Collapse defaultActiveKey="1" accordion items={items} />
     </div>
-  );
-}
-
-export default function ArimaDataAna() {
-  return (
-    <Provider>
-      <ArimaDataAnaBase />
-    </Provider>
   );
 }

@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
 import { ArimaDataAnaCode } from '@/data/code/arima-data-ana';
-import dataPoster from '@/lib/http/data-process-poster';
+import { useLessonPoster } from '@/lib/http/lesson-poster';
 import { likeArrayObjToArray } from '@/lib/utils/util';
 import ResultDisplay from '@/components/share/result-display';
 import { useAtomValue } from 'jotai';
@@ -12,6 +12,7 @@ import LabelText from '@/components/share/label-text';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
 
 export default function BoxCheck() {
+  const { lessonPoster } = useLessonPoster();
   const originColOptions = useAtomValue(originColOptionsAtom);
 
   const [rpqData, setRpqData] = useState<Record<string, any>>();
@@ -27,7 +28,7 @@ export default function BoxCheck() {
   const handleGen = useMemo(
     () =>
       catchErrorWrapper(async () => {
-        const res = await dataPoster('preprocessing/7');
+        const res = await lessonPoster('preprocessing/7');
 
         const { r, p, q, data } = res;
         setRpqData({ r, p, q });

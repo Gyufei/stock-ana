@@ -1,7 +1,7 @@
 import { Button, Select, Tooltip } from 'antd';
 import { useMemo, useState } from 'react';
 import ResetBtn from '@/components/share/reset-btn';
-import dataPoster from '@/lib/http/data-process-poster';
+import { useLessonPoster } from '@/lib/http/lesson-poster';
 import LabelText from '@/components/share/label-text';
 import ResultDisplay from '@/components/share/result-display';
 import { useAtomValue } from 'jotai';
@@ -9,6 +9,7 @@ import { originDataAtom } from '@/lib/states/lesson-arima-state';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
 
 export default function OriginTimeSeriesData() {
+  const { lessonPoster } = useLessonPoster();
   const title = '日期性序列——季度序列';
 
   const originData = useAtomValue(originDataAtom);
@@ -26,7 +27,7 @@ export default function OriginTimeSeriesData() {
     () =>
       catchErrorWrapper(async () => {
         const index = freqOptions.find((o) => o.value === freq)?.label;
-        const res = await dataPoster('preprocessing/1', {
+        const res = await lessonPoster('preprocessing/1', {
           index,
           freq,
           start,
