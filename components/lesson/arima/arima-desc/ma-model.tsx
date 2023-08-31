@@ -61,7 +61,7 @@ export default function ArpModel() {
             title="时间序列数据的时序图、ACF、PACF、QQ图和 PP图"
             data={[
               {
-                error: errorText,
+                data: errorText,
               },
             ]}
           />

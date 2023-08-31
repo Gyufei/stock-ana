@@ -1,18 +1,25 @@
 import { Button, InputNumber, Select } from 'antd';
 import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
-import { useChartImage } from '@/lib/hook/use-chart-image';
+import { usePosterData } from '@/lib/hook/use-poster-data';
 import ResultDisplay from '@/components/share/result-display';
 import { useState } from 'react';
 import LabelText from '@/components/share/label-text';
 import { useAtomValue } from 'jotai';
 import { originColOptionsAtom } from '@/lib/states/lesson-arima-state';
 import { BuildModelCode } from '@/data/code/arima';
+import { useFetchError } from '@/lib/hook/use-fetch-error';
 
 export default function RelLnIncomeChart() {
   const title = '对数营业收入（lnIncome）的自相关图与偏自相关图';
   const originColOptions = useAtomValue(originColOptionsAtom);
-  const { chartData, handleDraw, resetChartData, errorText, setErrorText } = useChartImage('buildModel/1', title);
+
+  const errorHandler = useFetchError();
+  const { errorText } = errorHandler;
+  const { data: chartData, trigger: handleDraw } = usePosterData('buildModel/1', errorHandler, {
+    type: 'image',
+    title,
+  });
 
   const [reqParams, setReqParams] = useState({
     lnCol: '营业收入',
@@ -20,8 +27,6 @@ export default function RelLnIncomeChart() {
   });
 
   const handleReset = () => {
-    resetChartData();
-    setErrorText('');
     setReqParams({
       lnCol: '营业收入',
       nflags: 20,
@@ -65,7 +70,7 @@ export default function RelLnIncomeChart() {
             type="error"
             data={[
               {
-                error: errorText,
+                data: errorText,
               },
             ]}
             title={title}

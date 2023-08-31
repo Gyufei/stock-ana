@@ -1,6 +1,6 @@
 import { Alert, Button, Select } from 'antd';
 import ResetBtn from '@/components/share/reset-btn';
-import { useChartImage } from '@/lib/hook/use-chart-image';
+import { usePosterData } from '@/lib/hook/use-poster-data';
 import ResultDisplay from '@/components/share/result-display';
 import { useState } from 'react';
 import ImageConfig, { IImageConfig } from '@/components/share/image-config';
@@ -12,7 +12,7 @@ export default function LnSeriesChart() {
   const title = '对数营业收入（lnIncome）的时序图';
   const originColOptions = useAtomValue(originColOptionsAtom);
 
-  const { chartData, handleDraw, resetChartData, errorText, setErrorText } = useChartImage('preprocessing/3', title);
+  const { data: chartData, trigger: handleDraw, resetData: resetChartData, errorText, setErrorText } = usePosterData('preprocessing/3', title);
 
   const [imageConfig, setImageConfig] = useState<IImageConfig>({
     x: '季度',
@@ -71,7 +71,7 @@ export default function LnSeriesChart() {
             title={title}
             data={[
               {
-                error: errorText,
+                data: errorText,
               },
             ]}
           />

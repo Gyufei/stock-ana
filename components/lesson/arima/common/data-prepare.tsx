@@ -100,7 +100,7 @@ export default function DataPrepare() {
             title="读取原始数据"
             data={[
               {
-                error: errorText,
+                data: errorText,
               },
             ]}
           />

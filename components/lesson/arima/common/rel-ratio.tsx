@@ -102,7 +102,7 @@ export default function RelRatio() {
             title={title}
             data={[
               {
-                error: errorText,
+                data: errorText,
               },
             ]}
           />

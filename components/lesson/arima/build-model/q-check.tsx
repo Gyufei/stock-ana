@@ -123,7 +123,7 @@ export default function QCheck() {
             title={title}
             data={[
               {
-                error: errorText,
+                data: errorText,
               },
             ]}
           />

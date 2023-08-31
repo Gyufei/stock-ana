@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Alert, Button } from 'antd';
 
-import { useChartImage } from '@/lib/hook/use-chart-image';
+import { usePosterData } from '@/lib/hook/use-poster-data';
 import ResetBtn from '@/components/share/reset-btn';
 import ImageConfig, { IImageConfig } from '@/components/share/image-config';
 import ResultDisplay from '@/components/share/result-display';
@@ -9,7 +9,7 @@ import ResultDisplay from '@/components/share/result-display';
 export default function OriginDataSeriesChart() {
   const title = '原始数据时序图';
 
-  const { chartData, handleDraw, resetChartData, errorText } = useChartImage('preprocessing/2', title);
+  const { data: chartData, trigger: handleDraw, resetData: resetChartData, errorText } = usePosterData('preprocessing/2', title);
 
   const [imageConfig, setImageConfig] = useState<IImageConfig>({
     x: '季度',
@@ -60,7 +60,7 @@ export default function OriginDataSeriesChart() {
             title={title}
             data={[
               {
-                error: errorText,
+                data: errorText,
               },
             ]}
           />

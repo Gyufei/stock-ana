@@ -4,7 +4,7 @@ import { useSetAtom } from 'jotai';
 import { originDataAtom } from '@/lib/states/lesson-arima-state';
 import { useLessonPoster } from '../http/lesson-poster';
 
-export function useOriginData(globalDataUrl: string) {
+export function useInitLessonOriginData(globalDataUrl: string) {
   const { lessonPoster } = useLessonPoster();
 
   const setOriginData = useSetAtom(originDataAtom);
@@ -16,5 +16,9 @@ export function useOriginData(globalDataUrl: string) {
     }
 
     getOrigin();
+
+    return () => {
+      setOriginData([]);
+    };
   }, []);
 }

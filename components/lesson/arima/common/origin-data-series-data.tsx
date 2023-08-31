@@ -96,7 +96,7 @@ export default function OriginTimeSeriesData() {
             title={title}
             data={[
               {
-                error: errorText,
+                data: errorText,
               },
             ]}
           />

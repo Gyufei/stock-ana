@@ -1,7 +1,7 @@
 import { useSetAtom } from 'jotai';
 import { lessonUserIdAtom, lessonCourseIdAtom, lessonExpIdAtom } from '../states/lesson-arima-state';
 
-export function useLessonId(course: number, exp: number) {
+export function useInitLessonId(course: number, exp: number) {
   const setLessonUserIdAtom = useSetAtom(lessonUserIdAtom);
   const setLessonCourseIdAtom = useSetAtom(lessonCourseIdAtom);
   const setLessonExpIdAtom = useSetAtom(lessonExpIdAtom);

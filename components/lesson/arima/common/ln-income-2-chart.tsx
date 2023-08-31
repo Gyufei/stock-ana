@@ -5,7 +5,7 @@ import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
 
 import { ArimaDataAnaCode } from '@/data/code/arima-data-ana';
-import { useChartImage } from '@/lib/hook/use-chart-image';
+import { usePosterData } from '@/lib/hook/use-poster-data';
 
 import ResultDisplay from '@/components/share/result-display';
 import ImageConfig, { IImageConfig } from '@/components/share/image-config';
@@ -15,7 +15,7 @@ import { originColOptionsAtom } from '@/lib/states/lesson-arima-state';
 
 export default function LnIncome2Chart() {
   const title = 'lnIncome_2时序图';
-  const { chartData, handleDraw, resetChartData, errorText, setErrorText } = useChartImage('preprocessing/5', title);
+  const { data: chartData, trigger: handleDraw, resetData: resetChartData, errorText, setErrorText } = usePosterData('preprocessing/5', title);
   const originColOptions = useAtomValue(originColOptionsAtom);
 
   const [imageConfig, setImageConfig] = useState<IImageConfig>({
@@ -90,7 +90,7 @@ export default function LnIncome2Chart() {
             title={title}
             data={[
               {
-                error: errorText,
+                data: errorText,
               },
             ]}
           />

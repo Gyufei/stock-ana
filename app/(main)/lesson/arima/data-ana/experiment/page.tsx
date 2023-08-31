@@ -11,33 +11,35 @@ import DataPrepare from '@/components/lesson/arima/common/data-prepare';
 import DataPreprocess from '@/components/lesson/arima/arima-ana/data-preprocess';
 
 import { filesAtom } from '@/lib/states/lesson-arima-state';
-import { useOriginData } from '@/lib/hook/use-origin-data';
+import { useInitLessonOriginData } from '@/lib/hook/use-init-lesson-origin-data';
 import CommonBtn from '@/components/share/common-btn-group';
-import { useLessonId } from '@/lib/hook/use-lesson-id';
-import { useLessonFiles } from '@/lib/hook/use-lesson-files';
+import { useInitLessonId } from '@/lib/hook/use-init-lesson-id';
+import { useInitLessonFiles } from '@/lib/hook/use-init-lesson-files';
+import { useInitLessonComments } from '@/lib/hook/use-init-lesson-comment';
 
 export default function ArimaDataAna() {
-  useLessonId(1, 2);
-  useOriginData('preprocessing/1');
-  useLessonFiles([
+  useInitLessonId(1, 2);
+  useInitLessonOriginData('preprocessing/1');
+  useInitLessonFiles([
     {
       name: '格力电器营业收入.xlsx',
       link: '/file/格力电器营业收入.xlsx',
       type: 'file',
     },
   ]);
+  useInitLessonComments();
 
   const files = useAtomValue(filesAtom);
 
   const items: CollapseProps['items'] = [
     {
       key: '1',
-      label: <CapTitle className="text-lime-900" title="数据准备" code={ArimaDataAnaCode[0]} />,
+      label: <CapTitle className="text-lime-900 text-lg" title="数据准备" code={ArimaDataAnaCode[0]} />,
       children: <DataPrepare />,
     },
     {
       key: '2',
-      label: <CapTitle className="text-lime-900" title="数据预处理" />,
+      label: <CapTitle className="text-lime-900 text-lg" title="数据预处理" />,
       children: <DataPreprocess />,
     },
   ];
@@ -57,7 +59,7 @@ export default function ArimaDataAna() {
         </div>
         <CommonBtn />
       </div>
-      <Collapse defaultActiveKey="1" accordion items={items} />
+      <Collapse defaultActiveKey="1" ghost accordion items={items} />
     </div>
   );
 }

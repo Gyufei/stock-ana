@@ -5,74 +5,56 @@ import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
 import LabelText from '@/components/share/label-text';
 import ResultDisplay from '@/components/share/result-display';
-import { useLessonPoster } from '@/lib/http/lesson-poster';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
+import { usePosterData } from '@/lib/hook/use-poster-data';
 
 export default function ExRandomWalk() {
-  const { lessonPoster } = useLessonPoster();
+  const title = '带漂移项的随机游走时序图';
   const [randomNum, setRandomNum] = useState<number | null>(50);
   const [randomSeed, setRandomSeed] = useState<number | null>(5);
   const [exNum, setExNum] = useState<number | null>(0.2);
 
-  const [res, setRes] = useState<any>(null);
+  const errorHandler = useFetchError();
+  const { errorText } = errorHandler;
+  const { data: res, trigger: handleGenAction } = usePosterData('desc/6', errorHandler);
+  const { data: chartData, trigger: handleDraw } = usePosterData('desc/7', errorHandler, {
+    title,
+    resCallback: (res) => res.image,
+  });
 
-  const [noiseData, setNoiseData] = useState<Array<number>>([]);
+  const handleGenNoise = () => {
+    if (!randomNum || !randomSeed || !exNum) return;
+
+    handleGenAction({
+      size: randomNum,
+      seed: randomSeed,
+      ex_num: exNum,
+    });
+  };
+
+  const noiseData = useMemo(() => res?.data.y || [], [res]);
   const [randomWalk1, setRandomWalk1] = useState<Array<number>>([]);
   const [randomWalk2, setRandomWalk2] = useState<Array<number>>([]);
 
   const [refWalk1, setRefWalk1] = useState<Array<number>>([]);
   const [refWalk2, setRefWalk2] = useState<Array<number>>([]);
 
-  const [chartData, setChartData] = useState<any[]>([]);
-
-  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
-
-  const handleGenNoise = useMemo(
-    () =>
-      catchErrorWrapper(async () => {
-        const res = await lessonPoster('desc/6', {
-          size: randomNum,
-          seed: randomSeed,
-          ex_num: exNum,
-        });
-        setRes(res);
-        setNoiseData(res.y);
-      }),
-    [randomNum, randomSeed, exNum]
-  );
-
   const handleGenWalk = () => {
-    setRandomWalk1(res.y1);
-    setRandomWalk2(res.y2);
-    setRefWalk1(res.l1);
-    setRefWalk2(res.l2);
+    setRandomWalk1(res?.data.y1);
+    setRandomWalk2(res?.data.y2);
+    setRefWalk1(res?.data.l1);
+    setRefWalk2(res?.data.l2);
   };
 
-  const handleDraw = useMemo(
-    () => catchErrorWrapper(async () => {
-      const res = await lessonPoster('desc/7');
-
-      setChartData([
-        {
-          src: res.image,
-        },
-      ]);
-    }),
-    []
-  );
-
   const handleReset = () => {
-    setRes(null);
     setRandomNum(1000);
     setRandomSeed(5);
     setExNum(0.2);
-    setNoiseData([]);
+
     setRandomWalk1([]);
     setRandomWalk2([]);
     setRefWalk1([]);
     setRefWalk2([]);
-    setChartData([]);
-    setErrorText(null);
   };
 
   return (
@@ -121,6 +103,7 @@ export default function ExRandomWalk() {
         {randomWalk1.length && !errorText ? (
           <>
             <ResultDisplay
+              keyName="var4"
               type="json"
               title={`${randomNum}个随机游走序列`}
               data={[
@@ -142,7 +125,7 @@ export default function ExRandomWalk() {
           </>
         ) : null}
 
-        {chartData.length && !errorText ? <ResultDisplay type="image" data={chartData} title="带漂移项的随机游走时序图" /> : null}
+        {chartData && !errorText ? <ResultDisplay keyName="png3" type="image" data={[chartData]} title={title} /> : null}
 
         {errorText && (
           <ResultDisplay
@@ -150,7 +133,7 @@ export default function ExRandomWalk() {
             title="带漂移项的随机游走"
             data={[
               {
-                error: errorText,
+                data: errorText,
               },
             ]}
           />

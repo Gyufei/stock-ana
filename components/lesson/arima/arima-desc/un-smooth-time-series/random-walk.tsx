@@ -8,52 +8,38 @@ import CapTitle from '@/components/share/cap-title';
 import LabelText from '@/components/share/label-text';
 import ResultDisplay from '@/components/share/result-display';
 
-import { useLessonPoster } from '@/lib/http/lesson-poster';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
+import { usePosterData } from '@/lib/hook/use-poster-data';
 
 export default function RandomWalk() {
-  const { lessonPoster } = useLessonPoster();
   const title = '生成随机数列(两组)';
   const [randomNum, setRandomNum] = useState<number | null>(1000);
-  const [randomData1, setRandomData1] = useState<Array<number>>([]);
-  const [randomData2, setRandomData2] = useState<Array<number>>([]);
   const [randomSeed, setRandomSeed] = useState<number | null>(5);
 
-  const [chartData, setChartData] = useState<any[]>([]);
+  const errorHandler = useFetchError();
+  const { errorText } = errorHandler;
 
-  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
-
-  const handleGen = useMemo(
-    () =>
-      catchErrorWrapper(async () => {
-        if (!randomNum) return;
-
-        const res = await lessonPoster('desc/3', {
-          size: randomNum,
-          seed: randomSeed,
-        });
-        setRandomData1(res[0]);
-        setRandomData2(res[1]);
-      }),
-    [randomNum, randomSeed]
-  );
-
-  const handleDraw = catchErrorWrapper(async () => {
-    const res = await lessonPoster('desc/4');
-    setChartData([
-      {
-        src: res.image,
-      },
-    ]);
+  const { data: randomDataObj, trigger: handleGenAction } = usePosterData('desc/3', errorHandler);
+  const { data: chartData, trigger: handleDraw } = usePosterData('desc/4', errorHandler, {
+    title,
+    resCallback: (res) => res.image,
   });
 
+  const randomData1 = useMemo(() => randomDataObj?.data?.[0] || [], [randomDataObj]);
+  const randomData2 = useMemo(() => randomDataObj?.data?.[1] || [], [randomDataObj]);
+
+  const handleGen = () => {
+    if (!randomNum || !randomSeed) return;
+
+    handleGenAction({
+      size: randomNum,
+      seed: randomSeed,
+    });
+  };
+
   const handleReset = () => {
-    setRandomData1([]);
-    setRandomData2([]);
-    setChartData([]);
     setRandomNum(1000);
     setRandomSeed(5);
-    setErrorText(null);
   };
 
   return (
@@ -70,9 +56,10 @@ export default function RandomWalk() {
           生成随机数
         </Button>
 
-        {randomData1.length ? (
+        {randomDataObj?.data ? (
           <>
             <ResultDisplay
+              keyName="var2"
               title={`${randomNum}个随机数据`}
               type="json"
               data={[
@@ -93,13 +80,13 @@ export default function RandomWalk() {
             title={title}
             data={[
               {
-                error: errorText,
+                data: errorText,
               },
             ]}
           />
         )}
 
-        {chartData?.length ? <ResultDisplay title="随机游走图形" type="image" data={chartData} /> : null}
+        {chartData ? <ResultDisplay keyName="png2" title="随机游走图形" type="image" data={[chartData]} /> : null}
       </div>
     </div>
   );

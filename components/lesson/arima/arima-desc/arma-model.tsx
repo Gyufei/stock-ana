@@ -15,9 +15,6 @@ export default function ArmaModel() {
   const { lessonPoster } = useLessonPoster();
   const [randomNum, setRandomNum] = useState<number | null>(510);
   const [randomSeed, setRandomSeed] = useState<number | null>(12345);
-
-  const [timeSeriesData, setTimeSeriesData] = useState<Array<number>>([]);
-
   const [fitDate, setFitDate] = useState<dayjs.Dayjs | null>(dayjs('1980-01-01'));
   const freqOptions = [
     { label: '日', value: 'D' },
@@ -28,6 +25,7 @@ export default function ArmaModel() {
   ];
   const [freq, setFreq] = useState('M');
 
+  const [timeSeriesData, setTimeSeriesData] = useState<Array<number>>([]);
   const [fitData, setFitData] = useState<Array<number>>([]);
 
   const [timeChartData, setTimeChartData] = useState<any[]>([]);
@@ -131,6 +129,7 @@ export default function ArmaModel() {
         {timeSeriesData.length && !errorText ? (
           <>
             <ResultDisplay
+              keyName="var5"
               type="json"
               title={`${randomNum}时间序列`}
               data={[
@@ -199,7 +198,7 @@ export default function ArmaModel() {
             title="AR(1)模型拟合"
             data={[
               {
-                error: errorText,
+                data: errorText,
               },
             ]}
           />

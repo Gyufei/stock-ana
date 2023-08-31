@@ -1,4 +1,4 @@
-import CodeDialog from '@/components/share/code-dialog';
+import CodeDisplayDrawer from '@/components/share/code-display-drawer';
 import { Tooltip } from 'antd';
 import { useState } from 'react';
 
@@ -44,7 +44,7 @@ export default function CapTitle({
         )}
       </div>
       <div onClick={(e) => e.stopPropagation()}>
-        <CodeDialog open={showDialog} setShow={setShowDialog} code={code || []} />
+        <CodeDisplayDrawer open={showDialog} setShow={setShowDialog} code={code || []} />
       </div>
     </>
   );

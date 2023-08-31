@@ -3,8 +3,10 @@ import LabelText from '@/components/share/label-text';
 import { useDataToTable as useDataToTable } from '@/lib/hook/use-data-to-table';
 import { InputNumber, Table, Collapse, CollapseProps, Image, Tooltip } from 'antd';
 import { SaveFileBtn } from '@/components/share/save-file-btn';
+import ResultDescInputBtn from './result-desc-input-btn';
+import { IPosterData } from '@/lib/hook/use-poster-data';
 
-function ImageDisplayBase({ images }: { images: Array<Record<string, any>> }) {
+function ImageDisplay({ data }: { data: Array<IPosterData> }) {
   const ImgItems = ({ img }: { img: Record<string, any> }) => {
     return (
       <div className="flex flex-col justify-center">
@@ -20,22 +22,22 @@ function ImageDisplayBase({ images }: { images: Array<Record<string, any>> }) {
             )}
           </div>
         ) : null}
-        <Image key={img.name} src={img.src || `/img/${img.name}.png`} width={500} height={200} alt={img.name} />
-        <SaveFileBtn type="image" link={img.src} defaultVal={img.name} />
+        <Image key={img.title} src={img.data} width={500} height={200} alt={img.title} />
+        <SaveFileBtn type="image" link={img.data} defaultVal={img.title} />
       </div>
     );
   };
 
   return (
     <div className="flex w-full overflow-x-auto gap-2">
-      {images.map((img) => {
-        return <ImgItems key={img.name} img={img} />;
+      {data.map((img) => {
+        return <ImgItems key={img.title} img={img} />;
       })}
     </div>
   );
 }
 
-function TableDataDisplayBase({ data }: { data: Array<any> }) {
+function TableDataDisplay({ data }: { data: Array<any> }) {
   const [num, setNum] = useState<number | null>(5);
 
   const { content, columns: cols } = useDataToTable(data || []);
@@ -54,9 +56,9 @@ function TableDataDisplayBase({ data }: { data: Array<any> }) {
   );
 }
 
-function JsonDataDisplayBase({ data }: { data: Array<Record<string, any>> }) {
+function JsonDataDisplay({ data }: { data: Array<Record<string, any>> }) {
   const isArray = Array.isArray(data);
-  const displayStr = (d: any) => JSON.stringify(d, undefined, 2);
+  const displayStr = (d: any) => JSON.stringify(d, null, 1).replace(/,\s+/g, ',');
 
   const Item = ({ dObj }: { dObj: Record<string, any> }) => {
     return (
@@ -79,7 +81,7 @@ function JsonDataDisplayBase({ data }: { data: Array<Record<string, any>> }) {
           </div>
         ) : null}
 
-        {displayStr(dObj.data)}
+        <pre>{displayStr(dObj.data)}</pre>
       </div>
     );
   };
@@ -93,43 +95,51 @@ function JsonDataDisplayBase({ data }: { data: Array<Record<string, any>> }) {
   );
 }
 
-function ErrorDisplayBase({ errorObj }: { errorObj: Record<string, any> }) {
+function ErrorDisplayBase({ data }: { data: Record<string, any> }) {
+  const errorFirst = data[0];
   return (
     <>
-      <div className="text-lg">{errorObj.title || '发生错误!'} </div>
-      <div className="text-red-600">{errorObj.error}</div>
+      <div className="text-lg">{errorFirst.title || '发生错误!'} </div>
+      <div className="text-red-600">{errorFirst.error}</div>
     </>
   );
 }
 
 export default function ResultDisplay({
+  keyName,
   title,
   data,
   type,
   children,
 }: {
+  keyName?: string;
   title: string;
-  data: Array<Record<string, any>>;
+  data: Array<IPosterData>;
   type: 'image' | 'table' | 'json' | 'error';
   children?: React.ReactNode;
 }) {
   const chartCon: CollapseProps['items'] = [
     {
       key: '1',
-      label: title,
+      label: (
+        <div className="flex items-center gap-x-4">
+          <div>{title}</div>
+          {keyName && <ResultDescInputBtn key={keyName} />}
+        </div>
+      ),
       children: (
         <>
           {children}
           {(() => {
             switch (type) {
               case 'image':
-                return <ImageDisplayBase images={data} />;
+                return <ImageDisplay data={data} />;
               case 'table':
-                return <TableDataDisplayBase data={data} />;
+                return <TableDataDisplay data={data} />;
               case 'json':
-                return <JsonDataDisplayBase data={data} />;
+                return <JsonDataDisplay data={data} />;
               case 'error':
-                return <ErrorDisplayBase errorObj={data[0]} />;
+                return <ErrorDisplayBase data={data} />;
               default:
                 return null;
             }

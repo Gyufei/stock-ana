@@ -129,7 +129,7 @@ export default function BoxCheck() {
             type="error"
             data={[
               {
-                error: errorText,
+                data: errorText,
               },
             ]}
             title="Ljung-Box检验统计量"

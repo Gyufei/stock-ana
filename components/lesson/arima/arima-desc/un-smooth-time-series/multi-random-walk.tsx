@@ -7,65 +7,52 @@ import LabelText from '@/components/share/label-text';
 import ResultDisplay from '@/components/share/result-display';
 
 import { useFetchError } from '@/lib/hook/use-fetch-error';
-import { useLessonPoster } from '@/lib/http/lesson-poster';
+import { usePosterData } from '@/lib/hook/use-poster-data';
 
 export default function MultiRandomWalk() {
-  const { lessonPoster } = useLessonPoster();
   const title = '生成随机整数数组';
   const [nWalks, setNWalks] = useState<number | null>(8);
   const [nStep, setNSteps] = useState<number | null>(500);
 
-  const [res, setRes] = useState<any>(null);
-  const [randomData, setRandomData] = useState<Array<Array<number>>>([]);
+  const errorHandler = useFetchError();
+  const { errorText } = errorHandler;
+
+  const { data: res, trigger: handleGenAction } = usePosterData('desc/5', errorHandler);
+
+  const randomData = useMemo(() => res?.data.draws || [], [res]);
   const [stepData, setStepData] = useState<Array<Array<number>>>([]);
   const [randomWalk, setRandomWalk] = useState<Array<Array<number>>>([]);
+  const [chartData, setChartData] = useState<any>();
 
-  const [chartData, setChartData] = useState<any[]>([]);
-
-  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
-
-  const handleGen = useMemo(
-    () =>
-      catchErrorWrapper(async () => {
-        const res = await lessonPoster('desc/5', {
-          nwalks: nWalks,
-          nsteps: nStep,
-        });
-        setRes(res);
-        setRandomData(res.draws);
-      }),
-    []
-  );
+  const handleGen = () => {
+    handleGenAction({
+      nwalks: nWalks,
+      nsteps: nStep,
+    });
+  };
 
   const handleGenStep = () => {
     if (!randomData.length) return;
-    setStepData(res.steps);
+    setStepData(res?.data.steps);
   };
 
   const handleGenWalk = () => {
     if (!stepData.length) return;
-
-    setRandomWalk(res.walks);
+    setRandomWalk(res?.data.walks);
   };
 
   const handleDraw = () => {
-    if (!randomWalk.length) return;
-    setChartData([
-      {
-        src: res.fig.image,
-      },
-    ]);
+    if (res?.data.fig)
+      setChartData({
+        data: res?.data.fig.image,
+      });
   };
 
   const handleReset = () => {
-    setRes(null);
     setNWalks(8);
     setNSteps(500);
-    setRandomData([]);
     setStepData([]);
     setRandomWalk([]);
-    setChartData([]);
-    setErrorText(null);
   };
 
   return (
@@ -143,7 +130,7 @@ export default function MultiRandomWalk() {
           </>
         ) : null}
 
-        {chartData?.length ? <ResultDisplay type="image" data={chartData} title="多个随机游走图形" /> : null}
+        {chartData ? <ResultDisplay key="var3" type="image" data={[chartData]} title="多个随机游走图形" /> : null}
 
         {errorText && (
           <ResultDisplay
@@ -151,7 +138,7 @@ export default function MultiRandomWalk() {
             title={title}
             data={[
               {
-                error: errorText,
+                data: errorText,
               },
             ]}
           />
