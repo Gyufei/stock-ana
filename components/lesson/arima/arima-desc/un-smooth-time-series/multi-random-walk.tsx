@@ -17,7 +17,7 @@ export default function MultiRandomWalk() {
   const errorHandler = useFetchError();
   const { errorText } = errorHandler;
 
-  const { data: res, trigger: handleGenAction } = usePosterData('desc/5', errorHandler);
+  const { data: res, trigger: handleGenAction, reset } = usePosterData('desc/5', errorHandler);
 
   const randomData = useMemo(() => res?.data.draws || [], [res]);
   const [stepData, setStepData] = useState<Array<Array<number>>>([]);
@@ -51,6 +51,7 @@ export default function MultiRandomWalk() {
   const handleReset = () => {
     setNWalks(8);
     setNSteps(500);
+    reset();
     setStepData([]);
     setRandomWalk([]);
   };
@@ -130,7 +131,7 @@ export default function MultiRandomWalk() {
           </>
         ) : null}
 
-        {chartData ? <ResultDisplay key="var3" type="image" data={[chartData]} title="多个随机游走图形" /> : null}
+        {chartData ? <ResultDisplay key="var5" type="image" data={[chartData]} title="多个随机游走图形" /> : null}
 
         {errorText && (
           <ResultDisplay

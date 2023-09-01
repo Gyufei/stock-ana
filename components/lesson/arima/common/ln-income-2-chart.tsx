@@ -15,7 +15,7 @@ import { originColOptionsAtom } from '@/lib/states/lesson-arima-state';
 
 export default function LnIncome2Chart() {
   const title = 'lnIncome_2时序图';
-  const { data: chartData, trigger: handleDraw, resetData: resetChartData, errorText, setErrorText } = usePosterData('preprocessing/5', title);
+  const { data: chartData, trigger: handleDraw, reset: resetChartData, errorText, setErrorText } = usePosterData('preprocessing/5', title);
   const originColOptions = useAtomValue(originColOptionsAtom);
 
   const [imageConfig, setImageConfig] = useState<IImageConfig>({

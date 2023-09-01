@@ -13,7 +13,7 @@ export default function RelLnIncome1Chart() {
   const title = '一阶差分（lnIncome_1）的自相关图与偏自相关图';
 
   const originColOptions = useAtomValue(originColOptionsAtom);
-  const { data: chartData, trigger: handleDraw, resetData: resetChartData, errorText, setErrorText } = usePosterData('preprocessing/8', title);
+  const { data: chartData, trigger: handleDraw, reset: resetChartData, errorText, setErrorText } = usePosterData('preprocessing/8', title);
 
   const [reqParams, setReqParams] = useState({
     lnCol: '营业收入',

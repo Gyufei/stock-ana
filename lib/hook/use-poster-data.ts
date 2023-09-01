@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { IImageConfig } from '@/components/share/image-config';
 import { useLessonPoster } from '../http/lesson-poster';
 
 export interface IPosterData {
@@ -12,7 +11,6 @@ export function usePosterData(
   path: string,
   errorHandler: {
     errorText: string | null;
-    catchErrorWrapper: (_fn: any) => any;
     setErrorText: (_text: string) => void;
   },
   arg?: {
@@ -21,33 +19,43 @@ export function usePosterData(
     resCallback?: (_res: any) => any;
   }
 ) {
-  const { errorText, catchErrorWrapper } = errorHandler;
+  const { errorText, setErrorText } = errorHandler;
 
   const { lessonPoster } = useLessonPoster();
   const [data, setData] = useState<IPosterData | null>(null);
 
-  const handleFetch = async (config?: IImageConfig) => {
-    const cD = await lessonPoster(path, config);
+  const trigger = async (config?: Record<string, any>) => {
+    try {
+      const cD = await lessonPoster(path, config);
 
-    const data = {
-      data: arg?.resCallback ? arg.resCallback(cD) : cD,
-      title: arg?.title,
-      tip: arg?.tip,
-    };
-    setData(data);
+      const data = {
+        data: arg?.resCallback ? arg.resCallback(cD) : cD,
+        title: arg?.title,
+        tip: arg?.tip,
+      };
+      setData(data);
 
-    return data;
+      return data;
+    } catch (e: any) {
+      setErrorText(e?.info || '未知错误, 请重置后重试');
+    }
+  };
+
+  const reset = () => {
+    setData(null);
+    setErrorText('');
   };
 
   useEffect(() => {
     return () => {
-      setData(null);
+      reset();
     };
   }, []);
 
   return {
     data,
+    reset,
     errorText,
-    trigger: catchErrorWrapper(handleFetch),
+    trigger,
   };
 }

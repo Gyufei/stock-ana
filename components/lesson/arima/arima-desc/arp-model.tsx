@@ -17,7 +17,7 @@ export default function ArpModel() {
   const errorHandler = useFetchError();
   const { errorText } = errorHandler;
 
-  const { data: res, trigger: handleGenAction } = usePosterData('desc/8', errorHandler);
+  const { data: res, trigger: handleGenAction, reset: reset1 } = usePosterData('desc/8', errorHandler);
   const handleGen = () => {
     if (!randomNum || !randomSeed) return;
     handleGenAction({
@@ -28,7 +28,7 @@ export default function ArpModel() {
   const noiseData = useMemo(() => res?.data.noise || [], [res]);
   const whiteNoiseData = useMemo(() => res?.data.wnoise || [], [res]);
 
-  const { data: ar1Data, trigger: handleGenAr1Action } = usePosterData('desc/9', errorHandler);
+  const { data: ar1Data, trigger: handleGenAr1Action, reset: reset2 } = usePosterData('desc/9', errorHandler);
   const handleGenAr1 = () => {
     if (!randomNum) return;
     handleGenAr1Action({
@@ -36,12 +36,12 @@ export default function ArpModel() {
     });
   };
 
-  const { trigger: handleTimeDraw1Action } = usePosterData('desc/10', errorHandler, {
+  const { trigger: handleTimeDraw1Action, reset: reset3 } = usePosterData('desc/10', errorHandler, {
     title: '时间序列的滞后图(延迟为1)',
     tip: '延迟为1的时间序列图，即前一个时间步之间的散点图',
     resCallback: (res) => res.image,
   });
-  const { trigger: handleTimeDraw2Action } = usePosterData('desc/11', errorHandler, {
+  const { trigger: handleTimeDraw2Action, reset: reset4 } = usePosterData('desc/11', errorHandler, {
     title: '时间序列的滞后图(延迟为i + 1)',
     tip: '第i个子图上绘制延迟为i+1的时间序列滞后图',
     resCallback: (res) => res.image,
@@ -49,9 +49,10 @@ export default function ArpModel() {
   const [timeChartData, setTimeChartData] = useState<any[]>([]);
   const handleTimeDraw1 = async () => {
     const res = await handleTimeDraw1Action();
+    console.log(res);
 
     setTimeChartData((val: Array<string>) => {
-      const filteredVal = val.filter((item: any) => item.title !== res.title);
+      const filteredVal = val.filter((item: any) => item.title !== res?.title);
       return [...filteredVal, res];
     });
   };
@@ -59,17 +60,17 @@ export default function ArpModel() {
     const res = await handleTimeDraw2Action();
 
     setTimeChartData((val: Array<string>) => {
-      const filteredVal = val.filter((item: any) => item.title !== res.title);
+      const filteredVal = val.filter((item: any) => item.title !== res?.title);
       return [...filteredVal, res];
     });
   };
 
-  const { trigger: handleRelDraw1Action } = usePosterData('desc/12', errorHandler, {
+  const { trigger: handleRelDraw1Action, reset: reset5 } = usePosterData('desc/12', errorHandler, {
     title: '时间序列的自相关图',
     tip: '自相关图，用于展示时间序列数据之间的自相关性, 横轴是滞后阶数，纵轴是自相关系数',
     resCallback: (res) => res.image,
   });
-  const { trigger: handleRelDraw2Action } = usePosterData('desc/13', errorHandler, {
+  const { trigger: handleRelDraw2Action, reset: reset6 } = usePosterData('desc/13', errorHandler, {
     title: '时间序列的自相关图和偏自相关图',
     resCallback: (res) => res.image,
   });
@@ -78,7 +79,7 @@ export default function ArpModel() {
     const res = await handleRelDraw1Action();
 
     setRelChartData((val: Array<string>) => {
-      const newVal = val.filter((item: any) => item.title !== res.title);
+      const newVal = val.filter((item: any) => item.title !== res?.title);
       return [...newVal, res];
     });
   };
@@ -86,19 +87,27 @@ export default function ArpModel() {
     const res = await handleRelDraw2Action();
 
     setRelChartData((val: Array<string>) => {
-      const newVal = val.filter((item: any) => item.title !== res.title);
+      const newVal = val.filter((item: any) => item.title !== res?.title);
       return [...newVal, res];
     });
   };
 
-  const { data: residualData, trigger: handleCalcResidual } = usePosterData('desc/14', errorHandler);
+  const { data: residualData, trigger: handleCalcResidual, reset: reset7 } = usePosterData('desc/14', errorHandler);
 
-  const { data: residualChartData, trigger: handleResidualDraw } = usePosterData('desc/15', errorHandler, {
+  const {
+    data: residualChartData,
+    trigger: handleResidualDraw,
+    reset: reset8,
+  } = usePosterData('desc/15', errorHandler, {
     title: 'AR模型的预测值和残差',
     resCallback: (res) => res.image,
   });
 
-  const { data: residualDisChartData, trigger: handleResidualDisDraw } = usePosterData('desc/16', errorHandler, {
+  const {
+    data: residualDisChartData,
+    trigger: handleResidualDisDraw,
+    reset: reset9,
+  } = usePosterData('desc/16', errorHandler, {
     title: '残差分布图',
     resCallback: (res) => res.image,
   });
@@ -106,6 +115,15 @@ export default function ArpModel() {
   const handleReset = () => {
     setRandomNum(100);
     setRandomSeed(0);
+    reset1();
+    reset2();
+    reset3();
+    reset4();
+    reset5();
+    reset6();
+    reset7();
+    reset8();
+    reset9();
     setTimeChartData([]);
     setRelChartData([]);
   };
@@ -126,7 +144,7 @@ export default function ArpModel() {
         {whiteNoiseData.length ? (
           <>
             <ResultDisplay
-              keyName="var5"
+              keyName="var8"
               type="json"
               title={`${randomNum}个随机数据`}
               data={[
@@ -150,7 +168,7 @@ export default function ArpModel() {
 
         {ar1Data ? (
           <ResultDisplay
-            keyName="var6"
+            keyName="var9"
             title="AR(1)序列"
             type="json"
             data={[
@@ -171,7 +189,7 @@ export default function ArpModel() {
               绘制(延迟为i+1)
             </TooltipBtn>
 
-            {timeChartData.length ? <ResultDisplay keyName="png5" type="image" title="滞后序列图" data={timeChartData} /> : null}
+            {timeChartData.length ? <ResultDisplay keyName="var11" type="image" title="滞后序列图" data={timeChartData} /> : null}
           </>
         ) : null}
 
@@ -185,25 +203,27 @@ export default function ArpModel() {
               绘制(方法2)
             </TooltipBtn>
 
-            {relChartData.length ? <ResultDisplay keyName="png7" type="image" title="自相关与偏自相关图" data={relChartData} /> : null}
+            {relChartData.length ? <ResultDisplay keyName="var13" type="image" title="自相关与偏自相关图" data={relChartData} /> : null}
           </>
         ) : null}
 
         {ar1Data ? (
           <>
             <CapTitle className="my-2" index={5} title="AR(1)模型拟合" tip="1阶AR模型拟合（OLS）" code={[ArpCode[6], ArpCode[7]]} />
-            <TooltipBtn onClick={handleCalcResidual} type="primary" tip="残差是观测值与预测值之间的差异">
+            <TooltipBtn onClick={() => handleCalcResidual()} type="primary" tip="残差是观测值与预测值之间的差异">
               计算残差
             </TooltipBtn>
 
-            {residualData ? <ResultDisplay keyName="var7" type="json" title="残差序列" data={[residualData]} /> : null}
+            {residualData ? <ResultDisplay keyName="var14" type="json" title="残差序列" data={[residualData]} /> : null}
 
             <br />
-            <Button className="mt-2" type="primary" onClick={handleResidualDraw}>
+            <Button className="mt-2" type="primary" onClick={() => handleResidualDraw()}>
               绘制残差
             </Button>
 
-            {residualChartData ? <ResultDisplay keyName="png8" type="image" title="残差" data={[residualChartData]}></ResultDisplay> : null}
+            {residualChartData ? (
+              <ResultDisplay keyName="var15" type="image" title="残差" data={[residualChartData]}></ResultDisplay>
+            ) : null}
           </>
         ) : null}
 
@@ -214,7 +234,7 @@ export default function ArpModel() {
               绘制残差分布
             </Button>
             {residualDisChartData ? (
-              <ResultDisplay keyName="png9" type="image" title="残差" data={[residualDisChartData]}></ResultDisplay>
+              <ResultDisplay keyName="var16" type="image" title="残差" data={[residualDisChartData]}></ResultDisplay>
             ) : null}
           </>
         ) : null}

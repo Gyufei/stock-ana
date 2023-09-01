@@ -12,7 +12,7 @@ export default function LnSeriesChart() {
   const title = '对数营业收入（lnIncome）的时序图';
   const originColOptions = useAtomValue(originColOptionsAtom);
 
-  const { data: chartData, trigger: handleDraw, resetData: resetChartData, errorText, setErrorText } = usePosterData('preprocessing/3', title);
+  const { data: chartData, trigger: handleDraw, reset: resetChartData, errorText, setErrorText } = usePosterData('preprocessing/3', title);
 
   const [imageConfig, setImageConfig] = useState<IImageConfig>({
     x: '季度',

@@ -5,9 +5,9 @@ import { commentsAtom } from '@/lib/states/lesson-arima-state';
 import TextArea from 'antd/es/input/TextArea';
 import { useState } from 'react';
 
-export default function ResultDescInputBtn({ key }: { key: string }) {
+export function ResultDescInputBtn({ keyName }: { keyName: string }) {
   const [comments, setComments] = useAtom(commentsAtom);
-  const co = comments?.[key];
+  const co = comments?.[keyName];
 
   const [coText, setCoText] = useState(co || '');
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +16,7 @@ export default function ResultDescInputBtn({ key }: { key: string }) {
     if (coText) {
       setComments({
         ...comments,
-        key: co,
+        [keyName]: co,
       });
       setShowModal(false);
     }
@@ -51,7 +51,7 @@ export default function ResultDescInputBtn({ key }: { key: string }) {
       )}
 
       <Modal title="结论" open={showModal} onOk={handleOk} onCancel={handleCancel}>
-        <TextArea value={coText} onChange={(e) => setCoText(e.target.value)} rows={4} />
+        <TextArea value={coText} onChange={(e) => setCoText(e.target.value)} rows={6} />
       </Modal>
     </div>
   );

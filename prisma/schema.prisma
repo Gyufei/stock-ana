@@ -29,10 +29,11 @@ model company_profile {
 }
 
 model dataset {
-  id      Int    @id @default(autoincrement())
-  name    String @db.VarChar(255)
-  content String @db.MediumText
-  type    String @db.VarChar(255)
+  id      Int     @id @default(autoincrement())
+  name    String  @db.VarChar(255)
+  content String  @db.MediumText
+  type    String  @db.VarChar(255)
+  flag    String? @db.VarChar(255)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -60,4 +61,49 @@ model user_content {
   exp_id      Int?
   exp_content Bytes?
   grade       Int?
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model dataset_exp {
+  id         Int  @id @default(autoincrement())
+  exp_pro_id Int?
+  dataset_id Int?
+}
+
+model trd_co {
+  id                Int     @id @default(autoincrement())
+  Stkcd             String? @db.VarChar(255)
+  Stknme            String? @db.VarChar(255)
+  Listdt            String? @db.VarChar(255)
+  Cuntrycd          String? @db.VarChar(255)
+  Conme             String? @db.VarChar(255)
+  Conme_en          String? @db.VarChar(255)
+  Indcd             String? @db.VarChar(255)
+  Indnme            String? @db.VarChar(255)
+  Nindcd            String? @db.VarChar(255)
+  Nindnme           String? @db.VarChar(255)
+  Nnindcd           String? @db.VarChar(255)
+  Nnindnme          String? @db.VarChar(255)
+  Estbdt            String? @db.VarChar(255)
+  PROVINCE          String? @db.VarChar(255)
+  PROVINCECODE      String? @db.VarChar(255)
+  CITY              String? @db.VarChar(255)
+  CITYCODE          String? @db.VarChar(255)
+  OWNERSHIPTYPE     String? @db.VarChar(255)
+  OWNERSHIPTYPECODE String? @db.VarChar(255)
+  Favaldt           String? @db.VarChar(255)
+  Curtrd            String? @db.VarChar(255)
+  Ipoprm            String? @db.VarChar(255)
+  Ipoprc            String? @db.VarChar(255)
+  Ipocur            String? @db.VarChar(255)
+  Nshripo           String? @db.VarChar(255)
+  Parvcur           String? @db.VarChar(255)
+  Ipodt             String? @db.VarChar(255)
+  Parval            String? @db.VarChar(255)
+  Sctcd             String? @db.VarChar(255)
+  Statco            String? @db.VarChar(255)
+  Crcd              String? @db.VarChar(255)
+  Statdt            String? @db.VarChar(255)
+  Commnt            String? @db.VarChar(255)
+  Markettype        String? @db.VarChar(255)
 }

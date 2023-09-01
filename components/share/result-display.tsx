@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import LabelText from '@/components/share/label-text';
 import { useDataToTable as useDataToTable } from '@/lib/hook/use-data-to-table';
-import { InputNumber, Table, Collapse, CollapseProps, Image, Tooltip } from 'antd';
+import { InputNumber, Table, Collapse, CollapseProps, Image, Tooltip, Alert } from 'antd';
 import { SaveFileBtn } from '@/components/share/save-file-btn';
-import ResultDescInputBtn from './result-desc-input-btn';
+import { ResultDescInputBtn } from './result-desc-input-btn';
 import { IPosterData } from '@/lib/hook/use-poster-data';
+import { useAtomValue } from 'jotai';
+import { commentsAtom } from '@/lib/states/lesson-arima-state';
 
 function ImageDisplay({ data }: { data: Array<IPosterData> }) {
   const ImgItems = ({ img }: { img: Record<string, any> }) => {
@@ -37,11 +39,19 @@ function ImageDisplay({ data }: { data: Array<IPosterData> }) {
   );
 }
 
-function TableDataDisplay({ data }: { data: Array<any> }) {
+function TableDataDisplay({ data }: { data: Array<IPosterData> }) {
+  return (
+    <div className="mb-2">
+      {data.map((d, i) => {
+        return <TableDataSingleDisplay key={i} data={d} />;
+      })}
+    </div>
+  );
+}
+
+function TableDataSingleDisplay({ data }: { data: IPosterData }) {
   const [num, setNum] = useState<number | null>(5);
-
-  const { content, columns: cols } = useDataToTable(data || []);
-
+  const { content, columns: cols } = useDataToTable(data.data || []);
   const sourceData = content.slice(0, num || 5);
 
   return (
@@ -124,7 +134,7 @@ export default function ResultDisplay({
       label: (
         <div className="flex items-center gap-x-4">
           <div>{title}</div>
-          {keyName && <ResultDescInputBtn key={keyName} />}
+          {keyName && <ResultDescInputBtn keyName={keyName} />}
         </div>
       ),
       children: (
@@ -149,5 +159,13 @@ export default function ResultDisplay({
     },
   ];
 
-  return <Collapse defaultActiveKey="1" items={chartCon} />;
+  const co = useAtomValue(commentsAtom);
+  const comment = co?.[keyName || ''] || null;
+
+  return (
+    <>
+      <Collapse defaultActiveKey="1" items={chartCon} />
+      {comment && <Alert className="mt-2" type="info" showIcon message="结论" description={comment} />}
+    </>
+  );
 }

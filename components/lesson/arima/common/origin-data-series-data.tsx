@@ -1,44 +1,41 @@
 import { Button, Select, Tooltip } from 'antd';
 import { useMemo, useState } from 'react';
 import ResetBtn from '@/components/share/reset-btn';
-import { useLessonPoster } from '@/lib/http/lesson-poster';
 import LabelText from '@/components/share/label-text';
 import ResultDisplay from '@/components/share/result-display';
 import { useAtomValue } from 'jotai';
 import { originDataAtom } from '@/lib/states/lesson-arima-state';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
+import { usePosterData } from '@/lib/hook/use-poster-data';
 
 export default function OriginTimeSeriesData() {
-  const { lessonPoster } = useLessonPoster();
   const title = '日期性序列——季度序列';
 
   const originData = useAtomValue(originDataAtom);
 
-  const [timeSeriesData, setTimeSeriesData] = useState<Array<any>>([]);
   const [indexType, setIndexType] = useState<string>('');
-
-  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
-
   const [freq, setFreq] = useState('Q-JAN');
   const [start, setStart] = useState('2010Q1');
   const [end, setEnd] = useState('2020Q4');
 
-  const handleGen = useMemo(
-    () =>
-      catchErrorWrapper(async () => {
-        const index = freqOptions.find((o) => o.value === freq)?.label;
-        const res = await lessonPoster('preprocessing/1', {
-          index,
-          freq,
-          start,
-          end,
-        });
+  const errorHandler = useFetchError();
+  const { errorText } = errorHandler;
+  const { data: tsRes, trigger: handleGenAction, reset: reset1 } = usePosterData('preprocessing/1', errorHandler);
+  const timeSeriesData = useMemo(() => ({ data: tsRes?.data?.data }), [tsRes]);
 
-        setTimeSeriesData(res.data);
-        setIndexType(res.type);
-      }),
-    [freq, start, end]
-  );
+  const handleGen = async () => {
+    const index = freqOptions.find((o) => o.value === freq)?.label;
+    if (!freq || !start || !end || !index) return;
+
+    const res = await handleGenAction({
+      index,
+      freq,
+      start,
+      end,
+    });
+
+    setIndexType(res?.data?.type);
+  };
 
   const freqOptions = [
     { label: '日', value: 'D' },
@@ -54,12 +51,12 @@ export default function OriginTimeSeriesData() {
   }, [originData]);
 
   const handleReset = () => {
-    setErrorText(null);
-    setTimeSeriesData([]);
     setFreq('Q-JAN');
     setStart('2010Q1');
     setEnd('2020Q4');
+    reset1();
   };
+  console.log(timeSeriesData);
 
   return (
     <div>
@@ -78,8 +75,8 @@ export default function OriginTimeSeriesData() {
           生成序列
         </Button>
 
-        {timeSeriesData?.length > 0 && !errorText ? (
-          <ResultDisplay type="table" title={title} data={timeSeriesData}>
+        {timeSeriesData ? (
+          <ResultDisplay keyName="var2" type="table" title={title} data={[timeSeriesData]}>
             <div className="pb-2 border-b mb-2">
               <Tooltip className="mr-2" title={`类型应是 <class 'pandas._libs.tslibs.period.Period'>`}>
                 索引类型

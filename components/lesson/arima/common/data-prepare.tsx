@@ -1,18 +1,17 @@
 import { Button, Select } from 'antd';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { cloneDeep } from 'lodash';
 
 import { useFetchError } from '@/lib/hook/use-fetch-error';
-import { useLessonPoster } from '@/lib/http/lesson-poster';
 
 import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
 import TooltipBtn from '@/components/share/tooltip-btn';
 import LabelText from '@/components/share/label-text';
 import ResultDisplay from '@/components/share/result-display';
+import { IPosterData, usePosterData } from '@/lib/hook/use-poster-data';
 
 export default function DataPrepare() {
-  const { lessonPoster } = useLessonPoster();
   const reGenCalcOptions = [
     { value: 100000, label: '十万' },
     { value: 1000000, label: '百万' },
@@ -30,30 +29,34 @@ export default function DataPrepare() {
     },
   ];
 
-  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
-
-  const [oData, setOData] = useState<Array<any>>([]);
-  const [displayOData, setDisplayOData] = useState<Array<any>>([]);
+  const [displayOData, setDisplayOData] = useState<IPosterData | null>(null);
   const [reGenCol, setReGenCol] = useState<string | null>('营业收入');
   const [reGenCalcNum, setReGenCalcNum] = useState<number | null>(1000000);
   const reGenCalcLabel = reGenCalcOptions.find((item) => item.value === reGenCalcNum)?.label;
-  const [reGenData, setReGenData] = useState<Array<any>>([]);
+  const [reGenData, setReGenData] = useState<IPosterData | null>(null);
 
   const [indexColName, setIndexColName] = useState(colOptions[1].value);
 
-  const handleRead = catchErrorWrapper(async () => {
-    const ctt = await lessonPoster('preprocessing/data');
+  const errorHandler = useFetchError();
+  const { errorText } = errorHandler;
 
-    const newCtt = cloneDeep(ctt).map((item: Record<string, any>) => {
+  const { data: pRes, trigger: handleGenAction, reset: reset1 } = usePosterData('preprocessing/data', errorHandler);
+  const oData = useMemo(() => pRes?.data || [], [pRes]);
+
+  const handleRead = async () => {
+    const ctt = await handleGenAction();
+
+    const newCtt = cloneDeep(ctt?.data || []).map((item: Record<string, any>) => {
       if (!indexColName) return item;
       item[indexColName + '(索引列)'] = item[indexColName];
       delete item[indexColName];
       return item;
     });
 
-    setOData(ctt);
-    setDisplayOData(newCtt);
-  });
+    setDisplayOData({
+      data: newCtt,
+    });
+  };
 
   const reGenColOptions = Object.keys(oData[0] || {}).map((key) => ({ label: key, value: key }));
   const handleReGen = async () => {
@@ -70,16 +73,15 @@ export default function DataPrepare() {
       return item;
     });
 
-    setReGenData(rD);
+    setReGenData({ data: rD });
   };
 
   const handleReset = () => {
-    setOData([]);
-    setDisplayOData([]);
-    setReGenData([]);
+    setDisplayOData(null);
+    setReGenData(null);
     setReGenCol('营业收入');
     setReGenCalcNum(1000000);
-    setErrorText(null);
+    reset1();
   };
 
   return (
@@ -106,9 +108,9 @@ export default function DataPrepare() {
           />
         )}
 
-        {oData.length && !errorText ? (
+        {displayOData && !errorText ? (
           <>
-            <ResultDisplay type="table" title="读取的原始数据" data={displayOData} />
+            <ResultDisplay type="table" title="读取的原始数据" data={[displayOData]} />
             <CapTitle className="my-2" index={2} title="处理原始数据" />
             <div>
               <span>为方便数据展示和查看，设置</span>
@@ -132,7 +134,7 @@ export default function DataPrepare() {
           </>
         ) : null}
 
-        {reGenData.length && !errorText ? <ResultDisplay type="table" title="处理后的数据" data={reGenData} /> : null}
+        {reGenData ? <ResultDisplay keyName="var1" type="table" title="处理后的数据" data={[reGenData]} /> : null}
       </div>
     </div>
   );

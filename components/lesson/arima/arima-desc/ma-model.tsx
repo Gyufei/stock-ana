@@ -1,45 +1,31 @@
 import { Button, InputNumber } from 'antd';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import { MaCode } from '@/data/code/arima';
 import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
 import ResultDisplay from '@/components/share/result-display';
-import { useLessonPoster } from '@/lib/http/lesson-poster';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
 import LabelText from '@/components/share/label-text';
+import { usePosterData } from '@/lib/hook/use-poster-data';
 
 export default function ArpModel() {
-  const { lessonPoster } = useLessonPoster();
-  const [chartData, setChartData] = useState<any[]>([]);
+  const title = '时间序列数据的时序图、ACF、PACF、QQ图和 PP图';
   const [timeSNum, setTimeSNum] = useState<number | null>(200);
 
-  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
+  const errorHandler = useFetchError();
+  const { errorText } = errorHandler;
 
-  const handleDraw = useMemo(
-    () =>
-      catchErrorWrapper(async () => {
-        const res = await lessonPoster('desc/17', {
-          size: timeSNum,
-        });
-
-        setChartData((val: Array<any>) => {
-          const newImg = {
-            // title: 'AR模型的预测值和残差',
-            name: '残差分布图',
-            src: res.image,
-          };
-
-          const newVal = val.filter((item: any) => item.name !== newImg.name);
-          return [...newVal, newImg];
-        });
-      }),
-    []
-  );
+  const {
+    data: chartData,
+    trigger: handleDraw,
+    reset,
+  } = usePosterData('desc/17', errorHandler, {
+    resCallback: (res) => res.image,
+  });
 
   const handleReset = () => {
-    setChartData([]);
-    setErrorText(null);
+    reset();
   };
 
   return (
@@ -53,12 +39,12 @@ export default function ArpModel() {
         <Button type="primary" onClick={() => handleDraw()}>
           模拟
         </Button>
-        {chartData.length && !errorText ? <ResultDisplay type="image" data={chartData} title="滞后时序图" /> : null}
+        {chartData && !errorText ? <ResultDisplay keyName='var17' type="image" data={[chartData]} title="滞后时序图" /> : null}
 
         {errorText && (
           <ResultDisplay
             type="error"
-            title="时间序列数据的时序图、ACF、PACF、QQ图和 PP图"
+            title={title}
             data={[
               {
                 data: errorText,

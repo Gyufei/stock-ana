@@ -12,7 +12,7 @@ import { originColOptionsAtom } from '@/lib/states/lesson-arima-state';
 export default function RelLnIncome2Chart() {
   const title = '二阶差分（lnIncome_2）的自相关图与偏自相关图';
   const originColOptions = useAtomValue(originColOptionsAtom);
-  const { data: chartData, trigger: handleDraw, resetData: resetChartData, errorText, setErrorText } = usePosterData('preprocessing/9', title);
+  const { data: chartData, trigger: handleDraw, reset: resetChartData, errorText, setErrorText } = usePosterData('preprocessing/9', title);
 
   const [reqParams, setReqParams] = useState({
     lnCol: '营业收入',

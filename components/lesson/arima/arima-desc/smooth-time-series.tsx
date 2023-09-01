@@ -13,8 +13,12 @@ export default function SmoothTimeSeries() {
 
   const errorHandler = useFetchError();
   const { errorText } = errorHandler;
-  const { data: randomData, trigger: handleGenAction } = usePosterData('desc/1', errorHandler);
-  const { data: chartData, trigger: handleDraw } = usePosterData('desc/2', errorHandler, {
+  const { data: randomData, trigger: handleGenAction, reset: reset1 } = usePosterData('desc/1', errorHandler);
+  const {
+    data: chartData,
+    trigger: handleDraw,
+    reset: reset2,
+  } = usePosterData('desc/2', errorHandler, {
     title,
     resCallback: (res) => res.image,
   });
@@ -28,6 +32,8 @@ export default function SmoothTimeSeries() {
 
   const handleReset = () => {
     setRandomNum(1000);
+    reset1();
+    reset2();
   };
 
   return (
@@ -64,7 +70,7 @@ export default function SmoothTimeSeries() {
           </>
         ) : null}
 
-        {chartData ? <ResultDisplay keyName="png1" type="image" data={[chartData]} title="白噪声数据的折线图" /> : null}
+        {chartData ? <ResultDisplay keyName="var2" type="image" data={[chartData]} title="白噪声数据的折线图" /> : null}
       </div>
     </div>
   );

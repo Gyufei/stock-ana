@@ -1,5 +1,5 @@
 import { Button, DatePicker, InputNumber, Select } from 'antd';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import { ArmaModelCode } from '@/data/code/arima';
 import ResetBtn from '@/components/share/reset-btn';
@@ -8,11 +8,10 @@ import LabelText from '@/components/share/label-text';
 import TooltipBtn from '@/components/share/tooltip-btn';
 import ResultDisplay from '@/components/share/result-display';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
-import { useLessonPoster } from '@/lib/http/lesson-poster';
 import dayjs from 'dayjs';
+import { usePosterData } from '@/lib/hook/use-poster-data';
 
 export default function ArmaModel() {
-  const { lessonPoster } = useLessonPoster();
   const [randomNum, setRandomNum] = useState<number | null>(510);
   const [randomSeed, setRandomSeed] = useState<number | null>(12345);
   const [fitDate, setFitDate] = useState<dayjs.Dayjs | null>(dayjs('1980-01-01'));
@@ -25,92 +24,75 @@ export default function ArmaModel() {
   ];
   const [freq, setFreq] = useState('M');
 
-  const [timeSeriesData, setTimeSeriesData] = useState<Array<number>>([]);
-  const [fitData, setFitData] = useState<Array<number>>([]);
+  const errorHandler = useFetchError();
+  const { errorText } = errorHandler;
 
-  const [timeChartData, setTimeChartData] = useState<any[]>([]);
-  const [acfData, setAcfData] = useState<any[]>([]);
+  const { data: timeSeriesData, trigger: handleGenAction, reset: reset1 } = usePosterData('desc/18', errorHandler);
+  const handleGen = () => {
+    if (!randomNum || !randomSeed) return;
+    handleGenAction({
+      size: randomNum,
+      seed: randomSeed,
+    });
+  };
 
-  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
-
-  const handleGen = useMemo(
-    () =>
-      catchErrorWrapper(async () => {
-        const res = await lessonPoster('desc/18', {
-          size: randomNum,
-          seed: randomSeed,
-        });
-        setTimeSeriesData(res);
-      }),
-    [randomNum, randomSeed]
-  );
-
-  const handleFit = useMemo(
-    () =>
-      catchErrorWrapper(async () => {
-        const res = await lessonPoster('desc/19', {
-          date: fitDate?.format('YYYY-MM-DD'),
-          freq,
-        });
-        setFitData(res);
-      }),
-    [fitDate, freq]
-  );
+  const { data: fitData, trigger: handleFitAction, reset: reset2 } = usePosterData('desc/19', errorHandler);
+  const handleFit = async () => {
+    if (!fitDate || !freq) return;
+    handleFitAction({
+      date: fitDate?.format('YYYY-MM-DD'),
+      freq,
+    });
+  };
 
   const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(dayjs('2019-06-30'));
   const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(dayjs('2022-10-31'));
 
-  const handleDraw1 = useMemo(
-    () =>
-      catchErrorWrapper(async () => {
-        const res = await lessonPoster('desc/20', {
-          start: startDate?.format('YYYY-MM-DD'),
-          end: endDate?.format('YYYY-MM-DD'),
-        });
-
-        setTimeChartData((val: Array<string>) => {
-          const newImg = {
-            title: '预测图',
-            src: res.image,
-          };
-
-          const newVal = val.filter((item: any) => item.title !== newImg.title);
-          return [...newVal, newImg];
-        });
-      }),
-    []
-  );
+  const {
+    data: timeChartData,
+    trigger: handleDraw1Action,
+    reset: reset3,
+  } = usePosterData('desc/20', errorHandler, {
+    title: '预测图',
+    resCallback: (res) => res.image,
+  });
+  const handleDraw1 = async () => {
+    if (!startDate || !endDate) return;
+    handleDraw1Action({
+      start: startDate?.format('YYYY-MM-DD'),
+      end: endDate?.format('YYYY-MM-DD'),
+    });
+  };
 
   const [delayNums, setDelayNums] = useState<number | null>(30);
 
-  const handleDraw2 = useMemo(
-    () =>
-      catchErrorWrapper(async () => {
-        const res = await lessonPoster('desc/21', {
-          size: delayNums,
-        });
+  const {
+    data: acfData,
+    trigger: handleDraw12Action,
+    reset: reset4,
+  } = usePosterData('desc/21', errorHandler, {
+    title: '绘制时间序列数据的时序图、ACF、PACF、QQ 图和 PP 图',
+    resCallback: (res) => res.image,
+  });
 
-        setAcfData((val: Array<string>) => {
-          const newImg = {
-            title: '绘制时间序列数据的时序图、ACF、PACF、QQ 图和 PP 图',
-            src: res.image,
-          };
-
-          const newVal = val.filter((item: any) => item.title !== newImg.title);
-          return [...newVal, newImg];
-        });
-      }),
-    [delayNums]
-  );
+  const handleDraw2 = async () => {
+    if (!delayNums) return;
+    handleDraw12Action({
+      size: delayNums,
+    });
+  };
 
   const handleReset = () => {
     setRandomNum(100);
     setRandomSeed(0);
-    setFitData([]);
-    setTimeSeriesData([]);
-    setTimeChartData([]);
-    setAcfData([]);
-    setErrorText(null);
+    setStartDate(dayjs('2019-06-30'));
+    setEndDate(dayjs('2022-10-31'));
+    setFreq('M');
+    setDelayNums(30);
+    reset1();
+    reset2();
+    reset3();
+    reset4();
   };
 
   return (
@@ -126,10 +108,10 @@ export default function ArmaModel() {
           生成随机数
         </Button>
 
-        {timeSeriesData.length && !errorText ? (
+        {timeSeriesData ? (
           <>
             <ResultDisplay
-              keyName="var5"
+              keyName="var18"
               type="json"
               title={`${randomNum}时间序列`}
               data={[
@@ -145,15 +127,16 @@ export default function ArmaModel() {
             <LabelText className="ml-2" label="设置时间周期" />
             <Select style={{ width: 150 }} value={freq} onChange={setFreq} options={freqOptions} />
             <br />
-            <Button className="mt-2" type="primary" onClick={handleFit}>
+            <Button className="mt-2" type="primary" onClick={() => handleFit()}>
               拟合
             </Button>
           </>
         ) : null}
 
-        {fitData.length ? (
+        {fitData ? (
           <>
             <ResultDisplay
+              keyName="var19"
               title="拟合结果的摘要信息"
               type="json"
               data={[
@@ -176,9 +159,9 @@ export default function ArmaModel() {
           </>
         ) : null}
 
-        {timeChartData.length && !errorText ? (
+        {timeChartData && !errorText ? (
           <>
-            <ResultDisplay type="image" title="预测图" data={timeChartData} />
+            <ResultDisplay keyName="var20" type="image" title="预测图" data={[timeChartData]} />
             <CapTitle className="my-2" index={4} title="绘制时间序列数据的时序图、ACF、PACF、QQ 图和 PP 图" code={ArmaModelCode[3]} />
             <LabelText label="滞后值个数" className="mr-2" />
             <InputNumber id="randomNum" min={1} value={delayNums} onChange={(e) => setDelayNums(e || null)} />
@@ -190,7 +173,9 @@ export default function ArmaModel() {
           </>
         ) : null}
 
-        {acfData.length ? <ResultDisplay type="image" title="时间序列数据的时序图、ACF、PACF、QQ图和PP图" data={acfData} /> : null}
+        {acfData ? (
+          <ResultDisplay keyName="var21" type="image" title="时间序列数据的时序图、ACF、PACF、QQ图和PP图" data={[acfData]} />
+        ) : null}
 
         {errorText && (
           <ResultDisplay

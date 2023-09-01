@@ -19,8 +19,12 @@ export default function RandomWalk() {
   const errorHandler = useFetchError();
   const { errorText } = errorHandler;
 
-  const { data: randomDataObj, trigger: handleGenAction } = usePosterData('desc/3', errorHandler);
-  const { data: chartData, trigger: handleDraw } = usePosterData('desc/4', errorHandler, {
+  const { data: randomDataObj, trigger: handleGenAction, reset: reset1 } = usePosterData('desc/3', errorHandler);
+  const {
+    data: chartData,
+    trigger: handleDraw,
+    reset: reset2,
+  } = usePosterData('desc/4', errorHandler, {
     title,
     resCallback: (res) => res.image,
   });
@@ -40,6 +44,8 @@ export default function RandomWalk() {
   const handleReset = () => {
     setRandomNum(1000);
     setRandomSeed(5);
+    reset1();
+    reset2();
   };
 
   return (
@@ -59,7 +65,7 @@ export default function RandomWalk() {
         {randomDataObj?.data ? (
           <>
             <ResultDisplay
-              keyName="var2"
+              keyName="var3"
               title={`${randomNum}个随机数据`}
               type="json"
               data={[
@@ -86,7 +92,7 @@ export default function RandomWalk() {
           />
         )}
 
-        {chartData ? <ResultDisplay keyName="png2" title="随机游走图形" type="image" data={[chartData]} /> : null}
+        {chartData ? <ResultDisplay keyName="var4" title="随机游走图形" type="image" data={[chartData]} /> : null}
       </div>
     </div>
   );
