@@ -1,27 +1,28 @@
+import { useLessonPoster } from '@/lib/http/lesson-poster';
+import { PathMap } from '@/lib/http/path-map';
 import { Button, Card, Modal, Rate, Spin, Statistic } from 'antd';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export function ScoreBtn() {
+  const { poster, isLoading } = useLessonPoster();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleClick = useCallback(() => {
     setIsModalOpen(true);
+    getScore();
   }, []);
 
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
-  const [loading, setLoading] = useState(true);
   const [score, setScore] = useState(0);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-      const score = Math.floor(Math.random() * 41) + 60;
-      setScore(score);
-    }, 2000);
-  }, []);
+  const getScore = async () => {
+    const res = await poster(`${PathMap.utils}/score/`);
+    setScore(res.data.score);
+  };
 
   return (
     <>
@@ -31,10 +32,10 @@ export function ScoreBtn() {
 
       <Modal title="得分统计" footer={null} open={isModalOpen} onCancel={handleCancel}>
         <Card className="mt-4">
-          <Spin tip="正在计算得分中" spinning={loading}>
+          <Spin tip="正在计算得分中" spinning={isLoading}>
             <Statistic
               title="当前得分"
-              value={loading ? undefined : score}
+              value={isLoading ? undefined : score}
               prefix={<i className="fa-solid fa-thumbs-up text-[#fadb12] mr-2"></i>}
               suffix="/ 100"
             />

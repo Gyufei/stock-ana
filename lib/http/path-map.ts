@@ -12,6 +12,8 @@ export const PathMap = {
   saveStocks: WithHost('/saveStocks'),
   pickStock: WithHost('/selectUtils/getStockByPEG'),
 
+  // utils
+  utils: WithAiHost('/utils'),
   // algo and strategy
   strategyPath: WithAiHost('/strategy'),
   // arima
