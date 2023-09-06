@@ -1,26 +1,26 @@
+import { useLessonPoster } from '@/lib/http/lesson-poster';
 import { PathMap } from '@/lib/http/path-map';
 import { Button } from 'antd';
 
 export default function DownloadPDFBtn() {
-  function downloadFile(url: string, filename: string) {
-    // 创建一个隐藏的<a>标签
-    var link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
+  const { poster } = useLessonPoster();
 
-    // 添加到文档中
-    document.body.appendChild(link);
+  const handleDownloadPdf = async () => {
+    const title = '实验报告';
+    const res = await poster(PathMap.sharePath + '/get_model_pdf/', {
+      title,
+    });
 
-    // 模拟点击下载
-    link.click();
-
-    // 清理
-    document.body.removeChild(link);
-  }
-
-  const handleDownloadPdf = () => {
-    downloadFile(PathMap.lessonArima + '/pdf', '实验报告.pdf');
+    const blob = res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = title + '.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
+
   return (
     <>
       <Button type="default" onClick={handleDownloadPdf}>

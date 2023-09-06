@@ -26,7 +26,7 @@ export function useLessonPoster() {
   }
 
   async function lessonPoster(path: string, data?: any) {
-    return poster(`${PathMap.lessonArima}/${path}/`, data);
+    return poster(`${PathMap.lessonArimaPath}/${path}/`, data);
   }
 
   return {

@@ -6,8 +6,7 @@ import ResetBtn from '@/components/share/reset-btn';
 import ImageConfig, { IImageConfig } from '@/components/share/image-config';
 import ResultDisplay from '@/components/share/result-display';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
-import { useAtom } from 'jotai';
-import { commentsAtom } from '@/lib/states/lesson-arima-state';
+import { useComments } from '@/lib/hook/use-comment';
 
 export default function OriginDataSeriesChart() {
   const title = '原始数据时序图';
@@ -29,10 +28,11 @@ export default function OriginDataSeriesChart() {
     resCallback: (res) => res.image,
   });
 
-  const [comments, setComments] = useAtom(commentsAtom);
+  const { comments, handleSetComments } = useComments();
+
   const handleDraw = (params: IImageConfig) => {
     handleDrawAction(params);
-    setComments({
+    handleSetComments({
       ...comments,
       var3: `结论： 自2010年以来，格力电器营业收入整体上呈季节性上升形态，但又分三个阶段：
               第一阶段（2010-2014），对应专业化发展的黄金期，营业收入呈季节性震荡式上升趋势；

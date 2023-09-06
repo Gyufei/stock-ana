@@ -12,10 +12,12 @@ export const PathMap = {
   saveStocks: WithHost('/saveStocks'),
   pickStock: WithHost('/selectUtils/getStockByPEG'),
 
+  // share
+  sharePath: WithAiHost('/share'),
   // utils
-  utils: WithAiHost('/utils'),
+  utilsPath: WithAiHost('/utils'),
   // algo and strategy
   strategyPath: WithAiHost('/strategy'),
   // arima
-  lessonArima: WithAiHost('/arima'),
+  lessonArimaPath: WithAiHost('/arima'),
 };

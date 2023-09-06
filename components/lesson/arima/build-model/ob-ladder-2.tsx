@@ -6,10 +6,11 @@ import ResetBtn from '@/components/share/reset-btn';
 import ResultDisplay from '@/components/share/result-display';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
 import LabelText from '@/components/share/label-text';
-import { useAtom, useAtomValue } from 'jotai';
-import { commentsAtom, originColOptionsAtom } from '@/lib/states/lesson-arima-state';
+import { useAtomValue } from 'jotai';
+import { originColOptionsAtom } from '@/lib/states/lesson-arima-state';
 import CapTitle from '@/components/share/cap-title';
 import { BuildModelCode2 } from '@/data/code/arima';
+import { useComments } from '@/lib/hook/use-comment';
 
 export default function ObLadder1() {
   const title = '观察法定阶: 二阶差分偏相关图';
@@ -30,10 +31,10 @@ export default function ObLadder1() {
     resCallback: (res) => res.image,
   });
 
-  const [comments, setComments] = useAtom(commentsAtom);
-  const handleDraw = (params: any) => {
+  const { comments, handleSetComments } = useComments();
+  const handleDraw = async (params: any) => {
     handleDrawAction(params);
-    setComments({
+    handleSetComments({
       ...comments,
       var19: `很明显自相关图显示，自相关图与偏自相关图均显示拖尾性。 这里我们使用模型ARMA，并选取p=1,q=1。`,
     });

@@ -3,7 +3,7 @@ import LabelText from '@/components/share/label-text';
 import { useDataToTable as useDataToTable } from '@/lib/hook/use-data-to-table';
 import { InputNumber, Table, Collapse, CollapseProps, Image, Tooltip, Alert } from 'antd';
 import { SaveFileBtn } from '@/components/share/save-file-btn';
-import { ResultDescInputBtn } from './result-desc-input-btn';
+import { CommentInputBtn } from './comment-input-btn';
 import { IPosterData } from '@/lib/hook/use-poster-data';
 import { useAtomValue } from 'jotai';
 import { commentsAtom } from '@/lib/states/lesson-arima-state';
@@ -134,7 +134,7 @@ export default function ResultDisplay({
       label: (
         <div className="flex items-center gap-x-4">
           <div>{title}</div>
-          {keyName && <ResultDescInputBtn keyName={keyName} />}
+          {keyName && <CommentInputBtn keyName={keyName} />}
         </div>
       ),
       children: (

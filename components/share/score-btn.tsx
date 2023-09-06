@@ -20,7 +20,7 @@ export function ScoreBtn() {
   const [score, setScore] = useState(0);
 
   const getScore = async () => {
-    const res = await poster(`${PathMap.utils}/score/`);
+    const res = await poster(`${PathMap.utilsPath}/score/`);
     setScore(res.data.score);
   };
 

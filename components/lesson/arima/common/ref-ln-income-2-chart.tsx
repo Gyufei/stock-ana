@@ -6,9 +6,10 @@ import { usePosterData } from '@/lib/hook/use-poster-data';
 import ResultDisplay from '@/components/share/result-display';
 import { useState } from 'react';
 import LabelText from '@/components/share/label-text';
-import { useAtom, useAtomValue } from 'jotai';
-import { commentsAtom, originColOptionsAtom } from '@/lib/states/lesson-arima-state';
+import { useAtomValue } from 'jotai';
+import { originColOptionsAtom } from '@/lib/states/lesson-arima-state';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
+import { useComments } from '@/lib/hook/use-comment';
 
 export default function RelLnIncome2Chart() {
   const title = '二阶差分（lnIncome_2）的自相关图与偏自相关图';
@@ -38,10 +39,10 @@ export default function RelLnIncome2Chart() {
     });
   };
 
-  const [comments, setComments] = useAtom(commentsAtom);
+  const { comments, handleSetComments } = useComments();
   const handleDraw = (params: any) => {
     handleDrawAction(params);
-    setComments({
+    handleSetComments({
       ...comments,
       var3: `PACF图说明：自相关的波动性普遍在+-0.2-+-0.4徘徊，相关性较高。`,
     });
@@ -79,7 +80,7 @@ export default function RelLnIncome2Chart() {
 
         {chartData ? (
           <>
-            <ResultDisplay keyName='var11' type="image" title={title} data={[chartData]}></ResultDisplay>
+            <ResultDisplay keyName="var11" type="image" title={title} data={[chartData]}></ResultDisplay>
           </>
         ) : null}
 

@@ -1,12 +1,10 @@
 import { Button, Modal, Tooltip } from 'antd';
-import { useAtom } from 'jotai';
-
-import { commentsAtom } from '@/lib/states/lesson-arima-state';
 import TextArea from 'antd/es/input/TextArea';
 import { useState } from 'react';
+import { useComments } from '@/lib/hook/use-comment';
 
-export function ResultDescInputBtn({ keyName }: { keyName: string }) {
-  const [comments, setComments] = useAtom(commentsAtom);
+export function CommentInputBtn({ keyName }: { keyName: string }) {
+  const { comments, handleSetComments } = useComments();
   const co = comments?.[keyName];
 
   const [coText, setCoText] = useState(co || '');
@@ -14,7 +12,7 @@ export function ResultDescInputBtn({ keyName }: { keyName: string }) {
 
   const handleOk = () => {
     if (coText) {
-      setComments({
+      handleSetComments({
         ...comments,
         [keyName]: coText,
       });
