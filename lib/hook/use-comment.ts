@@ -11,7 +11,6 @@ export function useComments() {
     setComments(cos);
 
     await poster(`${PathMap.sharePath}/field/`, {
-      key: 'comments',
       value: cos,
     });
   };
