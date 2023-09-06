@@ -12,10 +12,22 @@ import ImageConfig, { IImageConfig } from '@/components/share/image-config';
 import LabelText from '@/components/share/label-text';
 import { useAtomValue } from 'jotai';
 import { originColOptionsAtom } from '@/lib/states/lesson-arima-state';
+import { useFetchError } from '@/lib/hook/use-fetch-error';
 
 export default function LnIncome2Chart() {
   const title = 'lnIncome_2时序图';
-  const { data: chartData, trigger: handleDraw, reset: resetChartData, errorText, setErrorText } = usePosterData('preprocessing/5', title);
+
+  const errorHandler = useFetchError();
+  const { errorText } = errorHandler;
+  const {
+    data: chartData,
+    trigger: handleDraw,
+    reset: resetChartData,
+  } = usePosterData('preprocessing/5', errorHandler, {
+    title,
+    resCallback: (res) => res.image,
+  });
+
   const originColOptions = useAtomValue(originColOptionsAtom);
 
   const [imageConfig, setImageConfig] = useState<IImageConfig>({
@@ -29,7 +41,6 @@ export default function LnIncome2Chart() {
 
   const handleReset = () => {
     resetChartData();
-    setErrorText(null);
     setImageConfig({
       x: '季度',
       y: '对数营业收入的二阶差分',
@@ -82,7 +93,7 @@ export default function LnIncome2Chart() {
           绘制
         </Button>
 
-        {chartData.length && !errorText ? <ResultDisplay data={chartData} type="image" title={title} /> : null}
+        {chartData ? <ResultDisplay keyName='var7' data={[chartData]} type="image" title={title} /> : null}
 
         {errorText && (
           <ResultDisplay

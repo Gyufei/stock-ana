@@ -160,6 +160,7 @@ export default function ResultDisplay({
   ];
 
   const co = useAtomValue(commentsAtom);
+  console.log(co);
   const comment = co?.[keyName || ''] || null;
 
   return (

@@ -21,7 +21,7 @@ export default function OriginTimeSeriesData() {
   const errorHandler = useFetchError();
   const { errorText } = errorHandler;
   const { data: tsRes, trigger: handleGenAction, reset: reset1 } = usePosterData('preprocessing/1', errorHandler);
-  const timeSeriesData = useMemo(() => ({ data: tsRes?.data?.data }), [tsRes]);
+  const timeSeriesData = useMemo(() => (tsRes?.data?.data ? { data: tsRes?.data?.data } : null), [tsRes]);
 
   const handleGen = async () => {
     const index = freqOptions.find((o) => o.value === freq)?.label;
@@ -76,7 +76,7 @@ export default function OriginTimeSeriesData() {
         </Button>
 
         {timeSeriesData ? (
-          <ResultDisplay keyName="var2" type="table" title={title} data={[timeSeriesData]}>
+          <ResultDisplay keyName="var3" type="table" title={title} data={[timeSeriesData]}>
             <div className="pb-2 border-b mb-2">
               <Tooltip className="mr-2" title={`类型应是 <class 'pandas._libs.tslibs.period.Period'>`}>
                 索引类型

@@ -3,7 +3,7 @@ import { Button } from 'antd';
 
 export default function Arima() {
   return (
-    <div className="p-4 flex flex-col justify-stretch w-full h-screen">
+    <div className="p-4 flex flex-col justify-stretch w-full h-full">
       <div className="flex items-center mb-3 cursor-pointer">
         <Link href="/lesson" className="text-black hover:text-primary">
           <i className="text-sm fa-solid fa-arrow-left mr-1"></i>

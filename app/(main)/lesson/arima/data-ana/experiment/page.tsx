@@ -45,7 +45,7 @@ export default function ArimaDataAna() {
   ];
 
   return (
-    <div className="h-screen p-4">
+    <div className="h-fit min-h-screen p-4">
       <div className="flex items-center mb-4">
         <div className="flex flex-col flex-1">
           <div className="text-gray-600 text-lg">数据处理与分析-课程实验</div>

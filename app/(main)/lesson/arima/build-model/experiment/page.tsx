@@ -44,14 +44,14 @@ export default function ArimaDataAna() {
   ];
 
   return (
-    <div className="h-screen p-4">
+    <div className="h-fit min-h-screen p-4">
       <div className="flex items-center mb-4">
         <div className="flex flex-col flex-1">
           <div className="text-gray-600 text-lg">建立ARIMA模型-课程实验</div>
           <div className="text-sm p-2 pl-0 flex-1">
             根据给定的数据集
             <a href={files?.[0]?.link} download>
-              {files?.[0].name}
+              {files?.[0]?.name}
             </a>
             , 学习企业营业收入预测的 <code>ARIMA(p,d,q)</code> 建模过程和预测方法
           </div>

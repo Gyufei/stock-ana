@@ -3,39 +3,42 @@ import { useMemo, useState } from 'react';
 import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
 import { ArimaDataAnaCode } from '@/data/code/arima-data-ana';
-import { useLessonPoster } from '@/lib/http/lesson-poster';
 import { likeArrayObjToArray } from '@/lib/utils/util';
 import ResultDisplay from '@/components/share/result-display';
 import { useAtomValue } from 'jotai';
 import { originColOptionsAtom } from '@/lib/states/lesson-arima-state';
 import LabelText from '@/components/share/label-text';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
+import { usePosterData } from '@/lib/hook/use-poster-data';
 
 export default function BoxCheck() {
-  const { lessonPoster } = useLessonPoster();
   const originColOptions = useAtomValue(originColOptionsAtom);
 
-  const [rpqData, setRpqData] = useState<Record<string, any>>();
-  const [boxCheckData, setBoxCheck] = useState<Record<string, any>>();
-
-  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
+  const errorHandler = useFetchError();
+  const { errorText } = errorHandler;
+  const { data: res, trigger: handleGenAction, reset: reset1 } = usePosterData('preprocessing/7', errorHandler);
+  const boxCheckData = useMemo(() => (res?.data ? res?.data?.data : null), [res]);
+  const rpqData = useMemo(
+    () =>
+      res?.data
+        ? {
+            r: res?.data?.r,
+            p: res?.data?.p,
+            q: res?.data?.q,
+          }
+        : null,
+    [res]
+  );
 
   const [reqParams, setReqParams] = useState({
     lnCol: '营业收入',
     nflags: 15,
   });
 
-  const handleGen = useMemo(
-    () =>
-      catchErrorWrapper(async () => {
-        const res = await lessonPoster('preprocessing/7');
-
-        const { r, p, q, data } = res;
-        setRpqData({ r, p, q });
-        setBoxCheck(data);
-      }),
-    [reqParams]
-  );
+  const handleGen = async () => {
+    if (!reqParams.lnCol || !reqParams.nflags) return;
+    await handleGenAction(reqParams);
+  };
 
   const tData = useMemo(() => {
     const ac = likeArrayObjToArray(boxCheckData?.AC);
@@ -54,12 +57,11 @@ export default function BoxCheck() {
       };
     });
 
-    return data;
+    return { data };
   }, [boxCheckData]);
 
   const handleReset = () => {
-    setBoxCheck([]);
-    setErrorText(null);
+    reset1();
     setReqParams({
       lnCol: '营业收入',
       nflags: 15,
@@ -122,7 +124,7 @@ export default function BoxCheck() {
           />
         ) : null}
 
-        {boxCheckData && !errorText ? <ResultDisplay type="table" data={tData} title="Ljung-Box检验统计量: acf值, pacf值" /> : null}
+        {boxCheckData && !errorText ? <ResultDisplay keyName='var9' type="table" data={[tData]} title="Ljung-Box检验统计量: acf值, pacf值" /> : null}
 
         {errorText && (
           <ResultDisplay

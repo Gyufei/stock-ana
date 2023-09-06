@@ -507,11 +507,105 @@ export const BuildModelCode = [
   ax2 = fig.add_subplot(212)
   fig = sm.graphics.tsa.plot_pacf(lnIncome, method='ywm',lags=20, ax=ax2)
   fig.savefig("5.png")`,
+
   `# 利用Ljung-Box Q统计量，检验lnIncome序列的自相关性
 import statsmodels.api as sm
 from statsmodels.stats.diagnostic import acorr_ljungbox 
 lag=range(1,15,1)
 print(sm.stats.diagnostic.acorr_ljungbox(lnIncome_1, 
                     lags=lag,boxpierce=True,return_df=True)) 
+  `,
+
+  `
+  # 1.方法一:简单实现
+
+# 平稳性检测，
+from statsmodels.tsa.stattools import adfuller
+print('对数营业收入序列的检验结果为：\n',adfuller(data['lnIncome']))
+print("---"*20)
+  `,
+
+  `
+  # 2.方法二：以数据框类型显示ADF检验结果
+t = sm.tsa.stattools.adfuller(data['lnIncome'])  # ADF检验
+output=pd.DataFrame(index=['Test Statistic Value', "p-value", "Lags Used",
+                           "Number of Observations Used","Critical Value(1%)",
+                           "Critical Value(5%)","Critical Value(10%)"],
+                            columns=['value'])
+output.astype('float')
+output['value']['Test Statistic Value'] = t[0]
+output['value']['p-value'] = t[1]
+output['value']['Lags Used'] = t[2]
+output['value']['Number of Observations Used'] = t[3]
+output['value']['Critical Value(1%)'] = t[4]['1%']
+output['value']['Critical Value(5%)'] = t[4]['5%']
+output['value']['Critical Value(10%)'] = t[4]['10%']
+print(output)
+  `,
+
+  `
+  # 方法三  ADF平稳性检验的自定义函数实现
+def teststationarity(ts):
+    dftest = adfuller(ts)
+    # 对上述函数求得的值进行语义描述
+    dfoutput = pd.Series(dftest[0:4], 
+        index=['Test Statistic','p-value','#Lags Used','Number of Observations Used'])
+    for key,value in dftest[4].items():
+        dfoutput['Critical Value (%s)'%key] = value
+    return dfoutput
+print(teststationarity(data['lnIncome']))
+  `,
+  `
+  ADF_Income=pd.DataFrame(teststationarity(data['营业收入']))
+ADF_lnIncome=pd.DataFrame(teststationarity(data['lnIncome']))
+ADF_lnIncome_1=pd.DataFrame(teststationarity(data['lnIncome_1'].dropna()))
+ADF_lnIncome_2=pd.DataFrame(teststationarity(data['lnIncome_2'].dropna()))
+ADF=pd.concat([ADF_Income,ADF_lnIncome,ADF_lnIncome_1,ADF_lnIncome_2],axis=1)
+ADF.columns=['ADF_Income','ADF_lnIncome','ADF_lnIncome_1','ADF_lnIncome_2']
+print(ADF)
+  `,
+];
+
+export const BuildModelCode2 = [
+  `# 对数营业收入二阶差分（lnIncome_2）的自相关与偏自相关图
+  from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+  import math as math
+  
+  fig = plt.figure(figsize=(8,6))
+  lnIncome_22=lnIncome_1.diff().dropna()
+  fig = plt.figure(figsize=(8,6))
+  ax1 = fig.add_subplot(211)
+  fig = sm.graphics.tsa.plot_acf(lnIncome_22.values.squeeze(), lags=15, ax=ax1)
+  ax2 = fig.add_subplot(212)
+  fig = sm.graphics.tsa.plot_pacf(lnIncome_22, method='ywm',lags=15, ax=ax2)
+  # 保存图片
+  fig.savefig("10.png")
+  fig.show()`,
+  `
+  # 对数营业收入二阶差分（lnIncome_2）的自相关与偏自相关图
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+import math as math
+fig = plt.figure(figsize=(8,6))
+lnIncome_22=lnIncome_2.dropna()               # 截取lnIncome_1的第1行至最后一行，即删除因差分而缺失的nan数据
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置为黑体字
+plt.rcParams['axes.unicode_minus'] = False    # 设置正常显示字符
+plot_acf(lnIncome_22)
+plot_pacf(lnIncome_22,method='ywm')
+# 保存图片
+plt.savefig("11.png")
+plt.show()
+  `,
+  `
+  # 导入 pmdarima 库，用于自动化时间序列模型的选择和拟合。
+import pmdarima as pm
+# 使用 pmdarima 库的 auto_arima 函数，自动选择并拟合时间序列模型。
+# lnIncome：要拟合的时间序列数据。  
+# trace=False：不显示拟合过程的调试跟踪信息。
+# error_action="ignore"：在遇到错误时忽略处理。
+# suppress_warnings=True：抑制警告信息的显示。
+model = pm.auto_arima(lnIncome,trace=False,
+                    error_action="ignore",suppress_warnings=True)
+# 输出模型的拟合结果摘要
+print(model.fit(lnIncome))
   `,
 ];

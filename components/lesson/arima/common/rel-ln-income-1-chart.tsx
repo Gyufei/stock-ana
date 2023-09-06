@@ -8,12 +8,23 @@ import { useAtomValue } from 'jotai';
 import { useState } from 'react';
 import LabelText from '@/components/share/label-text';
 import { originColOptionsAtom } from '@/lib/states/lesson-arima-state';
+import { useFetchError } from '@/lib/hook/use-fetch-error';
 
 export default function RelLnIncome1Chart() {
   const title = '一阶差分（lnIncome_1）的自相关图与偏自相关图';
 
   const originColOptions = useAtomValue(originColOptionsAtom);
-  const { data: chartData, trigger: handleDraw, reset: resetChartData, errorText, setErrorText } = usePosterData('preprocessing/8', title);
+
+  const errorHandler = useFetchError();
+  const { errorText } = errorHandler;
+  const {
+    data: chartData,
+    trigger: handleDraw,
+    reset: resetChartData,
+  } = usePosterData('preprocessing/8', errorHandler, {
+    title,
+    resCallback: (res) => res.image,
+  });
 
   const [reqParams, setReqParams] = useState({
     lnCol: '营业收入',
@@ -22,7 +33,6 @@ export default function RelLnIncome1Chart() {
 
   const handleReset = () => {
     resetChartData();
-    setErrorText('');
     setReqParams({
       lnCol: '营业收入',
       nflags: 20,
@@ -58,7 +68,7 @@ export default function RelLnIncome1Chart() {
         <Button className="mb-2" onClick={() => handleDraw(reqParams)} type="primary">
           绘制
         </Button>
-        {chartData.length && !errorText ? <ResultDisplay type="image" title={title} data={chartData}></ResultDisplay> : null}
+        {chartData ? <ResultDisplay keyName="var10" type="image" title={title} data={[chartData]}></ResultDisplay> : null}
 
         {errorText && (
           <ResultDisplay

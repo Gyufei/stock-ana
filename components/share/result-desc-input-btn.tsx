@@ -16,7 +16,7 @@ export function ResultDescInputBtn({ keyName }: { keyName: string }) {
     if (coText) {
       setComments({
         ...comments,
-        [keyName]: co,
+        [keyName]: coText,
       });
       setShowModal(false);
     }

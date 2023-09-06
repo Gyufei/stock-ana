@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { InputNumber, Select } from 'antd';
 import { useAtomValue } from 'jotai';
 
@@ -6,42 +6,36 @@ import ResetBtn from '@/components/share/reset-btn';
 import TooltipBtn from '@/components/share/tooltip-btn';
 import CapTitle from '@/components/share/cap-title';
 import { ArimaDataAnaCode } from '@/data/code/arima-data-ana';
-import { useLessonPoster } from '@/lib/http/lesson-poster';
 import ResultDisplay from '@/components/share/result-display';
 import { useFetchError } from '@/lib/hook/use-fetch-error';
 import LabelText from '@/components/share/label-text';
 import { originColOptionsAtom } from '@/lib/states/lesson-arima-state';
+import { usePosterData } from '@/lib/hook/use-poster-data';
 
 export default function RelRatio() {
-  const { lessonPoster } = useLessonPoster();
   const title = '自相关与偏自相关系数';
   const originColOptions = useAtomValue(originColOptionsAtom);
 
-  const [relData, setRelData] = useState<Record<string, any>>();
-
-  const { errorText, setErrorText, catchErrorWrapper } = useFetchError();
+  const errorHandler = useFetchError();
+  const { errorText } = errorHandler;
+  const { data: relData, trigger: handleGenAction, reset: reset1 } = usePosterData('preprocessing/6', errorHandler);
 
   const [reqParams, setReqParams] = useState({
     lnCol: '营业收入',
     nflags: 15,
   });
 
-  const handleGen = useMemo(
-    () =>
-      catchErrorWrapper(async () => {
-        const res = await lessonPoster('preprocessing/6', reqParams);
-        setRelData(res);
-      }),
-    [reqParams]
-  );
+  const handleGen = () => {
+    if (!reqParams.lnCol || !reqParams.nflags) return;
+    handleGenAction(reqParams);
+  };
 
   const handleReset = () => {
-    setRelData([]);
-    setErrorText(null);
     setReqParams({
       lnCol: '营业收入',
       nflags: 15,
     });
+    reset1();
   };
 
   return (
@@ -79,18 +73,19 @@ export default function RelRatio() {
           计算
         </TooltipBtn>
 
-        {relData && !errorText ? (
+        {relData ? (
           <ResultDisplay
+            keyName="var8"
             title={title}
             type="json"
             data={[
               {
                 title: 'ACF_lnIncome',
-                data: relData?.ACF_lnIncome || [],
+                data: relData?.data?.ACF_lnIncome || [],
               },
               {
                 title: 'PACF_lnIncome',
-                data: relData?.PACF_lnIncome || [],
+                data: relData?.data?.PACF_lnIncome || [],
               },
             ]}
           />

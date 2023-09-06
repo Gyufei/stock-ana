@@ -3,7 +3,7 @@ import { Button } from 'antd';
 
 export default function Arima() {
   return (
-    <div className="p-4 flex flex-col justify-stretch w-full h-screen">
+    <div className="p-4 flex flex-col justify-stretch w-full h-full">
       <div className="mt-10 px-10">
         <div className="border p-4 rounded-md mb-4">
           <div className="text-primary text-2xl mb-4">建立ARIMA模型</div>

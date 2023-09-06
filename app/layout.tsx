@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SwrConfigProvider>
           <StyledComponentsRegistry>
             <AntdProvider>
-              <div className=" flex-1 relative bg-blueGray-100 h-full flex flex-col">{children}</div>
+              <div className="flex-1 relative bg-blueGray-100 h-full flex flex-col">{children}</div>
             </AntdProvider>
           </StyledComponentsRegistry>
         </SwrConfigProvider>

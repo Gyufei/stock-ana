@@ -26,6 +26,8 @@ export function usePosterData(
 
   const trigger = async (config?: Record<string, any>) => {
     try {
+      setErrorText('');
+
       const cD = await lessonPoster(path, config);
 
       const data = {

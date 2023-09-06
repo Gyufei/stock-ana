@@ -1,48 +1,45 @@
-import { Button, InputNumber, Select } from 'antd';
+import { useState } from 'react';
+import { Button, Select } from 'antd';
+
 import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
-import { usePosterData } from '@/lib/hook/use-poster-data';
 import ResultDisplay from '@/components/share/result-display';
-import { useState } from 'react';
+import { useFetchError } from '@/lib/hook/use-fetch-error';
 import LabelText from '@/components/share/label-text';
+import { BuildModelCode } from '@/data/code/arima';
+import { usePosterData } from '@/lib/hook/use-poster-data';
 import { useAtomValue } from 'jotai';
 import { originColOptionsAtom } from '@/lib/states/lesson-arima-state';
-import { BuildModelCode } from '@/data/code/arima';
-import { useFetchError } from '@/lib/hook/use-fetch-error';
 
-export default function RelLnIncomeChart() {
-  const title = '对数营业收入（lnIncome）的自相关图与偏自相关图';
+export default function ADFCheck1() {
+  const title = 'ADF检验(方法一)';
   const originColOptions = useAtomValue(originColOptionsAtom);
 
   const errorHandler = useFetchError();
   const { errorText } = errorHandler;
-  const {
-    data: chartData,
-    trigger: handleDraw,
-    reset: reset1,
-  } = usePosterData('build_model/1', errorHandler, {
-    title,
-    resCallback: (res) => res.image,
+  const { data: resData, trigger: handleGenAction, reset: reset1 } = usePosterData('build_model/3', errorHandler);
+
+  const [reqParams, setReqParams] = useState<Record<string, string | null>>({
+    lnCol: '营业收入',
   });
 
-  const [reqParams, setReqParams] = useState({
-    lnCol: '营业收入',
-    nflags: 20,
-  });
+  const handleGen = async () => {
+    if (!reqParams.lnCol) return;
+    await handleGenAction(reqParams);
+  };
 
   const handleReset = () => {
+    reset1();
     setReqParams({
       lnCol: '营业收入',
-      nflags: 20,
     });
-    reset1();
   };
 
   return (
     <div>
       <ResetBtn onClick={handleReset} />
       <div className="border-y py-2">
-        <CapTitle className="mb-2" title={title} code={BuildModelCode[0]} />
+        <CapTitle className="mb-2" title={title} tip="以数据框类型显示ADF检验结果" code={BuildModelCode[3]} />
         <div className="mb-2">
           <LabelText className="w-18" label="选取对数列" />
           <Select
@@ -53,32 +50,22 @@ export default function RelLnIncomeChart() {
             }}
             options={originColOptions}
           />
-          <LabelText className="w-18 ml-4" label="最大滞后阶数" />
-          <InputNumber
-            value={reqParams.nflags}
-            onChange={(e) =>
-              setReqParams({
-                ...reqParams,
-                nflags: e || 0,
-              })
-            }
-          />
         </div>
-        <Button className="mb-2" onClick={() => handleDraw(reqParams)} type="primary">
-          绘制
+        <Button className="mb-2" type="primary" onClick={handleGen}>
+          计算
         </Button>
 
-        {chartData && !errorText ? <ResultDisplay keyName="var13" type="image" title={title} data={[chartData]}></ResultDisplay> : null}
+        {resData ? <ResultDisplay keyName="var15" title="对数营业收入序列的检验结果" type="json" data={[resData]} /> : null}
 
         {errorText && (
           <ResultDisplay
             type="error"
+            title={title}
             data={[
               {
                 data: errorText,
               },
             ]}
-            title={title}
           />
         )}
       </div>

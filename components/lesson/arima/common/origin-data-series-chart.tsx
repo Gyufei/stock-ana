@@ -64,7 +64,7 @@ export default function OriginDataSeriesChart() {
 
         {chartData ? (
           <>
-            <ResultDisplay keyName="var3" data={[chartData]} type="image" title={title} />
+            <ResultDisplay keyName="var4" data={[chartData]} type="image" title={title} />
           </>
         ) : null}
 

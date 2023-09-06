@@ -7,12 +7,22 @@ import ImageConfig, { IImageConfig } from '@/components/share/image-config';
 import LabelText from '@/components/share/label-text';
 import { useAtomValue } from 'jotai';
 import { originColOptionsAtom } from '@/lib/states/lesson-arima-state';
+import { useFetchError } from '@/lib/hook/use-fetch-error';
 
 export default function LnSeriesChart() {
   const title = '对数营业收入（lnIncome）的时序图';
   const originColOptions = useAtomValue(originColOptionsAtom);
 
-  const { data: chartData, trigger: handleDraw, reset: resetChartData, errorText, setErrorText } = usePosterData('preprocessing/3', title);
+  const errorHandler = useFetchError();
+  const { errorText } = errorHandler;
+  const {
+    data: chartData,
+    trigger: handleDraw,
+    reset: resetChartData,
+  } = usePosterData('preprocessing/3', errorHandler, {
+    title,
+    resCallback: (res) => res.image,
+  });
 
   const [imageConfig, setImageConfig] = useState<IImageConfig>({
     x: '季度',
@@ -28,7 +38,6 @@ export default function LnSeriesChart() {
       y: '对数营业收入',
       title: '对数营业收入趋势',
     });
-    setErrorText(null);
   };
 
   return (
@@ -52,9 +61,9 @@ export default function LnSeriesChart() {
           绘制
         </Button>
 
-        {chartData.length && !errorText ? (
+        {chartData && !errorText ? (
           <>
-            <ResultDisplay data={chartData} type="image" title={title} />
+            <ResultDisplay keyName="var5" data={[chartData]} type="image" title={title} />
             <Alert
               className="mt-2"
               type="info"

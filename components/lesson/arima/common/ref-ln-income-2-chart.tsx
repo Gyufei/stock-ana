@@ -1,4 +1,4 @@
-import { Alert, Button, InputNumber, Select } from 'antd';
+import { Button, InputNumber, Select } from 'antd';
 import ResetBtn from '@/components/share/reset-btn';
 import CapTitle from '@/components/share/cap-title';
 import { ArimaDataAnaCode } from '@/data/code/arima-data-ana';
@@ -6,13 +6,24 @@ import { usePosterData } from '@/lib/hook/use-poster-data';
 import ResultDisplay from '@/components/share/result-display';
 import { useState } from 'react';
 import LabelText from '@/components/share/label-text';
-import { useAtomValue } from 'jotai';
-import { originColOptionsAtom } from '@/lib/states/lesson-arima-state';
+import { useAtom, useAtomValue } from 'jotai';
+import { commentsAtom, originColOptionsAtom } from '@/lib/states/lesson-arima-state';
+import { useFetchError } from '@/lib/hook/use-fetch-error';
 
 export default function RelLnIncome2Chart() {
   const title = '二阶差分（lnIncome_2）的自相关图与偏自相关图';
   const originColOptions = useAtomValue(originColOptionsAtom);
-  const { data: chartData, trigger: handleDraw, reset: resetChartData, errorText, setErrorText } = usePosterData('preprocessing/9', title);
+
+  const errorHandler = useFetchError();
+  const { errorText } = errorHandler;
+  const {
+    data: chartData,
+    trigger: handleDrawAction,
+    reset: resetChartData,
+  } = usePosterData('preprocessing/9', errorHandler, {
+    title,
+    resCallback: (res) => res.image,
+  });
 
   const [reqParams, setReqParams] = useState({
     lnCol: '营业收入',
@@ -21,10 +32,18 @@ export default function RelLnIncome2Chart() {
 
   const handleReset = () => {
     resetChartData();
-    setErrorText('');
     setReqParams({
       lnCol: '营业收入',
       nflags: 20,
+    });
+  };
+
+  const [comments, setComments] = useAtom(commentsAtom);
+  const handleDraw = (params: any) => {
+    handleDrawAction(params);
+    setComments({
+      ...comments,
+      var3: `PACF图说明：自相关的波动性普遍在+-0.2-+-0.4徘徊，相关性较高。`,
     });
   };
 
@@ -58,16 +77,9 @@ export default function RelLnIncome2Chart() {
           绘制
         </Button>
 
-        {chartData.length && !errorText && !errorText ? (
+        {chartData ? (
           <>
-            <ResultDisplay type="image" title={title} data={chartData}></ResultDisplay>
-            <Alert
-              className="mt-2"
-              type="info"
-              showIcon
-              message="分析结论"
-              description={`PACF图说明：自相关的波动性普遍在+-0.2-+-0.4徘徊，相关性较高。`}
-            />
+            <ResultDisplay keyName='var11' type="image" title={title} data={[chartData]}></ResultDisplay>
           </>
         ) : null}
 

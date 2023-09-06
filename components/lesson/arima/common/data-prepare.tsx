@@ -1,6 +1,5 @@
 import { Button, Select } from 'antd';
 import { useMemo, useState } from 'react';
-import { cloneDeep } from 'lodash';
 
 import { useFetchError } from '@/lib/hook/use-fetch-error';
 
@@ -9,7 +8,7 @@ import CapTitle from '@/components/share/cap-title';
 import TooltipBtn from '@/components/share/tooltip-btn';
 import LabelText from '@/components/share/label-text';
 import ResultDisplay from '@/components/share/result-display';
-import { IPosterData, usePosterData } from '@/lib/hook/use-poster-data';
+import { usePosterData } from '@/lib/hook/use-poster-data';
 
 export default function DataPrepare() {
   const reGenCalcOptions = [
@@ -18,70 +17,74 @@ export default function DataPrepare() {
     { value: 10000000, label: '千万' },
   ];
 
+  const indexColOptions = [
+    {
+      label: '季度',
+      value: '季度',
+    },
+  ];
+
   const colOptions = [
     {
       label: '营业收入',
       value: '营业收入',
     },
     {
-      label: '报表日期',
+      label: '季度',
       value: '报表日期',
     },
   ];
 
-  const [displayOData, setDisplayOData] = useState<IPosterData | null>(null);
+  const [indexColName, setIndexColName] = useState('季度');
   const [reGenCol, setReGenCol] = useState<string | null>('营业收入');
   const [reGenCalcNum, setReGenCalcNum] = useState<number | null>(1000000);
-  const reGenCalcLabel = reGenCalcOptions.find((item) => item.value === reGenCalcNum)?.label;
-  const [reGenData, setReGenData] = useState<IPosterData | null>(null);
-
-  const [indexColName, setIndexColName] = useState(colOptions[1].value);
 
   const errorHandler = useFetchError();
   const { errorText } = errorHandler;
 
-  const { data: pRes, trigger: handleGenAction, reset: reset1 } = usePosterData('preprocessing/data', errorHandler);
-  const oData = useMemo(() => pRes?.data || [], [pRes]);
+  const { data: pRes, trigger: handleRead, reset: reset1 } = usePosterData('preprocessing/init_data', errorHandler);
+  const oData = useMemo(
+    () =>
+      pRes?.data
+        ? {
+            data: pRes.data,
+          }
+        : null,
+    [pRes]
+  );
 
-  const handleRead = async () => {
-    const ctt = await handleGenAction();
+  const { data: reGenDataRes, trigger: handleReGenAction, reset: reset2 } = usePosterData('preprocessing/processed_data', errorHandler);
+  const reGenData = useMemo(() => {
+    if (!reGenDataRes?.data) return null;
 
-    const newCtt = cloneDeep(ctt?.data || []).map((item: Record<string, any>) => {
-      if (!indexColName) return item;
-      item[indexColName + '(索引列)'] = item[indexColName];
-      delete item[indexColName];
+    const reGenLabel = reGenCalcOptions.find((item) => item.value === reGenCalcNum)?.label;
+    const d = reGenDataRes?.data.map((item: any) => {
+      item[indexColName + '(索引列)'] = item['报表日期'];
+      item[`${reGenCol}(${reGenLabel})`] = item[reGenCol || '营业收入'];
+      delete item['报表日期'];
+      delete item[reGenCol || '营业收入'];
       return item;
     });
+    return {
+      data: d,
+    };
+  }, [reGenDataRes]);
 
-    setDisplayOData({
-      data: newCtt,
-    });
-  };
-
-  const reGenColOptions = Object.keys(oData[0] || {}).map((key) => ({ label: key, value: key }));
   const handleReGen = async () => {
-    if (!reGenCalcNum) return;
-
-    const rD = cloneDeep(oData).map((item: Record<string, any>) => {
-      if (reGenCol === '报表日期') {
-        item[`报表日期(${reGenCalcLabel})`] = '错误: 日期无法参与运算';
-        delete item['报表日期'];
-      } else {
-        item[`营业收入(${reGenCalcLabel})`] = (item['营业收入'] / reGenCalcNum).toFixed(4) + ' ' + reGenCalcLabel;
-        delete item['营业收入'];
-      }
-      return item;
+    if (!reGenCol || !reGenCalcNum || !indexColName) return;
+    await handleReGenAction({
+      indexCol: indexColName,
+      calcCol: reGenCol,
+      calcNum: reGenCalcNum,
     });
-
-    setReGenData({ data: rD });
   };
 
   const handleReset = () => {
-    setDisplayOData(null);
-    setReGenData(null);
+    setIndexColName('报表日期');
     setReGenCol('营业收入');
     setReGenCalcNum(1000000);
     reset1();
+    reset2();
   };
 
   return (
@@ -89,10 +92,12 @@ export default function DataPrepare() {
       <ResetBtn onClick={handleReset} />
       <div className="border-y py-2">
         <CapTitle className="mb-2" index={1} title="读取原始数据" />
-        <LabelText label="设置索引列" />
-        <Select style={{ width: 150 }} value={indexColName} onChange={setIndexColName} options={colOptions} />
-        <br />
-        <TooltipBtn className="my-2" type="primary" onClick={handleRead} tip="运用pd.read_excel函数读取原始数据文件，进行数据描述性统计。">
+        <TooltipBtn
+          className="my-2"
+          type="primary"
+          onClick={() => handleRead()}
+          tip="运用pd.read_excel函数读取原始数据文件，进行数据描述性统计。"
+        >
           读取数据
         </TooltipBtn>
 
@@ -108,17 +113,19 @@ export default function DataPrepare() {
           />
         )}
 
-        {displayOData && !errorText ? (
+        {oData ? (
           <>
-            <ResultDisplay type="table" title="读取的原始数据" data={[displayOData]} />
+            <ResultDisplay keyName="var1" type="table" title="读取的原始数据" data={[oData]} />
             <CapTitle className="my-2" index={2} title="处理原始数据" />
-            <div>
+            <LabelText label="设置索引列报表日期为" />
+            <Select style={{ width: 150 }} value={indexColName} onChange={setIndexColName} options={indexColOptions} />
+            <div className="mt-2">
               <span>为方便数据展示和查看，设置</span>
               <Select
                 style={{ marginLeft: '8px', marginRight: '8px', width: 150 }}
                 value={reGenCol}
                 onChange={setReGenCol}
-                options={reGenColOptions}
+                options={colOptions}
               />
               <span>的显示方式为</span>
               <Select
@@ -134,7 +141,7 @@ export default function DataPrepare() {
           </>
         ) : null}
 
-        {reGenData ? <ResultDisplay keyName="var1" type="table" title="处理后的数据" data={[reGenData]} /> : null}
+        {reGenData ? <ResultDisplay keyName="var2" type="table" title="处理后的数据" data={[reGenData]} /> : null}
       </div>
     </div>
   );
