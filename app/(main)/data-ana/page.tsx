@@ -1,32 +1,46 @@
 'use client';
 
-import { useState } from 'react';
 import useSWR from 'swr';
 import type { UploadProps } from 'antd';
 import * as XLSX from 'xlsx';
-import { Radio, Select, Button, message, Upload } from 'antd';
+import { message, Button, Table, Space, Upload } from 'antd';
 
 import fetcher from '@/lib/http/fetcher';
-import { PathMap } from '@/lib/http/path-map';
 import useSWRMutation from 'swr/mutation';
-import Grid from '@/components/share/grid';
+import { PathMap } from '@/lib/http/path-map';
+import { useRouter } from 'next/navigation';
+
+const { Column } = Table;
+
+interface DataType {
+  id: React.Key;
+  name: string;
+  content: string;
+  type: string;
+}
 
 export default function DataAnalysis() {
-  const sourceType = [
-    { label: 'Mysql', value: 'mysql' },
-    { label: 'Excel', value: 'excel' },
-  ];
+  const router = useRouter();
 
-  const tableList = [
-    {
-      label: '股票汇总表 ',
-      value: 'trd_co',
-    },
-  ];
+  const { data: datasets, mutate: fetchSets, isLoading: isDatasetLoading } = useSWR(`/api/dataset?type=${2}`, fetcher);
 
-  const [selectedType, setSelectType] = useState('mysql');
-  const [selectedTable, setSelectTable] = useState('trd_co');
-  const [excelData, setExcelData] = useState<Array<Record<string, any>>>([]);
+  const saveDataSet = async (url: string, { arg }: any) => {
+    const res = await fetcher(`${PathMap.saveDataSet}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        name: arg.title,
+        content: JSON.stringify(arg.data),
+        type: 1,
+      }),
+    });
+
+    message.success(`上传保存成功`);
+    fetchSets();
+
+    return res;
+  };
+
+  const { trigger: saveTrigger } = useSWRMutation(`${PathMap.saveDataSet}`, saveDataSet);
 
   const props: UploadProps = {
     name: 'file',
@@ -44,7 +58,7 @@ export default function DataAnalysis() {
         const worksheet = workbook.Sheets[firstSheetName];
         const json = XLSX.utils.sheet_to_json(worksheet);
 
-        setExcelData(json as any);
+        saveTrigger({ title: file.name, data: json } as any);
       };
 
       reader.readAsBinaryString(file);
@@ -53,64 +67,36 @@ export default function DataAnalysis() {
     },
   };
 
-  const { data: tableData } = useSWR(() => {
-    if (selectedTable) {
-      return `/api/${selectedTable}`;
-    }
-    return null;
-  }, fetcher);
-
-  const saveDataSet = async (url: string, { arg }: any) => {
-    const res = await fetcher(`${PathMap.saveDataSet}`, {
-      method: 'POST',
-      body: JSON.stringify({
-        name: arg.title,
-        content: JSON.stringify(arg.data),
-        type: 1,
-      }),
-    });
-
-    message.success(`数据集${arg.title}保存成功`);
-
-    return res;
+  const handleRowClick = (r: DataType) => {
+    router.push(`/data-ana/${r.id}`);
   };
-
-  const { trigger: saveTrigger } = useSWRMutation(`${PathMap.saveDataSet}`, saveDataSet);
 
   return (
     <div className="p-2 flex flex-col h-[850px]">
-      <div className="px-10 pt-5 flex items-center gap-x-3">
-        <div className="flex items-center">
-          <span className="mr-4">数据集:</span>
-          <Radio.Group onChange={(e) => setSelectType(e.target.value)} value={selectedType}>
-            {sourceType.map((item) => {
-              return (
-                <Radio.Button key={item.value} value={item.value}>
-                  {item.label}
-                </Radio.Button>
-              );
-            })}
-          </Radio.Group>
-        </div>
-
-        {selectedType === 'mysql' && (
-          <div>
-            <span className="mr-4">表名:</span>
-            <Select value={selectedTable} style={{ width: 120 }} onChange={setSelectTable} options={tableList} />
-          </div>
-        )}
-
-        {selectedType === 'excel' && (
+      <div className="py-5 flex items-center gap-x-3">
+        <div className="flex w-full justify-between items-center">
+          <div className="text-xl">选择数据集</div>
           <div className="upload-control flex items-center">
-            <span className="mr-4">文件名:</span>
             <Upload {...props}>
               <Button icon={<i className="fa-solid fa-upload"></i>}>上传Excel</Button>
             </Upload>
           </div>
-        )}
+        </div>
       </div>
 
-      <Grid data={selectedType === 'mysql' ? tableData : excelData} saveData={saveTrigger} />
+      <Table dataSource={datasets} loading={isDatasetLoading}>
+        <Column title="名称" dataIndex="name" key="name" />
+        <Column
+          title="Action"
+          key="action"
+          width="200px"
+          render={(_: any, r: DataType) => (
+            <Space size="middle">
+              <a onClick={() => handleRowClick(r)}>处理</a>
+            </Space>
+          )}
+        />
+      </Table>
     </div>
   );
 }

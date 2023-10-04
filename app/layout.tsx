@@ -2,11 +2,13 @@ import './globals.css';
 import type { Metadata } from 'next';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import './ant.css';
+import '@/style/ant.css';
+import '@/style/third.css';
 
 import AntdProvider from '@/lib/provider/antd-provider';
 import StyledComponentsRegistry from '@/lib/provider/antd-registry';
 import SwrConfigProvider from '@/lib/provider/swr-config-provider';
+import SpreadProvider from '@/lib/provider/spread-provider';
 
 export const metadata: Metadata = {
   title: '智能会计教学平台',
@@ -20,7 +22,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SwrConfigProvider>
           <StyledComponentsRegistry>
             <AntdProvider>
-              <div className="flex-1 relative bg-blueGray-100 h-full flex flex-col">{children}</div>
+              <SpreadProvider>
+                <div className="flex-1 relative bg-teal-50 h-full flex flex-col">{children}</div>
+              </SpreadProvider>
             </AntdProvider>
           </StyledComponentsRegistry>
         </SwrConfigProvider>

@@ -11,6 +11,15 @@ dependencies:
   '@fortawesome/fontawesome-free':
     specifier: ^6.4.0
     version: 6.4.0
+  '@grapecity/spread-sheets':
+    specifier: ^16.2.3
+    version: 16.2.3
+  '@grapecity/spread-sheets-react':
+    specifier: ^16.2.3
+    version: 16.2.3
+  '@grapecity/spread-sheets-resources-zh':
+    specifier: ^16.2.3
+    version: 16.2.3
   '@prisma/client':
     specifier: ^5.1.1
     version: 5.1.1(prisma@5.1.1)
@@ -230,6 +239,22 @@ packages:
     resolution: {integrity: sha512-0NyytTlPJwB/BF5LtRV8rrABDbe3TdTXqNB3PdZ+UUUZAEIrdOJdmABqKjt4AXwIoJNaRVVZEXxpNrqvE1GAYQ==}
     engines: {node: '>=6'}
     requiresBuild: true
+    dev: false
+
+  /@grapecity/spread-sheets-react@16.2.3:
+    resolution: {integrity: sha512-yZbM0FFTM56z6A13kZYS2EAykx6zijrdUv35bQT4/cXXI9ng2wKtIfZzAoLm5fA1ss+It/KWlfwU3x/QtgUnGg==}
+    dependencies:
+      '@grapecity/spread-sheets': 16.2.3
+    dev: false
+
+  /@grapecity/spread-sheets-resources-zh@16.2.3:
+    resolution: {integrity: sha512-8Ku9qbh9m6gesnh7rBpALfKPADB8BdKUXChFzqhSI0DXHur8XHyf/1M7eMjipb8piBR9DWnIc/OlQjzCOuKsSA==}
+    dependencies:
+      '@grapecity/spread-sheets': 16.2.3
+    dev: false
+
+  /@grapecity/spread-sheets@16.2.3:
+    resolution: {integrity: sha512-LMYZi26Vz7AFWzpTkwSkB8PFBRVEZ3uiC6W6fQ84rZtO8B+pnn1GtDBEV3EgWJ/ZavXARYA+AmI64K70/C1U2g==}
     dev: false
 
   /@humanwhocodes/config-array@0.11.10:

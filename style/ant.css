@@ -1,3 +1,7 @@
+.ant-layout {
+  background-color: rgb(240 253 250) !important;
+}
+
 .policy-dir .ant-tree-node-content-wrapper.ant-tree-node-content-wrapper-normal {
   display: flex;
   align-items: center;

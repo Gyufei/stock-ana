@@ -29,11 +29,10 @@ model company_profile {
 }
 
 model dataset {
-  id      Int     @id @default(autoincrement())
-  name    String  @db.VarChar(255)
-  content String  @db.MediumText
-  type    String  @db.VarChar(255)
-  flag    String? @db.VarChar(255)
+  id      Int    @id @default(autoincrement())
+  name    String @db.VarChar(255)
+  content String @db.MediumText
+  type    String @db.VarChar(255)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -44,7 +43,7 @@ model strategy {
   parameter String? @db.LongText
   title     String? @db.VarChar(255)
   method    String  @db.VarChar(255)
-  describe  String? @db.VarChar(2000)
+  describe  String? @db.VarChar(1000)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -61,13 +60,6 @@ model user_content {
   exp_id      Int?
   exp_content Bytes?
   grade       Int?
-}
-
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model dataset_exp {
-  id         Int  @id @default(autoincrement())
-  exp_pro_id Int?
-  dataset_id Int?
 }
 
 model trd_co {
@@ -106,4 +98,53 @@ model trd_co {
   Statdt            String? @db.VarChar(255)
   Commnt            String? @db.VarChar(255)
   Markettype        String? @db.VarChar(255)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model answer {
+  id          Int    @id
+  course_id   Int?
+  exp_id      Int?
+  exp_content Bytes?
+}
+
+model rs_ttshs {
+  id       Int     @id @default(autoincrement())
+  Stkcd    String? @db.VarChar(255)
+  Annodt   String? @db.VarChar(255)
+  Nmsthldr String? @db.VarChar(255)
+  Nsthld   String? @db.VarChar(255)
+  Sign     String? @db.VarChar(255)
+  Psthld   String? @db.VarChar(255)
+
+  @@index([Annodt], map: "sy_annodt")
+}
+
+model trd_dalyr {
+  id            Int     @id @default(autoincrement())
+  Stkcd         String? @db.VarChar(255)
+  Trddt         String? @db.VarChar(255)
+  Opnprc        String? @db.VarChar(255)
+  Hiprc         String? @db.VarChar(255)
+  Loprc         String? @db.VarChar(255)
+  Clsprc        String? @db.VarChar(255)
+  Dnshrtrd      String? @db.VarChar(255)
+  Dnvaltrd      String? @db.VarChar(255)
+  Dsmvosd       String? @db.VarChar(255)
+  Dsmvtll       String? @db.VarChar(255)
+  Dretwd        String? @db.VarChar(255)
+  Dretnd        String? @db.VarChar(255)
+  Adjprcwd      String? @db.VarChar(255)
+  Adjprcnd      String? @db.VarChar(255)
+  Markettype    String? @db.VarChar(255)
+  Capchgdt      String? @db.VarChar(255)
+  Trdsta        String? @db.VarChar(255)
+  Ahshrtrd_D    String? @db.VarChar(255)
+  Ahvaltrd_D    String? @db.VarChar(255)
+  PreClosePrice String? @db.VarChar(255)
+  ChangeRatio   String? @db.VarChar(255)
+
+  @@index([Clsprc], map: "sy_clsprc")
+  @@index([Stkcd], map: "sy_stkcd")
+  @@index([Trddt], map: "sy_trddt")
 }

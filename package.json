@@ -11,6 +11,9 @@
   "dependencies": {
     "@ant-design/cssinjs": "^1.16.1",
     "@fortawesome/fontawesome-free": "^6.4.0",
+    "@grapecity/spread-sheets": "^16.2.3",
+    "@grapecity/spread-sheets-react": "^16.2.3",
+    "@grapecity/spread-sheets-resources-zh": "^16.2.3",
     "@prisma/client": "^5.1.1",
     "@types/node": "20.4.4",
     "@types/react": "18.2.15",
