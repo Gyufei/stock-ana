@@ -1,13 +1,15 @@
 'use client';
 
 import fetcher from '@/lib/http/fetcher';
-import { Breadcrumb, Spin } from 'antd';
+import { Breadcrumb, Spin, Modal } from 'antd';
 import { useParams, useRouter } from 'next/navigation';
 import useSWR from 'swr';
 
 import GC from '@grapecity/spread-sheets';
 import { SpreadSheets, Worksheet } from '@grapecity/spread-sheets-react';
 import { useState } from 'react';
+
+const { confirm } = Modal;
 
 export default function Page() {
   const router = useRouter();
@@ -71,32 +73,56 @@ export default function Page() {
     let t = {
       text: '删除',
       name: '删除',
-      command: showLoginDialog,
+      command: () => showLoginDialog(),
       workArea: 'colHeader',
     };
     e.contextMenu.menuData.push(t);
   };
 
   const showLoginDialog = () => {
-    // if (!spread) return;
-    // let e = spread.getActiveSheet().getSelections(),
-    //   t = getDelCols(e),
-    //   i = columnLength[this.spread.getActiveSheetIndex()],
-    //   a = t.filter((e) => e < i);
-    // a.length < 1 ||
-    //   $confirm(`确定删除所选 ${a.length}个变量吗？`, '删除提示', {
-    //     confirmButtonText: '确定',
-    //     cancelButtonText: '取消',
-    //     closeOnClickModal: !1,
-    //   })
-    //     .then(() => {
-    //       $emit('ValueChanged', {
-    //         type: 'deleteColumns',
-    //         cols: a,
-    //       });
-    //     })
-    //     .catch(() => {});
+    if (!spreadInstance) return;
+    let e = spreadInstance.getActiveSheet().getSelections();
+    const t = getDelCols(e);
+
+    confirm({
+      content: `确定删除所选 ${t.length}个变量吗？`,
+      title: '删除提示',
+      okText: '确定',
+      cancelText: '取消',
+      onOk: () => {},
+      onCancel: () => {},
+    });
   };
+
+  const getDelCols = (e: any) => {
+    let t = [];
+
+    return e.forEach((e: any) => {
+      let { col: i, colCount: a } = e;
+      for (let s = 0; s < a; s++) t.push(i + s);
+    });
+  };
+
+  // const reloadTableData = (e: any) => {
+  //   if (!spreadInstance) return;
+
+  //   clearData();
+
+  //   let s = spreadInstance.getSheet(0);
+  //   s.options.protectionOptions.allowDeleteColumns = true;
+  //   s.setArray(0, 0, e);
+  // };
+
+  // const clearData = () => {
+  //   if (!spreadInstance) return;
+  //   const i = spreadInstance?.getSheet(0);
+  //   i.clear(-1, -1, -1, -1, GC.Spread.Sheets.SheetArea.viewport, GC.Spread.Sheets.StorageType.data);
+  // };
+
+  // const refresh = () => {
+  //   if (!spreadInstance) return;
+  //   spreadInstance.refresh();
+  // };
 
   return (
     <div className="h-[855px]">
@@ -131,12 +157,12 @@ export default function Page() {
               <div data-v-78712ae0="" className="algorithm-list">
                 <div data-v-78712ae0="" className="algorithm-item">
                   <div data-v-78712ae0="" className="algorithm-box">
-                    <button data-v-78712ae0="" className="algorithm-content">
+                    {/* <button data-v-78712ae0="" className="algorithm-content">
                       <span data-v-78712ae0="">数据标签</span>
                     </button>
                     <button data-v-78712ae0="" className="algorithm-content">
                       <span data-v-78712ae0="">数据编码</span>
-                    </button>
+                    </button> */}
                     <button data-v-78712ae0="" className="algorithm-content">
                       <span data-v-78712ae0="">异常值处理</span>
                     </button>
@@ -152,21 +178,21 @@ export default function Page() {
                     <button data-v-78712ae0="" className="algorithm-content">
                       <span data-v-78712ae0="">虚拟变量转换</span>
                     </button>
-                    <button data-v-78712ae0="" className="algorithm-content">
+                    {/* <button data-v-78712ae0="" className="algorithm-content">
                       <span data-v-78712ae0="">样本均衡</span>
-                    </button>
+                    </button> */}
                     <button data-v-78712ae0="" className="algorithm-content">
                       <span data-v-78712ae0="">数据降维</span>
                     </button>
                     <button data-v-78712ae0="" className="algorithm-content">
                       <span data-v-78712ae0="">缺失值处理</span>
                     </button>
-                    <button data-v-78712ae0="" className="algorithm-content">
+                    {/* <button data-v-78712ae0="" className="algorithm-content">
                       <span data-v-78712ae0="">时序数据滑窗转换</span>
-                    </button>
-                    <button data-v-78712ae0="" className="algorithm-content">
+                    </button> */}
+                    {/* <button data-v-78712ae0="" className="algorithm-content">
                       <span data-v-78712ae0="">特征筛选</span>
-                    </button>
+                    </button> */}
                     <button data-v-78712ae0="" className="algorithm-content">
                       <span data-v-78712ae0="">缩尾/截尾处理</span>
                     </button>

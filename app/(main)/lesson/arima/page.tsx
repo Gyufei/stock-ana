@@ -14,20 +14,20 @@ export default function Arima() {
         <div className="border p-4 rounded-md mb-4">
           <div className="text-primary text-2xl mb-4">ARIMA模型介绍</div>
           <div>
-            <Link href="/lesson/arima/desc/experiment">
-              <Button className="mr-4" type="default">
-                课程实验
-              </Button>
-            </Link>
+            {/* <Link href="/lesson/arima/desc/experiment"> */}
+            <Button className="mr-4" type="default">
+              理论学习
+            </Button>
+            {/* </Link> */}
 
-            <Link href="/lesson/arima/desc/practice">
-              <Button type="default">课堂练习</Button>
+            <Link href="/data-ana">
+              <Button type="default">算法实训</Button>
             </Link>
           </div>
         </div>
 
         <div className="border p-4 rounded-md mb-4">
-          <div className="text-primary text-2xl mb-4">数据预处理与分析</div>
+          <div className="text-primary text-2xl mb-4">建立ARIMA模型</div>
           <div>
             <Link href="/lesson/arima/data-ana/experiment">
               <Button className="mr-4" type="default">
@@ -36,13 +36,13 @@ export default function Arima() {
             </Link>
 
             <Link href="/lesson/arima/data-ana/practice">
-              <Button type="default">课堂练习</Button>
+              <Button type="default">算法实训</Button>
             </Link>
           </div>
         </div>
 
         <div className="border p-4 rounded-md">
-          <div className="text-primary text-2xl mb-4">建立ARIMA模型</div>
+          <div className="text-primary text-2xl mb-4">基于ARIMA模型的营业收入预测</div>
           <div>
             <Link href="/lesson/arima/build-model/experiment">
               <Button className="mr-4" type="default">
